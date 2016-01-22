@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160122185459) do
+ActiveRecord::Schema.define(version: 20160122193619) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "blocks", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -19,6 +24,11 @@ ActiveRecord::Schema.define(version: 20160122185459) do
   end
 
   create_table "explorers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
