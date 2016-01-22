@@ -1,0 +1,17 @@
+<%= form_for(@explorer) do |f| %>
+  <% if @explorer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@explorer.errors.count, "error") %> prohibited this explorer from being saved:</h2>
+
+      <ul>
+      <% @explorer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
