@@ -1,16 +1,72 @@
 <section class="row m-b-md">
     <div class="col-sm-12">
-      <h2>Block #<%= @block['data']['nb'] %></h2>
+      <h2>Block <%= number_with_delimiter(@block['data']['nb'], delimiter: ',') %></h2>
+      <ul class="breadcrumb">
+        <li><%= link_to 'Home', root_url %></li>
+        <li class="active">Block <%= number_with_delimiter(@block['data']['nb'], delimiter: ',') %></li>
+      </ul>
         <section class="panel panel-default">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-striped">
                     <tbody>
-                        <% @block['data'].each do |data| %>
-                            <tr>
-                                <td><%= data.first %></td>
-                                <td><%= data.second %></td>
-                            </tr>
-                        <% end %>
+                        <tr>
+                            <td>Height</td>
+                            <td><%= number_with_delimiter(@block['data']['nb'], delimiter: ',') %></td>
+                        </tr>
+                        <tr>
+                            <td>Block Time</td>
+                            <td><%= @block['data']['time_utc'] %></td>
+                        </tr>
+                        <tr>
+                            <td>Trades Sum</td>
+                            <td><%= number_with_delimiter(@block['data']['vout_sum'], delimiter: ',') %> BTC</td>
+                        </tr>
+                        <tr>
+                            <td># Transactions</td>
+                            <td><%= number_with_delimiter(@block['data']['nb_txs'], delimiter: ',') %></td>
+                        </tr>
+                        <tr>
+                            <td>Difficulty</td>
+                            <td><%= number_with_delimiter(number_with_precision(@block['data']['difficulty'], precision: 2), delimiter: ',') %></td>
+                        </tr>
+                        <tr>
+                            <td>Fee</td>
+                            <td><%= @block['data']['fee'] %> BTC</td>
+                        </tr>
+                        <tr>
+                            <td>Hash</td>
+                            <td><%= @block['data']['hash'] %></td>
+                        </tr>
+                        <tr>
+                            <td>Version</td>
+                            <td><%= @block['data']['version'] %></td>
+                        </tr>
+                        <tr>
+                            <td>Confirmations</td>
+                            <td><%= number_with_delimiter(@block['data']['confirmations'], delimiter: ',') %></td>
+                        </tr>
+                        <tr>
+                            <td>Merkle Root</td>
+                            <td><%= @block['data']['merkleroot'] %></td>
+                        </tr>
+                        <tr>
+                            <% unless @block['data']['next_block_hash'] === '' %>
+                                <td>Next Block Hash</td>
+                                <td><%= link_to @block['data']['next_block_hash'], block_path(@block['data']['nb'] + 1) %></td>
+                            <% end %>
+                        </tr>
+                        <tr>
+                            <td>Prev Block Hash</td>
+                            <td><%= link_to @block['data']['prev_block_hash'], block_path(@block['data']['nb'] - 1) %></td>
+                        </tr>
+                        <tr>
+                            <td>Size (kb)</td>
+                            <td><%= number_with_delimiter(@block['data']['size'], delimiter: ',') %></td>
+                        </tr>
+                        <tr>
+                            <td>Coin Days Destroyed</td>
+                            <td><%= number_with_delimiter(number_with_precision(@block['data']['days_destroyed'], precision: 2), delimiter: ',') %></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
