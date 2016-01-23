@@ -3,5 +3,6 @@
         <p>$<%= number_with_delimiter(number_with_precision(@coin_info['data']['markets']['coinbase']['value'], precision: 2), delimiter: ',') %> per coin</p>
         <p><%= "#{number_with_delimiter(@coin_info['data']['volume']['current'], delimiter: ',')} / #{number_with_delimiter(@coin_info['data']['volume']['all'], delimiter: ',')} mined" %></p>
         <p><%= number_with_precision(@coin_info['data']['volume']['perc'], precision: 2) %>% of total coins</p>
+        <p>Market Cap $<%= number_with_delimiter(number_with_precision(@coin_info['data']['markets']['coinbase']['value'] * @coin_info['data']['volume']['current'], precision: 2), delimiter: ',') %></p>
     </div>
 </section>
