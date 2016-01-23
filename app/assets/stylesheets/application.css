@@ -16,6 +16,7 @@
  *= require 'icon'
  *= require 'font'
  *= require 'app'
+ *= require 'bootstrap_calendar'
  *= require_tree .
  *= require_self
  */

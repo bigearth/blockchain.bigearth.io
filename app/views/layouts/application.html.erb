@@ -8,8 +8,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
+<body class="">
   <section class="vbox">
     <header class="bg-white header header-md navbar navbar-fixed-top-xs box-shadow">
       <div class="navbar-header aside-md dk">
@@ -18,7 +17,7 @@
         </a>
         <a href="index.html" class="navbar-brand">
           <%= image_tag("logo.png", class: "m-r-sm") %>
-          <span class="hidden-nav-xs">Big Earth</span>
+          <span class="hidden-nav-xs"><%= link_to 'Big Earth', root_url %></span>
         </a>
         <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
           <i class="fa fa-cog"></i>
@@ -586,7 +585,7 @@
               <section class="vbox">
                 <section class="scrollable padder">              
                   <section class="row m-b-md">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                       <%= yield %>
                     </div>
                   </section>
@@ -645,7 +644,7 @@
                     <li class="list-group-item">
                       <div class="media">
                         <span class="pull-left thumb-sm avatar">
-                          <img src="images/a3.png" alt="..." class="img-circle">
+                          <%= image_tag("a3.png", class: "img-circle") %>
                           <i class="on b-black bottom"></i>
                         </span>
                         <div class="media-body">
@@ -657,7 +656,7 @@
                     <li class="list-group-item">
                       <div class="media">
                         <span class="pull-left thumb-sm avatar">
-                          <img src="images/a2.png" alt="...">
+                          <%= image_tag("a2.png") %>
                           <i class="on b-black bottom"></i>
                         </span>
                         <div class="media-body">
@@ -669,7 +668,7 @@
                     <li class="list-group-item">
                       <div class="media">
                         <span class="pull-left thumb-sm avatar">
-                          <img src="images/a1.png" alt="...">
+                          <%= image_tag("a1.png") %>
                           <i class="busy b-black bottom"></i>
                         </span>
                         <div class="media-body">
@@ -681,7 +680,7 @@
                     <li class="list-group-item">
                       <div class="media">
                         <span class="pull-left thumb-sm avatar">
-                          <img src="images/a0.png" alt="...">
+                          <%= image_tag("a0.png") %>
                           <i class="away b-black bottom"></i>
                         </span>
                         <div class="media-body">
