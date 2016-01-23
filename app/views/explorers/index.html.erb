@@ -1,2 +1,33 @@
-<!-- <%= debug(@parsed_coin_info) %> -->
-<!-- <%= debug(@parsed_txs) %> -->
+<h2>Bitcoin</h2>
+<h3 class="m-b-xs text-black">Volume</h3>
+<ul>
+    <li>Current: <%= @coin_info['data']['volume']['current'] %></li>
+    <li>All: <%= @coin_info['data']['volume']['all'] %></li>
+    <li>Percent: <%= @coin_info['data']['volume']['perc'] %></li>
+</ul>
+<h3 class="m-b-xs text-black">Value</h3>
+<ul>
+    <li>$<%= @coin_info['data']['markets']['coinbase']['value'] %></li>
+</ul>
+<h3 class="m-b-xs text-black">Difficulty</h3>
+<ul>
+    <li><%= @coin_info['data']['next_difficulty']['difficulty'] %></li>
+    <li><%= @coin_info['data']['next_difficulty']['retarget_in'] %></li>
+    <li><%= @coin_info['data']['next_difficulty']['retarget_block'] %></li>
+    <li><%= @coin_info['data']['next_difficulty']['perc'] %></li>
+</ul>
+<h2>Last Bitcoin Blocks</h2>
+<ul>
+    <% @blocks['data'].each do |block| %>
+        <li>
+            <ul>
+                <li><%= link_to block['nb'], block_path(block['nb']) %></li>
+                <li><%= block['time_utc'] %></li>
+                <li><%= block['nb_txs'] %></li>
+                <li><%= block['fee'] %></li>
+                <li><%= block['size'] %></li>
+                <li><%= block['days_destroyed'] %></li>
+            </ul>
+        </li>
+    <% end %>
+</ul>

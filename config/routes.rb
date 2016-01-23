@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   root 'explorers#index'
-  resources :explorers 
-  resources :blocks
-  resources :transactions
-  resources :addresses
+  resources :explorers, only: [:index]
+  resources :blocks, only: [:show]
+  resources :transactions, only: [:show]
+  resources :addresses, only: [:show]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

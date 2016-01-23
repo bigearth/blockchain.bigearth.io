@@ -7,11 +7,10 @@ class ExplorersController < ApplicationController
     # require 'blockr'
     # @explorers = Explorer.all
     # blockr = Blockr.new
-    # coin_info = HTTParty.get('http://btc.blockr.io/api/v1/coin/info')
-    # @parsed_coin_info = JSON.parse coin_info.body
-    # txs = HTTParty.get('http://btc.blockr.io/api/v1/block/txs/last')
-    # @parsed_txs = JSON.parse txs.body
-    # puts @parsed['data']
+    @coin_info = HTTParty.get 'http://btc.blockr.io/api/v1/coin/info' 
+    block_height = @coin_info['data']['last_block']['nb']
+    blocks = ((block_height - 10)..block_height).to_a.reverse
+    @blocks = HTTParty.get "http://btc.blockr.io/api/v1/block/info/#{blocks.join(',')}"
   end
 
   # GET /explorers/1
