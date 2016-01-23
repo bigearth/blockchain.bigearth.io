@@ -1,13 +1,12 @@
 <h2>Bitcoin</h2>
 <h3 class="m-b-xs text-black">Volume</h3>
 <ul>
-    <li>Current: <%= @coin_info['data']['volume']['current'] %></li>
-    <li>All: <%= @coin_info['data']['volume']['all'] %></li>
-    <li>Percent: <%= @coin_info['data']['volume']['perc'] %></li>
+    <li><%= "#{number_with_delimiter(@coin_info['data']['volume']['current'], delimiter: ',')} / #{number_with_delimiter(@coin_info['data']['volume']['all'], delimiter: ',')} mined" %></li>
+    <li><%= @coin_info['data']['volume']['perc'] %>% of total coins</li>
 </ul>
 <h3 class="m-b-xs text-black">Value</h3>
 <ul>
-    <li>$<%= @coin_info['data']['markets']['coinbase']['value'] %></li>
+    <li>$<%= number_with_precision(@coin_info['data']['markets']['coinbase']['value'], precision: 2) %> per coin</li>
 </ul>
 <h3 class="m-b-xs text-black">Difficulty</h3>
 <ul>
@@ -21,12 +20,12 @@
     <% @blocks['data'].each do |block| %>
         <li>
             <ul>
-                <li><%= link_to block['nb'], block_path(block['nb']) %></li>
-                <li><%= block['time_utc'] %></li>
-                <li><%= block['nb_txs'] %></li>
-                <li><%= block['fee'] %></li>
-                <li><%= block['size'] %></li>
-                <li><%= block['days_destroyed'] %></li>
+                <li>Block Height: <%= link_to block['nb'], block_path(block['nb']) %></li>
+                <li>Block Created: <%= time_ago_in_words block['time_utc'] %></li>
+                <li>Transactions: <%= block['nb_txs'] %></li>
+                <li>Block Fee: <%= block['fee'] %></li>
+                <li>Size (kb): <%= block['size'] %></li>
+                <li>Days Destroyed: <%= block['days_destroyed'] %></li>
             </ul>
         </li>
     <% end %>
