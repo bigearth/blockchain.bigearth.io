@@ -4,12 +4,9 @@ class ExplorersController < ApplicationController
   # GET /explorers
   # GET /explorers.json
   def index
-    # require 'blockr'
-    # @explorers = Explorer.all
-    # blockr = Blockr.new
     @coin_info = HTTParty.get 'http://btc.blockr.io/api/v1/coin/info' 
     block_height = @coin_info['data']['last_block']['nb']
-    blocks = ((block_height - 10)..block_height).to_a.reverse
+    blocks = ((block_height - 19)..block_height).to_a.reverse
     @blocks = HTTParty.get "http://btc.blockr.io/api/v1/block/info/#{blocks.join(',')}"
   end
 

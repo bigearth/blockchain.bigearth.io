@@ -21,7 +21,14 @@
                                 <td><%= time_ago_in_words block['time_utc'] %></td>
                                 <td><%= number_with_delimiter(block['nb_txs'], delimiter: ',') %></td>
                                 <td><%= block['fee'] %></td>
-                                <td><%= number_with_delimiter(block['size'], delimiter: ',') %></td>
+                                <% if block['size'].to_i <= 300000 %>
+                                  <td class='success'>
+                                <% elsif block['size'].to_i <= 700000 %>
+                                  <td class='warning'>
+                                <% else %>
+                                  <td class='danger'>
+                                <% end %>
+                                <%= number_with_delimiter(block['size'], delimiter: ',') %></td>
                                 <td><%= number_with_delimiter(block['days_destroyed'], delimiter: ',') %></td>
                             </tr>
                         <% end %>
