@@ -1,0 +1,7 @@
+<section class="row m-b-md">
+    <div class="col-sm-12">
+        <h3 class="m-b-xs text-black">Difficulty</h3>
+        <p><%= number_with_delimiter(number_with_precision(@coin_info['data']['last_block']['difficulty'], precision: 2), delimiter: ',') %></p>
+        <p>Difficulty is a measure of how difficult it is to find a new block below a given target.
+    </div>
+</section>

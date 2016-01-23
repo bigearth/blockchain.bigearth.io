@@ -1,55 +1,9 @@
-<i class="i i-hexagon2 i-s-base text-danger hover-rotate"></i>
-<h2>Bitcoin</h2>
 <section class="row m-b-md">
-    <div class="col-sm-6">
-        <ul>
-            <li>$<%= number_with_precision(@coin_info['data']['markets']['coinbase']['value'], precision: 2) %> per coin</li>
-            <li><%= "#{number_with_delimiter(@coin_info['data']['volume']['current'], delimiter: ',')} / #{number_with_delimiter(@coin_info['data']['volume']['all'], delimiter: ',')} mined" %></li>
-            <li><%= @coin_info['data']['volume']['perc'] %>% of total coins</li>
-        </ul>
-    </div>
-    <div class="col-sm-6"></div>
-</section>
-<section class="row m-b-md">
-    <div class="col-sm-6">
-        <h3 class="m-b-xs text-black">Difficulty</h3>
-        <ul>
-            <li><%= @coin_info['data']['next_difficulty']['difficulty'] %></li>
-            <li><%= @coin_info['data']['next_difficulty']['retarget_in'] %></li>
-            <li><%= @coin_info['data']['next_difficulty']['retarget_block'] %></li>
-            <li><%= @coin_info['data']['next_difficulty']['perc'] %></li>
-        </ul>
-    </div>
-    <div class="col-sm-6"></div>
-</section>
-<h2>Last Bitcoin Blocks</h2>
-<ul>
-</ul>
-<section class="panel panel-default">
-    <div class="table-responsive">
-        <table class="table table-striped b-t b-light">
-            <thead>
-                <tr>
-                    <th>Block Height</th>
-                    <th>Block Created</th>
-                    <th># Transactions</th>
-                    <th>Block Fee</th>
-                    <th>Size (kb)</th>
-                    <th>Days Destroyed</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @blocks['data'].each do |block| %>
-                    <tr>
-                        <td><%= link_to number_with_delimiter(block['nb'], delimiter: ','), block_path(block['nb']) %></td>
-                        <td><%= time_ago_in_words block['time_utc'] %></td>
-                        <td><%= link_to number_with_delimiter(block['nb_txs'], delimiter: ',') %></td>
-                        <td><%= block['fee'] %></td>
-                        <td><%= number_with_delimiter(block['size'], delimiter: ',') %></td>
-                        <td><%= number_with_delimiter(block['days_destroyed'], delimiter: ',') %></td>
-                    </tr>
-                <% end %>
-            </tbody>
-        </table>
+    <div class="col-sm-12">
+        <h2>Bitcoin</h2>
     </div>
 </section>
+<%= render 'info' %>
+<%= render 'difficulty' %>
+<%= render 'next_difficulty' %>
+<%= render 'last_blocks' %>

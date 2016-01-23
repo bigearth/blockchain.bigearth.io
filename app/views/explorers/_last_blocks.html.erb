@@ -1,0 +1,33 @@
+<section class="row m-b-md">
+    <div class="col-sm-12">
+        <h3>Last Bitcoin Blocks</h3>
+        <section class="panel panel-default">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Block Height</th>
+                            <th>Block Created</th>
+                            <th># Transactions</th>
+                            <th>Block Fee</th>
+                            <th>Size (kb)</th>
+                            <th>Days Destroyed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @blocks['data'].each do |block| %>
+                            <tr>
+                                <td><%= link_to number_with_delimiter(block['nb'], delimiter: ','), block_path(block['nb']) %></td>
+                                <td><%= time_ago_in_words block['time_utc'] %></td>
+                                <td><%= number_with_delimiter(block['nb_txs'], delimiter: ',') %></td>
+                                <td><%= block['fee'] %></td>
+                                <td><%= number_with_delimiter(block['size'], delimiter: ',') %></td>
+                                <td><%= number_with_delimiter(block['days_destroyed'], delimiter: ',') %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</section>
