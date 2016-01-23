@@ -1,0 +1,25 @@
+<section class="row m-b-md">
+    <div class="col-sm-12">
+      <h3>Transactions for Block #<%= @block['data']['nb'] %></h3>
+      <% @txs['data']['txs'].each do |tx| %>
+        <section class="panel panel-default">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                        <% tx.each do |dta| %>
+                            <tr>
+                                <td><%= dta.first %></td>
+                                <% if dta.first === 'tx' %>
+                                    <td><%= link_to dta.second, transaction_path(dta.second) %></td>
+                                <% else %>
+                                    <td><%= dta.second %></td>
+                                <% end %>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+      <% end %>
+    </div>
+</section>

@@ -1,0 +1,19 @@
+<section class="row m-b-md">
+    <div class="col-sm-12">
+      <h2>Block #<%= @block['data']['nb'] %></h2>
+        <section class="panel panel-default">
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <% @block['data'].each do |data| %>
+                            <tr>
+                                <td><%= data.first %></td>
+                                <td><%= data.second %></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</section>
