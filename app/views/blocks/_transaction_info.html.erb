@@ -1,25 +1,73 @@
 <section class="row m-b-md">
-    <div class="col-sm-12">
-      <h3>Transactions for Block #<%= @block['data']['nb'] %></h3>
-      <% @txs['data']['txs'].each do |tx| %>
-        <section class="panel panel-default">
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <tbody>
-                        <% tx.each do |dta| %>
-                            <tr>
-                                <td><%= dta.first %></td>
-                                <% if dta.first === 'tx' %>
-                                    <td><%= link_to dta.second, transaction_path(dta.second) %></td>
-                                <% else %>
-                                    <td><%= dta.second %></td>
-                                <% end %>
-                            </tr>
-                        <% end %>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+  <div class="col-sm-12">
+  <h3>Transactions (for Block <%= number_with_delimiter(@block['data']['nb'], delimiter: ',') %>)</h3>
+  <% @txs['data']['txs'].each do |tx| %>
+  <% if tx['is_coinbased'] === 1 %>
+  <div class="panel panel-success">
+    <% else %>
+    <div class="panel panel-default">
       <% end %>
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <%= link_to tx['tx'], transaction_path(tx['tx']) %>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <section class="row m-b-md">
+          <div class="col-sm-6">
+            <% if tx['is_coinbased'] === 1 %>
+            <span class="label label-success">Newly Generated Coins</span>
+            <% else %>
+            <h4>Input Address(es)</h4>
+            <section class="panel panel-default">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <tbody>
+                    <% tx['trade']['vins'].each do |address| %>
+                    <tr>
+                      <td><%= link_to address['address'], address_path(address['address']) %></td>
+                      <td><%= number_with_precision(address['amount'], precision: 8) %> BTC</td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <% end %>
+          </div>
+          <div class="col-sm-6">
+            <h4>Output Address(es)</h4>
+            <section class="panel panel-default">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <tbody>
+                    <% transaction_sum = 0 %>
+                    <% tx['trade']['vouts'].each do |address| %>
+                        <% transaction_sum += address['amount'] %>
+                        <tr>
+                          <td><%= link_to address['address'], address_path(address['address']) %></td>
+                          <td><%= number_with_precision(address['amount'], precision: 8) %> BTC</td>
+                        </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </section>
+      </div>
+      <div class="panel-footer">
+        <section class="row m-b-md">
+          <div class="col-sm-6">
+            <p>Days Destroyed: <%= tx['days_destroyed'] %></p>
+          </div>
+          <div class="col-sm-6">
+            <p>Fee: <%= tx['fee'] %></p>
+            <p>Transaction Sum: <%= number_with_precision(transaction_sum + tx['fee'].to_f, precision: 8) %></p>
+          </div>
+        </section>
+      </div>
     </div>
+    <% end %>
+  </div>
 </section>

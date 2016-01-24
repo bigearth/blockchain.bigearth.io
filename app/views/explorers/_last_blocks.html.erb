@@ -10,7 +10,7 @@
                             <th>Block Created</th>
                             <th># Transactions</th>
                             <th>Block Fee</th>
-                            <th>Size (kb)</th>
+                            <th>Size</th>
                             <th>Days Destroyed</th>
                         </tr>
                     </thead>
@@ -18,7 +18,7 @@
                         <% @blocks['data'].each do |block| %>
                             <tr>
                                 <td><%= link_to number_with_delimiter(block['nb'], delimiter: ','), block_path(block['nb']) %></td>
-                                <td><%= time_ago_in_words block['time_utc'] %></td>
+                                <td><%= time_ago_in_words block['time_utc'] %> ago</td>
                                 <td><%= number_with_delimiter(block['nb_txs'], delimiter: ',') %></td>
                                 <td><%= block['fee'] %></td>
                                 <% if block['size'].to_i <= 300000 %>
@@ -28,7 +28,7 @@
                                 <% else %>
                                   <td class='danger'>
                                 <% end %>
-                                <%= number_with_delimiter(block['size'], delimiter: ',') %></td>
+                                <%= number_to_human_size(block['size']) %>
                                 <td><%= number_with_delimiter(block['days_destroyed'], delimiter: ',') %></td>
                             </tr>
                         <% end %>

@@ -61,7 +61,14 @@
                         </tr>
                         <tr>
                             <td>Size (kb)</td>
-                            <td><%= number_with_delimiter(@block['data']['size'], delimiter: ',') %></td>
+                            <% if @block['data']['size'].to_i <= 300000 %>
+                              <td class='success'>
+                            <% elsif @block['data']['size'].to_i <= 700000 %>
+                              <td class='warning'>
+                            <% else %>
+                              <td class='danger'>
+                            <% end %>
+                            <%= number_to_human_size(@block['data']['size'].to_i) %></td>
                         </tr>
                         <tr>
                             <td>Coin Days Destroyed</td>
