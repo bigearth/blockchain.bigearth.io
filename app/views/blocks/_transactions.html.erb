@@ -16,7 +16,7 @@
         <section class="row m-b-md">
           <div class="col-sm-6">
             <% if tx['is_coinbased'] === 1 %>
-            <span class="label label-success">Newly Generated Coins</span>
+              <span class="label label-success">Newly Generated Coins</span>
             <% else %>
             <h4>Input Address(es)</h4>
             <section class="panel panel-default">
@@ -26,7 +26,7 @@
                     <% tx['trade']['vins'].each do |address| %>
                     <tr>
                       <td><%= link_to address['address'], address_path(address['address']) %></td>
-                      <td><%= number_with_precision(address['amount'], precision: 8) %> BTC</td>
+                      <td title='<%= number_to_currency(@value * address["amount"]) %>'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</td>
                     </tr>
                     <% end %>
                   </tbody>
@@ -46,7 +46,7 @@
                         <% transaction_sum += address['amount'] %>
                         <tr>
                           <td><%= link_to address['address'], address_path(address['address']) %></td>
-                          <td><%= number_with_precision(address['amount'], precision: 8) %> BTC</td>
+                          <td title='<%= number_to_currency(@value * address["amount"]) %>'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</td>
                         </tr>
                     <% end %>
                   </tbody>
@@ -62,8 +62,8 @@
             <p>Days Destroyed: <%= tx['days_destroyed'] %></p>
           </div>
           <div class="col-sm-6">
-            <p>Fee: <%= tx['fee'] %></p>
-            <p>Transaction Sum: <%= number_with_precision(transaction_sum + tx['fee'].to_f, precision: 8) %></p>
+            <p title='<%= number_to_currency(@value * tx["fee"].to_f) %>'>Fee: <%= number_with_delimiter(number_with_precision(tx['fee'], precision: 8), delimiter: ',') %> BTC</p>
+            <p title='<%= number_to_currency(@value * transaction_sum + tx['fee'].to_f) %>'>Transaction Sum: <%= number_with_delimiter(number_with_precision(transaction_sum + tx['fee'].to_f, precision: 8), delimiter: ',') %> BTC</p>
           </div>
         </section>
       </div>

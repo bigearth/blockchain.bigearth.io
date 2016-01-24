@@ -1,0 +1,31 @@
+<section class="row m-b-md">
+  <div class="col-sm-12">
+    <% @txs['data']['txs'].each do |tx| %>
+      <section class="panel panel-default">
+          <div class="table-responsive">
+              <table class="table table-striped">
+                  <tbody>
+                      <tr>
+                          <td>Hash</td>
+                          <td><%= link_to tx['tx'], transaction_path(tx['tx']) %></td>
+                      </tr>
+                      <tr>
+                          <td>Time</td>
+                          <td><%= tx['time_utc'] %></td>
+                      </tr>
+                      <tr>
+                          <td>Amount</td>
+                          <td title='<%= number_to_currency(@value * tx['amount']) %>' class='<%= tx["amount"] < 0 ? "danger" : "success" %>'>
+                          <%= number_with_delimiter(number_with_precision(tx['amount'], precision: 8), delimiter: ',') %> BTC</td>
+                      </tr>
+                      <tr>
+                          <td># of Confirmations</td>
+                          <td><%= number_with_delimiter(tx['confirmations'], delimiter: ',') %></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </section>
+    <% end %>
+  </div>
+</section>
