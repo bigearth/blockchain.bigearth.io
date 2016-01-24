@@ -30,7 +30,7 @@
                       <% @tx['data']['trade']['vins'].each do |address| %>
                       <tr>
                         <td><%= link_to address['address'], address_path(address['address']) %></td>
-                        <td><%= number_with_precision(address['amount'], precision: 8) %> BTC</td>
+                        <td title='<%= number_to_currency(@value * address["amount"]) %>'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</td>
                       </tr>
                       <% end %>
                     </tbody>
@@ -50,7 +50,7 @@
                           <% transaction_sum += address['amount'] %>
                           <tr>
                             <td><%= link_to address['address'], address_path(address['address']) %></td>
-                            <td><%= number_with_precision(address['amount'], precision: 8) %> BTC</td>
+                            <td title='<%= number_to_currency(@value * address["amount"]) %>'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</td>
                           </tr>
                       <% end %>
                     </tbody>
@@ -66,8 +66,8 @@
               <p>Days Destroyed: <%= @tx['data']['days_destroyed'] %></p>
             </div>
             <div class="col-sm-6">
-              <p>Fee: <%= @tx['data']['fee'] %></p>
-              <p>Transaction Sum: <%= number_with_precision(transaction_sum + @tx['data']['fee'].to_f, precision: 8) %></p>
+              <p title='<%= number_to_currency(@value * @tx["data"]["fee"].to_f) %>'>Fee: <%= @tx['data']['fee'] %> BTC</p>
+              <p title='<%= number_to_currency(@value * transaction_sum + @tx["data"]["fee"].to_f) %>'>Transaction Sum: <%= number_with_precision(transaction_sum + @tx['data']['fee'].to_f, precision: 8) %> BTC</p>
             </div>
           </section>
         </div>

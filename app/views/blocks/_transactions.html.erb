@@ -63,7 +63,7 @@
           </div>
           <div class="col-sm-6">
             <p title='<%= number_to_currency(@value * tx["fee"].to_f) %>'>Fee: <%= number_with_delimiter(number_with_precision(tx['fee'], precision: 8), delimiter: ',') %> BTC</p>
-            <p title='<%= number_to_currency(@value * transaction_sum + tx['fee'].to_f) %>'>Transaction Sum: <%= number_with_delimiter(number_with_precision(transaction_sum + tx['fee'].to_f, precision: 8), delimiter: ',') %> BTC</p>
+            <p title='<%= number_to_currency(@value * transaction_sum + tx["fee"].to_f) %>'>Transaction Sum: <%= number_with_delimiter(number_with_precision(transaction_sum + tx['fee'].to_f, precision: 8), delimiter: ',') %> BTC</p>
           </div>
         </section>
       </div>
