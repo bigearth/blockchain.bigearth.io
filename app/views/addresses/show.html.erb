@@ -1,3 +1,134 @@
-<!-- <p id="notice"><%= notice %></p> -->
-<%= debug(@parsed_address) %>
-<%= debug(@parsed_address_txs) %>
+<section class="row m-b-md">
+    <div class="col-sm-12">
+      <h2>Bitcoin Address</h2>
+      <%= render partial: 'shared/breadcrumb' %>
+        <section class="panel panel-default">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td>Hash</td>
+                            <td><%= @address['data']['address'] %></td>
+                        </tr>
+                        <tr>
+                            <td>Balance</td>
+                            <td><%= number_with_delimiter(@address['data']['balance'], delimiter: ',') %> BTC</td>
+                        </tr>
+                        <tr>
+                            <td>Total Received</td>
+                            <td><%= number_with_delimiter(@address['data']['totalreceived'], delimiter: ',') %> BTC</td>
+                        </tr>
+                        <tr>
+                            <td>Total # of Transactions</td>
+                            <td><%= number_with_delimiter(@address['data']['nb_txs'], delimiter: ',')  %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="row m-b-md">
+          <div class="col-sm-12">
+            <h3>Transactions (for Address <%= @address['data']['address'] %>)</h3>
+          </div>
+        </section>
+        <section class="row m-b-md">
+          <div class="col-sm-6">
+            <h4>First Transaction</h4>
+            <section class="panel panel-default">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td>Time</td>
+                                <td><%= @address['data']['first_tx']['time_utc'] %></td>
+                            </tr>
+                            <tr>
+                                <td>Block</td>
+                                <td><%= link_to number_with_delimiter(@address['data']['first_tx']['block_nb'], delimiter: ','), block_path(@address['data']['first_tx']['block_nb']) %></td>
+                            </tr>
+                            <tr>
+                                <td>Transaction</td>
+                                <td><%= link_to @address['data']['first_tx']['tx'], transaction_path(@address['data']['first_tx']['tx']) %></td>
+                            </tr>
+                            <tr>
+                                <td>Amount</td>
+                                <td><%= number_with_precision(@address['data']['first_tx']['value'], precision: 8) %> BTC</td>
+                            </tr>
+                            <tr>
+                                <td>Confirmations</td>
+                                <td><%= number_with_delimiter(@address['data']['first_tx']['confirmations'], delimiter: ',') %></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+          </div>
+          <div class="col-sm-6">
+            <h4>Last Transaction</h4>
+            <section class="panel panel-default">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td>Time</td>
+                                <td><%= @address['data']['last_tx']['time_utc'] %></td>
+                            </tr>
+                            <tr>
+                                <td>Block</td>
+                                <td><%= link_to number_with_delimiter(@address['data']['last_tx']['block_nb'], delimiter: ','), block_path(@address['data']['last_tx']['block_nb']) %></td>
+                            </tr>
+                            <tr>
+                                <td>Transaction</td>
+                                <td><%= link_to @address['data']['last_tx']['tx'], transaction_path(@address['data']['last_tx']['tx']) %></td>
+                            </tr>
+                            <tr>
+                                <td>Amount</td>
+                                <td><%= number_with_precision(@address['data']['last_tx']['value'], precision: 8) %> BTC</td>
+                            </tr>
+                            <tr>
+                                <td>Confirmations</td>
+                                <td><%= number_with_delimiter(@address['data']['last_tx']['confirmations'], delimiter: ',') %></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+          </div>
+        </section>
+        <section class="row m-b-md">
+          <div class="col-sm-12">
+            <% @txs['data']['txs'].each do |tx| %>
+              <section class="panel panel-default">
+                  <div class="table-responsive">
+                      <table class="table table-striped">
+                          <tbody>
+                              <tr>
+                                  <td>Hash</td>
+                                  <td><%= link_to tx['tx'], transaction_path(tx['tx']) %></td>
+                              </tr>
+                              <tr>
+                                  <td>Time</td>
+                                  <td><%= tx['time_utc'] %></td>
+                              </tr>
+                              <tr>
+                                  <td>Amount</td>
+                                  <% if tx['amount'] < 0 %>
+                                    <td class='danger'>
+                                  <% else %>
+                                    <td class='success'>
+                                  <% end %>
+                                  <%= number_with_delimiter(tx['amount'], delimiter: ',') %> BTC</td>
+                              </tr>
+                              <tr>
+                                  <td># of Confirmations</td>
+                                  <td><%= number_with_delimiter(tx['confirmations'], delimiter: ',') %></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </section>
+            <% end %>
+          </div>
+        </section>
+    </div>
+</section>
