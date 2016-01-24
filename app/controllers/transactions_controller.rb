@@ -10,9 +10,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/1
   # GET /transactions/1.json
   def show 
-    tx = HTTParty.get("http://btc.blockr.io/api/v1/tx/info/#{params[:id]}")
-    
-    @parsed_tx = JSON.parse tx.body
+    @tx = HTTParty.get("http://btc.blockr.io/api/v1/tx/info/#{params[:id]}")
   end
 
   # GET /transactions/new

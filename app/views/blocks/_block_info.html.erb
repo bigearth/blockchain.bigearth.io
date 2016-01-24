@@ -1,10 +1,7 @@
 <section class="row m-b-md">
     <div class="col-sm-12">
       <h2>Block <%= number_with_delimiter(@block['data']['nb'], delimiter: ',') %></h2>
-      <ul class="breadcrumb">
-        <li><%= link_to 'Home', root_url %></li>
-        <li class="active">Block <%= number_with_delimiter(@block['data']['nb'], delimiter: ',') %></li>
-      </ul>
+      <%= render partial: 'shared/breadcrumb' %>
         <section class="panel panel-default">
             <div class="table-responsive">
                 <table class="table table-striped">

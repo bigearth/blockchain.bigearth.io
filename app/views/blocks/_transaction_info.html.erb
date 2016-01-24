@@ -2,8 +2,8 @@
   <div class="col-sm-12">
   <h3>Transactions (for Block <%= number_with_delimiter(@block['data']['nb'], delimiter: ',') %>)</h3>
   <% @txs['data']['txs'].each do |tx| %>
-  <% if tx['is_coinbased'] === 1 %>
-  <div class="panel panel-success">
+    <% if tx['is_coinbased'] === 1 %>
+    <div class="panel panel-success">
     <% else %>
     <div class="panel panel-default">
       <% end %>
