@@ -10,8 +10,8 @@ class BlocksController < ApplicationController
   # GET /blocks/1
   # GET /blocks/1.json
   def show
-    @block = HTTParty.get("http://btc.blockr.io/api/v1/block/info/#{params[:id]}")
-    @txs = HTTParty.get("http://btc.blockr.io/api/v1/block/txs/#{params[:id]}")
+    @block = HTTParty.get "http://btc.blockr.io/api/v1/block/info/#{params[:id]}" 
+    @txs = HTTParty.get "http://btc.blockr.io/api/v1/block/txs/#{params[:id]}" 
   end
 
   # GET /blocks/new

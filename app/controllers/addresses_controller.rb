@@ -10,8 +10,10 @@ class AddressesController < ApplicationController
   # GET /addresses/1
   # GET /addresses/1.json
   def show
-    @address = HTTParty.get("http://btc.blockr.io/api/v1/address/info/#{params[:id]}")
-    @txs = HTTParty.get("http://btc.blockr.io/api/v1/address/txs/#{params[:id]}")
+    coin_info = HTTParty.get 'http://btc.blockr.io/api/v1/coin/info' 
+    @value = coin_info['data']['markets']['coinbase']['value']
+    @address = HTTParty.get "http://btc.blockr.io/api/v1/address/info/#{params[:id]}"
+    @txs = HTTParty.get "http://btc.blockr.io/api/v1/address/txs/#{params[:id]}"
   end
 
   # GET /addresses/new
