@@ -1,0 +1,12 @@
+test:
+  SECRET_KEY_BASE: 
+  RAILS_SECRET_TOKEN: 
+development:
+  SECRET_KEY_BASE: 
+  RAILS_SECRET_TOKEN: 
+staging: 
+  SECRET_KEY_BASE: 
+  RAILS_SECRET_TOKEN: 
+production:
+  SECRET_KEY_BASE: 
+  RAILS_SECRET_TOKEN: 
