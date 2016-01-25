@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <h3 class="m-b-xs text-black">Next Difficulty (estimate)</h3>
         <p><%= number_with_delimiter(number_with_precision(@coin_info['data']['next_difficulty']['difficulty'], precision: 2), delimiter: ',') %></p>
-        <p><%= number_with_precision(@coin_info['data']['next_difficulty']['perc'], precision: 2) %>% change to current</p>
+        <p><span class='<%= "text-#{@change_level}" %>'><%= number_with_precision(@coin_info['data']['next_difficulty']['perc'], precision: 2) %>%</span> change to current</p>
         <p><%= number_with_delimiter(@coin_info['data']['next_difficulty']['retarget_in'], delimiter: ',') %> blocks until difficulty changes</p>
     </div>
 </section>

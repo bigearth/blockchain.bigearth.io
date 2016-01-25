@@ -6,7 +6,12 @@ class ExplorersController < ApplicationController
   def index
     @coin_info = HTTParty.get 'http://btc.blockr.io/api/v1/coin/info' 
     block_height = @coin_info['data']['last_block']['nb']
-    blocks = ((block_height - 10)..block_height).to_a.reverse
+    blocks = ((block_height - 19)..block_height).to_a.reverse
+    if @coin_info['data']['next_difficulty']['perc'] > 0
+      @change_level = 'success'
+    else
+      @change_level = 'danger'
+    end
     @blocks = HTTParty.get "http://btc.blockr.io/api/v1/block/info/#{blocks.join(',')}"
   end
 
