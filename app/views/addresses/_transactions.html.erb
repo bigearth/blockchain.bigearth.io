@@ -11,7 +11,7 @@
                       </tr>
                       <tr>
                           <td>Time</td>
-                          <td><%= tx['time_utc'] %></td>
+                          <td><%= Time.parse(tx['time_utc']).strftime("%A, %b #{Time.new.day.ordinalize}, %Y %-I:%M%p") %></td>
                       </tr>
                       <tr>
                           <td>Amount</td>

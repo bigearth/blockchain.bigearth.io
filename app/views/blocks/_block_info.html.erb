@@ -12,7 +12,7 @@
                         </tr>
                         <tr>
                             <td>Block Time</td>
-                            <td><%= @block['data']['time_utc'] %></td>
+                            <td><%= Time.parse(@block['data']['time_utc']).strftime("%A, %b #{Time.new.day.ordinalize}, %Y %-I:%M%p") %></td>
                         </tr>
                         <tr>
                             <td>Trades Sum</td>
