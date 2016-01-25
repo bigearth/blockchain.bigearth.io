@@ -59,7 +59,7 @@
       <div class="panel-footer">
         <section class="row m-b-md">
           <div class="col-sm-6">
-            <p>Days Destroyed: <%= tx['days_destroyed'] %></p>
+            <p>Days Destroyed: <%= number_with_delimiter(tx['days_destroyed'], delimiter: ',') %></p>
           </div>
           <div class="col-sm-6">
             <p title='<%= number_to_currency(@value * tx["fee"].to_f) %>'>Fee: <%= number_with_delimiter(number_with_precision(tx['fee'], precision: 8), delimiter: ',') %> BTC</p>

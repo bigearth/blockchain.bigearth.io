@@ -57,7 +57,7 @@
                             <td><%= link_to @block['data']['prev_block_hash'], block_path(@block['data']['nb'] - 1) %></td>
                         </tr>
                         <tr>
-                            <td>Size (kb)</td>
+                            <td>Size</td>
                             <% if @block['data']['size'].to_i <= 300000 %>
                               <td class='success'>
                             <% elsif @block['data']['size'].to_i <= 700000 %>
