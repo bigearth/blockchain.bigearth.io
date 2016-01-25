@@ -15,7 +15,7 @@
                       </tr>
                       <tr>
                           <td>Amount</td>
-                          <td title='<%= number_to_currency(@value * tx['amount']) %>' class='<%= tx["amount"] < 0 ? "danger" : "success" %>'>
+                          <td title='<%= number_to_currency(@value * tx['amount']) %>' class='<%= "text-#{tx['amount'] < 0 ? 'danger' : 'success'}" %>'>
                           <%= number_with_delimiter(number_with_precision(tx['amount'], precision: 8), delimiter: ',') %> BTC</td>
                       </tr>
                       <tr>

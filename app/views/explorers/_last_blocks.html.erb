@@ -28,7 +28,7 @@
                                    else
                                      color = 'danger'
                                    end %>
-                                <td class='<%= color %>'><%= number_to_human_size(block['size']) %></td>
+                                <td class='<%= "text-#{color}" %>'><%= number_to_human_size(block['size']) %></td>
                                 <td><%= number_with_delimiter(block['days_destroyed'], delimiter: ',') %></td>
                             </tr>
                         <% end %>

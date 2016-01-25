@@ -58,14 +58,14 @@
                         </tr>
                         <tr>
                             <td>Size</td>
-                            <% if @block['data']['size'].to_i <= 300000 %>
-                              <td class='success'>
-                            <% elsif @block['data']['size'].to_i <= 700000 %>
-                              <td class='warning'>
-                            <% else %>
-                              <td class='danger'>
-                            <% end %>
-                            <%= number_to_human_size(@block['data']['size'].to_i) %></td>
+                            <% if @block['data']['size'].to_i <= 300000
+                               color = 'success'
+                            elsif @block['data']['size'].to_i <= 700000
+                               color = 'warning'
+                            else
+                               color = 'danger'
+                            end %>
+                            <td class='text-<%= color %>'><%= number_to_human_size(@block['data']['size'].to_i) %></td>
                         </tr>
                         <tr>
                             <td>Coin Days Destroyed</td>
