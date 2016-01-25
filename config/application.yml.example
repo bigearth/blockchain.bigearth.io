@@ -7,6 +7,8 @@ development:
 staging: 
   SECRET_KEY_BASE: 
   RAILS_SECRET_TOKEN: 
+  NEW_RELIC_APP_NAME: 
 production:
   SECRET_KEY_BASE: 
   RAILS_SECRET_TOKEN: 
+  NEW_RELIC_APP_NAME: 
