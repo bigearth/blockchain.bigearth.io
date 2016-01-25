@@ -30,7 +30,7 @@
                       <% @tx['data']['trade']['vins'].each do |address| %>
                       <tr>
                         <td><%= link_to address['address'], address_path(address['address']) %></td>
-                        <td title='<%= number_to_currency(@value * address["amount"]) %>'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</td>
+                        <td title='<%= number_to_currency(@value * address["amount"]) %>' class='text-danger'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</td>
                       </tr>
                       <% end %>
                     </tbody>
@@ -50,7 +50,7 @@
                           <% transaction_sum += address['amount'] %>
                           <tr>
                             <td><%= link_to address['address'], address_path(address['address']) %></td>
-                            <td title='<%= number_to_currency(@value * address["amount"]) %>'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</td>
+                            <td title='<%= number_to_currency(@value * address["amount"]) %>' class='text-success'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</td>
                           </tr>
                       <% end %>
                     </tbody>
