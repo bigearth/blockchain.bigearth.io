@@ -56,3 +56,5 @@ group :development do
   gem 'spring'
 end
 gem 'newrelic_rpm'
+
+gem "simple_stats"
