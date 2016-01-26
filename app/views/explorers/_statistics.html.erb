@@ -1,0 +1,29 @@
+<section class="row m-b-md">
+    <div class="col-sm-12">
+        <h3 class="m-b-xs text-black">Statistics</h3>
+        <h4># Transactions</h4>
+        <p>Sum: <%= number_with_delimiter(@statistics[:nb_txs].sum, delimiter: ',') %></p>
+        <p>Mean: <%= number_with_delimiter(number_with_precision(@statistics[:nb_txs].mean, precision: 1), delimiter: ',') %></p>
+        <p>Median: <%= number_with_delimiter(@statistics[:nb_txs].median, delimiter: ',') %></p>
+        <p>Modes: <%= @statistics[:nb_txs].modes %></p>
+        <p>Sorted Frequencies: <%= @statistics[:nb_txs].sorted_frequencies %></p>
+        <h4>Block Fee</h4>
+        <p>Sum: <%= number_with_delimiter(number_with_precision(@statistics[:fee].sum, precision: 8), delimiter: ',') %></p>
+        <p>Mean: <%= number_with_delimiter(number_with_precision(@statistics[:fee].mean, precision: 8), delimiter: ',') %></p>
+        <p>Median: <%= number_with_delimiter(number_with_precision(@statistics[:fee].median, precision: 8), delimiter: ',') %></p>
+        <p>Modes: <%= @statistics[:fee].modes %></p>
+        <p>Sorted Frequencies: <%= @statistics[:fee].sorted_frequencies %></p>
+        <h4>Size</h4>
+        <p>Sum: <%= number_with_delimiter(@statistics[:size].sum, delimiter: ',') %></p>
+        <p>Mean: <%= number_with_delimiter(@statistics[:size].mean, delimiter: ',') %></p>
+        <p>Median: <%= number_with_delimiter(@statistics[:size].median, delimiter: ',') %></p>
+        <p>Modes: <%= @statistics[:size].modes %></p>
+        <p>Sorted Frequencies: <%= @statistics[:size].sorted_frequencies %></p>
+        <h4>Days Destroyed</h4>
+        <p>Sum: <%= number_with_delimiter(@statistics[:days_destroyed].sum, delimiter: ',') %></p>
+        <p>Mean: <%= number_with_delimiter(@statistics[:days_destroyed].mean, delimiter: ',') %></p>
+        <p>Median: <%= number_with_delimiter(@statistics[:days_destroyed].median, delimiter: ',') %></p>
+        <p>Modes: <%= @statistics[:days_destroyed].modes %></p>
+        <p>Sorted Frequencies: <%= @statistics[:size].sorted_frequencies %></p>
+    </div>
+</section>

@@ -30,6 +30,19 @@ class ExplorersController < ApplicationController
     
     # Fetch Block Info from external webservice 
     @blocks = HTTParty.get "http://btc.blockr.io/api/v1/block/info/#{prev_blocks.join(',')}"
+    
+    @statistics = {
+      nb_txs: [],
+      fee: [],
+      size: [],
+      days_destroyed: []
+    }
+    @blocks['data'].each do |item|
+      @statistics[:nb_txs] << item['nb_txs'].to_i
+      @statistics[:fee] << item['fee'].to_f
+      @statistics[:size] << item['size'].to_i
+      @statistics[:days_destroyed] << item['days_destroyed'].to_f
+    end
   end
 
   # GET /explorers/1
