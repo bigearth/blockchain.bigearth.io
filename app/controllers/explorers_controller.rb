@@ -16,8 +16,7 @@ class ExplorersController < ApplicationController
     block_height = @coin_info['data']['last_block']['nb']
     
     # Calculate number_of_blocks based on the presence and value or absence of the ?prev_block_count param
-    number_of_blocks = params[:prev_block_count].nil? ? 20 : params[:prev_block_count].to_i > 1 ? params[:prev_block_count].to_i : 2
-    if params[:prev_block_count].nil?
+    if params[:prev_block_count].nil? || params[:prev_block_count] === ""
       # If there is no prev_block_count param then default to 20 previous blocks 
       number_of_blocks = 20
     elsif params[:prev_block_count].to_i < 2
