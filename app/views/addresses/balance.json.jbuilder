@@ -1,3 +1,3 @@
 json.status 'success'
-json.data @address['data']
+json.data @balance['data']
 json.code 200
