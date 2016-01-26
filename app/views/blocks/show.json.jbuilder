@@ -1,1 +1,3 @@
-json.extract! @block, :id, :created_at, :updated_at
+json.status 'success'
+json.data @block['data']
+json.code 200
