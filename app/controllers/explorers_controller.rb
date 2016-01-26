@@ -4,18 +4,32 @@ class ExplorersController < ApplicationController
   # GET /explorers
   # GET /explorers.json
   def index
+    # Fetch Coin Info from external webservice
     @coin_info = HTTParty.get 'http://btc.blockr.io/api/v1/coin/info' 
+    
+    # Clean up data which we don't want to display in our JSON results
     @coin_info['data'].delete 'websocket'
     @coin_info['data']['coin'].delete 'logo'
     @coin_info['data']['coin'].delete 'homepage'
+    
+    # Get the block height
     block_height = @coin_info['data']['last_block']['nb']
-    blocks = ((block_height - 19)..block_height).to_a.reverse
-    if @coin_info['data']['next_difficulty']['perc'] > 0
+    # Calculate earlier_block_height based on presence/absence of ?prev_block_count param
+    @earlier_block_height = block_height - (params[:prev_block_count].nil? ? 19 : params[:prev_block_count].to_i)
+    
+    # Create array of block heights and pop out the last one so that the count matches ?prev_block_count
+    prev_blocks = (@earlier_block_height..block_height).to_a.reverse
+    prev_blocks.pop
+
+    # color code the next difficulty change
+    if @coin_info['data']['next_difficulty']['perc'] >= 0
       @change_level = 'success'
     else
       @change_level = 'danger'
     end
-    @blocks = HTTParty.get "http://btc.blockr.io/api/v1/block/info/#{blocks.join(',')}"
+    
+    # Fetch Block Info from external webservice 
+    @blocks = HTTParty.get "http://btc.blockr.io/api/v1/block/info/#{prev_blocks.join(',')}"
   end
 
   # GET /explorers/1
