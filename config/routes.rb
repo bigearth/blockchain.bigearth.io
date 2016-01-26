@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'explorers#index'
-  resources :explorers, only: [:index]
+  resources :explorers, only: [:index], path: 'coin'
   resources :blocks, only: [:show]
   resources :transactions, only: [:show]
   resources :addresses, only: [:show]
