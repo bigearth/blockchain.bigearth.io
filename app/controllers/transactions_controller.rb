@@ -9,8 +9,14 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1
   # GET /transactions/1.json
+  # GET /transactions/1,2.json
   def show 
     @tx = HTTParty.get "http://btc.blockr.io/api/v1/tx/info/#{params[:id]}" 
+  end
+  
+  # GET /transactions/raw/1.json
+  def raw
+    @raw_tx = HTTParty.get "http://btc.blockr.io/api/v1/tx/raw/#{params[:id]}" 
   end
 
   # GET /transactions/new
