@@ -15,7 +15,7 @@ class ExplorersController < ApplicationController
     # Get the block height
     block_height = @coin_info['data']['last_block']['nb']
     # Calculate earlier_block_height based on presence/absence of ?prev_block_count param
-    @earlier_block_height = block_height - (params[:prev_block_count].nil? ? 20 : params[:prev_block_count].to_i)
+    @earlier_block_height = block_height - (params[:prev_block_count].nil? ? 20 : params[:prev_block_count].to_i > 1 ? params[:prev_block_count].to_i : 2)
     
     # Create array of block heights and pop out the last one so that the count matches ?prev_block_count
     prev_blocks = (@earlier_block_height..block_height).to_a.reverse
