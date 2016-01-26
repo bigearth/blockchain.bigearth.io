@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'explorers#index'
+  get 'blocks/transactions/:id' => 'blocks#transactions'
+  get 'blocks/raw/:id' => 'blocks#raw'
   resources :explorers, only: [:index], path: 'coin'
   resources :blocks, only: [:show]
   resources :transactions, only: [:show]
