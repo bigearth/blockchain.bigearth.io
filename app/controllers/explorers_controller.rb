@@ -5,6 +5,7 @@ class ExplorersController < ApplicationController
   # GET /explorers.json
   def index
     @coin_info = HTTParty.get 'http://btc.blockr.io/api/v1/coin/info' 
+    @coin_info['data'].delete 'websocket'
     block_height = @coin_info['data']['last_block']['nb']
     blocks = ((block_height - 19)..block_height).to_a.reverse
     if @coin_info['data']['next_difficulty']['perc'] > 0
