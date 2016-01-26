@@ -14,8 +14,25 @@ class ExplorersController < ApplicationController
     
     # Get the block height
     block_height = @coin_info['data']['last_block']['nb']
+    
+    # Calculate number_of_blocks based on the presence and value or absence of the ?prev_block_count param
+    number_of_blocks = params[:prev_block_count].nil? ? 20 : params[:prev_block_count].to_i > 1 ? params[:prev_block_count].to_i : 2
+    if params[:prev_block_count].nil?
+      # If there is no prev_block_count param then default to 20 previous blocks 
+      number_of_blocks = 20
+    elsif params[:prev_block_count].to_i < 2
+      # if prev_block_count is less than to default to 2 previous blocks
+      number_of_blocks = 2
+    elsif params[:prev_block_count].to_i > 20
+      # prev_block_count is more than 20 default to 20 previous blocks
+      number_of_blocks = 20
+    else
+      # in all other cases go w/ the user's input
+      number_of_blocks = params[:prev_block_count].to_i
+    end
+    
     # Calculate earlier_block_height based on presence/absence of ?prev_block_count param
-    @earlier_block_height = block_height - (params[:prev_block_count].nil? ? 20 : params[:prev_block_count].to_i > 1 ? params[:prev_block_count].to_i : 2)
+    @earlier_block_height = block_height - number_of_blocks
     
     # Create array of block heights and pop out the last one so that the count matches ?prev_block_count
     prev_blocks = (@earlier_block_height..block_height).to_a.reverse
