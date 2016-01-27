@@ -1,9 +1,4 @@
 <section class="row m-b-md">
-  <div class="col-sm-12">
-    <h3>Transactions (for Address <%= @address['data']['address'] %>)</h3>
-  </div>
-</section>
-<section class="row m-b-md">
   <% ['first_tx', 'last_tx'].each do |tx| %>
     <div class="col-sm-6">
       <h4><%= tx === 'first_tx' ? 'First' : 'Last'%> Transaction</h4>

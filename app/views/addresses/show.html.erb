@@ -1,11 +1,23 @@
-<section class='container'>
-  <section class="row m-b-md">
-      <div class="col-sm-12">
-        <h2>Bitcoin Address</h2>
-        <%= render partial: 'shared/breadcrumb' %>
-        <%= render partial: 'info' %>
-        <%= render partial: 'first_and_last' %>
-        <%= render partial: 'transactions' %>
-      </div>
+<div class='hero'>
+  <section class='container'>
+    <section class="row m-b-md">
+        <div class="col-sm-12">
+          <h2>Bitcoin <strong>Address</strong></h2>
+          <%= render partial: 'shared/breadcrumb' %>
+          <%= render partial: 'info' %>
+        </div>
+    </section>
   </section>
-</section>
+</div>
+<div class='sub'>
+  <section class='container'>
+    <section class="row m-b-md">
+        <div class="col-sm-12">
+          <h3>Transactions (for <strong>Address</strong> <%= @address['data']['address'] %>)</h3>
+          <%= render partial: 'first_and_last' %>
+          <%= render partial: 'transactions' %>
+        </div>
+    </section>
+  </section>
+</div>
+ 
