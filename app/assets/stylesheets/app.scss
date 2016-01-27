@@ -1,9 +1,12 @@
 $white: #fff;
 
+body, h1, h2, h3, h4, h5, h6 {
+  font-weight: 200;
+}
+
 body {
   color: $white;
   background: #0F5288;
-  font-weight: 300;
   font-family: helvetica;
 }
 
@@ -14,8 +17,19 @@ body {
   }
 }
 
+#index {
+  border-width: 0 0 2px 0px;  
+  border-style: solid;
+  border-color: #03233B;
+}
+
 #blocks {
   background: #579dd8;
+  h3 {
+    strong{
+      color: #0F5288;
+    }
+  }
 }
 
 table {
