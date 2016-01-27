@@ -1,0 +1,19 @@
+$white: #fff;
+
+body {
+  color: $white;
+  background: #0F5288;
+  font-weight: 300;
+  font-family: helvetica;
+}
+
+#nav {
+  background: #03233B;
+  a {
+    color: $white;
+  }
+}
+
+table {
+  color: #333;
+}
