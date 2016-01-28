@@ -13,5 +13,33 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
-//= require turbolinks
+//= require lodash.min
 //= require_tree .
+
+(function(){
+  'use strict';
+  window.onload = function() {
+    $('.bookmark').click(function(evt) {
+      var bookmarks = localStorage.getItem('bookmarks');
+      if(bookmarks === null) {
+        bookmarks = [];
+      } else {
+        bookmarks = JSON.parse(bookmarks);
+      }
+      var options = {
+        url_path: window.location.pathname,
+        created_at: Date.now(),
+        id: $(evt.currentTarget).data('page_id'), 
+        page_type: $(evt.currentTarget).data('page_type')
+      };
+      var bookmark = _.find(bookmarks, function(bookmark) { 
+        return bookmark.url_path === window.location.pathname; 
+      });
+      if(_.isUndefined(bookmark)) {
+        bookmarks.push(options)
+      }
+      localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+      evt.preventDefault();
+    });
+  };
+}())

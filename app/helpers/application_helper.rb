@@ -8,4 +8,14 @@ module ApplicationHelper
       "Bitcoin Address #{@address['data']['address']} - " 
     end
   end
+  
+  def create_page_type
+    if @block
+      'block'
+    elsif @tx
+      'transaction'
+    elsif @address
+      'address'
+    end
+  end
 end
