@@ -19,26 +19,43 @@
 (function(){
   'use strict';
   window.onload = function() {
+    var Bookmark = {
+      initialize_bookmark_text: function(){
+        var bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+        var bookmark = _.find(bookmarks, function(bookmark) { 
+          return bookmark.url_path === window.location.pathname; 
+        });
+        if(bookmark) {
+          $('.bookmark').text('Bookmarked');
+        }
+        
+      },
+      set_bookmark: function(evt) {
+        var bookmarks = localStorage.getItem('bookmarks');
+        if(bookmarks === null) {
+          bookmarks = [];
+        } else {
+          bookmarks = JSON.parse(bookmarks);
+        }
+        var options = {
+          url_path: window.location.pathname,
+          created_at: Date.now(),
+          id: $(evt.currentTarget).data('page_id'), 
+          page_type: $(evt.currentTarget).data('page_type')
+        };
+        var bookmark = _.find(bookmarks, function(bookmark) { 
+          return bookmark.url_path === window.location.pathname; 
+        });
+        if(_.isUndefined(bookmark)) {
+          bookmarks.push(options)
+          $('.bookmark').text('Bookmarked');
+        }
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+      }
+    };
+    Bookmark.initialize_bookmark_text();
     $('.bookmark').click(function(evt) {
-      var bookmarks = localStorage.getItem('bookmarks');
-      if(bookmarks === null) {
-        bookmarks = [];
-      } else {
-        bookmarks = JSON.parse(bookmarks);
-      }
-      var options = {
-        url_path: window.location.pathname,
-        created_at: Date.now(),
-        id: $(evt.currentTarget).data('page_id'), 
-        page_type: $(evt.currentTarget).data('page_type')
-      };
-      var bookmark = _.find(bookmarks, function(bookmark) { 
-        return bookmark.url_path === window.location.pathname; 
-      });
-      if(_.isUndefined(bookmark)) {
-        bookmarks.push(options)
-      }
-      localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+      Bookmark.set_bookmark(evt);
       evt.preventDefault();
     });
   };
