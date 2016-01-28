@@ -26,7 +26,7 @@
           return bookmark.url_path === window.location.pathname; 
         });
         if(bookmark) {
-          $('.bookmark').text('Bookmarked');
+          $('.bookmark').text('Bookmarked').attr('href', '/bookmarks');
         }
         
       },
@@ -48,14 +48,23 @@
         });
         if(_.isUndefined(bookmark)) {
           bookmarks.push(options)
-          $('.bookmark').text('Bookmarked');
+          $('.bookmark').text('Bookmarked').attr('href', '/bookmarks');
         }
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+      },
+      clear_all_bookmarks: function(){
+        localStorage.removeItem('bookmarks');
       }
     };
     Bookmark.initialize_bookmark_text();
     $('.bookmark').click(function(evt) {
-      Bookmark.set_bookmark(evt);
+      if($(evt.currentTarget).text() != 'Bookmarked') {
+        Bookmark.set_bookmark(evt);
+        evt.preventDefault();
+      }
+    });
+    $('.clear_all_bookmarks').click(function(evt) {
+      Bookmark.clear_all_bookmarks();
       evt.preventDefault();
     });
   };
