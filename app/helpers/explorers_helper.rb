@@ -5,7 +5,11 @@ module ExplorersHelper
     elsif statistic[0] === :fee
       "#{number_with_delimiter(number_with_precision(statistic[1].send(type), precision: 8), delimiter: ',')} BTC" 
     else
-      number_with_delimiter statistic[1].send(type), delimiter: ',' 
+      if statistic[0] === :days_destroyed || statistic[0] === :nb_txs
+        number_with_delimiter number_with_precision(statistic[1].send(type), precision: 1), delimiter: ',' 
+      else
+        number_with_delimiter statistic[1].send(type), delimiter: ',' 
+      end
     end 
   end
 end
