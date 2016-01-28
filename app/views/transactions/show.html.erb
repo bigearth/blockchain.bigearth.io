@@ -32,7 +32,11 @@
                         <% @tx['data']['trade']['vins'].each do |address| %>
                         <tr>
                           <td><%= link_to address['address'], address_path(address['address']) %></td>
-                          <td title='<%= number_to_currency(@value * address["amount"]) %>' class='text-danger'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</td>
+                          <td title='<%= number_to_currency(@value * address["amount"]) %>' class='text-danger'>
+                            <span class='btc' title='<%= number_to_currency(@value * address["amount"]) %>'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</span>
+                            <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(address["amount"], precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@value * address["amount"]) %></span>
+                          </td>
+                      </td>
                         </tr>
                         <% end %>
                       </tbody>
@@ -52,7 +56,10 @@
                             <% transaction_sum += address['amount'] %>
                             <tr>
                               <td><%= link_to address['address'], address_path(address['address']) %></td>
-                              <td title='<%= number_to_currency(@value * address["amount"]) %>' class='text-success'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</td>
+                              <td title='<%= number_to_currency(@value * address["amount"]) %>' class='text-success'>
+                                <span class='btc' title='<%= number_to_currency(@value * address["amount"]) %>'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</span>
+                                <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(address["amount"], precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@value * address["amount"]) %></span>
+                              </td>
                             </tr>
                         <% end %>
                       </tbody>
@@ -68,8 +75,14 @@
                 <p>Days Destroyed: <%= @tx['data']['days_destroyed'] %></p>
               </div>
               <div class="col-sm-6">
-                <p title='<%= number_to_currency(@value * @tx["data"]["fee"].to_f) %>'>Fee: <%= @tx['data']['fee'] %> BTC</p>
-                <p title='<%= number_to_currency(@value * transaction_sum + @tx["data"]["fee"].to_f) %>'>Transaction Sum: <%= number_with_precision(transaction_sum + @tx['data']['fee'].to_f, precision: 8) %> BTC</p>
+                <p title='<%= number_to_currency(@value * @tx["data"]["fee"].to_f) %>'>Fee: 
+                  <span class='btc' title='<%= number_to_currency(@value * @tx["data"]["fee"].to_f) %>'><%= number_with_delimiter(number_with_precision(@tx['data']['fee'], precision: 8), delimiter: ',') %> BTC</span>
+                  <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(@tx["data"]["fee"], precision: 8), delimiter: ",") %>'><%= number_to_currency(@value * @tx["data"]["fee"].to_f) %></span>
+                </p>
+                <p title='<%= number_to_currency(@value * transaction_sum + @tx["data"]["fee"].to_f) %>'>Transaction Sum: 
+                  <span class='btc' title='<%= number_to_currency(@value * transaction_sum + @tx["data"]["fee"].to_f) %>'><%= number_with_delimiter(number_with_precision(transaction_sum + @tx['data']['fee'].to_f, precision: 8), delimiter: ',') %> BTC</span>
+                  <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(transaction_sum + @tx["data"]["fee"].to_f, precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@value * transaction_sum + @tx["data"]["fee"].to_f) %></span>
+                </p>
               </div>
             </section>
           </div>

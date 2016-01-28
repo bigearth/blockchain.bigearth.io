@@ -19,7 +19,7 @@
                             <tr>
                                 <td><strong><%= statistic[0] %></strong></td>
                                 <% [:sum, :mean, :median].each do |statistic_type| %>
-                                  <td class='<%= statistic[0] === :fee ? "currency" : "" %>'>
+                                  <td>
                                     <% if statistic[0] === :fee %>
                                       <span class='btc' title='<%= statistic[0] === :fee ? number_to_currency(@value * statistic[1].send(statistic_type)) : "" %>'><%= calculate_statistics statistic, statistic_type %></span>
                                       <span class='usd hide' title='<%= statistic[1].send statistic_type %> BTC'><%= statistic[0] === :fee ? number_to_currency(@value * statistic[1].send(statistic_type)) : "" %></span>
@@ -28,7 +28,7 @@
                                     <% end %>
                                   </td>
                                 <% end %>
-                                <td class='<%= statistic[0] === :fee ? "currency" : "" %>'>
+                                <td>
                                   <% if statistic[0] === :fee %>
                                     <span class='btc' title='<%= statistic[0] === :fee ? number_to_currency(@value * statistic[1].median) : "" %>'><%= calculate_statistics statistic, :median%></span>
                                     <span class='usd hide' title='<%= number_with_precision(statistic[1].median, precision: 8) %> BTC'><%= statistic[0] === :fee ? number_to_currency(@value * statistic[1].median) : "" %></span>

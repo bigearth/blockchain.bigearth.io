@@ -20,7 +20,7 @@
                                 <td><%= link_to number_with_delimiter(block['nb'], delimiter: ','), block_path(block['nb']) %></td>
                                 <td><%= time_ago_in_words block['time_utc'] %> ago</td>
                                 <td><%= number_with_delimiter(block['nb_txs'], delimiter: ',') %></td>
-                                <td class='currency'>
+                                <td>
                                   <span class='btc' title='<%= number_to_currency(@coin_info["data"]["markets"]["coinbase"]["value"] * block["fee"].to_f) %>'><%= block['fee'] %> BTC</span>
                                   <span class='usd hide' title='<%= block["fee"] %> BTC'><%= number_to_currency(@coin_info["data"]["markets"]["coinbase"]["value"] * block["fee"].to_f) %></span>
                                 </td>

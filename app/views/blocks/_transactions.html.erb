@@ -26,7 +26,7 @@
                     <% tx['trade']['vins'].each do |address| %>
                     <tr>
                       <td><%= link_to address['address'], address_path(address['address']) %></td>
-                      <td class='text-danger currency'>
+                      <td class='text-danger'>
                         <span class='btc' title='<%= number_to_currency(@value * address["amount"]) %>'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</span>
                         <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(address["amount"], precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@value * address["amount"]) %></span>
                       </td>
@@ -49,7 +49,7 @@
                         <% transaction_sum += address['amount'] %>
                         <tr>
                           <td><%= link_to address['address'], address_path(address['address']) %></td>
-                          <td class='text-success currency'>
+                          <td class='text-success'>
                             <span class='btc' title='<%= number_to_currency(@value * address["amount"]) %>'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</span>
                             <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(address["amount"], precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@value * address["amount"]) %></span>
                           </td>
@@ -68,7 +68,7 @@
             <p>Days Destroyed: <%= number_with_delimiter(tx['days_destroyed'], delimiter: ',') %></p>
           </div>
           <div class="col-sm-6">
-            <p class='currency'>
+            <p>
               Fee: 
               <span class='btc' title='<%= number_to_currency(@value * tx["fee"].to_f) %>'><%= number_with_delimiter(number_with_precision(tx['fee'], precision: 8), delimiter: ',') %> BTC</span>
               <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(tx["fee"], precision: 8), delimiter: ",") %>'><%= number_to_currency(@value * tx["fee"].to_f) %></span>
