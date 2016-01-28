@@ -15,3 +15,18 @@
 //= require bootstrap.min
 //= require turbolinks
 //= require_tree .
+
+(function(){ 
+  'use strict';
+  window.onload = function(){
+    $('.btc, .usd').click(function(evt){
+      if($(evt.currentTarget).hasClass('btc')) {
+        $('.btc').addClass('hide')
+        $('.usd').removeClass('hide')
+      } else if($(evt.currentTarget).hasClass('usd')) {
+        $('.usd').addClass('hide')
+        $('.btc').removeClass('hide')
+      }
+    });
+  };
+}());
