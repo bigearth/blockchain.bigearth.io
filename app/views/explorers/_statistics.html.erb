@@ -18,42 +18,23 @@
                         <% @statistics.each do |statistic| %>
                             <tr>
                                 <td><strong><%= statistic[0] %></strong></td>
-                                <td title='<%= statistic[0] === :fee ? number_to_currency(@value * statistic[1].sum) : "" %>'>
-                                  <%= 
-                                    if statistic[0] === :size 
-                                      number_to_human_size statistic[1].sum
-                                    elsif statistic[0] === :fee
-                                      "#{number_with_delimiter(number_with_precision(statistic[1].sum, precision: 8), delimiter: ',')} BTC" 
-                                    else
-                                      number_with_delimiter statistic[1].sum, delimiter: ',' 
-                                    end 
-                                  %>
-                                </td>
-                                <td title='<%= statistic[0] === :fee ? number_to_currency(@value * statistic[1].mean) : "" %>'>
-                                  <%= 
-                                    if statistic[0] === :size 
-                                      number_to_human_size statistic[1].mean
-                                    elsif statistic[0] === :fee
-                                      "#{number_with_delimiter(number_with_precision(statistic[1].mean, precision: 8), delimiter: ',')} BTC" 
-                                    elsif statistic[0] === :days_destroyed || statistic[0] === :nb_txs
-                                      number_with_delimiter(number_with_precision(statistic[1].mean, precision: 2), delimiter: ',') 
-                                    else
-                                      number_with_delimiter statistic[1].mean, delimiter: ',' 
-                                    end 
-                                  %>
-                                </td>
-                                <td title='<%= statistic[0] === :fee ? number_to_currency(@value * statistic[1].median) : "" %>'>
-                                  <%= 
-                                    if statistic[0] === :size 
-                                      number_to_human_size statistic[1].median
-                                    elsif statistic[0] === :fee
-                                      "#{number_with_delimiter(number_with_precision(statistic[1].median, precision: 8), delimiter: ',')} BTC" 
-                                    elsif statistic[0] === :days_destroyed || statistic[0] === :nb_txs
-                                      number_with_delimiter(number_with_precision(statistic[1].median, precision: 2), delimiter: ',') 
-                                    else
-                                      number_with_delimiter statistic[1].median, delimiter: ',' 
-                                    end 
-                                  %>
+                                <% [:sum, :mean, :median].each do |statistic_type| %>
+                                  <td>
+                                    <% if statistic[0] === :fee %>
+                                      <span class='btc' title='<%= statistic[0] === :fee ? number_to_currency(@value * statistic[1].send(statistic_type)) : "" %>'><%= calculate_statistics statistic, statistic_type %></span>
+                                      <span class='usd hide' title='<%= statistic[1].send statistic_type %> BTC'><%= statistic[0] === :fee ? number_to_currency(@value * statistic[1].send(statistic_type)) : "" %></span>
+                                    <% else %>
+                                      <%= calculate_statistics statistic, statistic_type %>
+                                    <% end %>
+                                  </td>
+                                <% end %>
+                                <td>
+                                  <% if statistic[0] === :fee %>
+                                    <span class='btc' title='<%= statistic[0] === :fee ? number_to_currency(@value * statistic[1].median) : "" %>'><%= calculate_statistics statistic, :median%></span>
+                                    <span class='usd hide' title='<%= number_with_precision(statistic[1].median, precision: 8) %> BTC'><%= statistic[0] === :fee ? number_to_currency(@value * statistic[1].median) : "" %></span>
+                                  <% else %>
+                                    <%= calculate_statistics statistic, :median %>
+                                  <% end %>
                                 </td>
                                 <td><%= statistic[1].modes %></td>
                                 <td><%= statistic[1].sorted_frequencies %></td>

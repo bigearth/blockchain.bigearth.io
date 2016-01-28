@@ -15,8 +15,10 @@
                       </tr>
                       <tr>
                           <td>Amount</td>
-                          <td title='<%= number_to_currency(@value * tx['amount']) %>' class='<%= "text-#{tx['amount'] < 0 ? 'danger' : 'success'}" %>'>
-                          <%= number_with_delimiter(number_with_precision(tx['amount'], precision: 8), delimiter: ',') %> BTC</td>
+                          <td class='<%= "text-#{color_tx_value tx['amount']}" %>'>
+                            <span class='btc' title='<%= number_to_currency(@value * tx["amount"]) %>'><%= number_with_delimiter(number_with_precision(tx["amount"], precision: 8), delimiter: ",") %> BTC</span>
+                            <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(tx["amount"], precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@value * tx['amount']) %></span>
+                          </td>
                       </tr>
                       <tr>
                           <td># of Confirmations</td>

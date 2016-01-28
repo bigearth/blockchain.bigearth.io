@@ -17,7 +17,11 @@
                         </tr>
                         <tr>
                             <td>Trades Sum</td>
-                            <td title='<%= number_to_currency(@value * @block['data']['vout_sum']) %>'><%= number_with_delimiter(number_with_precision(@block['data']['vout_sum'], precision: 8), delimiter: ',') %> BTC</td>
+                            <td class='currency'>
+                              <span class='btc' title='<%= number_to_currency(@value * @block["data"]["vout_sum"]) %>'><%= number_with_delimiter(number_with_precision(@block['data']['vout_sum'], precision: 8), delimiter: ',') %> BTC</span>
+                              <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(@block["data"]["vout_sum"], precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@value * @block["data"]["vout_sum"]) %></span>
+                              
+                            </td>
                         </tr>
                         <tr>
                             <td># Transactions</td>
@@ -29,7 +33,11 @@
                         </tr>
                         <tr>
                             <td>Fee</td>
-                            <td title='<%= number_to_currency(@value * @block['data']['fee'].to_f) %>'><%= @block['data']['fee'] %> BTC</td>
+                            <td class='currency'>
+                              <span class='btc' title='<%= number_to_currency(@value * @block["data"]["fee"].to_f) %>'><%= @block["data"]["fee"] %> BTC</span>
+                              <span class='usd hide' title='<%= @block["data"]["fee"] %> BTC'><%= number_to_currency(@value * @block["data"]["fee"].to_f) %></span>
+                            
+                          </td>
                         </tr>
                         <tr>
                             <td>Hash</td>
@@ -59,14 +67,7 @@
                         </tr>
                         <tr>
                             <td>Size</td>
-                            <% if @block['data']['size'].to_i <= 300000
-                               color = 'success'
-                            elsif @block['data']['size'].to_i <= 700000
-                               color = 'warning'
-                            else
-                               color = 'danger'
-                            end %>
-                            <td class='text-<%= color %>'><%= number_to_human_size(@block['data']['size'].to_i) %></td>
+                            <td class='text-<%= color_code_block_size(@block['data']) %>'><%= number_to_human_size(@block['data']['size'].to_i) %></td>
                         </tr>
                         <tr>
                             <td>Coin Days Destroyed</td>

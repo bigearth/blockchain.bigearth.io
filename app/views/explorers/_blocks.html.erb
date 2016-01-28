@@ -20,15 +20,11 @@
                                 <td><%= link_to number_with_delimiter(block['nb'], delimiter: ','), block_path(block['nb']) %></td>
                                 <td><%= time_ago_in_words block['time_utc'] %> ago</td>
                                 <td><%= number_with_delimiter(block['nb_txs'], delimiter: ',') %></td>
-                                <td title='<%= number_to_currency(@coin_info["data"]["markets"]["coinbase"]["value"] * block["fee"].to_f) %>'><%= block['fee'] %> BTC</td>
-                                <% if block['size'].to_i <= 300000 
-                                     color = 'success'
-                                   elsif block['size'].to_i <= 700000 
-                                     color ='warning'
-                                   else
-                                     color = 'danger'
-                                   end %>
-                                <td class='<%= "text-#{color}" %>'><%= number_to_human_size(block['size']) %></td>
+                                <td>
+                                  <span class='btc' title='<%= number_to_currency(@value * block["fee"].to_f) %>'><%= block['fee'] %> BTC</span>
+                                  <span class='usd hide' title='<%= block["fee"] %> BTC'><%= number_to_currency(@value * block["fee"].to_f) %></span>
+                                </td>
+                                <td class='<%= "text-#{color_code_block_size(block)}" %>'><%= number_to_human_size(block['size']) %></td>
                                 <td><%= number_with_delimiter(block['days_destroyed'], delimiter: ',') %></td>
                             </tr>
                         <% end %>
