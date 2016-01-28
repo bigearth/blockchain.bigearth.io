@@ -7,7 +7,7 @@
           <li><%= link_to "Block #{number_with_delimiter(@tx['data']['block'], delimiter: ',')}", block_path(@tx['data']['block']) %></li>
           <li class="active">Transaction <%= truncate(@tx['data']['tx'], length: 20) %></li>
         </ul>
-        <%= render partial: 'shared/social_media' %>
+        <%= render 'shared/social_media' %>
         <% if @tx['data']['is_coinbased'] === 1 %>
         <div class="panel panel-success">
         <% else %>

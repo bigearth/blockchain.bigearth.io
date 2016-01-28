@@ -3,9 +3,9 @@
     <section class="row m-b-md">
         <div class="col-sm-12">
           <h2>Bitcoin <strong>Address</strong></h2>
-          <%= render partial: 'shared/breadcrumb' %>
-          <%= render partial: 'shared/social_media' %>
-          <%= render partial: 'info' %>
+          <%= render 'shared/breadcrumb' %>
+          <%= render 'shared/social_media' %>
+          <%= render 'info' %>
         </div>
     </section>
   </section>
@@ -15,8 +15,8 @@
     <section class="row m-b-md">
         <div class="col-sm-12">
           <h3>Transactions (for <strong>Address</strong> <%= @address['data']['address'] %>)</h3>
-          <%= render partial: 'first_and_last' %>
-          <%= render partial: 'transactions' %>
+          <%= render 'first_and_last' %>
+          <%= render 'transactions' %>
         </div>
     </section>
   </section>
