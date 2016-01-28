@@ -13,22 +13,50 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
+// require turbolinks
 //= require lodash.min
 //= require_tree .
 
 (function(){
   'use strict';
   window.onload = function() {
+    var BigEarth = {
+      init: function(){
+        $('.btc, .usd').click(function(evt){
+          if($(evt.currentTarget).hasClass('btc')) {
+            $('.btc').addClass('hide')
+            $('.usd').removeClass('hide')
+          } else if($(evt.currentTarget).hasClass('usd')) {
+            $('.usd').addClass('hide')
+            $('.btc').removeClass('hide')
+          }
+        });
+      }
+    };
+    BigEarth.init();
+
     var Bookmark = {
-      initialize_bookmark_text: function(){
+      init: function(){
         var bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
         var bookmark = _.find(bookmarks, function(bookmark) { 
           return bookmark.url_path === window.location.pathname; 
         });
+
         if(bookmark) {
           $('.bookmark').text('Bookmarked').attr('href', '/bookmarks');
         }
-        
+
+        $('.bookmark').click(function(evt) {
+          if($(evt.currentTarget).text() != 'Bookmarked') {
+            Bookmark.set_bookmark(evt);
+            evt.preventDefault();
+          }
+        });
+
+        $('.clear_all_bookmarks').click(function(evt) {
+          Bookmark.clear_all_bookmarks();
+          evt.preventDefault();
+        });
       },
       set_bookmark: function(evt) {
         var bookmarks = localStorage.getItem('bookmarks');
@@ -56,16 +84,6 @@
         localStorage.removeItem('bookmarks');
       }
     };
-    Bookmark.initialize_bookmark_text();
-    $('.bookmark').click(function(evt) {
-      if($(evt.currentTarget).text() != 'Bookmarked') {
-        Bookmark.set_bookmark(evt);
-        evt.preventDefault();
-      }
-    });
-    $('.clear_all_bookmarks').click(function(evt) {
-      Bookmark.clear_all_bookmarks();
-      evt.preventDefault();
-    });
+    Bookmark.init();
   };
-}())
+}());
