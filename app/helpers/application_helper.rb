@@ -8,4 +8,14 @@ module ApplicationHelper
       "Bitcoin Address #{@address['data']['address']} - " 
     end
   end
+  
+  def color_code_block_size block
+    if block['size'].to_i <= 300000 
+      color = 'success'
+    elsif block['size'].to_i <= 700000 
+      color ='warning'
+    else
+      color = 'danger'
+    end
+  end
 end
