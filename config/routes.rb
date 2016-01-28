@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'explorers#index'
-  get 'bookmarks' => 'explorers#bookmarks'
+  get 'apps/bookmarks' => 'apps#bookmarks'
   get 'blocks/transactions/:id' => 'blocks#transactions'
   get 'blocks/raw/:id' => 'blocks#raw'
   get 'transactions/raw/:id' => 'transactions#raw'
