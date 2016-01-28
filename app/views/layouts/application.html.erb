@@ -2,18 +2,7 @@
 <html lang="en" class="app">
 <head>
   <meta charset="utf-8" />
-  <title>
-    <%=
-      if @block
-        "Block #{number_with_delimiter(@block['data']['nb'], delimiter: ',')} - " 
-      elsif @tx
-        "Transaction #{@tx['data']['tx']} - " 
-      elsif @address
-        "Address #{@address['data']['address']} - " 
-      end
-    %> 
-    Big Earth Blockchain Explorer
-  </title>
+  <title><%= create_page_title %> Big Earth Blockchain Explorer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
