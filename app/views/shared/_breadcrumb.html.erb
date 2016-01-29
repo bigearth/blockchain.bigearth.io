@@ -4,5 +4,7 @@
   <li class="active">Block <%= number_with_delimiter(@block['data']['nb'], delimiter: ',') %></li>
 <% elsif params[:controller] === 'addresses' %>
   <li class="active">Address <%= @address['data']['address'] %></li>
+<% elsif params[:action] === 'bookmarks' %>
+  <li class="active">Bookmarks</li>
 <% end %>
 </ul>

@@ -6,9 +6,21 @@ module ApplicationHelper
       "Bitcoin Transaction #{@tx['data']['tx']} - " 
     elsif @address
       "Bitcoin Address #{@address['data']['address']} - " 
+    elsif params[:action] === 'bookmarks'
+      "Bitcoin Bookmarks - " 
     end
   end
   
+  def create_bookmark_type
+    if @block
+      'block'
+    elsif @tx
+      'transaction'
+    elsif @address
+      'address'
+    end
+  end
+
   def color_code_block_size block
     if block['size'].to_i <= 300000 
       color = 'success'
