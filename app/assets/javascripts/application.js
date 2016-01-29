@@ -33,28 +33,27 @@
         });
       }
     };
-    BigEarth.init();
 
-    var Bookmark = {
+    var BookmarkBtn = {
       init: function(){
         var bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
         var bookmark = _.find(bookmarks, function(bookmark) { 
-          return bookmark.url_path === window.location.pathname; 
+          return bookmark.path === window.location.pathname; 
         });
 
         if(bookmark) {
-          $('.bookmark').text('Bookmarked').attr('href', '/bookmarks');
+          $('.bookmark').text('Bookmarked').attr('href', '/apps/bookmarks');
         }
 
         $('.bookmark').click(function(evt) {
           if($(evt.currentTarget).text() != 'Bookmarked') {
-            Bookmark.set_bookmark(evt);
+            BookmarkBtn.set_bookmark(evt);
             evt.preventDefault();
           }
         });
 
         $('.clear_all_bookmarks').click(function(evt) {
-          Bookmark.clear_all_bookmarks();
+          BookmarkBtn.clear_all_bookmarks();
           evt.preventDefault();
         });
       },
@@ -66,24 +65,68 @@
           bookmarks = JSON.parse(bookmarks);
         }
         var options = {
-          url_path: window.location.pathname,
+          path: window.location.pathname,
           created_at: Date.now(),
           id: $(evt.currentTarget).data('page_id'), 
-          page_type: $(evt.currentTarget).data('page_type')
+          bookmark_type: $(evt.currentTarget).data('bookmark_type')
         };
         var bookmark = _.find(bookmarks, function(bookmark) { 
-          return bookmark.url_path === window.location.pathname; 
+          return bookmark.path === window.location.pathname; 
         });
         if(_.isUndefined(bookmark)) {
           bookmarks.push(options)
-          $('.bookmark').text('Bookmarked').attr('href', '/bookmarks');
+          $('.bookmark').text('Bookmarked').attr('href', '/apps/bookmarks');
         }
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
       },
       clear_all_bookmarks: function(){
         localStorage.removeItem('bookmarks');
+        $('#block_bookmarks ul, #transaction_bookmarks ul, #address_bookmarks ul').hide()
+        $('#block_bookmarks p, #transaction_bookmarks p, #address_bookmarks p').show()
       }
     };
-    Bookmark.init();
+    var Bookmarks = {
+      init: function() {
+        var bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+        var block_bookmarks = _.filter(bookmarks, function(bookmark) {
+          return bookmark.bookmark_type === 'block';
+        });
+        var transaction_bookmarks = _.filter(bookmarks, function(bookmark) {
+          return bookmark.bookmark_type === 'transaction';
+        });
+        var address_bookmarks = _.filter(bookmarks, function(bookmark) {
+          return bookmark.bookmark_type === 'address';
+        });
+        
+        if(!_.isEmpty(block_bookmarks)) {
+          $('#block_bookmarks p').hide()
+          block_bookmarks.forEach(function(bookmark, index) {
+            $('#block_bookmarks ul').removeClass('hide').append($('<li class="list-group-item"><a href="' + bookmark.path + '">' + bookmark.id + '</li>'))
+          });
+        }
+        
+        if(!_.isEmpty(transaction_bookmarks)) {
+          $('#transaction_bookmarks p').hide()
+          transaction_bookmarks.forEach(function(bookmark, index) {
+            $('#transaction_bookmarks ul').removeClass('hide').append($('<li class="list-group-item"><a href="' + bookmark.path + '">' + bookmark.id + '</li>'))
+          });
+        }
+        
+        if(!_.isEmpty(address_bookmarks)) {
+          $('#address_bookmarks p').hide()
+          address_bookmarks.forEach(function(bookmark, index) {
+            $('#address_bookmarks ul').removeClass('hide').append($('<li class="list-group-item"><a href="' + bookmark.path + '">' + bookmark.id + '</li>'))
+          });
+        }
+      },
+      build_bookmarks: function(bookmark_type) {
+        
+      }
+    }
+    BigEarth.init();
+    BookmarkBtn.init();
+    if($('#block_bookmarks').length) {
+      Bookmarks.init();
+    }
   };
 }());

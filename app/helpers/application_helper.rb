@@ -6,10 +6,12 @@ module ApplicationHelper
       "Bitcoin Transaction #{@tx['data']['tx']} - " 
     elsif @address
       "Bitcoin Address #{@address['data']['address']} - " 
+    elsif params[:action] === 'bookmarks'
+      "Bitcoin Bookmarks - " 
     end
   end
   
-  def create_page_type
+  def create_bookmark_type
     if @block
       'block'
     elsif @tx
