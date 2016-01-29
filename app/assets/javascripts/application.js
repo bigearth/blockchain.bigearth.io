@@ -83,6 +83,7 @@
         $('#block_bookmarks ul, #transaction_bookmarks ul, #address_bookmarks ul').hide()
         $('#block_bookmarks li, #transaction_bookmarks li, #address_bookmarks li').remove()
         $('#block_bookmarks p, #transaction_bookmarks p, #address_bookmarks p').show()
+        Bookmarks.hide_sum();
       }
     };
     var Bookmarks = {
@@ -173,8 +174,11 @@
         $sum.text(new_total.toFixed(8)).attr('title', new_total.toLocaleString());
         $($sum.closest('.pull-right')[0]).attr('title', new_total.toLocaleString());
         if(!$sum_li.length && $sum_footer.is(':visible')) {
-          $sum.closest('.panel-footer').hide();
+          Bookmarks.hide_sum();
         }
+      },
+      hide_sum: function($sum) {
+          $('#address_bookmarks .panel-footer').hide();
       }
     };
     var Utility = {
