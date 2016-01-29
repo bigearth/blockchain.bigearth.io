@@ -115,7 +115,11 @@
           var new_bkmks = _.reject(bkmks, function(bk) {
             return bk.path == $($(evt.currentTarget)).parents('.list-group-item').find('.bookmark_path').attr('href');
           });
-          $($(evt.currentTarget)).parents('.list-group-item').remove();
+          var parent_ul = $(evt.currentTarget).closest('.list-group');
+          $(evt.currentTarget).parents('.list-group-item').remove();
+          if(!$(parent_ul).children('li').length) {
+            $(parent_ul).closest('.panel-body').find('ul').hide().end().find('p').show();
+          }
           localStorage.setItem('bookmarks', JSON.stringify(new_bkmks));
           evt.preventDefault();
         });
