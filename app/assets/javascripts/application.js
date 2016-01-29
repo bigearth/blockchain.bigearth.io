@@ -128,12 +128,27 @@
         if(!_.isEmpty(bookmarks)) {
           $('#' + bookmarks[0].bookmark_type + '_bookmarks p').hide()
           $('#' + bookmarks[0].bookmark_type + '_bookmarks ul').removeClass('hide');
+          var that = this;
           _.each(bookmarks, function(bookmark, index) {
             $('#' + bookmark.bookmark_type + '_bookmarks ul').append($('<li class="list-group-item"><a class="bookmark_path" href="' + bookmark.path + '">' + _.truncate(bookmark.id, {length: 45}) + '<a href="#" class="delete_bookmark"><span class="label label-danger pull-right">Delete</span></a></li>'))
+            if(bookmark.bookmark_type === 'address') {
+              var $sum = $('#sum'),
+                  $sum_footer = $sum.closest('.panel-footer');
+              if($sum_footer.is(':hidden')) {
+                $sum_footer.removeClass('hide');
+              }
+              that.fetch_address_data(bookmark.id, $sum);
+            }
           });
         }
+      },
+      fetch_address_data: function(address, $sum){
+        $.getJSON('/addresses/' + address + '.json', function(data) {
+          var new_total = parseFloat($sum.text()) + data.data.balance;
+          $sum.text(new_total);
+        });
       }
-    }
+    };
     BigEarth.init();
     BookmarkBtn.init();
     if($('#block_bookmarks').length) {

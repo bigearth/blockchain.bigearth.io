@@ -6,14 +6,18 @@
         <%= render 'shared/social_media' %>
       </div>
   </section>
-  <div class="panel panel-default" id='block_bookmarks'>
+  <div class="panel panel-default" id='address_bookmarks'>
     <div class="panel-heading">
-      <h3 class="panel-title">Bitcoin <strong>Blocks</strong></h3>
+      <h3 class="panel-title">Bitcoin <strong>Addresses</strong></h3>
     </div>
     <div class="panel-body">
-      <p>No <strong>Block</strong> Bookmarks</p>
+      <p>No <strong>Address</strong> Bookmarks</p>
       <ul class="list-group hide">
       </ul>
+    </div>
+    <div class="panel-footer">
+      <span class='pull-right'>Sum: <span id='sum'>0</span> BTC</span>
+      <div class='clearfix'></div> 
     </div>
   </div>
   <div class="panel panel-default" id='transaction_bookmarks'>
@@ -26,12 +30,12 @@
       </ul>
     </div>
   </div>
-  <div class="panel panel-default" id='address_bookmarks'>
+  <div class="panel panel-default" id='block_bookmarks'>
     <div class="panel-heading">
-      <h3 class="panel-title">Bitcoin <strong>Addresses</strong></h3>
+      <h3 class="panel-title">Bitcoin <strong>Blocks</strong></h3>
     </div>
     <div class="panel-body">
-      <p>No <strong>Address</strong> Bookmarks</p>
+      <p>No <strong>Block</strong> Bookmarks</p>
       <ul class="list-group hide">
       </ul>
     </div>
