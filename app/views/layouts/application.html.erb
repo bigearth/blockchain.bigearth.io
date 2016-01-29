@@ -8,14 +8,14 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body data-value='<%= @value %>'>
   <section id='nav'>
     <nav class="navbar">
       <div class="container">
         <div class="navbar-header">
           <%= link_to 'Big Earth', root_url, class: 'navbar-brand' %>
+          <p class="navbar-text">Blockchain Explorer</p>
         </div>
-        <p class="navbar-text">Blockchain Explorer</p>
     </div>
   </nav>
 </section>

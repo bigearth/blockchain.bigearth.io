@@ -64,17 +64,16 @@
         } else {
           bookmarks = JSON.parse(bookmarks);
         }
-        var options = {
-          path: window.location.pathname,
-          created_at: Date.now(),
-          id: $(evt.currentTarget).data('page_id'), 
-          bookmark_type: $(evt.currentTarget).data('bookmark_type')
-        };
         var bookmark = _.find(bookmarks, function(bookmark) { 
           return bookmark.path === window.location.pathname; 
         });
         if(_.isUndefined(bookmark)) {
-          bookmarks.push(options)
+          bookmarks.push({
+            path: window.location.pathname,
+            created_at: Date.now(),
+            id: $(evt.currentTarget).data('page_id'), 
+            bookmark_type: $(evt.currentTarget).data('bookmark_type')
+          });
           $('.bookmark').text('Bookmarked').attr('href', '/apps/bookmarks');
         }
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
@@ -84,6 +83,7 @@
         $('#block_bookmarks ul, #transaction_bookmarks ul, #address_bookmarks ul').hide()
         $('#block_bookmarks li, #transaction_bookmarks li, #address_bookmarks li').remove()
         $('#block_bookmarks p, #transaction_bookmarks p, #address_bookmarks p').show()
+        Bookmarks.hide_sum();
       }
     };
     var Bookmarks = {
@@ -111,13 +111,7 @@
           this.build_bookmarks(address_bookmarks);
         }
         $('.delete_bookmark').click(function(evt) {
-          var bkmks = JSON.parse(localStorage.getItem('bookmarks'));
-          var new_bkmks = _.reject(bkmks, function(bk) {
-            return bk.path == $($(evt.currentTarget)).parents('.list-group-item').find('.bookmark_path').attr('href');
-          });
-          $($(evt.currentTarget)).parents('.list-group-item').remove();
-          localStorage.setItem('bookmarks', JSON.stringify(new_bkmks));
-          evt.preventDefault();
+          Bookmarks.delete_bookmark(evt);
         });
       },
       build_bookmarks: function(bookmarks) {
@@ -125,11 +119,77 @@
           $('#' + bookmarks[0].bookmark_type + '_bookmarks p').hide()
           $('#' + bookmarks[0].bookmark_type + '_bookmarks ul').removeClass('hide');
           _.each(bookmarks, function(bookmark, index) {
-            $('#' + bookmark.bookmark_type + '_bookmarks ul').append($('<li class="list-group-item"><a class="bookmark_path" href="' + bookmark.path + '">' + _.truncate(bookmark.id, {length: 45}) + '<a href="#" class="delete_bookmark"><span class="label label-danger pull-right">Delete</span></a></li>'))
+            $('#' + bookmark.bookmark_type + '_bookmarks ul').append($('<li class="list-group-item"><a class="bookmark_path" href="' + bookmark.path + '">' + _.truncate(bookmark.id, {length: 45}) + '<a href="#" class="delete_bookmark"><span class="label label-danger pull-right" data-id="' + bookmark.id + '">Delete</span></a></li>'))
+            if(bookmark.bookmark_type === 'address') {
+              var $sum_footer = $('#sum_btc').closest('.panel-footer');
+              if($sum_footer.is(':hidden')) {
+                $sum_footer.removeClass('hide');
+              }
+              Bookmarks.fetch_address(bookmark.id);
+            }
           });
         }
+      },
+      delete_bookmark: function(evt){
+        var bkmks = JSON.parse(localStorage.getItem('bookmarks'));
+        var balance = $($($(evt.currentTarget)[0]).find('span')[0]).data('balance');
+        var address = $($($(evt.currentTarget)[0]).find('span')[0]).data('id');
+        var new_bkmks = _.reject(bkmks, function(bk) {
+          return bk.path == $(evt.currentTarget).parents('.list-group-item').find('.bookmark_path').attr('href');
+        });
+        var parent_ul = $(evt.currentTarget).closest('.list-group');
+        $(evt.currentTarget).parents('.list-group-item').remove();
+        if(!$(parent_ul).children('li').length) {
+          $(parent_ul).closest('.panel-body').find('ul').hide().end().find('p').show();
+        }
+        
+        if(!_.isUndefined(balance)) {
+          Bookmarks.calculate_address_total({
+            balance: balance,
+            address: address
+          }, 'subtract');
+        }
+        localStorage.setItem('bookmarks', JSON.stringify(new_bkmks));
+        evt.preventDefault();
+        
+      },
+      fetch_address: function(address){
+        $.getJSON('/addresses/' + address + '.json', function(data) {
+          Bookmarks.calculate_address_total(data.data, 'add');
+        });
+      },
+      calculate_address_total: function(data, operation_type) {
+        var new_balance = parseFloat(data.balance);
+        $($('[data-id="' + data.address + '"]')[0]).attr('data-balance', new_balance.toFixed(8));
+        var $sum = $('#sum_btc'),
+            $sum_usd = $('#sum_usd'),
+            $sum_footer = $sum.closest('.panel-footer'),
+            $sum_li = $sum.closest('.panel').find('.panel-body li');
+        var existing_total = parseFloat($sum.text());
+        var new_total;
+        if(operation_type === 'add') {
+          new_total = existing_total + new_balance;
+        } else if (operation_type === 'subtract') {
+          new_total = existing_total - new_balance;
+        }
+        var usd_exchange_rate = $('body').data('value');
+        var new_usd = _.round(new_total * usd_exchange_rate, 2);
+        $sum.text(new_total.toFixed(8) + ' BTC').attr('title', '$' + new_usd.toLocaleString());
+        $sum_usd.text('$' + new_usd.toLocaleString()).attr('title', new_total + ' BTC');
+        $($sum.closest('.pull-right')[0]).attr('title', new_total.toLocaleString());
+        if(!$sum_li.length && $sum_footer.is(':visible')) {
+          Bookmarks.hide_sum();
+        }
+      },
+      hide_sum: function($sum) {
+          $('#address_bookmarks .panel-footer').hide();
       }
-    }
+    };
+    var Utility = {
+      number_with_commas: function(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+    };
     BigEarth.init();
     BookmarkBtn.init();
     if($('#block_bookmarks').length) {
