@@ -110,13 +110,22 @@
         if(!_.isEmpty(address_bookmarks)) {
           this.build_bookmarks(address_bookmarks);
         }
+        $('.delete_bookmark').click(function(evt) {
+          var bkmks = JSON.parse(localStorage.getItem('bookmarks'));
+          var new_bkmks = _.reject(bkmks, function(bk) {
+            return bk.path == $($(evt.currentTarget)).parents('.list-group-item').find('.bookmark_path').attr('href');
+          });
+          $($(evt.currentTarget)).parents('.list-group-item').remove();
+          localStorage.setItem('bookmarks', JSON.stringify(new_bkmks));
+          evt.preventDefault();
+        });
       },
       build_bookmarks: function(bookmarks) {
         if(!_.isEmpty(bookmarks)) {
           $('#' + bookmarks[0].bookmark_type + '_bookmarks p').hide()
           $('#' + bookmarks[0].bookmark_type + '_bookmarks ul').removeClass('hide');
           _.each(bookmarks, function(bookmark, index) {
-            $('#' + bookmark.bookmark_type + '_bookmarks ul').append($('<li class="list-group-item"><a href="' + bookmark.path + '">' + _.truncate(bookmark.id, {length: 45}) + '<a href="#" class="delete_bookmark"><span class="label label-danger pull-right">Delete</span></a></li>'))
+            $('#' + bookmark.bookmark_type + '_bookmarks ul').append($('<li class="list-group-item"><a class="bookmark_path" href="' + bookmark.path + '">' + _.truncate(bookmark.id, {length: 45}) + '<a href="#" class="delete_bookmark"><span class="label label-danger pull-right">Delete</span></a></li>'))
           });
         }
       }
