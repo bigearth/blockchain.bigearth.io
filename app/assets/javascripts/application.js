@@ -82,6 +82,7 @@
       clear_all_bookmarks: function(){
         localStorage.removeItem('bookmarks');
         $('#block_bookmarks ul, #transaction_bookmarks ul, #address_bookmarks ul').hide()
+        $('#block_bookmarks li, #transaction_bookmarks li, #address_bookmarks li').remove()
         $('#block_bookmarks p, #transaction_bookmarks p, #address_bookmarks p').show()
       }
     };
@@ -99,28 +100,25 @@
         });
         
         if(!_.isEmpty(block_bookmarks)) {
-          $('#block_bookmarks p').hide()
-          block_bookmarks.forEach(function(bookmark, index) {
-            $('#block_bookmarks ul').removeClass('hide').append($('<li class="list-group-item"><a href="' + bookmark.path + '">' + bookmark.id + '</li>'))
-          });
+          this.build_bookmarks(block_bookmarks);
         }
         
         if(!_.isEmpty(transaction_bookmarks)) {
-          $('#transaction_bookmarks p').hide()
-          transaction_bookmarks.forEach(function(bookmark, index) {
-            $('#transaction_bookmarks ul').removeClass('hide').append($('<li class="list-group-item"><a href="' + bookmark.path + '">' + bookmark.id + '</li>'))
-          });
+          this.build_bookmarks(transaction_bookmarks);
         }
         
         if(!_.isEmpty(address_bookmarks)) {
-          $('#address_bookmarks p').hide()
-          address_bookmarks.forEach(function(bookmark, index) {
-            $('#address_bookmarks ul').removeClass('hide').append($('<li class="list-group-item"><a href="' + bookmark.path + '">' + bookmark.id + '</li>'))
-          });
+          this.build_bookmarks(address_bookmarks);
         }
       },
-      build_bookmarks: function(bookmark_type) {
-        
+      build_bookmarks: function(bookmarks) {
+        if(!_.isEmpty(bookmarks)) {
+          $('#' + bookmarks[0].bookmark_type + '_bookmarks p').hide()
+          $('#' + bookmarks[0].bookmark_type + '_bookmarks ul').removeClass('hide');
+          _.each(bookmarks, function(bookmark, index) {
+            $('#' + bookmark.bookmark_type + '_bookmarks ul').append($('<li class="list-group-item"><a href="' + bookmark.path + '">' + _.truncate(bookmark.id, {length: 45}) + '<a href="#" class="delete_bookmark"><span class="label label-danger pull-right">Delete</span></a></li>'))
+          });
+        }
       }
     }
     BigEarth.init();
