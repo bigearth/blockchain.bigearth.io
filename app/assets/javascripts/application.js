@@ -119,7 +119,12 @@
           $('#' + bookmarks[0].bookmark_type + '_bookmarks p').hide()
           $('#' + bookmarks[0].bookmark_type + '_bookmarks ul').removeClass('hide');
           _.each(bookmarks, function(bookmark, index) {
-            $('#' + bookmark.bookmark_type + '_bookmarks ul').append($('<li class="list-group-item"><a class="bookmark_path" href="' + bookmark.path + '">' + _.truncate(bookmark.id, {length: 45}) + '<a href="#" class="delete_bookmark"><span class="label label-danger pull-right" data-id="' + bookmark.id + '">Delete</span></a></li>'))
+            $('#' + bookmark.bookmark_type + '_bookmarks ul').append($('<li class="list-group-item">' + 
+            '<a class="bookmark_path" href="' + bookmark.path + '">' + _.truncate(bookmark.id, {length: 45}) + '</a>' + 
+            '<span class="address_balance text-success pull-right" data-id="' + bookmark.id + '">balance</span>' + 
+            '<a href="#" class="delete_bookmark">' + 
+              '<span class="label label-danger pull-right" data-id="' + bookmark.id + '">Delete</span>' + 
+            '</a></li>'))
             if(bookmark.bookmark_type === 'address') {
               var $sum_footer = $('#sum_btc').closest('.panel-footer');
               if($sum_footer.is(':hidden')) {
@@ -149,7 +154,7 @@
             address: address
           }, 'subtract');
         }
-        localStorage.setItem('bookmarks', JSON.stringify(new_bkmks));
+        // localStorage.setItem('bookmarks', JSON.stringify(new_bkmks));
         evt.preventDefault();
         
       },
@@ -165,7 +170,7 @@
             $sum_usd = $('#sum_usd'),
             $sum_footer = $sum.closest('.panel-footer'),
             $sum_li = $sum.closest('.panel').find('.panel-body li');
-        var existing_total = parseFloat($sum.text());
+        var existing_total = parseFloat(_.trimEnd($sum.text(), ' BTC'));
         var new_total;
         if(operation_type === 'add') {
           new_total = existing_total + new_balance;
@@ -174,8 +179,11 @@
         }
         var usd_exchange_rate = $('body').data('value');
         var new_usd = _.round(new_total * usd_exchange_rate, 2);
-        $sum.text(new_total.toFixed(8) + ' BTC').attr('title', '$' + new_usd.toLocaleString());
-        $sum_usd.text('$' + new_usd.toLocaleString()).attr('title', new_total + ' BTC');
+        var split_btc = new_total.toFixed(8).toString().split('.');
+        split_btc[0] = Utility.number_with_commas(split_btc[0]);
+        var formatted_btc = split_btc.join('.');
+        $sum.text(formatted_btc + ' BTC').attr('title', '$' + new_usd.toLocaleString());
+        $sum_usd.text('$' + new_usd.toLocaleString()).attr('title', formatted_btc + ' BTC');
         $($sum.closest('.pull-right')[0]).attr('title', new_total.toLocaleString());
         if(!$sum_li.length && $sum_footer.is(':visible')) {
           Bookmarks.hide_sum();
