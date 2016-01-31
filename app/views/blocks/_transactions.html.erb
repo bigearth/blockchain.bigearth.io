@@ -27,8 +27,8 @@
                     <tr>
                       <td><%= link_to address['address'], address_path(address['address']) %></td>
                       <td class='text-danger'>
-                        <span class='btc' title='<%= number_to_currency(@value * address["amount"]) %>'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</span>
-                        <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(address["amount"], precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@value * address["amount"]) %></span>
+                        <span class='btc' title='<%= number_to_currency(@exchange_rate * address["amount"]) %>'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</span>
+                        <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(address["amount"], precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@exchange_rate * address["amount"]) %></span>
                       </td>
                     </tr>
                     <% end %>
@@ -50,8 +50,8 @@
                         <tr>
                           <td><%= link_to address['address'], address_path(address['address']) %></td>
                           <td class='text-success'>
-                            <span class='btc' title='<%= number_to_currency(@value * address["amount"]) %>'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</span>
-                            <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(address["amount"], precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@value * address["amount"]) %></span>
+                            <span class='btc' title='<%= number_to_currency(@exchange_rate * address["amount"]) %>'><%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %> BTC</span>
+                            <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(address["amount"], precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@exchange_rate * address["amount"]) %></span>
                           </td>
                         </tr>
                     <% end %>
@@ -70,13 +70,13 @@
           <div class="col-sm-6">
             <p>
               Fee: 
-              <span class='btc' title='<%= number_to_currency(@value * tx["fee"].to_f) %>'><%= number_with_delimiter(number_with_precision(tx['fee'], precision: 8), delimiter: ',') %> BTC</span>
-              <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(tx["fee"], precision: 8), delimiter: ",") %>'><%= number_to_currency(@value * tx["fee"].to_f) %></span>
+              <span class='btc' title='<%= number_to_currency(@exchange_rate * tx["fee"].to_f) %>'><%= number_with_delimiter(number_with_precision(tx['fee'], precision: 8), delimiter: ',') %> BTC</span>
+              <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(tx["fee"], precision: 8), delimiter: ",") %>'><%= number_to_currency(@exchange_rate * tx["fee"].to_f) %></span>
             </p>
             <p class='currency'>
               Transaction Sum: 
-              <span class='btc' title='<%= number_to_currency(@value * transaction_sum + tx["fee"].to_f) %>'><%= number_with_delimiter(number_with_precision(transaction_sum + tx['fee'].to_f, precision: 8), delimiter: ',') %> BTC</span>
-              <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(transaction_sum + tx["fee"].to_f, precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@value * transaction_sum + tx["fee"].to_f) %></span>
+              <span class='btc' title='<%= number_to_currency(@exchange_rate * transaction_sum + tx["fee"].to_f) %>'><%= number_with_delimiter(number_with_precision(transaction_sum + tx['fee'].to_f, precision: 8), delimiter: ',') %> BTC</span>
+              <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(transaction_sum + tx["fee"].to_f, precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@exchange_rate * transaction_sum + tx["fee"].to_f) %></span>
             </p>
           </div>
         </section>

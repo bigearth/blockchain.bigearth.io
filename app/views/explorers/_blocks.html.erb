@@ -21,8 +21,8 @@
                                 <td><%= time_ago_in_words block['time_utc'] %> ago</td>
                                 <td><%= number_with_delimiter(block['nb_txs'], delimiter: ',') %></td>
                                 <td>
-                                  <span class='btc' title='<%= number_to_currency(@value * block["fee"].to_f) %>'><%= block['fee'] %> BTC</span>
-                                  <span class='usd hide' title='<%= block["fee"] %> BTC'><%= number_to_currency(@value * block["fee"].to_f) %></span>
+                                  <span class='btc' title='<%= number_to_currency(@exchange_rate * block["fee"].to_f) %>'><%= block['fee'] %> BTC</span>
+                                  <span class='usd hide' title='<%= block["fee"] %> BTC'><%= number_to_currency(@exchange_rate * block["fee"].to_f) %></span>
                                 </td>
                                 <td class='<%= "text-#{color_code_block_size(block)}" %>'><%= number_to_human_size(block['size']) %></td>
                                 <td><%= number_with_delimiter(block['days_destroyed'], delimiter: ',') %></td>

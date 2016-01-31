@@ -5,6 +5,9 @@ $ ->
   'use strict';
   Calculator = 
     init: ->
-      console.log 'init baby'
+      this.exchange_rate = $('body').data 'exchange_rate'
+    multiply: (num) ->
+      console.log this.exchange_rate * num
       
   Calculator.init()
+  Calculator.multiply(5)

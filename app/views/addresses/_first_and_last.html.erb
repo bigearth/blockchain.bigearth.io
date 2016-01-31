@@ -21,8 +21,8 @@
                       <tr>
                           <td>Amount</td>
                           <td class='<%= "text-#{color_tx_value @address['data'][tx]['value']}" %>'>
-                            <span class='btc' title='<%= number_to_currency(@value * @address['data'][tx]['value']) %>'><%= number_with_delimiter(number_with_precision(@address['data'][tx]['value'], precision: 8), delimiter: ',') %> BTC</span>
-                            <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(@address['data'][tx]['value'], precision: 8), delimiter: ',') %> BTC'><%= number_to_currency(@value * @address['data'][tx]['value']) %></span>
+                            <span class='btc' title='<%= number_to_currency(@exchange_rate * @address['data'][tx]['value']) %>'><%= number_with_delimiter(number_with_precision(@address['data'][tx]['value'], precision: 8), delimiter: ',') %> BTC</span>
+                            <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(@address['data'][tx]['value'], precision: 8), delimiter: ',') %> BTC'><%= number_to_currency(@exchange_rate * @address['data'][tx]['value']) %></span>
                           </td>
                       </tr>
                       <tr>

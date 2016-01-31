@@ -213,7 +213,7 @@
         }
         
         // get the exchange rate from coinbase
-        var usd_exchange_rate = $('body').data('value');
+        var usd_exchange_rate = $('body').data('exchange_rate');
         
         // convert BTC value to USD
         var new_usd = _.round(new_sum * usd_exchange_rate, 2);
