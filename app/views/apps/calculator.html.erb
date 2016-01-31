@@ -10,8 +10,20 @@
     <div class="panel-body">
       <p><span id='btc_value'>0</span> BTC</p>
       <p>$<span id='usd_value'>0</span></p>
-      <p><input id='btc_calculator_input' type='number' /></p>
-      <p><input id='usd_calculator_input' type='number' /></p>
+      <div class="form-group">
+        <label for="btc_calculator_input">BTC Calculator Input</label>
+        <input id='btc_calculator_input' type="number" class="form-control" placeholder="1.75">
+      </div>
+      <div class="form-group">
+        <label for="usd_calculator_input">USD Calculator Input</label>
+        <input id='usd_calculator_input' type="number" class="form-control" placeholder="50">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Check me out
+        </label>
+      </div>
+      <p class="help-block">Exchange Rate: $<%= @exchange_rate %> / 1 BTC</p>
     </div>
   </div>
 </div>
