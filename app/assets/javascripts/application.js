@@ -90,7 +90,11 @@
         
           // build DOM of any bookmarks which exist for respective bookmark_type 
           if(!_.isEmpty(bkmrks)) {
-            Bookmarks.build_bookmarks(bkmrks);
+            // TODO: Remove the following if statement and uncomment the following line
+            if(item === 'address') {
+              Bookmarks.build_bookmarks(bkmrks);
+            }
+            // Bookmarks.build_bookmarks(bkmrks);
           }
         });
         
@@ -104,32 +108,51 @@
         });
       },
       build_bookmarks: function(bookmarks) {
-        if(!_.isEmpty(bookmarks)) {
-          $('#' + bookmarks[0].bookmark_type + '_bookmarks p').hide()
-          $('#' + bookmarks[0].bookmark_type + '_bookmarks ul').removeClass('hide');
-          _.each(bookmarks, function(bookmark, index) {
-            $('#' + bookmark.bookmark_type + '_bookmarks ul').append($('<li class="list-group-item">' + 
-            '<a class="bookmark_path" href="' + bookmark.path + '">' + _.truncate(bookmark.id, {length: 45}) + '</a>' + 
-            '<span class="address_balance text-success pull-right" data-id="' + bookmark.id + '">balance</span>' + 
-            '<a href="#" class="delete_bookmark">' + 
-              '<span class="label label-danger pull-right" data-id="' + bookmark.id + '">Delete</span>' + 
-            '</a></li>'))
-            if(bookmark.bookmark_type === 'address') {
-              var $sum_footer = $('#sum_btc').closest('.panel-footer');
-              if($sum_footer.is(':hidden')) {
-                $sum_footer.removeClass('hide');
-              }
-              Bookmarks.fetch_address(bookmark.id);
+        // get bookmark_type of each respective bookmark group
+        var bookmark_type = bookmarks[0].bookmark_type;
+        
+        // for each bookmark type hide "No Bookmarks" <p> and show the <ul> in prep for plugging in <li>s w/ the bookmarks
+        $('#' + bookmark_type + '_bookmarks').find('p').hide().end().find('ul').removeClass('hide');
+        
+        _.each(bookmarks, function(bookmark, index) {
+          // build out the DOM like this:
+          // <li class="list-group-item">
+          //   <a class="bookmark_path" href="/addresses/1Ebb8NfVmKMoGuMJCAEbVMv2dX8GnzgxSa">1Ebb8NfVmKMoGuMJCAEbVMv2dX8GnzgxSa</a>
+          //   <span class="address_balance text-success pull-right" data-id="1Ebb8NfVmKMoGuMJCAEbVMv2dX8GnzgxSa" data-balance="607.06144651">balance</span>
+          //   <a href="#" class="delete_bookmark">
+          //     <span class="label label-danger pull-right" data-id="1Ebb8NfVmKMoGuMJCAEbVMv2dX8GnzgxSa">Delete</span>
+          //   </a>
+          // </li>
+          
+          // grab ul for respective bookmark type
+          var $bookmarks_ul = $('#' + bookmark_type + '_bookmarks ul');
+          
+          // create each of the DOM elements
+          var $list_group_item_li = $('<li class="list-group-item"></li>');
+          var $bookmark_path_anchor = $('<a class="bookmark_path" href="' + bookmark.path + '">' + _.truncate(bookmark.id, {length: 45}) + '</a>');
+          var $address_balance_span = $('<span class="address_balance text-success pull-right" data-id="' + bookmark.id + '">balance</span>'); 
+          var $delete_bookmark_anchor = $('<a href="#" class="delete_bookmark"></a>');
+          var $label_danger_span = $('<span class="label label-danger pull-right" data-id="' + bookmark.id + '">Delete</span>');
+          
+          // build out the DOM as described above for each bookmark type
+          $bookmarks_ul.append($list_group_item_li.append($bookmark_path_anchor).append($address_balance_span).append($delete_bookmark_anchor.append($label_danger_span)));
+          
+          if(bookmark_type === 'address') {
+            var $sum_footer = $('#sum_btc').closest('.panel-footer');
+            if($sum_footer.is(':hidden')) {
+              $sum_footer.removeClass('hide');
             }
-          });
-        }
+            Bookmarks.fetch_address(bookmark.id);
+          }
+        });
       },
       fetch_address: function(address){
         $.getJSON('/addresses/' + address + '.json', function(data) {
-          Bookmarks.calculate_address_total(data.data, 'add');
+          Bookmarks.calculate_address_sum(data.data, 'add');
         });
       },
-      calculate_address_total: function(data, operation_type) {
+      calculate_address_sum: function(data, operation_type) {
+        console.info('Calculating Address Sum')
         var new_balance = parseFloat(data.balance);
         $($('[data-id="' + data.address + '"]')[0]).attr('data-balance', new_balance.toFixed(8));
         var $sum = $('#sum_btc'),
@@ -159,8 +182,10 @@
           $('#address_bookmarks .panel-footer').hide();
       },
       delete_bookmark: function(evt){
+        console.warn('Deleting Bookmark');
         var bkmks = JSON.parse(localStorage.getItem('bookmarks'));
         var balance = $($($(evt.currentTarget)[0]).find('span')[0]).data('balance');
+        console.log(balance);
         var address = $($($(evt.currentTarget)[0]).find('span')[0]).data('id');
         var new_bkmks = _.reject(bkmks, function(bk) {
           return bk.path == $(evt.currentTarget).parents('.list-group-item').find('.bookmark_path').attr('href');
@@ -172,17 +197,20 @@
         }
         
         if(!_.isUndefined(balance)) {
-          Bookmarks.calculate_address_total({
+          Bookmarks.calculate_address_sum({
             balance: balance,
             address: address
           }, 'subtract');
         }
-        localStorage.setItem('bookmarks', JSON.stringify(new_bkmks));
+        // TODO: Uncomment the localStorage after this line
+        // localStorage.setItem('bookmarks', JSON.stringify(new_bkmks));
         evt.preventDefault();
         
       },
       clear_all_bookmarks: function(){
-        localStorage.removeItem('bookmarks');
+        console.warn('Clearing all Bookmarks');
+        // TODO: Uncomment the localStorage after this line
+        // localStorage.removeItem('bookmarks');
         $('#block_bookmarks ul, #transaction_bookmarks ul, #address_bookmarks ul').hide()
         $('#block_bookmarks li, #transaction_bookmarks li, #address_bookmarks li').remove()
         $('#block_bookmarks p, #transaction_bookmarks p, #address_bookmarks p').show()
