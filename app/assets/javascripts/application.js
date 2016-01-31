@@ -51,11 +51,6 @@
             evt.preventDefault();
           }
         });
-
-        $('.clear_all_bookmarks').click(function(evt) {
-          BookmarkBtn.clear_all_bookmarks();
-          evt.preventDefault();
-        });
       },
       set_bookmark: function(evt) {
         var bookmarks = localStorage.getItem('bookmarks');
@@ -77,41 +72,35 @@
           $('.bookmark').text('Bookmarked').attr('href', '/apps/bookmarks');
         }
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
-      },
-      clear_all_bookmarks: function(){
-        localStorage.removeItem('bookmarks');
-        $('#block_bookmarks ul, #transaction_bookmarks ul, #address_bookmarks ul').hide()
-        $('#block_bookmarks li, #transaction_bookmarks li, #address_bookmarks li').remove()
-        $('#block_bookmarks p, #transaction_bookmarks p, #address_bookmarks p').show()
-        Bookmarks.hide_sum();
       }
     };
     var Bookmarks = {
       init: function() {
-        var bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
-        var block_bookmarks = _.filter(bookmarks, function(bookmark) {
-          return bookmark.bookmark_type === 'block';
-        });
-        var transaction_bookmarks = _.filter(bookmarks, function(bookmark) {
-          return bookmark.bookmark_type === 'transaction';
-        });
-        var address_bookmarks = _.filter(bookmarks, function(bookmark) {
-          return bookmark.bookmark_type === 'address';
+        // grab marshalled bookmarks from localStorage
+        var bookmarks = localStorage.getItem('bookmarks');
+        
+        // parse marshalled bookmarks into JSON
+        var parsed_bookmarks = JSON.parse(bookmarks);
+        
+        ['block', 'transaction', 'address'].forEach(function(item, index) {
+          // for all 3 bookmark types filter out respective bookmarks
+          var bkmrks = _.filter(parsed_bookmarks, function(bkmrk) {
+            return bkmrk.bookmark_type === item;
+          });
+        
+          // build DOM of any bookmarks which exist for respective bookmark_type 
+          if(!_.isEmpty(bkmrks)) {
+            Bookmarks.build_bookmarks(bkmrks);
+          }
         });
         
-        if(!_.isEmpty(block_bookmarks)) {
-          this.build_bookmarks(block_bookmarks);
-        }
-        
-        if(!_.isEmpty(transaction_bookmarks)) {
-          this.build_bookmarks(transaction_bookmarks);
-        }
-        
-        if(!_.isEmpty(address_bookmarks)) {
-          this.build_bookmarks(address_bookmarks);
-        }
+        // init click events
         $('.delete_bookmark').click(function(evt) {
           Bookmarks.delete_bookmark(evt);
+        });
+        $('.clear_all_bookmarks').click(function(evt) {
+          Bookmarks.clear_all_bookmarks();
+          evt.preventDefault();
         });
       },
       build_bookmarks: function(bookmarks) {
@@ -134,29 +123,6 @@
             }
           });
         }
-      },
-      delete_bookmark: function(evt){
-        var bkmks = JSON.parse(localStorage.getItem('bookmarks'));
-        var balance = $($($(evt.currentTarget)[0]).find('span')[0]).data('balance');
-        var address = $($($(evt.currentTarget)[0]).find('span')[0]).data('id');
-        var new_bkmks = _.reject(bkmks, function(bk) {
-          return bk.path == $(evt.currentTarget).parents('.list-group-item').find('.bookmark_path').attr('href');
-        });
-        var parent_ul = $(evt.currentTarget).closest('.list-group');
-        $(evt.currentTarget).parents('.list-group-item').remove();
-        if(!$(parent_ul).children('li').length) {
-          $(parent_ul).closest('.panel-body').find('ul').hide().end().find('p').show();
-        }
-        
-        if(!_.isUndefined(balance)) {
-          Bookmarks.calculate_address_total({
-            balance: balance,
-            address: address
-          }, 'subtract');
-        }
-        // localStorage.setItem('bookmarks', JSON.stringify(new_bkmks));
-        evt.preventDefault();
-        
       },
       fetch_address: function(address){
         $.getJSON('/addresses/' + address + '.json', function(data) {
@@ -191,6 +157,36 @@
       },
       hide_sum: function($sum) {
           $('#address_bookmarks .panel-footer').hide();
+      },
+      delete_bookmark: function(evt){
+        var bkmks = JSON.parse(localStorage.getItem('bookmarks'));
+        var balance = $($($(evt.currentTarget)[0]).find('span')[0]).data('balance');
+        var address = $($($(evt.currentTarget)[0]).find('span')[0]).data('id');
+        var new_bkmks = _.reject(bkmks, function(bk) {
+          return bk.path == $(evt.currentTarget).parents('.list-group-item').find('.bookmark_path').attr('href');
+        });
+        var parent_ul = $(evt.currentTarget).closest('.list-group');
+        $(evt.currentTarget).parents('.list-group-item').remove();
+        if(!$(parent_ul).children('li').length) {
+          $(parent_ul).closest('.panel-body').find('ul').hide().end().find('p').show();
+        }
+        
+        if(!_.isUndefined(balance)) {
+          Bookmarks.calculate_address_total({
+            balance: balance,
+            address: address
+          }, 'subtract');
+        }
+        localStorage.setItem('bookmarks', JSON.stringify(new_bkmks));
+        evt.preventDefault();
+        
+      },
+      clear_all_bookmarks: function(){
+        localStorage.removeItem('bookmarks');
+        $('#block_bookmarks ul, #transaction_bookmarks ul, #address_bookmarks ul').hide()
+        $('#block_bookmarks li, #transaction_bookmarks li, #address_bookmarks li').remove()
+        $('#block_bookmarks p, #transaction_bookmarks p, #address_bookmarks p').show()
+        Bookmarks.hide_sum();
       }
     };
     var Utility = {
