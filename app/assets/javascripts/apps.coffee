@@ -42,8 +42,8 @@ $ ->
       # update the DOM accordingly
       if type is 'btc'
         $('#btc_value').text(num)
-        $('#usd_value').text(final_rate.toLocaleString())
-        $('#usd_calculator_input').val(final_rate.toLocaleString())
+        $('#usd_value').text(final_rate.toFixed(2).toLocaleString())
+        $('#usd_calculator_input').val(final_rate.toFixed(2).toLocaleString())
       else if type is 'usd'
         $('#usd_value').text(num)
         $('#btc_value').text(final_rate.toFixed(8))
