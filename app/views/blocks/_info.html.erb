@@ -18,8 +18,8 @@
                         <tr>
                             <td>Trades Sum</td>
                             <td class='currency'>
-                              <span class='btc' title='<%= number_to_currency(@value * @block["data"]["vout_sum"]) %>'><%= number_with_delimiter(number_with_precision(@block['data']['vout_sum'], precision: 8), delimiter: ',') %> BTC</span>
-                              <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(@block["data"]["vout_sum"], precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@value * @block["data"]["vout_sum"]) %></span>
+                              <span class='btc' title='<%= number_to_currency(@exchange_rate * @block["data"]["vout_sum"]) %>'><%= number_with_delimiter(number_with_precision(@block['data']['vout_sum'], precision: 8), delimiter: ',') %> BTC</span>
+                              <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(@block["data"]["vout_sum"], precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@exchange_rate * @block["data"]["vout_sum"]) %></span>
                               
                             </td>
                         </tr>
@@ -34,8 +34,8 @@
                         <tr>
                             <td>Fee</td>
                             <td class='currency'>
-                              <span class='btc' title='<%= number_to_currency(@value * @block["data"]["fee"].to_f) %>'><%= @block["data"]["fee"] %> BTC</span>
-                              <span class='usd hide' title='<%= @block["data"]["fee"] %> BTC'><%= number_to_currency(@value * @block["data"]["fee"].to_f) %></span>
+                              <span class='btc' title='<%= number_to_currency(@exchange_rate * @block["data"]["fee"].to_f) %>'><%= @block["data"]["fee"] %> BTC</span>
+                              <span class='usd hide' title='<%= @block["data"]["fee"] %> BTC'><%= number_to_currency(@exchange_rate * @block["data"]["fee"].to_f) %></span>
                             
                           </td>
                         </tr>

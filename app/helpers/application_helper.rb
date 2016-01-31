@@ -8,6 +8,8 @@ module ApplicationHelper
       "Bitcoin Address #{@address['data']['address']} - " 
     elsif params[:action] === 'bookmarks'
       "Bitcoin Bookmarks - " 
+    elsif params[:action] === 'calculator'
+      "Bitcoin Calculator - " 
     end
   end
   

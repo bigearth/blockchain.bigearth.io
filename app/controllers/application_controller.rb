@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
     
   def get_coin_value
     coin_info = HTTParty.get 'http://btc.blockr.io/api/v1/coin/info' 
-    @value = coin_info['data']['markets']['coinbase']['value']
+    @exchange_rate = coin_info['data']['markets']['coinbase']['value']
   end
 end
