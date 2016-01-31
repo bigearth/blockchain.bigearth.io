@@ -25,9 +25,18 @@ body {
 .sub{
   background: #579dd8;
   h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
     strong{
       color: #0F5288;
     }
+  }
+}
+
+ul {
+  li.list-group-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -40,8 +49,20 @@ table {
 
 .panel {
   color: #333;
+  
+  .panel-heading {
+    h3.panel-title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 }
 
 .label-as-badge {
     border-radius: 1em;
+}
+
+.breadcrumb {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
