@@ -2,7 +2,7 @@
 <%= link_to 'Share on Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", class: 'btn btn-sm' %>
 <%= 
   unless current_page?(root_url) || current_page?(apps_bookmarks_path)
-    link_to 'Bookmark', '#', class: 'btn btn-sm bookmark', "data-bookmark_type" => create_bookmark_type, "data-page_id" => params[:id] 
+    link_to 'Bookmark', '#', class: 'btn btn-sm create_bookmark', "data-bookmark_type" => create_bookmark_type, "data-page_id" => params[:id] 
   end
 %>
 <%= 

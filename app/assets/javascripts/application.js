@@ -20,7 +20,7 @@
 (function(){
   'use strict';
   window.onload = function() {
-    var BigEarth = {
+    var Utility = {
       init: function(){
         $('.btc, .usd').click(function(evt){
           if($(evt.currentTarget).hasClass('btc')) {
@@ -31,28 +31,41 @@
             $('.btc').removeClass('hide')
           }
         });
+      },
+      number_with_commas: function(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       }
     };
 
     var BookmarkBtn = {
       init: function(){
-        var bookmarks = JSON.parse(localStorage.getItem('bookmarks'));
-        var bookmark = _.find(bookmarks, function(bookmark) { 
+        // fetch marshalled bookmarks from localStorage
+        var bookmarks = localStorage.getItem('bookmarks');
+        
+        // parse marshalled bookmarks into JSON
+        var parsed_bookmarks = JSON.parse(bookmarks);
+        
+        // check existing bookmarks to see if bookmark already exists
+        var bookmark = _.find(parsed_bookmarks, function(bookmark) { 
           return bookmark.path === window.location.pathname; 
         });
 
+        // if this page has already been bookmarked update the bookmark btn 
         if(bookmark) {
-          $('.bookmark').text('Bookmarked').attr('href', '/apps/bookmarks');
+          BookmarkBtn.update_bookmark_btn();
         }
 
-        $('.bookmark').click(function(evt) {
+        // bind click event to the bookmark btn
+        $('.create_bookmark').click(function(evt) {
+          // when clicked check state of btn 
           if($(evt.currentTarget).text() != 'Bookmarked') {
-            BookmarkBtn.set_bookmark(evt);
+            // if the page hasn't been bookmarked before create bookmark
+            BookmarkBtn.create_bookmark(evt);
             evt.preventDefault();
           }
         });
       },
-      set_bookmark: function(evt) {
+      create_bookmark: function(evt) {
         var bookmarks = localStorage.getItem('bookmarks');
         if(bookmarks === null) {
           bookmarks = [];
@@ -63,15 +76,19 @@
           return bookmark.path === window.location.pathname; 
         });
         if(_.isUndefined(bookmark)) {
-          bookmarks.push({
+          var bookmark_options = {
             path: window.location.pathname,
             created_at: Date.now(),
             id: $(evt.currentTarget).data('page_id'), 
             bookmark_type: $(evt.currentTarget).data('bookmark_type')
-          });
-          $('.bookmark').text('Bookmarked').attr('href', '/apps/bookmarks');
+          };
+          bookmarks.push(bookmark_options);
+          BookmarkBtn.update_bookmark_btn();
         }
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+      },
+      update_bookmark_btn: function() {
+        $('.create_bookmark').text('Bookmarked').attr('href', '/apps/bookmarks');
       }
     };
     var Bookmarks = {
@@ -217,12 +234,7 @@
         Bookmarks.hide_sum();
       }
     };
-    var Utility = {
-      number_with_commas: function(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      }
-    };
-    BigEarth.init();
+    Utility.init();
     BookmarkBtn.init();
     if($('#block_bookmarks').length) {
       Bookmarks.init();
