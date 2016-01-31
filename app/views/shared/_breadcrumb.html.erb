@@ -1,10 +1,12 @@
 <ul class="breadcrumb">
 <li><%= link_to 'Home', root_url %></li>
 <% if params[:controller] === 'blocks' %>
-  <li class="active">Block <%= number_with_delimiter(@block['data']['nb'], delimiter: ',') %></li>
+  <li class="active">Block <%= number_with_delimiter @block['data']['nb'], delimiter: ',' %></li>
 <% elsif params[:controller] === 'addresses' %>
   <li class="active">Address <%= @address['data']['address'] %></li>
 <% elsif params[:action] === 'bookmarks' %>
   <li class="active">Bookmarks</li>
+<% elsif params[:action] === 'calculator' %>
+  <li class="active">Calculator</li>
 <% end %>
 </ul>

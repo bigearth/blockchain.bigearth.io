@@ -1,5 +1,9 @@
 class AppsController < ApplicationController
-  # GET /bookmarks
+  # GET /apps/bookmarks
   def bookmarks
+  end
+  
+  # GET /apps/calculator
+  def calculator
   end
 end

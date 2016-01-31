@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   root 'explorers#index'
-  get 'apps/bookmarks' => 'apps#bookmarks'
   get 'blocks/transactions/:id' => 'blocks#transactions'
   get 'blocks/raw/:id' => 'blocks#raw'
   get 'transactions/raw/:id' => 'transactions#raw'
   get 'addresses/balance/:id' => 'addresses#balance'
   get 'addresses/unspent/:id' => 'addresses#unspent'
+  get 'apps/bookmarks' => 'apps#bookmarks'
+  get 'apps/calculator' => 'apps#calculator'
   resources :explorers, only: [:index], path: 'coin'
   resources :blocks, only: [:show]
   resources :transactions, only: [:show]

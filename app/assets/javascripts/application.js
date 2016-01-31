@@ -186,8 +186,6 @@
         });
       },
       calculate_address_sum: function(address_data, operation_type) {
-        console.info('Calculating Sum of bookmarked Addresses');
-        
         // grab some DOM element
         var $sum = $('#sum_btc'),
             $sum_usd = $('#sum_usd'),
@@ -198,8 +196,6 @@
             // grab the existing sum of all bookmarked Addresses
             existing_sum = parseFloat(trimmed_sum_text.replace(/,/g,'') );
             
-        console.log('Existing sum of all bookmarked Bitcoin Addresses: ' + existing_sum + ' BTC');
-        
         // parse address balance into float to prevent strange maths
         var address_balance = parseFloat(address_data.balance);
         
@@ -211,13 +207,10 @@
         
         // add or subtract address balance from existing sum to create new sum
         if(operation_type === 'add') {
-          console.log('Adding ' + address_balance + ' BTC balance of Bitcoin Address: ' + address_data.address);
           new_sum = existing_sum + address_balance;
         } else if (operation_type === 'subtract') {
-          console.log('Subtracting ' + address_balance + ' BTC balance of Bitcoin Address: ' + address_data.address);
           new_sum = existing_sum - address_balance;
         }
-        console.log('New sum of all bookmarked Bitcoin Addresses: ' + new_sum);
         
         // get the exchange rate from coinbase
         var usd_exchange_rate = $('body').data('value');
@@ -247,7 +240,6 @@
         $('#address_bookmarks .panel-footer').hide();
       },
       delete_bookmark: function(evt){
-        console.warn('Deleting Bookmark');
         // get marshalled_bookmarks from localStorage
         var marshalled_bookmarks = localStorage.getItem('bookmarks');
         
@@ -275,7 +267,6 @@
         
       },
       clear_all_bookmarks: function(){
-        console.warn('Clearing all Bookmarks');
         localStorage.removeItem('bookmarks');
         $('#block_bookmarks ul, #transaction_bookmarks ul, #address_bookmarks ul').hide()
         $('#block_bookmarks li, #transaction_bookmarks li, #address_bookmarks li').remove()
