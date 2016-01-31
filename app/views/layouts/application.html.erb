@@ -10,27 +10,41 @@
   <%= csrf_meta_tags %>
 </head>
 <body data-exchange_rate='<%= @exchange_rate %>'>
-  <section id='nav'>
-    <nav class="navbar">
-      <div class="container">
-        <div class="navbar-header">
-          <%= link_to 'Big Earth', root_url, class: 'navbar-brand' %>
-          <p class="navbar-text">Blockchain Explorer</p>
-        </div>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to 'Big Earth', root_url, class: 'navbar-brand' %>
+        <p class="navbar-text">Blockchain Explorer</p>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class='<%= if params[:action] === 'bookmarks' then "active" end %>'>
+            <%= link_to 'Bookmarks', apps_bookmarks_path %>
+          </li>
+          <li class='<%= if params[:action] === 'calculator' then "active" end %>'>
+            <%= link_to 'Calculator', apps_calculator_path %>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
-</section>
-<%= yield %>
-<div id='google_analytics_tracking_id' data-tracking="<%= Figaro.env.google_analytics_tracking_id %>"></div>
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <%= yield %>
+  <div id='google_analytics_tracking_id' data-tracking="<%= Figaro.env.google_analytics_tracking_id %>"></div>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-ga('create', $('#google_analytics_tracking_id').data('tracking'), 'auto');
-ga('send', 'pageview');
+  ga('create', $('#google_analytics_tracking_id').data('tracking'), 'auto');
+  ga('send', 'pageview');
 
-</script>
+  </script>
 </body>
 </html>
