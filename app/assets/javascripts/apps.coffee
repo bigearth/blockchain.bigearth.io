@@ -5,15 +5,14 @@ $ ->
   'use strict';
   class Calculator 
     constructor: (@exchange_rate) ->
-      $('#btc_calculator_input').on 'change keyup', (evt) =>
-        @.calculate_btc_exchange evt.currentTarget.value
-      $('#usd_calculator_input').on 'change keyup', (evt) =>
-        @.calculate_usd_exchange evt.currentTarget.value
-    calculate_btc_exchange: (num) ->
-      final_rate = @.exchange_rate * num
-      $('#usd_value').text(final_rate.toLocaleString())
-    calculate_usd_exchange: (num) ->
-      final_rate = num / @.exchange_rate 
-      $('#btc_value').text(final_rate.toFixed(8))
+      $('#btc_calculator_input, #usd_calculator_input').on 'change keyup', (evt) =>
+        type = if evt.currentTarget.id is 'btc_calculator_input' then 'btc' else 'usd'
+        @.calculate_exchange evt.currentTarget.value, type
+    calculate_exchange: (num, type) ->
+      final_rate = if type is 'btc' then @.exchange_rate * num else num / @.exchange_rate
+      if type is 'btc'
+        $('#usd_value').text(final_rate.toLocaleString())
+      else if type is 'usd'
+        $('#btc_value').text(final_rate.toFixed(8))
       
   calculator = new Calculator $('body').data 'exchange_rate'
