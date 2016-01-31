@@ -3,11 +3,17 @@
  
 $ ->
   'use strict';
-  Calculator = 
-    init: ->
-      this.exchange_rate = $('body').data 'exchange_rate'
-    multiply: (num) ->
-      console.log this.exchange_rate * num
+  class Calculator 
+    constructor: (@exchange_rate) ->
+      $('#btc_calculator_input').on 'change keyup', (evt) =>
+        @.calculate_btc_exchange evt.currentTarget.value
+      $('#usd_calculator_input').on 'change keyup', (evt) =>
+        @.calculate_usd_exchange evt.currentTarget.value
+    calculate_btc_exchange: (num) ->
+      final_rate = @.exchange_rate * num
+      $('#usd_value').text(final_rate.toLocaleString())
+    calculate_usd_exchange: (num) ->
+      final_rate = num / @.exchange_rate 
+      $('#btc_value').text(final_rate.toFixed(8))
       
-  Calculator.init()
-  Calculator.multiply(5)
+  calculator = new Calculator $('body').data 'exchange_rate'
