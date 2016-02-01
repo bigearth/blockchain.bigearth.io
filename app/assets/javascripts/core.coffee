@@ -27,7 +27,7 @@ $ ->
       @.set_bookmark_count_badge(parsed_bookmarks.length) if parsed_bookmarks;
       
       # build out the bookmarks DOM
-      @.build_bookmarks_dom()
+      @.build_bookmarks_dom() if $('#block_bookmarks').length
     bind_events: ->
       $('.create_bookmark').click (evt) =>
         # when clicked check state of btn 
