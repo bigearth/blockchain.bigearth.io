@@ -1,76 +1,77 @@
-<section class="row m-b-md">
-    <div class="col-sm-12">
-      <h2>Bitcoin <strong>Block</strong></h2>
+<section class='row m-b-md'>
+    <div class='col-sm-12'>
+      <h2><span class='glyphicon glyphicon-th-large' aria-hidden='true'></span> Bitcoin <strong>Block</strong></h2>
       <%= render 'shared/breadcrumb' %>
       <%= render 'shared/social_media' %>
-        <section class="panel panel-default">
-            <div class="table-responsive">
-                <table class="table table-striped">
+        <section class='panel panel-default'>
+            <div class='table-responsive'>
+                <table class='table table-striped'>
                     <tbody>
                         <tr>
-                            <td>Height</td>
+                            <th><span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> Height</th>
                             <td><%= number_with_delimiter(@block['data']['nb'], delimiter: ',') %></td>
                         </tr>
                         <tr>
-                            <td>Block Time</td>
+                            <th><span class='glyphicon glyphicon-calendar' aria-hidden='true'></span> Created</th>
                             <td><%= Time.parse(@block['data']['time_utc']).strftime("%A, %b #{Time.parse(@block['data']['time_utc']).strftime("%d").to_i.ordinalize}, %Y %-I:%M%p") %></td>
                         </tr>
                         <tr>
-                            <td>Trades Sum</td>
+                            <th class='btc'><span class='glyphicon glyphicon-bitcoin' aria-hidden='true'></span> Trades Sum</th>
+                            <th class='hide usd'><span class='glyphicon glyphicon-usd' aria-hidden='true'></span> Trades Sum</th>
                             <td class='currency'>
-                              <span class='btc' title='<%= number_to_currency(@exchange_rate * @block["data"]["vout_sum"]) %>'><%= number_with_delimiter(number_with_precision(@block['data']['vout_sum'], precision: 8), delimiter: ',') %> BTC</span>
-                              <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(@block["data"]["vout_sum"], precision: 8), delimiter: ",") %> BTC'><%= number_to_currency(@exchange_rate * @block["data"]["vout_sum"]) %></span>
+                              <span class='btc' title='<%= number_to_currency(@exchange_rate * @block["data"]["vout_sum"]) %>'><%= number_with_delimiter(number_with_precision(@block['data']['vout_sum'], precision: 8), delimiter: ',') %></span>
+                              <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(@block["data"]["vout_sum"], precision: 8), delimiter: ",") %> BTC'><%= number_with_delimiter(number_with_precision(@exchange_rate * @block['data']['vout_sum'], precision: 2), delimiter: ',') %></span>
                               
                             </td>
                         </tr>
                         <tr>
-                            <td># Transactions</td>
+                            <th><span class='glyphicon glyphicon-transfer' aria-hidden='true'></span> Transactions</th>
                             <td><%= number_with_delimiter(@block['data']['nb_txs'], delimiter: ',') %></td>
                         </tr>
                         <tr>
-                            <td>Difficulty</td>
+                            <th><span class='glyphicon glyphicon-link' aria-hidden='true'></span> Difficulty</th>
                             <td><%= number_with_delimiter(number_with_precision(@block['data']['difficulty'], precision: 2), delimiter: ',') %></td>
                         </tr>
                         <tr>
-                            <td>Fee</td>
+                            <th class='btc'><span class='glyphicon glyphicon-bitcoin' aria-hidden='true'></span> Fee</th>
+                            <th class='hide usd'><span class='glyphicon glyphicon-usd' aria-hidden='true'></span> Fee</th>
                             <td class='currency'>
-                              <span class='btc' title='<%= number_to_currency(@exchange_rate * @block["data"]["fee"].to_f) %>'><%= @block["data"]["fee"] %> BTC</span>
-                              <span class='usd hide' title='<%= @block["data"]["fee"] %> BTC'><%= number_to_currency(@exchange_rate * @block["data"]["fee"].to_f) %></span>
-                            
+                              <span class='btc' title='<%= number_to_currency(@exchange_rate * @block["data"]["fee"].to_f) %>'><%= @block['data']['fee'] %></span>
+                              <span class='usd hide' title='<%= @block["data"]["fee"] %> BTC'><%= number_with_delimiter(number_with_precision(@exchange_rate * @block['data']['fee'].to_f, precision: 2), delimiter: ',') %></span>
                           </td>
                         </tr>
                         <tr>
-                            <td>Hash</td>
+                            <th><span class='glyphicon glyphicon-random' aria-hidden='true'></span> Hash</th>
                             <td><%= @block['data']['hash'] %></td>
                         </tr>
                         <tr>
-                            <td>Version</td>
+                            <th><span class='glyphicon glyphicon-align-justify' aria-hidden='true'></span> Version</th>
                             <td><%= @block['data']['version'] %></td>
                         </tr>
                         <tr>
-                            <td>Confirmations</td>
+                            <th><span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> Confirmations</th>
                             <td><%= number_with_delimiter(@block['data']['confirmations'], delimiter: ',') %></td>
                         </tr>
                         <tr>
-                            <td>Merkle Root</td>
+                            <th><span class='glyphicon glyphicon-tree-conifer' aria-hidden='true'></span> Merkle Root</th>
                             <td><%= @block['data']['merkleroot'] %></td>
                         </tr>
                         <tr>
                             <% unless @block['data']['next_block_hash'] === '' %>
-                                <td>Next Block Hash</td>
+                                <th><span class='glyphicon glyphicon-menu-right' aria-hidden='true'></span> Next Block Hash</th>
                                 <td><%= link_to @block['data']['next_block_hash'], block_path(@block['data']['nb'] + 1) %></td>
                             <% end %>
                         </tr>
                         <tr>
-                            <td>Prev Block Hash</td>
+                            <th><span class='glyphicon glyphicon-menu-left' aria-hidden='true'></span> Prev Block Hash</th>
                             <td><%= link_to @block['data']['prev_block_hash'], block_path(@block['data']['nb'] - 1) %></td>
                         </tr>
                         <tr>
-                            <td>Size</td>
+                            <th><span class='glyphicon glyphicon-scale' aria-hidden='true'></span> Size</th>
                             <td class='text-<%= color_code_block_size(@block['data']) %>'><%= number_to_human_size(@block['data']['size'].to_i) %></td>
                         </tr>
                         <tr>
-                            <td>Coin Days Destroyed</td>
+                            <th><span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Coin Days Destroyed</th>
                             <td><%= number_with_delimiter(number_with_precision(@block['data']['days_destroyed'], precision: 2), delimiter: ',') %></td>
                         </tr>
                     </tbody>

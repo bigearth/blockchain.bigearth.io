@@ -1,6 +1,6 @@
 <section class="row m-b-md">
   <div class="col-sm-12">
-  <h3>Transactions (for <strong>Block</strong> <%= number_with_delimiter(@block['data']['nb'], delimiter: ',') %>)</h3>
+  <h3><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Transactions (for <strong>Block</strong> <%= number_with_delimiter(@block['data']['nb'], delimiter: ',') %>)</h3>
   <% @txs['data']['txs'].each do |tx| %>
     <% if tx['is_coinbased'] === 1 %>
     <div class="panel panel-success">
