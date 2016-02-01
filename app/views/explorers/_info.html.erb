@@ -1,8 +1,20 @@
 <section class="row m-b-md">
-    <div class="col-sm-12">
+    <div class="col-sm-4">
+        <h2 class="m-b-xs">Bitcoin <strong>Markets</strong></h2>
         <p>Market Value: $<%= number_with_delimiter(number_with_precision(@coin_info['data']['markets']['coinbase']['value'], precision: 2), delimiter: ',') %> per coin</p>
         <p><%= "#{number_with_delimiter(@coin_info['data']['volume']['current'], delimiter: ',')} / #{number_with_delimiter(@coin_info['data']['volume']['all'], delimiter: ',')} coins mined" %></p>
         <p><%= number_with_precision(@coin_info['data']['volume']['perc'], precision: 2) %>% of total coins</p>
         <p>Market Cap $<%= number_with_delimiter(number_with_precision(@coin_info['data']['markets']['coinbase']['value'] * @coin_info['data']['volume']['current'], precision: 2), delimiter: ',') %></p>
+    </div>
+    <div class="col-sm-4">
+        <h2 class="m-b-xs">Bitcoin <strong>Difficulty</strong></h2>
+        <p><%= number_with_delimiter(number_with_precision(@coin_info['data']['last_block']['difficulty'], precision: 2), delimiter: ',') %></p>
+        <p>Difficulty is a measure of how difficult it is to find a new block below a given target.
+    </div>
+    <div class="col-sm-4">
+        <h2 class="m-b-xs">Next <strong>Difficulty</strong> <span class='small'>(estimate)</span></h2>
+        <p><%= number_with_delimiter(number_with_precision(@coin_info['data']['next_difficulty']['difficulty'], precision: 2), delimiter: ',') %></p>
+        <p><span class='label <%= "label-#{@change_level}" %>'><%= "#{@coin_info['data']['next_difficulty']['perc'] > 0 ? '+' : ''}#{number_with_precision(@coin_info['data']['next_difficulty']['perc'], precision: 2)}" %>%</span> change to current</p>
+        <p><%= number_with_delimiter(@coin_info['data']['next_difficulty']['retarget_in'], delimiter: ',') %> blocks until difficulty changes</p>
     </div>
 </section>
