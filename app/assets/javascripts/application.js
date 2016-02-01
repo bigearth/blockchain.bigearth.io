@@ -64,6 +64,9 @@
             evt.preventDefault();
           }
         });
+        
+        // update the bookmark count badge
+        Bookmarks.set_bookmark_count_badge(parsed_bookmarks.length);
       },
       create_bookmark: function(evt) {
         // get marshalled bookmarks from localStorage
@@ -95,6 +98,9 @@
           
           // marshall the bookmarks
           var marshalled_bookmarks = JSON.stringify(bookmarks);
+          
+          // update the bookmark count badge
+          Bookmarks.set_bookmark_count_badge(bookmarks.length);
           
           // save the marshalled bookmarks to localStorage
           localStorage.setItem('bookmarks', marshalled_bookmarks);
@@ -133,6 +139,9 @@
           Bookmarks.clear_all_bookmarks();
           evt.preventDefault();
         });
+        
+        // update the bookmark count badge
+        Bookmarks.set_bookmark_count_badge(parsed_bookmarks.length);
       },
       build_bookmarks: function(bookmarks) {
         // get bookmark_type of each respective bookmark group
@@ -261,8 +270,16 @@
             balance: balance,
             address: address
           }, 'subtract');
-        }
-        localStorage.setItem('bookmarks', JSON.stringify(new_bkmks));
+        }  
+        
+        // update the bookmark count badge 
+        Bookmarks.set_bookmark_count_badge(new_bkmks.length);
+        
+        // marshall updated bookmark data
+        var marshalled_bookmarks = JSON.stringify(new_bkmks);
+        
+        // write marshalled bookmark data to localStorage
+        localStorage.setItem('bookmarks', marshalled_bookmarks);
         evt.preventDefault();
         
       },
@@ -272,6 +289,14 @@
         $('#block_bookmarks li, #transaction_bookmarks li, #address_bookmarks li').remove()
         $('#block_bookmarks p, #transaction_bookmarks p, #address_bookmarks p').show()
         Bookmarks.hide_sum();
+        Bookmarks.set_bookmark_count_badge(0);
+      },
+      set_bookmark_count_badge: function(bookmark_count) {
+        if(bookmark_count > 0) {
+          $('#bookmark_count_badge').removeClass('hide').text(bookmark_count);
+        } else {
+          $('#bookmark_count_badge').addClass('hide').text(0);
+        }
       },
       find_bookmark: function(bookmarks){
         // return single bookmark that matches current URL

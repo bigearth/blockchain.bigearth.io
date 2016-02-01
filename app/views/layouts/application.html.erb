@@ -25,8 +25,12 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class='<%= if params[:action] === 'bookmarks' then "active" end %>'>
-            <%= link_to 'Bookmarks', apps_bookmarks_path %>
+            <%= link_to apps_bookmarks_path do %>
+              Bookmarks
+              <span id='bookmark_count_badge' class="hide label label-primary label-as-badge"></span>
+            <% end %>
           </li>
+          
           <li class='<%= if params[:action] === 'calculator' then "active" end %>'>
             <%= link_to 'Calculator', apps_calculator_path %>
           </li>
