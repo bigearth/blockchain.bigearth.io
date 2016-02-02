@@ -1,12 +1,3 @@
 <%= link_to 'Share on Twitter', "https://twitter.com/intent/tweet?text=#{create_page_title}Big Earth Blockchain Explorer - #{request.original_url}", class: 'btn btn-sm' %>
 <%= link_to 'Share on Facebook', "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", class: 'btn btn-sm' %>
-<%= 
-  unless current_page?(root_url) || current_page?(apps_bookmarks_path) || current_page?(apps_calculator_path)
-    link_to 'Bookmark', '#', class: 'btn btn-sm create_bookmark', "data-bookmark_type" => create_bookmark_type, "data-page_id" => params[:id] 
-  end
-%>
-<%= 
-  if current_page?(apps_bookmarks_path)
-    link_to 'Clear All Bookmarks', '#', class: 'btn btn-sm clear_all_bookmarks' 
-  end
-%>
+<%= create_bookmark_link %>
