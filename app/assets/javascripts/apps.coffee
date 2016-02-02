@@ -25,16 +25,16 @@ $ ->
         # update the DOM accordingly
         if type is 'btc'
           $('#usd_calculator_input').closest('.form-group').addClass 'hide' unless $('#usd_calculator_input').closest('.form-group').hasClass 'hide' ;
-          $('#usd_value').closest('p').removeClass 'hide' if $('#usd_value').closest('p').hasClass 'hide';
+          $('#usd_value').closest('div').removeClass 'hide' if $('#usd_value').closest('div').hasClass 'hide';
           
           $('#btc_calculator_input').closest('.form-group').removeClass 'hide' if $('#btc_calculator_input').closest('.form-group').hasClass 'hide' ;
-          $('#btc_value').closest('p').addClass 'hide' unless $('#btc_value').closest('p').hasClass 'hide';
+          $('#btc_value').closest('div').addClass 'hide' unless $('#btc_value').closest('div').hasClass 'hide';
         else if type is 'usd'
           $('#usd_calculator_input').closest('.form-group').removeClass 'hide' if $('#usd_calculator_input').closest('.form-group').hasClass 'hide' ;
-          $('#usd_value').closest('p').addClass 'hide' unless $('#usd_value').closest('p').hasClass 'hide';
+          $('#usd_value').closest('div').addClass 'hide' unless $('#usd_value').closest('div').hasClass 'hide';
           
           $('#btc_calculator_input').closest('.form-group').addClass 'hide' unless $('#btc_calculator_input').closest('.form-group').hasClass 'hide' ;
-          $('#btc_value').closest('p').removeClass 'hide' if $('#btc_value').closest('p').hasClass 'hide';
+          $('#btc_value').closest('div').removeClass 'hide' if $('#btc_value').closest('div').hasClass 'hide';
     calculate_exchange: (num, type) ->
       # calculate exchange value depending on which input field has fired
       final_rate = if type is 'btc' then @.exchange_rate * num else num / @.exchange_rate
