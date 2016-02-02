@@ -1,39 +1,41 @@
-$white: #fff;
+$midnight_blue: #03233B;
+$deep_ocean: #0F5288;
+$shallow_stream: #579dd8;
 
 body, h1, h2, h3, h4, h5, h6 {
-  font-weight: 200;
-}
-
-h2 {
-  strong {
-    color: #03233B;
-  }
+  font-weight: 200
 }
 
 body {
-  color: $white;
-  background: #0F5288;
+  color: white;
+  background: $deep_ocean;
   font-family: helvetica;
 }
 
 .hero {
   border-width: 0 0 2px 0px;  
   border-style: solid;
-  border-color: #03233B;
+  border-color: $midnight_blue;
+
+  h2 {
+    strong {
+      color: $midnight_blue;
+    }
+  }
 }
 
 .sub{
-  background: #579dd8;
+  background: $shallow_stream;
   h3 {
     overflow: hidden;
     text-overflow: ellipsis;
     strong{
-      color: #0F5288;
+      color: $deep_ocean;
     }
   }
   h4 {
     strong{
-      color: #0F5288;
+      color: $deep_ocean;
     }
   }
 }
@@ -70,4 +72,11 @@ table {
 .breadcrumb {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+footer {
+  a, a:visited, a:hover, a:active {
+    color: white;
+  }
+  
 }
