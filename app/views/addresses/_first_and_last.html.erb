@@ -7,16 +7,16 @@
               <table class="table table-striped">
                   <tbody>
                       <tr>
-                          <td><span class='glyphicon glyphicon-calendar' aria-hidden='true'></span> Created</td>
-                          <td><%= Time.parse(@address['data'][tx]['time_utc']).strftime("%A, %b #{Time.parse(@address['data'][tx]['time_utc']).strftime("%d").to_i.ordinalize}, %Y %-I:%M%p") %></td>
+                          <td><span class='glyphicon glyphicon-transfer' aria-hidden='true'></span> Tx</td>
+                          <td><%= link_to @address['data'][tx]['tx'], transaction_path(@address['data'][tx]['tx']) %></td>
                       </tr>
                       <tr>
                           <td><span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> Height</td>
                           <td><%= link_to number_with_delimiter(@address['data'][tx]['block_nb'], delimiter: ','), block_path(@address['data'][tx]['block_nb']) %></td>
                       </tr>
                       <tr>
-                          <td><span class='glyphicon glyphicon-transfer' aria-hidden='true'></span> Tx</td>
-                          <td><%= link_to @address['data'][tx]['tx'], transaction_path(@address['data'][tx]['tx']) %></td>
+                          <td><span class='glyphicon glyphicon-calendar' aria-hidden='true'></span> Created</td>
+                          <td><%= Time.parse(@address['data'][tx]['time_utc']).strftime("%A, %b #{Time.parse(@address['data'][tx]['time_utc']).strftime("%d").to_i.ordinalize}, %Y %-I:%M%p") %></td>
                       </tr>
                       <tr>
                           <td>
