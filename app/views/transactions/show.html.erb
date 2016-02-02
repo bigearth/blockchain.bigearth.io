@@ -35,8 +35,8 @@
                           <td><span class='glyphicon glyphicon-qrcode' aria-hidden='true'></span> <%= link_to address['address'], address_path(address['address']) %></td>
                           <td title='<%= number_to_currency(@exchange_rate * address["amount"]) %>' class='text-danger'>
                             <span class='btc' title='<%= number_to_currency(@exchange_rate * address["amount"]) %>'>
-                              <span class='glyphicon glyphicon-bitcoin' aria-hidden='true'></span> <%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %></span>
-                            <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(address["amount"], precision: 8), delimiter: ",") %> BTC'><span class='glyphicon glyphicon-usd' aria-hidden='true'></span><%= number_with_delimiter(number_with_precision(@exchange_rate * address["amount"], precision: 2), delimiter: ',') %></span>
+                              <span class='glyphicon glyphicon-bitcoin' aria-hidden='true'></span> <%= format_value address['amount'], 8 %></span>
+                            <span class='usd hide' title='<%= format_value(address["amount"], 8) %> BTC'><span class='glyphicon glyphicon-usd' aria-hidden='true'></span><%= format_value @exchange_rate * address["amount"], 2 %></span>
                           </td>
                       </td>
                         </tr>
@@ -60,8 +60,8 @@
                               <td><span class='glyphicon glyphicon-qrcode' aria-hidden='true'></span> <%= link_to address['address'], address_path(address['address']) %></td>
                               <td title='<%= number_to_currency(@exchange_rate * address["amount"]) %>' class='text-success'>
                                 <span class='btc' title='<%= number_to_currency(@exchange_rate * address["amount"]) %>'>
-                                  <span class='glyphicon glyphicon-bitcoin' aria-hidden='true'></span> <%= number_with_delimiter(number_with_precision(address['amount'], precision: 8), delimiter: ',') %></span>
-                                <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(address["amount"], precision: 8), delimiter: ",") %> BTC'><span class='glyphicon glyphicon-usd' aria-hidden='true'></span><%= number_with_delimiter(number_with_precision(@exchange_rate * address["amount"], precision: 2), delimiter: ',') %></span>
+                                  <span class='glyphicon glyphicon-bitcoin' aria-hidden='true'></span> <%= format_value address['amount'], 8 %></span>
+                                <span class='usd hide' title='<%= format_value(address["amount"], 8) %> BTC'><span class='glyphicon glyphicon-usd' aria-hidden='true'></span><%= format_value @exchange_rate * address["amount"], 2 %></span>
                               </td>
                             </tr>
                         <% end %>
@@ -79,23 +79,27 @@
               </div>
               <div class="col-sm-6">
                 <p title='<%= number_to_currency(@exchange_rate * @tx["data"]["fee"].to_f) %>'>
-                  <span class='btc glyphicon glyphicon-bitcoin' aria-hidden='true'></span> 
-                  <span class='usd hide glyphicon glyphicon-usd' aria-hidden='true'></span> 
-                  Fee: 
-                  <span class='btc' title='<%= number_to_currency(@exchange_rate * @tx["data"]["fee"].to_f) %>'>
-                    <%= number_with_delimiter(number_with_precision(@tx['data']['fee'], precision: 8), delimiter: ',') %></span>
-                  <span class='usd hide' title='<%= number_with_delimiter(number_with_precision(@tx["data"]["fee"], precision: 8), delimiter: ",") %>'><%= number_to_currency(@exchange_rate * @tx["data"]["fee"].to_f) %></span>
+                  <span class='btc'>
+                    <span class='glyphicon glyphicon-bitcoin' aria-hidden='true'></span> 
+                    Fee: 
+                    <span title='<%= number_to_currency(@exchange_rate * @tx["data"]["fee"].to_f) %>'><%= format_value @tx['data']['fee'], 8 %></span>
+                  </span> 
+                  <span class='usd hide'>
+                    <span class='glyphicon glyphicon-usd' aria-hidden='true'></span> 
+                    Fee: 
+                    <span title='<%= format_value(@tx["data"]["fee"], 8) %>'><%= number_to_currency(@exchange_rate * @tx["data"]["fee"].to_f) %></span>
+                  </span> 
                 </p>
                 <p title='<%= number_to_currency(@exchange_rate * transaction_sum + @tx["data"]["fee"].to_f) %>'>
                   <span class='btc'>
                     <span class='glyphicon glyphicon-bitcoin' aria-hidden='true'></span> 
                     Transaction Sum: 
-                    <span title='<%= number_to_currency(@exchange_rate * transaction_sum + @tx["data"]["fee"].to_f) %>'><%= number_with_delimiter(number_with_precision(transaction_sum + @tx['data']['fee'].to_f, precision: 8), delimiter: ',') %></span>
+                    <span title='<%= number_to_currency(@exchange_rate * transaction_sum + @tx["data"]["fee"].to_f) %>'><%= format_value transaction_sum + @tx['data']['fee'].to_f, 8 %></span>
                   </span> 
                   <span class='usd hide' aria-hidden='true'>
                     <span class='glyphicon glyphicon-usd' aria-hidden='true'></span> 
                     Transaction Sum: 
-                    <span title='<%= number_with_delimiter(number_with_precision(transaction_sum + @tx["data"]["fee"].to_f, precision: 8), delimiter: ",") %> BTC'><%= number_with_delimiter(number_with_precision(@exchange_rate * transaction_sum + @tx["data"]["fee"].to_f, precision: 2), delimiter: ',') %></span>
+                    <span title='<%= format_value(transaction_sum + @tx["data"]["fee"].to_f, 8) %> BTC'><%= format_value @exchange_rate * transaction_sum + @tx["data"]["fee"].to_f, 2 %></span>
                   </span> 
                 </p>
               </div>
