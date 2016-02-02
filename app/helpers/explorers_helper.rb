@@ -3,10 +3,10 @@ module ExplorersHelper
     if statistic[0] === :size 
       number_to_human_size statistic[1].send type
     elsif statistic[0] === :fee
-      "#{number_with_delimiter(number_with_precision(statistic[1].send(type), precision: 8), delimiter: ',')} BTC" 
+      "#{format_value statistic[1].send(type), 8} BTC" 
     else
       if statistic[0] === :days_destroyed || statistic[0] === :nb_txs
-        number_with_delimiter number_with_precision(statistic[1].send(type), precision: 1), delimiter: ',' 
+        format_value statistic[1].send(type), 1 
       else
         number_with_delimiter statistic[1].send(type), delimiter: ',' 
       end
