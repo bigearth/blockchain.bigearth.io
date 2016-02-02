@@ -32,4 +32,8 @@ module ApplicationHelper
       color = 'danger'
     end
   end
+  
+  def format_value value, precision
+    number_with_delimiter(number_with_precision(value, precision: precision), delimiter: ',')
+  end
 end
