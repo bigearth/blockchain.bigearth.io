@@ -1,7 +1,7 @@
 <div class='hero container'>
   <section class="row m-b-md">
       <div class="col-sm-12">
-        <h2>Bitcoin <strong>Bookmarks</strong></h2>
+        <h2><span class='glyphicon glyphicon-bookmark' aria-hidden='true'></span> Bitcoin <strong>Bookmarks</strong></h2>
         <%= render 'shared/breadcrumb' %>
         <%= render 'shared/social_media' %>
       </div>
@@ -9,7 +9,17 @@
   <% ['address', 'transaction', 'block'].each do |bookmark_type| %>
     <div class="panel panel-default" id='<%= "#{bookmark_type}_bookmarks" %>'>
       <div class="panel-heading">
-        <h3 class="panel-title">Bitcoin <strong><%= bookmark_type.capitalize.pluralize %></strong></h3>
+        <h3 class="panel-title">
+          <% if bookmark_type === 'address'
+               icon = 'qrcode'
+             elsif bookmark_type === 'transaction'
+               icon = 'transfer'
+             else 
+               icon = 'th-large'
+             end %>
+          <span class='glyphicon glyphicon-<%= icon %>' aria-hidden='true'></span> 
+          Bitcoin <strong><%= bookmark_type.capitalize.pluralize %></strong
+            ></h3>
       </div>
       <div class="panel-body">
         <p>No <strong><%= bookmark_type.capitalize %></strong> Bookmarks</p>
