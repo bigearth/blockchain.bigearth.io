@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   get 'addresses/unspent/:id' => 'addresses#unspent'
   get 'apps/bookmarks' => 'apps#bookmarks'
   get 'apps/calculator' => 'apps#calculator'
-  get 'apps/donate_button' => 'apps#donate_button'
   resources :explorers, only: [:index], path: 'coin'
   resources :blocks, only: [:show]
   resources :transactions, only: [:show]
