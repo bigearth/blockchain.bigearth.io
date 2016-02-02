@@ -2,7 +2,7 @@
   <section class='container'>
     <section class="row m-b-md">
         <div class="col-sm-12">
-          <h2>Bitcoin <strong>Address</strong></h2>
+          <h2><span class='glyphicon glyphicon-qrcode' aria-hidden='true'></span> Bitcoin <strong>Address</strong></h2>
           <%= render 'shared/breadcrumb' %>
           <%= render 'shared/social_media' %>
         </div>
@@ -21,7 +21,7 @@
   <section class='container'>
     <section class="row m-b-md">
         <div class="col-sm-12">
-          <h3>Transactions (for <strong>Address</strong> <%= @address['data']['address'] %>)</h3>
+          <h3><span class='glyphicon glyphicon-transfer' aria-hidden='true'></span> Transactions (for <strong>Address</strong> <%= @address['data']['address'] %>)</h3>
           <%= render 'first_and_last' %>
           <%= render 'transactions' %>
         </div>

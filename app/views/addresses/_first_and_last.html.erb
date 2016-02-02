@@ -1,32 +1,41 @@
 <section class="row m-b-md">
   <% ['first_tx', 'last_tx'].each do |tx| %>
     <div class="col-sm-6">
-      <h4><%= tx === 'first_tx' ? 'First' : 'Last'%> Transaction</h4>
+      <h4><%= tx === 'first_tx' ? 'First' : 'Last'%> <strong>Transaction</strong></h4>
       <section class="panel panel-default">
           <div class="table-responsive">
               <table class="table table-striped">
                   <tbody>
                       <tr>
-                          <td>Time</td>
+                          <td><span class='glyphicon glyphicon-calendar' aria-hidden='true'></span> Created</td>
                           <td><%= Time.parse(@address['data'][tx]['time_utc']).strftime("%A, %b #{Time.parse(@address['data'][tx]['time_utc']).strftime("%d").to_i.ordinalize}, %Y %-I:%M%p") %></td>
                       </tr>
                       <tr>
-                          <td>Block</td>
+                          <td><span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> Height</td>
                           <td><%= link_to number_with_delimiter(@address['data'][tx]['block_nb'], delimiter: ','), block_path(@address['data'][tx]['block_nb']) %></td>
                       </tr>
                       <tr>
-                          <td>Transaction</td>
+                          <td><span class='glyphicon glyphicon-transfer' aria-hidden='true'></span> Tx</td>
                           <td><%= link_to @address['data'][tx]['tx'], transaction_path(@address['data'][tx]['tx']) %></td>
                       </tr>
                       <tr>
-                          <td>Amount</td>
+                          <td>
+                            <span class='btc'>
+                              <span class='glyphicon glyphicon-bitcoin' aria-hidden='true'></span>
+                              Amount
+                            </span>
+                            <span class='usd hide'>
+                              <span class='glyphicon glyphicon-usd' aria-hidden='true'></span>
+                              Amount
+                            </span>
+                          </td>
                           <td class='<%= "text-#{color_tx_value @address['data'][tx]['value']}" %>'>
-                            <span class='btc' title='<%= number_to_currency(@exchange_rate * @address['data'][tx]['value']) %>'><%= format_value @address['data'][tx]['value'], 8 %> BTC</span>
-                            <span class='usd hide' title='<%= format_value(@address['data'][tx]['value'], 8) %> BTC'><%= number_to_currency(@exchange_rate * @address['data'][tx]['value']) %></span>
+                            <span class='btc' title='<%= number_to_currency(@exchange_rate * @address['data'][tx]['value']) %>'><%= format_value @address['data'][tx]['value'], 8 %></span>
+                            <span class='usd hide' title='<%= format_value(@address['data'][tx]['value'], 8) %> BTC'><%= format_value @exchange_rate * @address['data'][tx]['value'], 2 %></span>
                           </td>
                       </tr>
                       <tr>
-                          <td>Confirmations</td>
+                          <td><span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> Confirmations</td>
                           <td><%= number_with_delimiter(@address['data'][tx]['confirmations'], delimiter: ',') %></td>
                       </tr>
                   </tbody>

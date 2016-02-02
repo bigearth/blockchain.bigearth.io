@@ -3,26 +3,44 @@
         <table class="table table-striped">
             <tbody>
                 <tr>
-                    <td>Hash</td>
+                    <td><span class='glyphicon glyphicon-qrcode' aria-hidden='true'></span> Address</td>
                     <td><%= @address['data']['address'] %></td>
                 </tr>
                 <% ['balance', 'totalreceived'].each do |type| %>
                   <tr>
                       <td>
                         <% if type === 'balance' %>
-                          Balance
+                          <span class='btc'>
+                            <span class='glyphicon glyphicon-bitcoin' aria-hidden='true'></span>
+                            Balance
+                          </span>
+                          <span class='usd hide'>
+                            <span class='glyphicon glyphicon-usd' aria-hidden='true'></span>
+                            Balance
+                          </span>
                         <% else %>
-                          Total Received
+                          <span class='btc'>
+                            <span class='glyphicon glyphicon-bitcoin' aria-hidden='true'></span>
+                            Received
+                          </span>
+                          <span class='usd hide'>
+                            <span class='glyphicon glyphicon-usd' aria-hidden='true'></span>
+                            Received
+                          </span>
                         <% end %>
                       </td>
                       <td>
-                        <span class='btc' title='<%= number_to_currency(@exchange_rate * @address['data'][type]) %>'><%= format_value @address['data'][type], 8 %> BTC</span>
-                        <span class='usd hide' title='<%= format_value(@address['data'][type], 8) %> BTC'><%= number_to_currency(@exchange_rate * @address['data'][type]) %></span>
+                        <span class='btc'>
+                          <span title='<%= number_to_currency(@exchange_rate * @address['data'][type]) %>'><%= format_value @address['data'][type], 8 %></span>
+                        </span>
+                        <span class='usd hide'>
+                          <span title='<%= format_value(@address['data'][type], 8) %> BTC'><%= number_to_currency(@exchange_rate * @address['data'][type]) %></span>
+                        </span>
                       </td>
                   </tr>
                 <% end %>
                 <tr>
-                    <td>Total # of Transactions</td>
+                    <td><span class='glyphicon glyphicon-qrcode' aria-hidden='true'></span> Transactions</td>
                     <td><%= number_with_delimiter(@address['data']['nb_txs'], delimiter: ',')  %></td>
                 </tr>
             </tbody>

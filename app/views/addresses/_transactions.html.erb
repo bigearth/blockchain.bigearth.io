@@ -6,22 +6,31 @@
               <table class="table table-striped">
                   <tbody>
                       <tr>
-                          <td>Hash</td>
+                          <td><span class='glyphicon glyphicon-transfer' aria-hidden='true'></span> Transaction</td>
                           <td><%= link_to tx['tx'], transaction_path(tx['tx']) %></td>
                       </tr>
                       <tr>
-                          <td>Time</td>
+                          <td><span class='glyphicon glyphicon-calendar' aria-hidden='true'></span> Created</td>
                           <td><%= Time.parse(tx['time_utc']).strftime("%A, %b #{Time.parse(tx['time_utc']).strftime("%d").to_i.ordinalize}, %Y %-I:%M%p") %></td>
                       </tr>
                       <tr>
-                          <td>Amount</td>
+                          <td>
+                            <span class='btc'>
+                              <span class='glyphicon glyphicon-bitcoin' aria-hidden='true'></span>
+                              Amount
+                            </span>
+                            <span class='usd hide'>
+                              <span class='glyphicon glyphicon-usd' aria-hidden='true'></span>
+                              Amount
+                            </span>
+                          </td>
                           <td class='<%= "text-#{color_tx_value tx['amount']}" %>'>
-                            <span class='btc' title='<%= number_to_currency(@exchange_rate * tx["amount"]) %>'><%= format_value tx["amount"], 8 %> BTC</span>
-                            <span class='usd hide' title='<%= format_value(tx["amount"], 8) %> BTC'><%= number_to_currency(@exchange_rate * tx['amount']) %></span>
+                            <span class='btc' title='<%= number_to_currency(@exchange_rate * tx["amount"]) %>'><%= format_value tx["amount"], 8 %></span>
+                            <span class='usd hide' title='<%= format_value(tx["amount"], 8) %> BTC'><%= format_value @exchange_rate * tx['amount'], 2 %></span>
                           </td>
                       </tr>
                       <tr>
-                          <td># of Confirmations</td>
+                          <td><span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> Confirmations</td>
                           <td><%= number_with_delimiter(tx['confirmations'], delimiter: ',') %></td>
                       </tr>
                   </tbody>
