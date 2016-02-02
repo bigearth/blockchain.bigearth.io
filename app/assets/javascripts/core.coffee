@@ -29,9 +29,9 @@ $ ->
       # build out the bookmarks DOM
       @.build_bookmarks_dom() if $('#block_bookmarks').length
     bind_events: ->
-      $('.create_bookmark').click (evt) =>
+      $('#create_bookmark').click (evt) =>
         # when clicked check state of btn 
-        if $(evt.currentTarget).text() isnt 'Bookmarked'
+        if $($(evt.currentTarget).find('span:nth-child(2)')).text() isnt 'Bookmarked'
           # if the page hasn't been bookmarked before create bookmark
           @.create_bookmark evt
           evt.preventDefault()
@@ -174,8 +174,6 @@ $ ->
       # return single bookmark that matches current URL
       _.find bookmarks, (bookmark) -> 
         bookmark.path is window.location.pathname 
-    update_bookmark_btn: ->
-      $('.create_bookmark').text('Bookmarked').attr 'href', '/apps/bookmarks'
     create_bookmark: (evt) ->
       # get marshalled bookmarks from localStorage
       bookmarks = localStorage.getItem 'bookmarks'
@@ -219,7 +217,8 @@ $ ->
         $('#bookmark_count_badge').addClass('hide').text 0
         
     update_bookmark_btn: ->
-      $('.create_bookmark').text('Bookmarked').attr 'href', '/apps/bookmarks'
+      $('#create_bookmark').attr 'href', '/apps/bookmarks'
+      $('#create_bookmark_description').text 'Bookmarked'
       
     delete_bookmark: (evt) ->
       # get marshalled_bookmarks from localStorage
