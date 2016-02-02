@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to 'Big Earth', root_url, class: 'navbar-brand' %>
+      <p class="navbar-text">Blockchain Explorer</p>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class='<%= if params[:action] === 'bookmarks' then "active" end %>'>
+          <%= link_to apps_bookmarks_path do %>
+            <span class="text-primary glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+            Bookmarks
+            <span id='bookmark_count_badge' class="hide label label-primary label-as-badge"></span>
+          <% end %>
+        </li>
+        <li class='<%= if params[:action] === 'calculator' then "active" end %>'>
+          <%= link_to apps_calculator_path do %>
+            <span class="text-primary glyphicon glyphicon-phone" aria-hidden="true"></span>
+            Calculator
+          <% end %>
+        </li>
+        <li class='<%= if params[:action] === 'calculator' then "active" end %>'>
+          <%= link_to apps_donate_button_path do %>
+            <span class="text-primary glyphicon glyphicon-qrcode" aria-hidden="true"></span>
+            Donate Button
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
