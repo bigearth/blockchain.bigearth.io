@@ -17,3 +17,9 @@
     <% end %>
   <% end %>
 <% end %>
+<% if params[:controller] === 'platform/v1/chains' %>
+  <%= link_to new_platform_v1_chain_path, class: 'btn btn-sm' do %>
+    <span class="text-primary glyphicon glyphicon-th-large" aria-hidden="true"></span>
+    New Blockchain
+  <% end %>
+<% end %>

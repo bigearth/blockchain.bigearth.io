@@ -9,25 +9,22 @@
 <div class='sub'>
   <section class='container'>
     <h3><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Last <%= @platform_v1_chains.size %> <strong>Bitcoin</strong> Blocks</h3>
-    <section class='panel panel-default'>
-      <div class='table-responsive'>
-        <table class='table table-striped'>
-          <tbody>
-            <% @platform_v1_chains.each do |platform_v1_chain| %>
-              <tr>
-                <th><span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> Pub Key</th>
-                <td><%= platform_v1_chain.pub_key %></td>
-                <td><%= link_to 'Show', platform_v1_chain %></td>
-                <td><%= link_to 'Edit', edit_platform_v1_chain_path(platform_v1_chain) %></td>
-                <td><%= link_to 'Destroy', platform_v1_chain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              </tr>
+    <% @platform_v1_chains.each do |platform_v1_chain| %>
+      <section class='panel panel-default'>
+        <section class='panel-heading'>
+          <h3>
+            <%= link_to platform_v1_chain do %>
+              <span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> <%= platform_v1_chain.pub_key %>
             <% end %>
-          </tbody>
-        </table>
-      </div>
-    </section>
-    <div class='btn btn-default'>
-      <%= link_to 'New Chain', new_platform_v1_chain_path %>
-    </div>
+          </h3>
+        </section>
+        <section class='panel-body'>
+          Stats...
+        </section>
+        <section class='panel-footer'>
+          footer info
+        </section>
+      </section>
+    <% end %>
   </section>
 </div>
