@@ -8,5 +8,14 @@
   <li class="active">Bookmarks</li>
 <% elsif params[:action] === 'calculator' %>
   <li class="active">Calculator</li>
+<% elsif params[:controller] === 'platform/v1/chains' %>
+  <li><%= link_to 'Blockchains', platform_v1_chains_path %></li>
+  <% if params[:action] === 'new' %>
+    <li class="active">New</li>
+  <% elsif params[:action] === 'edit' %>
+    <li class="active">Edit</li>
+  <% elsif params[:action] === 'show' %>
+    <li class="active"><%= @platform_v1_chain.id %></li>
+  <% end %>
 <% end %>
 </ul>

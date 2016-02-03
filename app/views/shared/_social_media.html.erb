@@ -4,7 +4,7 @@
 <%= link_to "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", class: 'btn btn-lg' do %>
   <span class="fa fa-facebook"></span> 
 <% end %>
-<% unless current_page?(root_url) || current_page?(apps_calculator_path) %>
+<% unless current_page?(root_url) || current_page?(apps_calculator_path) || params[:controller] === 'platform/v1/chains' %>
   <% if current_page?(apps_bookmarks_path) %>
     <%= link_to '#', class: 'btn btn-sm clear_all_bookmarks' do %>
       <span class="text-primary glyphicon glyphicon-remove" aria-hidden="true"></span>

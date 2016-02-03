@@ -1,27 +1,33 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Platform V1 Chains</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Pub key</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @platform_v1_chains.each do |platform_v1_chain| %>
-      <tr>
-        <td><%= platform_v1_chain.pub_key %></td>
-        <td><%= link_to 'Show', platform_v1_chain %></td>
-        <td><%= link_to 'Edit', edit_platform_v1_chain_path(platform_v1_chain) %></td>
-        <td><%= link_to 'Destroy', platform_v1_chain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Chain', new_platform_v1_chain_path %>
+<div class='hero'>
+  <section class='container'>
+    <p id="notice"><%= notice %></p>
+    <h2><span class='glyphicon glyphicon-th-large' aria-hidden='true'></span> Bitcoin <strong>Blockchains</strong></h2>
+    <%= render 'shared/breadcrumb' %>
+    <%= render 'shared/social_media' %>
+  </section>
+</div>
+<div class='sub'>
+  <section class='container'>
+    <h3><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Last <%= @platform_v1_chains.size %> <strong>Bitcoin</strong> Blocks</h3>
+    <section class='panel panel-default'>
+      <div class='table-responsive'>
+        <table class='table table-striped'>
+          <tbody>
+            <% @platform_v1_chains.each do |platform_v1_chain| %>
+              <tr>
+                <th><span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> Pub Key</th>
+                <td><%= platform_v1_chain.pub_key %></td>
+                <td><%= link_to 'Show', platform_v1_chain %></td>
+                <td><%= link_to 'Edit', edit_platform_v1_chain_path(platform_v1_chain) %></td>
+                <td><%= link_to 'Destroy', platform_v1_chain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <div class='btn btn-default'>
+      <%= link_to 'New Chain', new_platform_v1_chain_path %>
+    </div>
+  </section>
+</div>

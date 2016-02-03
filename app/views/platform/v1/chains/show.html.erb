@@ -1,9 +1,28 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Pub key:</strong>
-  <%= @platform_v1_chain.pub_key %>
-</p>
-
-<%= link_to 'Edit', edit_platform_v1_chain_path(@platform_v1_chain) %> |
-<%= link_to 'Back', platform_v1_chains_path %>
+<div class='hero'>
+  <section class='container'>
+    <p id="notice"><%= notice %></p>
+    <h2><span class='glyphicon glyphicon-th' aria-hidden='true'></span> Bitcoin <strong>Blockchains</strong></h2>
+    <%= render 'shared/breadcrumb' %>
+    <%= render 'shared/social_media' %>
+  </section>
+</div>
+<div class='sub'>
+  <section class='container'>
+    <h3><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Bitcoin <strong>Blockchain</strong></h3>
+    <section class='panel panel-default'>
+      <div class='table-responsive'>
+        <table class='table table-striped'>
+          <tbody>
+            <tr>
+              <th><span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> Pub Key</th>
+              <td><%= @platform_v1_chain.pub_key %></td>
+              <td><%= link_to 'Edit', edit_platform_v1_chain_path(@platform_v1_chain) %></td>
+              <td><%= link_to 'Back', platform_v1_chains_path %></td>
+              <td><%= link_to 'New Chain', new_platform_v1_chain_path %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+</div>
