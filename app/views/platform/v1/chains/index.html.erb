@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Platform V1 Chains</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pub key</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @platform_v1_chains.each do |platform_v1_chain| %>
+      <tr>
+        <td><%= platform_v1_chain.pub_key %></td>
+        <td><%= link_to 'Show', platform_v1_chain %></td>
+        <td><%= link_to 'Edit', edit_platform_v1_chain_path(platform_v1_chain) %></td>
+        <td><%= link_to 'Destroy', platform_v1_chain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Chain', new_platform_v1_chain_path %>
