@@ -61,6 +61,72 @@ class Platform::V1::ChainsController < ApplicationController
       format.json { head :no_content }
     end
   end
+    
+  # GET /platform/v1/chains/get_chain
+  def get_chain
+    @client = DropletKit::Client.new(access_token: Figaro.env.digital_ocean_api_token)
+    droplets = @client.droplets.all
+    @droplet = droplets.select do |droplet|  
+      droplet.name === params[:name] 
+    end 
+    
+    if @droplet.empty?
+      @response = {
+        status: 'does_not_exist'
+      }
+    else
+      @response = @droplet
+    end
+    
+    respond_to do |format|
+      format.json { render json: @response }
+    end
+  end
+  
+  # POST /platform/v1/chains/new_chain
+  def new_chain
+    @client = DropletKit::Client.new(access_token: Figaro.env.digital_ocean_api_token)
+    droplet = @client.droplets.all.select do |droplet|  
+      droplet.name === params[:name] 
+    end 
+    
+    if droplet.empty?
+      new_droplet = DropletKit::Droplet.new(name: params[:name], region: 'sfo1', size: '512mb', image: 'ubuntu-14-04-x64', ipv6: true)
+      @response = @client.droplets.create(new_droplet)
+    else
+      @response = {
+        status: 'already_exists'
+      }
+    end
+    
+    respond_to do |format|
+      format.json { render json: @response }
+    end
+  end
+    
+  # DELETE /platform/v1/chains/delete_chain
+  def destroy_chain
+    @client = DropletKit::Client.new(access_token: Figaro.env.digital_ocean_api_token)
+    droplets = @client.droplets.all
+    @droplet = droplets.select do |droplet|  
+      droplet.name === params[:name] 
+    end 
+    
+    if !@droplet.empty?
+      @client.droplets.delete(id: @droplet.first['id'])
+      @response = {
+        status: 'deleted'
+      }
+    else
+      @response = {
+        status: 'nothing_to_delete'
+      }
+    end
+    
+    respond_to do |format|
+      format.json { render json: @response}
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

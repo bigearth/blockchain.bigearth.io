@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   resources :addresses, only: [:show]
   namespace :platform do
     namespace :v1 do
+      get 'get_chain' => 'chains#get_chain', path: 'chains/get_chain'
+      post 'new_chain' => 'chains#new_chain', path: 'chains/new_chain'
+      delete 'delete_chain' => 'chains#destroy_chain', path: 'chains/destroy_chain'
       resources :chains
     end
   end
