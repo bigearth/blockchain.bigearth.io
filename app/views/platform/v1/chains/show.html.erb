@@ -15,13 +15,24 @@
             <span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> <%= @platform_v1_chain.pub_key %>
           </h3>
         </section>
-        <section class='panel-body'>
+        <section class='panel-body' data-name='<%= @platform_v1_chain.pub_key %>' id='data_name'>
           <section class="row m-b-md">
-            <div class="col-sm-6">
+            <div class="col-sm-6" id='controls'>
               <h4>
                 <span class='glyphicon glyphicon-tasks' aria-hidden='true'></span> Controls
               </h4>
-              <div data-name='<%= @platform_v1_chain.pub_key %>' id='data_name' class="btn-group btn-group-justified" role="group" aria-label="Justified button group"> 
+              <div id='flavors' class="btn-group btn-group-justified" role="group" aria-label="Justified button group"> 
+                <a href='#' type="button" class="btn btn-default btn-info active" id='core'>
+                  <span class="glyphicon glyphicon-bitcoin" aria-hidden="true"></span> Core 
+                </a>
+                <a href='#' type="button" class="btn btn-default" id='classic'>
+                  <span class="glyphicon glyphicon-bitcoin" aria-hidden="true"></span> Classic 
+                </a>
+                <a href='#' type="button" class="btn btn-default btn-warning" id='xt'>
+                  <span class="glyphicon glyphicon-bitcoin" aria-hidden="true"></span> XT 
+                </a>
+              </div>
+              <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group"> 
                 <a type="button" class="btn btn-default btn-primary" id='new_blockchain'>
                   <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> New
                 </a>

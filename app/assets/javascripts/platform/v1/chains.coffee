@@ -10,7 +10,6 @@ $ ->
       @.bind_events()
       
     bind_events: () ->
-      
       $('#new_blockchain').click (evt) =>
         @.update_output("Processing...")
         name = $('#data_name').data 'name'
@@ -60,6 +59,12 @@ $ ->
               @.update_output(" Bitcoin Blockchain #{name} doesn't exist. Click the 'New' button to create it.")
               $(evt.currentTarget).removeClass('btn-primary').addClass('btn-danger')
         }
+        
+      $('#flavors a').click (evt) =>
+        $('#flavors a.active').removeClass 'active'
+        $(evt.currentTarget).addClass 'active'
+        evt.preventDefault()
+        
     update_output: (output) ->
       $('#output').text output
     update_button: (output) ->
