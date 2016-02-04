@@ -10,7 +10,20 @@
   <section class='container'>
     <h3><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Bitcoin <strong>Blockchain</strong></h3>
     <section class='panel panel-default'>
-      <div class='table-responsive'>
+        <section class='panel-heading'>
+          <h3>
+            <span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> <%= @platform_v1_chain.pub_key %>
+          </h3>
+        </section>
+        <section class='panel-body'>
+          <button type="button" class="btn btn-default btn-lg btn-primary" id='new_blockchain'>
+            <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> New Bitcoin Blockchain
+          </button>
+        </section>
+        <section class='panel-footer'>
+          footer info
+        </section>
+      <!-- <div class='table-responsive'>
         <table class='table table-striped'>
           <tbody>
             <tr>
@@ -22,7 +35,7 @@
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> -->
     </section>
   </section>
 </div>

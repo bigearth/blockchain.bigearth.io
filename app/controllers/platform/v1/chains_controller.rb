@@ -1,5 +1,6 @@
 class Platform::V1::ChainsController < ApplicationController
   before_action :set_platform_v1_chain, only: [:show, :edit, :update, :destroy]
+  http_basic_authenticate_with name: Figaro.env.http_basic_auth_name, password: Figaro.env.http_basic_auth_password
 
   # GET /platform/v1/chains
   # GET /platform/v1/chains.json

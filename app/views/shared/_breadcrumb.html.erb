@@ -15,7 +15,7 @@
   <% elsif params[:action] === 'edit' %>
     <li class="active">Edit</li>
   <% elsif params[:action] === 'show' %>
-    <li class="active"><%= @platform_v1_chain.id %></li>
+    <li class="active"><%= @platform_v1_chain.pub_key %></li>
   <% end %>
 <% end %>
 </ul>
