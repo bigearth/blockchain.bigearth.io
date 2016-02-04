@@ -66,5 +66,6 @@ $ ->
       # do things
     reset_buttons: ->
       $('#new_blockchain, #ping_blockchain, #delete_blockchain').removeClass('btn-danger btn-success').addClass('btn-primary')
+      $('#ping_blockchain span').removeClass('glyphicon-remove glyphicon-ok').addClass('glyphicon-question-sign')
       
-  blockchain = new Blockchain
+  new Blockchain
