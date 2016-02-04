@@ -64,7 +64,7 @@ class Platform::V1::ChainsController < ApplicationController
     
   # GET /platform/v1/chains/get_chain
   def get_chain
-    @client = DropletKit::Client.new(access_token: Figaro.env.digital_ocean_api_token)
+    @client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
     droplets = @client.droplets.all
     @droplet = droplets.select do |droplet|  
       droplet.name === params[:name] 
@@ -85,14 +85,23 @@ class Platform::V1::ChainsController < ApplicationController
   
   # POST /platform/v1/chains/new_chain
   def new_chain
-    @client = DropletKit::Client.new(access_token: Figaro.env.digital_ocean_api_token)
+    @client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
     droplet = @client.droplets.all.select do |droplet|  
       droplet.name === params[:name] 
     end 
     
     if droplet.empty?
-      new_droplet = DropletKit::Droplet.new(name: params[:name], region: 'sfo1', size: '512mb', image: 'ubuntu-14-04-x64', ipv6: true)
-      @response = @client.droplets.create(new_droplet)
+      new_droplet = DropletKit::Droplet.new({
+        name: params[:name], 
+        region: 'sfo1', 
+        size: '512mb', 
+        ssh_keys: [
+          Figaro.env.ssh_key_id
+        ],
+        image: 'ubuntu-14-04-x64', 
+        ipv6: true
+      })
+      @response = @client.droplets.create new_droplet
     else
       @response = {
         status: 'already_exists'
@@ -106,14 +115,14 @@ class Platform::V1::ChainsController < ApplicationController
     
   # DELETE /platform/v1/chains/delete_chain
   def destroy_chain
-    @client = DropletKit::Client.new(access_token: Figaro.env.digital_ocean_api_token)
+    @client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
     droplets = @client.droplets.all
     @droplet = droplets.select do |droplet|  
       droplet.name === params[:name] 
     end 
     
     if !@droplet.empty?
-      @client.droplets.delete(id: @droplet.first['id'])
+      @client.droplets.delete id: @droplet.first['id']
       @response = {
         status: 'deleted'
       }
@@ -127,11 +136,26 @@ class Platform::V1::ChainsController < ApplicationController
       format.json { render json: @response}
     end
   end
+    
+  # GET /platform/v1/chains/harden_chain
+  def harden_chain
+    # puts `ssh -o "StrictHostKeyChecking no" root@#{Figaro.env.droplet_ip_address} 'sudo apt-get update && apt-get -y upgrade && apt-get -y install tmux vim tree ack-grep ntp git build-essential libssl-dev libdb-dev libdb++-dev libboost-all-dev libqrencode-dev htop bundler zsh git-core tig autoconf pkg-config makepasswd transmission-common transmission-daemon transmission-remote-cli build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev && git clone https://github.com/bitcoinxt/bitcoinxt.git'`
+    puts `ssh -o "StrictHostKeyChecking no" root@#{Figaro.env.droplet_ip_address} 'sudo apt-get update && apt-get -y upgrade && apt-get -y install tmux vim tree ack-grep ntp git build-essential libssl-dev libdb-dev libdb++-dev libboost-all-dev libqrencode-dev htop bundler zsh git-core tig autoconf pkg-config makepasswd transmission-common transmission-daemon transmission-remote-cli build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev &&  wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh && add-apt-repository -y ppa:bitcoin/bitcoin && apt-get update && apt-get -y install libdb4.8-dev libdb4.8++-dev libminiupnpc-dev libzmq3-dev libcurl4-openssl-dev zlib1g-dev && git clone https://github.com/bitcoinxt/bitcoinxt.git'`
+  end
+    
+  # GET /platform/v1/chains/list_ssh_keys
+  def list_ssh_keys
+    client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
+    @ssh_keys = client.ssh_keys.all()
+    respond_to do |format|
+      format.json { render json: @ssh_keys.first}
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_platform_v1_chain
-      @platform_v1_chain = Platform::V1::Chain.find(params[:id])
+      @platform_v1_chain = Platform::V1::Chain.find params[:id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
