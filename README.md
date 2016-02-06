@@ -33,5 +33,6 @@ I'm using [figaro](https://github.com/laserlemon/figaro) to handle all app sensi
 
 ## Miscellaneous
  
+* Available under the [MIT Open Source License](LICENSE.md)
 * Check out the [wiki](https://github.com/cgcardona/blockchain.bigearth.io/wiki) for the latest docs.
 * Latest version can be found in [config/initializers/version.rb](https://github.com/cgcardona/blockchain.bigearth.io/blob/master/config/initializers/version.rb) and follows [Semantic Versioning](http://semver.org/).
