@@ -11,6 +11,15 @@
 </head>
 <body data-exchange_rate='<%= @exchange_rate %>'>
   <%= render 'shared/nav_bar' %>
+  <noscript>
+    <div class='container'>
+      <div class="alert alert-danger" role="alert">
+        <h3><span class='glyphicon glyphicon-warning-sign'
+        aria-hidden='true'></span> Uh oh! Some parts of Big Earth don’t work properly without JavaScript!</h3>
+        <div>Please enable JavaScript. If you don’t know how, you can find instructions <a href="http://www.enable-javascript.com/" target="_blank">here</a>.</div>
+      </div>
+    </div>
+  </noscript>
   <%= yield %>
   <footer>
     <div class='container'>
