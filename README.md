@@ -2,7 +2,7 @@
 
 Blockchain.BigEarth is an open source Bitcoin Block explorer w/ bookmark manager and a BTC/USD exchange rate caclulator built on the [Ruby on Rails](https://github.com/rails/rails) web framework.
 
-It is powered by 3rd party webservice calls and doesn't currently require an full bitcoin node though this could change in the future as the platform grows.
+It is powered by 3rd party webservice calls and doesn't currently require a full bitcoin node though this could change in the future as the platform grows.
 
 The idea was to make a quality block explorer that could be set up and deployed w/ very minimal work leaving developers cycles to spend on design and extension. 
 
