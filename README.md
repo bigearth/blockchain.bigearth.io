@@ -8,19 +8,26 @@ The idea was to make a quality block explorer that could be set up and deployed 
 
 ## Running an instance
 
-First clone the repo
+1. First clone the repo
+  * `git clone https://github.com/cgcardona/blockchain.bigearth.io.git`
+2. Change into the new directory
+  * `cd blockchain.bigearth.io`
+3. Fire up a rails server
+  * `rails s`
+4. Check out `localhost:3000` to see your very own fully operation instance of Blockchain.BigEarth.
 
-`git clone https://github.com/cgcardona/blockchain.bigearth.io.git`
+### Bonus points
 
-Change into the new directory
+* Use a prettier URL during development than `localhost:3000` by adding the following to `/etc/hosts` on OS X or Linux
+  * `127.0.0.1 local.blockchain.bigearth.io`
+  
+#### Launch your app on heroku
 
-`cd blockchain.bigearth.io`
+For this you'll need the [Heroku Toolbelt](https://toolbelt.heroku.com/)
 
-Fire up a rails server
-
-`rails s`
-
-Check out `localhost:3000` to see your very own fully operation instance of Blockchain.BigEarth.
+1. Create a new heroku app
+  * `heroku create`
+2. `git push heroku master`
 
 ## Tech Stack 
 
