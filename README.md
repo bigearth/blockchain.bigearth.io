@@ -1,6 +1,26 @@
-# Blockchain 
+# Blockchain.BigEarth
 
-Blockchain by Big Earth is a Bitcoin Block explorer built on the [Ruby on Rails](https://github.com/rails/rails) web framework.
+Blockchain.BigEarth is an open source Bitcoin Block explorer w/ bookmark manager and a BTC/USD exchange rate caclulator built on the [Ruby on Rails](https://github.com/rails/rails) web framework.
+
+It is powered by 3rd party webservice calls and doesn't currently require an full bitcoin node though this could change in the future as the platform grows.
+
+The idea was to make a quality block explorer that could be set up and deployed w/ very minimal work leaving developers cycles to spend on design and extension. 
+
+## Running an instance
+
+First clone the repo
+
+`git clone https://github.com/cgcardona/blockchain.bigearth.io.git`
+
+Change into the new directory
+
+`cd blockchain.bigearth.io`
+
+Fire up a rails server
+
+`rails s`
+
+Check out `localhost:3000` to see your very own fully operation instance of Blockchain.BigEarth.
 
 ## Tech Stack 
 
@@ -10,8 +30,6 @@ Blockchain by Big Earth is a Bitcoin Block explorer built on the [Ruby on Rails]
 * [Coffeescript](http://coffeescript.org/)
 * [jQuery](https://jquery.com/)
 * [lodash](https://lodash.com/)
-
-It is powered by 3rd party webservice calls and doesn't currently require an full bitcoin node though this could change in the future as the platform grows.
 
 ## Bugs && Issues
 
