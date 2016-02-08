@@ -60,3 +60,6 @@ end
 gem 'newrelic_rpm'
 
 gem "simple_stats"
+gem 'resque', require: 'resque/server'
+gem 'redis'
+gem 'resque-heroku'
