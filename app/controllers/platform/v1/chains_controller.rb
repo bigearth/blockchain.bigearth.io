@@ -148,7 +148,7 @@ class Platform::V1::ChainsController < ApplicationController
     client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
     @ssh_keys = client.ssh_keys.all()
     respond_to do |format|
-      format.json { render json: @ssh_keys.first}
+      format.json { render json: @ssh_keys}
     end
   end
 
