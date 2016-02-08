@@ -1,0 +1,21 @@
+<%= form_for(@platform_v1_chain) do |f| %>
+  <% if @platform_v1_chain.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@platform_v1_chain.errors.count, "error") %> prohibited this platform_v1_chain from being saved:</h2>
+
+      <ul>
+      <% @platform_v1_chain.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :pub_key %><br>
+    <%= f.text_area :pub_key %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

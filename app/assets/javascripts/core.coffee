@@ -37,8 +37,8 @@ $ ->
           evt.preventDefault()
         
       $('.clear_all_bookmarks').click (evt) =>
-        @.clear_all_bookmarks();
-        evt.preventDefault();
+        @.clear_all_bookmarks()
+        evt.preventDefault()
         
       # bind click events to toggle btc/usd values 
       $('.btc, .usd').click (evt) =>

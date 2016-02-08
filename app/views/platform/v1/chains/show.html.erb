@@ -1,0 +1,71 @@
+<div class='hero'>
+  <section class='container'>
+    <p id="notice"><%= notice %></p>
+    <h2><span class='glyphicon glyphicon-th' aria-hidden='true'></span> Bitcoin <strong>Blockchains</strong></h2>
+    <%= render 'shared/breadcrumb' %>
+    <%= render 'shared/social_media' %>
+  </section>
+</div>
+<div class='sub'>
+  <section class='container'>
+    <h3><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Blockchain <strong>Dashboard</strong></h3>
+    <section class='panel panel-default'>
+        <section class='panel-heading'>
+          <h3>
+            <span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> <%= @platform_v1_chain.pub_key %>
+          </h3>
+        </section>
+        <section class='panel-body' data-name='<%= @platform_v1_chain.pub_key %>' id='data_name'>
+          <section class="row m-b-md">
+            <div class="col-sm-6" id='controls'>
+              <h4>
+                <span class='glyphicon glyphicon-tasks' aria-hidden='true'></span> Controls
+              </h4>
+              <div id='flavors' class="btn-group btn-group-justified" role="group" aria-label="Justified button group"> 
+                <a href='#' type="button" class="btn btn-default btn-info active" id='core'>
+                  <span class="glyphicon glyphicon-bitcoin" aria-hidden="true"></span> Core 
+                </a>
+                <a href='#' type="button" class="btn btn-default" id='classic'>
+                  <span class="glyphicon glyphicon-bitcoin" aria-hidden="true"></span> Classic 
+                </a>
+                <a href='#' type="button" class="btn btn-default btn-warning" id='xt'>
+                  <span class="glyphicon glyphicon-bitcoin" aria-hidden="true"></span> XT 
+                </a>
+              </div>
+              <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group"> 
+                <a type="button" class="btn btn-default btn-primary" id='new_blockchain'>
+                  <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> New
+                </a>
+                <a type="button" class="btn btn-default btn-primary" id='ping_blockchain'>
+                  <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ping 
+                </a>
+                <a type="button" class="btn btn-default btn-primary" id='delete_blockchain'>
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Destroy
+                </a>
+              </div>
+              <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group"> 
+                <a type="button" class="btn btn-default btn-primary" id='harden_blockchain'>
+                  <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Harden 
+                </a>
+                <a type="button" class="btn btn-default btn-primary" id='list_ssh_keys'>
+                  <span class="glyphicon glyphicon-list" aria-hidden="true"></span> List SSH Keys
+                </a>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <h4>
+                <span class='glyphicon glyphicon-blackboard' aria-hidden='true'></span> Output
+              </h4>
+              <div>
+                <pre id='output'>
+                </pre>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section class='panel-footer'>
+          footer info
+        </section>
+    </section>
+  </section>
+</div>

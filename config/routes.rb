@@ -11,6 +11,16 @@ Rails.application.routes.draw do
   resources :blocks, only: [:show]
   resources :transactions, only: [:show]
   resources :addresses, only: [:show]
+  namespace :platform do
+    namespace :v1 do
+      get 'get_chain' => 'chains#get_chain', path: 'chains/get_chain'
+      post 'new_chain' => 'chains#new_chain', path: 'chains/new_chain'
+      delete 'delete_chain' => 'chains#destroy_chain', path: 'chains/destroy_chain'
+      get 'harden_chain' => 'chains#harden_chain', path: 'chains/harden_chain'
+      get 'list_ssh_keys' => 'chains#list_ssh_keys', path: 'chains/list_ssh_keys'
+      resources :chains
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
