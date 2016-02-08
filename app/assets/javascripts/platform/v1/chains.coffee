@@ -31,7 +31,11 @@ $ ->
           name: name
         }, (rsp) =>
           @.reset_buttons()
-          if rsp.status is 'does_not_exist'
+          if rsp.status is 500
+            @.update_output("Error trying to create Bitcoin Blockchain #{name}. Try again in a bit.")
+            $('#ping_blockchain span').removeClass('glyphicon-question-sign glyphicon-ok').addClass 'glyphicon-remove'
+            $(evt.currentTarget).removeClass('btn-primarys').addClass('btn-danger')
+          else if rsp.status is 'does_not_exist'
             @.update_output("Nope, Bitcoin Blockchain #{name} doesn't exist. Click the 'New' button to create it.")
             $('#ping_blockchain span').removeClass('glyphicon-question-sign glyphicon-ok').addClass 'glyphicon-remove'
             $(evt.currentTarget).removeClass('btn-primarys').addClass('btn-danger')

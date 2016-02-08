@@ -64,20 +64,28 @@ class Platform::V1::ChainsController < ApplicationController
     
   # GET /platform/v1/chains/get_chain
   def get_chain
-    @client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
-    droplets = @client.droplets.all
-    @droplet = droplets.select do |droplet|  
-      droplet.name === params[:name] 
-    end 
     
-    if @droplet.empty?
+    begin
+      @client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
+      droplets = @client.droplets.all
+      @droplet = droplets.select do |droplet|  
+        droplet.name === params[:name] 
+      end 
+      
+      if @droplet.empty?
+        @response = {
+          status: 'does_not_exist'
+        }
+      else
+        @response = @droplet
+      end
+      
+    rescue Exception => error
       @response = {
-        status: 'does_not_exist'
+        status: 500,
+        message: 'Error'
       }
-    else
-      @response = @droplet
     end
-    
     respond_to do |format|
       format.json { render json: @response }
     end
