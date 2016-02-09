@@ -10,12 +10,10 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :pub_key %><br>
-    <%= f.text_area :pub_key %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="input-group input-group-lg"> 
+    <%= f.text_area :pub_key, placeholder: 'Pub Key', class: 'form-control' %>
+    <span class="input-group-btn"> 
+      <%= f.submit 'Create Blockchain', class: 'btn btn-default' %>
+    </span> 
   </div>
 <% end %>
