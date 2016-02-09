@@ -56,10 +56,10 @@ $ ->
           success: (rsp) =>
             # TODO handle case where droplet is still being created
             @.reset_buttons()
-            if rsp.status is 'deleted'
+            if rsp.status_message is 'deleted'
               @.update_output("Deleting Bitcoin Blockchain #{name}.")
               $(evt.currentTarget).removeClass('btn-primary').addClass('btn-success')
-            else if rsp.status is 'nothing_to_delete'
+            else if rsp.status_message is 'nothing_to_delete'
               @.update_output(" Bitcoin Blockchain #{name} doesn't exist. Click the 'New' button to create it.")
               $(evt.currentTarget).removeClass('btn-primary').addClass('btn-danger')
         }

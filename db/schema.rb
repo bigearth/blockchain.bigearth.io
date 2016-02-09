@@ -31,8 +31,11 @@ ActiveRecord::Schema.define(version: 20160209022417) do
 
   create_table "platform_v1_chains", force: :cascade do |t|
     t.text     "pub_key"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "droplet_created"
+    t.boolean  "chef_node_bootstrapped"
+    t.string   "ip_address"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
 end

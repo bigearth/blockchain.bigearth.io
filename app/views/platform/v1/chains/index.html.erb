@@ -8,23 +8,34 @@
 </div>
 <div class='sub'>
   <section class='container'>
-    <h3><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Last <%= @platform_v1_chains.size %> <strong>Bitcoin</strong> Blocks</h3>
-    <% @platform_v1_chains.each do |platform_v1_chain| %>
+    <h3><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Last <%= @platform_v1_chains.size %> <strong>Bitcoin</strong> Blockchains</h3>
+    <% if @platform_v1_chains.empty? %>
       <section class='panel panel-default'>
         <section class='panel-heading'>
-          <h3>
-            <%= link_to platform_v1_chain do %>
-              <span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> <%= platform_v1_chain.pub_key %>
-            <% end %>
-          </h3>
+          <h3><span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> None</h3>
         </section>
         <section class='panel-body'>
-          Stats...
-        </section>
-        <section class='panel-footer'>
-          footer info
+          No Blockchains currently.
         </section>
       </section>
+    <% else %>
+      <% @platform_v1_chains.each do |platform_v1_chain| %>
+        <section class='panel panel-default'>
+          <section class='panel-heading'>
+            <h3>
+              <%= link_to platform_v1_chain do %>
+                <span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> <%= platform_v1_chain.pub_key %>
+              <% end %>
+            </h3>
+          </section>
+          <section class='panel-body'>
+            Stats...
+          </section>
+          <section class='panel-footer'>
+            footer info
+          </section>
+        </section>
+      <% end %>
     <% end %>
   </section>
 </div>

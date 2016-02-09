@@ -65,6 +65,7 @@ class Platform::V1::ChainsController < ApplicationController
   # GET /platform/v1/chains/get_chain
   def get_chain
     
+    # Wrap webservice calls in begin/rescue block
     begin
       @client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
       droplets = @client.droplets.all
@@ -93,27 +94,48 @@ class Platform::V1::ChainsController < ApplicationController
   
   # POST /platform/v1/chains/new_chain
   def new_chain
-    @client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
-    droplet = @client.droplets.all.select do |droplet|  
-      droplet.name === params[:name] 
-    end 
-    
-    if droplet.empty?
-      new_droplet = DropletKit::Droplet.new({
-        name: params[:name], 
-        region: 'sfo1', 
-        size: '512mb', 
-        ssh_keys: [
-          Figaro.env.ssh_key_id
-        ],
-        image: 'ubuntu-14-04-x64', 
-        ipv6: true
-      })
-      @response = @client.droplets.create new_droplet
-      Resque.enqueue(ConfirmNodeCreated, params[:name])
-    else
+    # Wrap in begin/rescue block
+    begin
+      
+      # Get the Digital Ocean Client
+      @client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
+      
+      # select just the appropriate droplet
+      droplet = @client.droplets.all.select do |droplet|  
+        droplet.name === params[:name] 
+      end 
+      
+      if droplet.empty?
+        
+        # If droplet doesn't exist then create it
+        # Hardcoded values for now. Will likely change that in the future as the dashboard becomes more fully featured
+        new_droplet = DropletKit::Droplet.new({
+          name: params[:name], 
+          region: 'sfo1', 
+          size: '512mb', 
+          ssh_keys: [
+            Figaro.env.ssh_key_id
+          ],
+          image: 'ubuntu-14-04-x64', 
+          ipv6: true
+        })
+        
+        # Create it
+        @response = @client.droplets.create new_droplet
+        
+        # Confirm that the droplet got created in 2 minutes
+        require 'blockchain'
+        node = Blockchain::Node.new
+        node.delay(run_at: 30.seconds.from_now).confirm_droplet_created params[:name] 
+      else
+        @response = {
+          status: 'already_exists'
+        }
+      end
+    rescue Exception => error
       @response = {
-        status: 'already_exists'
+        status: 500,
+        message: 'Error'
       }
     end
     
@@ -124,21 +146,47 @@ class Platform::V1::ChainsController < ApplicationController
     
   # DELETE /platform/v1/chains/delete_chain
   def destroy_chain
-    @client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
-    droplets = @client.droplets.all
-    @droplet = droplets.select do |droplet|  
-      droplet.name === params[:name] 
-    end 
-    
-    if !@droplet.empty?
-      @client.droplets.delete id: @droplet.first['id']
+    # Wrap in begin/rescue block
+    begin
+      
+      # Get the Digital Ocean Client
+      @client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
+      
+      # Get all the droplets 
+      droplets = @client.droplets.all
+      
+      # Select just the appropriate droplet
+      @droplet = droplets.select do |droplet|  
+        droplet.name === params[:name] 
+      end 
+      
+      if !@droplet.empty?
+        # IF the droplet exists then delete it
+        @client.droplets.delete id: @droplet.first['id']
+        
+        # Return deleted status
+        @response = {
+          status: 200,
+          status_message: 'deleted'
+        }
+        
+      else
+        
+        # The droplet doesn't exists
+        @response = {
+          status: 200,
+          status_message: 'nothing_to_delete'
+        }
+        
+      end
+    rescue Exception => error
+      
+      # Handle errors
       @response = {
-        status: 'deleted'
+        status: 500,
+        status_message: error
       }
-    else
-      @response = {
-        status: 'nothing_to_delete'
-      }
+      
     end
     
     respond_to do |format|

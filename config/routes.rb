@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root 'explorers#index'
-  mount Resque::Server, at: '/resque'
   get 'blocks/transactions/:id' => 'blocks#transactions'
   get 'blocks/raw/:id' => 'blocks#raw'
   get 'transactions/raw/:id' => 'transactions#raw'
