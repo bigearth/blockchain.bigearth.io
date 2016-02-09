@@ -110,6 +110,7 @@ class Platform::V1::ChainsController < ApplicationController
         ipv6: true
       })
       @response = @client.droplets.create new_droplet
+      Resque.enqueue(ConfirmNodeCreated, params[:name])
     else
       @response = {
         status: 'already_exists'
