@@ -29,7 +29,7 @@ module Blockchain
     def bootstrap_chef_node name, ip_address
       require 'httparty'
       begin
-        HTTParty.post("http://localhost:4567/bootstrap_chef_node", 
+        HTTParty.post("#{Figaro.env.chef_workstation_ip_address}bootstrap_chef_node", 
           :body => { 
             name: name, 
             ip_address: ip_address 
@@ -37,7 +37,7 @@ module Blockchain
           :headers => { 'Content-Type' => 'application/json' } 
         )
         node = Blockchain::Node.new
-        node.delay(run_at: 30.seconds.from_now).confirm_chef_node_bootstraped name, ip_address
+        node.delay(run_at: 1.minutes.from_now).confirm_chef_node_bootstraped name, ip_address
       rescue Exception => error
           puts "bootstrap_chef_node error: #{error}"
       end

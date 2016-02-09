@@ -126,7 +126,7 @@ class Platform::V1::ChainsController < ApplicationController
         # Confirm that the droplet got created in 2 minutes
         require 'blockchain'
         node = Blockchain::Node.new
-        node.delay(run_at: 30.seconds.from_now).confirm_droplet_created params[:name] 
+        node.delay(run_at: 1.minutes.from_now).confirm_droplet_created params[:name] 
       else
         @response = {
           status: 'already_exists'
