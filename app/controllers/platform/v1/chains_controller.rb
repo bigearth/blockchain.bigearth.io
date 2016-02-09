@@ -146,21 +146,6 @@ class Platform::V1::ChainsController < ApplicationController
     end
   end
     
-  # GET /platform/v1/chains/harden_chain
-  def harden_chain
-    # puts `ssh -o "StrictHostKeyChecking no" root@#{Figaro.env.droplet_ip_address} 'sudo apt-get update && apt-get -y upgrade && apt-get -y install tmux vim tree ack-grep ntp git build-essential libssl-dev libdb-dev libdb++-dev libboost-all-dev libqrencode-dev htop bundler zsh git-core tig autoconf pkg-config makepasswd transmission-common transmission-daemon transmission-remote-cli build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev && git clone https://github.com/bitcoinxt/bitcoinxt.git'`
-    puts `ssh -o "StrictHostKeyChecking no" root@#{Figaro.env.droplet_ip_address} 'sudo apt-get update && apt-get -y upgrade && apt-get -y install tmux vim tree ack-grep ntp git build-essential libssl-dev libdb-dev libdb++-dev libboost-all-dev libqrencode-dev htop bundler zsh git-core tig autoconf pkg-config makepasswd transmission-common transmission-daemon transmission-remote-cli build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev &&  wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh && add-apt-repository -y ppa:bitcoin/bitcoin && apt-get update && apt-get -y install libdb4.8-dev libdb4.8++-dev libminiupnpc-dev libzmq3-dev libcurl4-openssl-dev zlib1g-dev && git clone https://github.com/bitcoinxt/bitcoinxt.git'`
-  end
-    
-  # GET /platform/v1/chains/list_ssh_keys
-  def list_ssh_keys
-    client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
-    @ssh_keys = client.ssh_keys.all()
-    respond_to do |format|
-      format.json { render json: @ssh_keys}
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_platform_v1_chain
