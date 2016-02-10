@@ -40,19 +40,8 @@ module Blockchain
           }.to_json,
           headers: { 'Content-Type' => 'application/json' } 
         )
-        node = Blockchain::Node.new
-        node.delay(run_at: 1.minutes.from_now).confirm_chef_node_bootstraped name, ip_address
       rescue Exception => error
           puts "bootstrap_chef_node error: #{error}"
-      end
-    end
-    
-    def confirm_chef_node_bootstraped name, ip_address
-      require 'httparty'
-      begin
-        puts 'good job mates'
-      rescue Exception => error
-          puts "confirm_chef_node_bootstraped error: #{error}"
       end
     end
   end

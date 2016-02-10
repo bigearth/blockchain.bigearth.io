@@ -61,7 +61,7 @@ class Platform::V1::ChainsController < ApplicationController
       format.json { head :no_content }
     end
   end
-    
+
   # GET /platform/v1/chains/get_chain
   def get_chain
     
@@ -112,7 +112,7 @@ class Platform::V1::ChainsController < ApplicationController
         new_droplet = DropletKit::Droplet.new({
           name: params[:name], 
           region: 'sfo1', 
-          size: '512mb', 
+          size: '8gb', 
           ssh_keys: [
             Figaro.env.ssh_key_id
           ],
