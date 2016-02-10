@@ -11,22 +11,29 @@ $ ->
       
     bind_events: () ->
       $('#new_blockchain').click (evt) =>
+        # Create a new blockchain
         @.update_output "Processing..."
-        name = $('#data_name').data 'name'
+        
+        # Grab name and flavor from the DOM
+        name = $('#blockchain_title').data 'name'
+        flavor = $('#flavors .active').data 'flavor'
+        
+        # POST name and flavor to new_chain endpoint
         $.post 'new_chain', {
           name: name
+          flavor: flavor
         }, (rsp) =>
           @.reset_buttons()
           if rsp.status is 'already_exists'
             @.update_output("Bitcoin Blockchain #{name} already exists. Next time click the 'Ping' button first.")
             $(evt.currentTarget).removeClass('btn-primarys').addClass('btn-danger')
           else if _.isObject rsp
-            @.update_output("Creating Bitcoin Blockchain #{name}. Give it like 20 seconds.")
+            @.update_output("Creating Bitcoin #{_.upperFirst flavor.split('_')[1]} Blockchain #{name}.")
             $(evt.currentTarget).removeClass('btn-primary').addClass('btn-success')
           
       $('#ping_blockchain').click (evt) =>
         @.update_output "Processing..."
-        name = $('#data_name').data 'name'
+        name = $('#blockchain_title').data 'name'
         $.get 'get_chain', {
           name: name
         }, (rsp) =>
@@ -46,7 +53,7 @@ $ ->
           
       $('#delete_blockchain').click (evt) =>
         @.update_output "Processing..."
-        name = $('#data_name').data 'name'
+        name = $('#blockchain_title').data 'name'
         options = {
           name: name
         }

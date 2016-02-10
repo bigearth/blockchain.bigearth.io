@@ -122,6 +122,11 @@ class Platform::V1::ChainsController < ApplicationController
         
         # Create it
         @response = @client.droplets.create new_droplet
+          
+        # Update Active Record w/ Blockchain flavor
+        existing_node = Platform::V1::Chain.where('pub_key = ?', params[:name]).first
+        existing_node.blockchain_flavor = params[:flavor]
+        existing_node.save
         
         # Confirm that the droplet got created in 2 minutes
         require 'blockchain'
