@@ -30,11 +30,15 @@ module Blockchain
       require 'httparty'
       begin
         HTTParty.post("#{Figaro.env.chef_workstation_ip_address}bootstrap_chef_node", 
-          :body => { 
+          basic_auth: {
+            username: Figaro.env.chef_workstation_username, 
+            password: Figaro.env.chef_workstation_password 
+          },
+          body: { 
             name: name, 
             ip_address: ip_address 
           }.to_json,
-          :headers => { 'Content-Type' => 'application/json' } 
+          headers: { 'Content-Type' => 'application/json' } 
         )
         node = Blockchain::Node.new
         node.delay(run_at: 1.minutes.from_now).confirm_chef_node_bootstraped name, ip_address
