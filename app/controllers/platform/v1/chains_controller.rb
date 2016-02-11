@@ -62,29 +62,20 @@ class Platform::V1::ChainsController < ApplicationController
     end
   end
 
-  # GET /platform/v1/chains/get_chain
-  def get_chain
+  # GET /platform/v1/chains/confirm_droplet_created
+  def confirm_droplet_created
     
-    # Wrap webservice calls in begin/rescue block
-    begin
-      @client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
-      droplets = @client.droplets.all
-      @droplet = droplets.select do |droplet|  
-        droplet.name === params[:name] 
-      end 
-      
-      if @droplet.empty?
-        @response = {
-          status: 'does_not_exist'
-        }
-      else
-        @response = @droplet
-      end
-      
-    rescue Exception => error
+    chain = Platform::V1::Chain.find params[:id]
+    if chain.droplet_created
       @response = {
-        status: 500,
-        message: 'Error'
+        status: 200,
+        message: 'droplet created',
+        ip_address: chain.ip_address
+      }
+    else
+      @response = {
+        status: 200,
+        message: 'droplet not created'
       }
     end
     respond_to do |format|
@@ -125,7 +116,7 @@ class Platform::V1::ChainsController < ApplicationController
           
         # Update Active Record w/ Blockchain flavor
         existing_node = Platform::V1::Chain.where('pub_key = ?', params[:name]).first
-        existing_node.blockchain_flavor = params[:flavor]
+        existing_node.blockchain_flavor = params[:blockchain_flavor]
         existing_node.save
         
         # Confirm that the droplet got created in 2 minutes
