@@ -86,6 +86,38 @@ class ChartsController < ApplicationController
       [item['time'], item['total'].to_i]
     end 
   end
+  
+  # GET /charts/total_output
+  # GET /charts/total_output.json
+  def total_output
+    @total_output = Charts::TotalOutput.all.map do |item| 
+      [item['time'], item['total'].to_i]
+    end 
+  end
+  
+  # GET /charts/market_price
+  # GET /charts/market_price.json
+  def market_price
+    @market_price = Charts::MarketPrice.all.map do |item| 
+      [item['time'], item['total'].to_i]
+    end 
+  end
+  
+  # GET /charts/hash_rate
+  # GET /charts/hash_rate.json
+  def hash_rate
+    @hash_rate = Charts::HashRate.all.map do |item| 
+      [item['time'], item['total'].to_i]
+    end 
+  end
+  
+  # GET /charts/difficulty
+  # GET /charts/difficulty.json
+  def difficulty
+    @difficulty = Charts::Difficulty.all.map do |item| 
+      [item['time'], item['total'].to_i]
+    end 
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

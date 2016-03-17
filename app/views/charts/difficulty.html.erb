@@ -1,37 +1,37 @@
 <div class='hero'>
-  <section id='data' class='container' data-orphaned_block='<%= @orphaned_block.to_json %>'>
+  <section id='data' class='container' data-difficulty='<%= @difficulty.to_json %>'>
   </section>
 </div>
 <div class='sub'>
   <section class='container'>
-    <div id='orphaned_block_chart'></div>
+    <div id='difficulty_chart'></div>
   </section>
 </div>
 <script>
 window.onload = function() {
   'use strict';  
-  google.charts.setOnLoadCallback(draw_orphaned_block_chart);
+  google.charts.setOnLoadCallback(draw_difficulty_chart);
 
-  function draw_orphaned_block_chart() {
+  function draw_difficulty_chart() {
     var data = new google.visualization.DataTable();
     data.addColumn('number', 'Time');
     data.addColumn('number', 'Total');
-    data.addRows(JSON.parse(document.getElementById('data').dataset.orphaned_block));
+    data.addRows(JSON.parse(document.getElementById('data').dataset.difficulty));
 
     var options = {
-      title: 'Number of orphaned blocks',
+      title: 'Hash Rate',
       hAxis: {
         // ticks: [1, 2 ,3 ,4 ,5 ,6 ,7 ,8 ,9, 10]
       },
       vAxis: {
-        title: 'Number of Blocks'
+        title: 'Hash Rate GH/s'
       },
       legend: {
         position: 'none'
       }
     };
 
-    var chart = new google.visualization.LineChart(document.getElementById('orphaned_block_chart'));
+    var chart = new google.visualization.LineChart(document.getElementById('difficulty_chart'));
     chart.draw(data, options);
   }
 };
