@@ -1,0 +1,37 @@
+<div class='hero'>
+  <section id='data' class='container' data-unique_address='<%= @unique_address.to_json %>'>
+    <div id='unique_address_chart'></div>
+  </section>
+</div>
+<div class='sub'>
+  <section class='container'>
+  </section>
+</div>
+<script>
+window.onload = function() {
+  'use strict';  
+  google.charts.setOnLoadCallback(draw_unique_address_chart);
+
+  function draw_unique_address_chart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('number', 'Time');
+    data.addColumn('number', 'Total');
+    data.addRows(JSON.parse(document.getElementById('data').dataset.unique_address));
+
+    var options = {
+      hAxis: {
+        // ticks: [1, 2 ,3 ,4 ,5 ,6 ,7 ,8 ,9, 10]
+      },
+      vAxis: {
+        title: 'Number of Addresses'
+      },
+      legend: {
+        position: 'none'
+      }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('unique_address_chart'));
+    chart.draw(data, options);
+  }
+};
+</script>

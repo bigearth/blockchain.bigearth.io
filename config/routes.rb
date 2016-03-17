@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'charts/network_deficit' => 'charts#network_deficit'
   get 'charts/transaction_daily' => 'charts#transaction_daily'
   get 'charts/transaction_total' => 'charts#transaction_total'
+  get 'charts/unique_address' => 'charts#unique_address'
   resources :explorers, only: [:index], path: 'coin'
   resources :blocks, only: [:show]
   resources :transactions, only: [:show]
