@@ -1,10 +1,10 @@
 <div class='hero'>
-  <section id='data' class='container' data-circulations='<%= @circulations.to_json %>'>
-    <div id='circulation_chart'></div>
+  <section class='container'>
   </section>
 </div>
 <div class='sub'>
-  <section class='container'>
+  <section id='data' class='container' data-circulations='<%= @circulations.to_json %>'>
+    <div id='circulation_chart'></div>
   </section>
 </div>
 <script>
@@ -19,6 +19,7 @@ window.onload = function() {
     data.addRows(JSON.parse(document.getElementById('data').dataset.circulations));
 
     var options = {
+      title: 'Total Bitcoins in Circulation',
       hAxis: {
         // ticks: [1, 2 ,3 ,4 ,5 ,6 ,7 ,8 ,9, 10]
       },
