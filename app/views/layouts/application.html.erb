@@ -38,6 +38,10 @@
   <%= javascript_include_tag "http://www.google.com/jsapi" %>
   <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
+    var resize = function (callback) {
+      window.addEventListener("resize", callback, true);
+      callback();
+    };
   </script>
 </body>
 </html>

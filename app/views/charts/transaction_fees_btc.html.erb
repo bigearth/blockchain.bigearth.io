@@ -32,7 +32,9 @@ window.onload = function() {
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('transaction_fees_btc_chart'));
-    chart.draw(data, options);
+    resize(function () {
+      chart.draw(data, options);
+    });
   }
 };
 </script>

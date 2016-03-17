@@ -32,7 +32,9 @@ window.onload = function() {
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('network_deficit_chart'));
-    chart.draw(data, options);
+    resize(function () {
+      chart.draw(data, options);
+    });
   }
 };
 </script>
