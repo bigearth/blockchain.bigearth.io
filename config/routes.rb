@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   get 'charts/market_price' => 'charts#market_price'
   get 'charts/hash_rate' => 'charts#hash_rate'
   get 'charts/difficulty' => 'charts#difficulty'
+  get 'charts/days_destroyed_cumulative' => 'charts#days_destroyed_cumulative'
+  get 'charts/days_destroyed' => 'charts#days_destroyed'
+  get 'charts/block_size' => 'charts#block_size'
   resources :explorers, only: [:index], path: 'coin'
   resources :blocks, only: [:show]
   resources :transactions, only: [:show]

@@ -118,6 +118,30 @@ class ChartsController < ApplicationController
       [item['time'], item['total'].to_i]
     end 
   end
+  
+  # GET /charts/days_destroyed_cumulative
+  # GET /charts/days_destroyed_cumulative.json
+  def days_destroyed_cumulative
+    @days_destroyed_cumulative = Charts::DaysDestroyedCumulative.all.map do |item| 
+      [item['time'], item['total'].to_i]
+    end 
+  end
+  
+  # GET /charts/days_destroyed
+  # GET /charts/days_destroyed.json
+  def days_destroyed
+    @days_destroyed = Charts::DaysDestroyed.all.map do |item| 
+      [item['time'], item['total'].to_i]
+    end 
+  end
+  
+  # GET /charts/block_size
+  # GET /charts/block_size.json
+  def block_size
+    @block_size = Charts::BlockSize.all.map do |item| 
+      [item['time'], item['total'].to_i]
+    end 
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

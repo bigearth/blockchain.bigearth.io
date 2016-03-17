@@ -1,0 +1,38 @@
+<div class='hero'>
+  <section id='data' class='container' data-block_size='<%= @block_size.to_json %>'>
+  </section>
+</div>
+<div class='sub'>
+  <section class='container'>
+    <div id='block_size_chart'></div>
+  </section>
+</div>
+<script>
+window.onload = function() {
+  'use strict';  
+  google.charts.setOnLoadCallback(draw_block_size_chart);
+
+  function draw_block_size_chart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('number', 'Time');
+    data.addColumn('number', 'Total');
+    data.addRows(JSON.parse(document.getElementById('data').dataset.block_size));
+
+    var options = {
+      title: 'Bitcoin Days Destroyed',
+      hAxis: {
+        // ticks: [1, 2 ,3 ,4 ,5 ,6 ,7 ,8 ,9, 10]
+      },
+      vAxis: {
+        title: 'Days Destroyed'
+      },
+      legend: {
+        position: 'none'
+      }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('block_size_chart'));
+    chart.draw(data, options);
+  }
+};
+</script>
