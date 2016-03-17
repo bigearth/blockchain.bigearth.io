@@ -13,10 +13,10 @@ window.onload = function() {
   google.charts.setOnLoadCallback(draw_market_cap_chart);
 
   function draw_market_cap_chart() {
-    var write_data = new google.visualization.DataTable();
-    write_data.addColumn('number', 'Time');
-    write_data.addColumn('number', 'Total');
-    write_data.addRows(JSON.parse(document.getElementById('data').dataset.market_cap));
+    var data = new google.visualization.DataTable();
+    data.addColumn('number', 'Time');
+    data.addColumn('number', 'Total');
+    data.addRows(JSON.parse(document.getElementById('data').dataset.market_cap));
 
     var options = {
       hAxis: {
@@ -27,8 +27,8 @@ window.onload = function() {
       }
     };
 
-    var write_chart = new google.visualization.LineChart(document.getElementById('market_cap_chart'));
-    write_chart.draw(write_data, options);
+    var chart = new google.visualization.LineChart(document.getElementById('market_cap_chart'));
+    chart.draw(data, options);
   }
 };
 </script>

@@ -11,7 +11,7 @@ class ChartsController < ApplicationController
   # GET /charts/circulation.json
   def circulation
     @circulations = Charts::Circulation.all.map do |item| 
-      [item['time'], item['total']]
+      [item['time'], item['total'].to_i]
     end 
   end
 
@@ -19,7 +19,7 @@ class ChartsController < ApplicationController
   # GET /charts/market_cap.json
   def market_cap
     @market_cap = Charts::MarketCap.all.map do |item| 
-      [item['time'], item['total']]
+      [item['time'], item['total'].to_i]
     end 
   end
 
@@ -27,7 +27,15 @@ class ChartsController < ApplicationController
   # GET /charts/transaction_fees_btc.json
   def transaction_fees_btc
     @transaction_fees_btc = Charts::TransactionFeeBtc.all.map do |item| 
-      [item['time'], item['total']]
+      [item['time'], item['total'].to_i]
+    end 
+  end
+  
+  # GET /charts/transaction_fees_usd
+  # GET /charts/transaction_fees_usd.json
+  def transaction_fees_usd
+    @transaction_fees_usd = Charts::TransactionFeeUsd.all.map do |item| 
+      [item['time'], item['total'].to_i]
     end 
   end
 
