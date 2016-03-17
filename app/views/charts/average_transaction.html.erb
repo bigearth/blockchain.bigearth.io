@@ -1,0 +1,37 @@
+<div class='hero'>
+  <section id='data' class='container' data-average_transaction='<%= @average_transaction.to_json %>'>
+    <div id='average_transaction_chart'></div>
+  </section>
+</div>
+<div class='sub'>
+  <section class='container'>
+  </section>
+</div>
+<script>
+window.onload = function() {
+  'use strict';  
+  google.charts.setOnLoadCallback(draw_average_transaction_chart);
+
+  function draw_average_transaction_chart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('number', 'Time');
+    data.addColumn('number', 'Total');
+    data.addRows(JSON.parse(document.getElementById('data').dataset.average_transaction));
+
+    var options = {
+      hAxis: {
+        // ticks: [1, 2 ,3 ,4 ,5 ,6 ,7 ,8 ,9, 10]
+      },
+      vAxis: {
+        title: 'Number of Addresses'
+      },
+      legend: {
+        position: 'none'
+      }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('average_transaction_chart'));
+    chart.draw(data, options);
+  }
+};
+</script>

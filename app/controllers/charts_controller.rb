@@ -70,6 +70,14 @@ class ChartsController < ApplicationController
       [item['time'], item['total'].to_i]
     end 
   end
+  
+  # GET /charts/average_transaction
+  # GET /charts/average_transaction.json
+  def average_transaction 
+    @average_transaction = Charts::AverageTransaction.all.map do |item| 
+      [item['time'], item['total'].to_i]
+    end 
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
