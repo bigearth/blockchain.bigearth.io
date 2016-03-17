@@ -38,6 +38,14 @@ class ChartsController < ApplicationController
       [item['time'], item['total'].to_i]
     end 
   end
+  
+  # GET /charts/network_deficit
+  # GET /charts/network_deficit.json
+  def network_deficit
+    @network_deficit  = Charts::NetworkDeficit.all.map do |item| 
+      [item['time'], item['total'].to_i]
+    end 
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

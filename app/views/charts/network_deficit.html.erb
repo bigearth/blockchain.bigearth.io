@@ -1,6 +1,6 @@
 <div class='hero'>
-  <section id='data' class='container' data-transaction_fees_usd='<%= @transaction_fees_usd.to_json %>'>
-    <div id='transaction_fees_usd_chart'></div>
+  <section id='data' class='container' data-network_deficit='<%= @network_deficit.to_json %>'>
+    <div id='network_deficit_chart'></div>
   </section>
 </div>
 <div class='sub'>
@@ -10,27 +10,27 @@
 <script>
 window.onload = function() {
   'use strict';  
-  google.charts.setOnLoadCallback(draw_transaction_fees_usd_chart);
+  google.charts.setOnLoadCallback(draw_network_deficit_chart);
 
-  function draw_transaction_fees_usd_chart() {
+  function draw_network_deficit_chart() {
     var data = new google.visualization.DataTable();
     data.addColumn('number', 'Time');
     data.addColumn('number', 'Total');
-    data.addRows(JSON.parse(document.getElementById('data').dataset.transaction_fees_usd));
+    data.addRows(JSON.parse(document.getElementById('data').dataset.network_deficit));
 
     var options = {
       hAxis: {
         // ticks: [1, 2 ,3 ,4 ,5 ,6 ,7 ,8 ,9, 10]
       },
       vAxis: {
-        title: 'Transaction Fees (USD)'
+        title: 'Network Deficit (USD)'
       },
       legend: {
         position: 'none'
       }
     };
 
-    var chart = new google.visualization.LineChart(document.getElementById('transaction_fees_usd_chart'));
+    var chart = new google.visualization.LineChart(document.getElementById('network_deficit_chart'));
     chart.draw(data, options);
   }
 };

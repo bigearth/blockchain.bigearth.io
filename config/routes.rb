@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'charts/market_cap' => 'charts#market_cap'
   get 'charts/transaction_fees_btc' => 'charts#transaction_fees_btc'
   get 'charts/transaction_fees_usd' => 'charts#transaction_fees_usd'
+  get 'charts/network_deficit' => 'charts#network_deficit'
   resources :explorers, only: [:index], path: 'coin'
   resources :blocks, only: [:show]
   resources :transactions, only: [:show]
