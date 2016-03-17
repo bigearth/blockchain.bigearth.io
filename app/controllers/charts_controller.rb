@@ -78,6 +78,14 @@ class ChartsController < ApplicationController
       [item['time'], item['total'].to_i]
     end 
   end
+  
+  # GET /charts/orphaned_block
+  # GET /charts/orphaned_block.json
+  def orphaned_block
+    @orphaned_block = Charts::OrphanedBlock.all.map do |item| 
+      [item['time'], item['total'].to_i]
+    end 
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

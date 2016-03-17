@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'charts/transaction_total' => 'charts#transaction_total'
   get 'charts/unique_address' => 'charts#unique_address'
   get 'charts/average_transaction' => 'charts#average_transaction'
+  get 'charts/orphaned_block' => 'charts#orphaned_block'
   resources :explorers, only: [:index], path: 'coin'
   resources :blocks, only: [:show]
   resources :transactions, only: [:show]
