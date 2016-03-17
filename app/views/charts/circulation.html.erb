@@ -1,0 +1,34 @@
+<div class='hero'>
+  <section id='data' class='container' data-circulations='<%= @circulations.to_json %>'>
+    <div id='circulation_chart'></div>
+  </section>
+</div>
+<div class='sub'>
+  <section class='container'>
+  </section>
+</div>
+<script>
+window.onload = function() {
+  'use strict';  
+  google.charts.setOnLoadCallback(draw_circulation_chart);
+
+  function draw_circulation_chart() {
+    var write_data = new google.visualization.DataTable();
+    write_data.addColumn('number', 'Time');
+    write_data.addColumn('number', 'Total');
+    write_data.addRows(JSON.parse(document.getElementById('data').dataset.circulations));
+
+    var options = {
+      hAxis: {
+        // ticks: [1, 2 ,3 ,4 ,5 ,6 ,7 ,8 ,9, 10]
+      },
+      vAxis: {
+        title: 'Total Bitcoins'
+      }
+    };
+
+    var write_chart = new google.visualization.LineChart(document.getElementById('circulation_chart'));
+    write_chart.draw(write_data, options);
+  }
+};
+</script>

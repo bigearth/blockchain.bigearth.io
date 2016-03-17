@@ -34,5 +34,10 @@
   </footer>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= render 'shared/google_analytics' %>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <%= javascript_include_tag "http://www.google.com/jsapi" %>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+  </script>
 </body>
 </html>

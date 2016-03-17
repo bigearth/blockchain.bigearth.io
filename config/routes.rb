@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   get 'addresses/unspent/:id' => 'addresses#unspent'
   get 'apps/bookmarks' => 'apps#bookmarks'
   get 'apps/calculator' => 'apps#calculator'
+  get 'charts/show' => 'charts#show', path: 'charts'
+  get 'charts/circulation' => 'charts#circulation'
+  get 'charts/market_cap' => 'charts#market_cap'
+  get 'charts/transaction_fees_btc' => 'charts#transaction_fees_btc'
   resources :explorers, only: [:index], path: 'coin'
   resources :blocks, only: [:show]
   resources :transactions, only: [:show]
