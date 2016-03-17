@@ -1,44 +1,46 @@
-<div class='hero container'>
-  <section class="row m-b-md">
-      <div class="col-sm-12">
-        <h2><span class='glyphicon glyphicon-phone' aria-hidden='true'></span> Bitcoin <strong>Calculator</strong></h2>
-        <%= render 'shared/breadcrumb' %>
-        <%= render 'shared/social_media' %>
-      </div>
-  </section>
-  <section class="row m-b-md">
-      <div class="col-sm-3">
-      </div>
-      <div class="col-sm-6">
-        <div class="panel panel-default" id='calculator'>
-          <div class="panel-body">
-            <div class="hide alert alert-info" role="alert">
-              <h2><span id='btc_value'>0</span> <span class='glyphicon glyphicon-bitcoin' aria-hidden='true'></span></h2>
+<div class='hero'>
+  <div class='container'>
+    <section class="row m-b-md">
+        <div class="col-sm-12">
+          <h2><span class='glyphicon glyphicon-phone' aria-hidden='true'></span> Bitcoin <strong>Calculator</strong></h2>
+          <%= render 'shared/breadcrumb' %>
+          <%= render 'shared/social_media' %>
+        </div>
+    </section>
+    <section class="row m-b-md">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-6">
+          <div class="panel panel-default" id='calculator'>
+            <div class="panel-body">
+              <div class="hide alert alert-info" role="alert">
+                <h2><span id='btc_value'>0</span> <span class='glyphicon glyphicon-bitcoin' aria-hidden='true'></span></h2>
+              </div>
+              <div class="alert alert-success" role="alert">
+                <h2>$<span id='usd_value'>0</span></h2>
+              </div>
+              <div class="form-group">
+                <input id='btc_calculator_input' type="number" class="form-control" placeholder="1.75">
+              </div>
+              <div class="form-group hide">
+                <input id='usd_calculator_input' type="number" class="form-control" placeholder="50">
+              </div>
+              <div class="btn-group btn-group-lg" data-toggle="buttons">
+                <label class="btn btn-primary active">
+                  <input type="radio" name="bitcoin_calculator" checked value='btc' id="btc_radio_input" autocomplete="off" checked> BTC
+                </label>
+                <label class="btn btn-primary">
+                  <input type="radio" name="bitcoin_calculator" value='usd' id="usd_radio_input" autocomplete="off"> USD
+                </label>
+              </div>
             </div>
-            <div class="alert alert-success" role="alert">
-              <h2>$<span id='usd_value'>0</span></h2>
+            <div class="panel-footer">
+              <p class="help-block">Exchange Rate: $<%= @exchange_rate %> / 1 BTC</p>
             </div>
-            <div class="form-group">
-              <input id='btc_calculator_input' type="number" class="form-control" placeholder="1.75">
-            </div>
-            <div class="form-group hide">
-              <input id='usd_calculator_input' type="number" class="form-control" placeholder="50">
-            </div>
-            <div class="btn-group btn-group-lg" data-toggle="buttons">
-              <label class="btn btn-primary active">
-                <input type="radio" name="bitcoin_calculator" checked value='btc' id="btc_radio_input" autocomplete="off" checked> BTC
-              </label>
-              <label class="btn btn-primary">
-                <input type="radio" name="bitcoin_calculator" value='usd' id="usd_radio_input" autocomplete="off"> USD
-              </label>
-            </div>
-          </div>
-          <div class="panel-footer">
-            <p class="help-block">Exchange Rate: $<%= @exchange_rate %> / 1 BTC</p>
           </div>
         </div>
-      </div>
-      <div class="col-sm-3">
-      </div>
-  </section>
+        <div class="col-sm-3">
+        </div>
+    </section
+  </div>
 </div>

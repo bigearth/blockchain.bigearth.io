@@ -1,6 +1,13 @@
 <div class='hero'>
-  <section class='container'>
-  </section>
+  <div class='container'>
+    <section class="row m-b-md">
+        <div class="col-sm-12">
+          <h2><span class='glyphicon glyphicon-dashboard' aria-hidden='true'></span> Bitcoin <strong>Charts</strong></h2>
+          <%= render 'shared/breadcrumb' %>
+          <%= render 'shared/social_media' %>
+        </div>
+    </section>
+  </div>
 </div>
 <div class='sub'>
   <section id='data' class='container' data-circulations='<%= @circulations.to_json %>'>
@@ -20,11 +27,22 @@ window.onload = function() {
 
     var options = {
       title: 'Total Bitcoins in Circulation',
+      height: 400,
+      chartArea: {
+        width: '90%',
+        height: '80%',
+        left: 50,
+        right: 25
+      },
       hAxis: {
         // ticks: [1, 2 ,3 ,4 ,5 ,6 ,7 ,8 ,9, 10]
+        gridlines: {
+          color: 'transparent'
+        }
       },
       vAxis: {
-        title: 'Total Bitcoins'
+        title: 'Total Bitcoins',
+        format: 'short'
       },
       legend: {
         position: 'none'

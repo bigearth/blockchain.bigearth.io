@@ -10,23 +10,23 @@
   </div>
 </div>
 <div class='sub'>
-  <section id='data' class='container' data-difficulty='<%= @difficulty.to_json %>'>
-    <div id='difficulty_chart'></div>
+  <section id='data' class='container' data-average_transactions='<%= @average_transactions.to_json %>'>
+    <div id='average_transactions_chart'></div>
   </section>
 </div>
 <script>
 window.onload = function() {
   'use strict';  
-  google.charts.setOnLoadCallback(draw_difficulty_chart);
+  google.charts.setOnLoadCallback(draw_average_transactions_chart);
 
-  function draw_difficulty_chart() {
+  function draw_average_transactions_chart() {
     var data = new google.visualization.DataTable();
     data.addColumn('number', 'Time');
     data.addColumn('number', 'Total');
-    data.addRows(JSON.parse(document.getElementById('data').dataset.difficulty));
+    data.addRows(JSON.parse(document.getElementById('data').dataset.average_transactions));
 
     var options = {
-      title: 'Difficulty',
+      title: 'Average Number of Transactions per Block',
       height: 400,
       chartArea: {
         width: '90%',
@@ -41,7 +41,7 @@ window.onload = function() {
         }
       },
       vAxis: {
-        title: 'Difficulty',
+        title: 'Transactions per Block',
         format: 'short'
       },
       legend: {
@@ -49,7 +49,7 @@ window.onload = function() {
       }
     };
 
-    var chart = new google.visualization.LineChart(document.getElementById('difficulty_chart'));
+    var chart = new google.visualization.LineChart(document.getElementById('average_transactions_chart'));
     resize(function () {
       chart.draw(data, options);
     });

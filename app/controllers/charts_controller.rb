@@ -4,7 +4,6 @@ class ChartsController < ApplicationController
   # GET /charts/show
   # GET /charts/show.json
   def show 
-    # @tx = HTTParty.get "http://btc.blockr.io/api/v1/tx/info/#{params[:id]}" 
   end
 
   # GET /charts/circulation
@@ -47,42 +46,42 @@ class ChartsController < ApplicationController
     end 
   end
   
-  # GET /charts/transaction_daily
-  # GET /charts/transaction_daily.json
-  def transaction_daily
-    @transaction_daily = Charts::TransactionDaily.all.map do |item| 
+  # GET /charts/transactions_daily
+  # GET /charts/transactions_daily.json
+  def transactions_daily
+    @transactions_daily = Charts::TransactionDaily.all.map do |item| 
       [item['time'], item['total'].to_i]
     end 
   end
   
-  # GET /charts/transaction_total
-  # GET /charts/transaction_total.json
-  def transaction_total
-    @transaction_total = Charts::TransactionTotal.all.map do |item| 
+  # GET /charts/transactions_total
+  # GET /charts/transactions_total.json
+  def transactions_total
+    @transactions_total = Charts::TransactionTotal.all.map do |item| 
       [item['time'], item['total'].to_i]
     end 
   end
   
-  # GET /charts/unique_address
-  # GET /charts/unique_address.json
-  def unique_address
-    @unique_address = Charts::UniqueAddress.all.map do |item| 
+  # GET /charts/unique_addresses
+  # GET /charts/unique_addresses.json
+  def unique_addresses
+    @unique_addresses = Charts::UniqueAddress.all.map do |item| 
       [item['time'], item['total'].to_i]
     end 
   end
   
-  # GET /charts/average_transaction
-  # GET /charts/average_transaction.json
-  def average_transaction 
-    @average_transaction = Charts::AverageTransaction.all.map do |item| 
+  # GET /charts/average_transactions
+  # GET /charts/average_transactions.json
+  def average_transactions 
+    @average_transactions = Charts::AverageTransaction.all.map do |item| 
       [item['time'], item['total'].to_i]
     end 
   end
   
-  # GET /charts/orphaned_block
-  # GET /charts/orphaned_block.json
-  def orphaned_block
-    @orphaned_block = Charts::OrphanedBlock.all.map do |item| 
+  # GET /charts/orphaned_blocks
+  # GET /charts/orphaned_blocks.json
+  def orphaned_blocks
+    @orphaned_blocks = Charts::OrphanedBlock.all.map do |item| 
       [item['time'], item['total'].to_i]
     end 
   end
@@ -135,10 +134,10 @@ class ChartsController < ApplicationController
     end 
   end
   
-  # GET /charts/block_size
-  # GET /charts/block_size.json
-  def block_size
-    @block_size = Charts::BlockSize.all.map do |item| 
+  # GET /charts/blockchain_size
+  # GET /charts/blockchain_size.json
+  def blockchain_size
+    @blockchain_size = Charts::BlockSize.all.map do |item| 
       [item['time'], item['total'].to_i]
     end 
   end

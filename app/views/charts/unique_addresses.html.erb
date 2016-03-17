@@ -10,23 +10,23 @@
   </div>
 </div>
 <div class='sub'>
-  <section id='data' class='container' data-difficulty='<%= @difficulty.to_json %>'>
-    <div id='difficulty_chart'></div>
+  <section id='data' class='container' data-unique_addresses='<%= @unique_addresses.to_json %>'>
+    <div id='unique_addresses_chart'></div>
   </section>
 </div>
 <script>
 window.onload = function() {
   'use strict';  
-  google.charts.setOnLoadCallback(draw_difficulty_chart);
+  google.charts.setOnLoadCallback(draw_unique_addresses_chart);
 
-  function draw_difficulty_chart() {
+  function draw_unique_addresses_chart() {
     var data = new google.visualization.DataTable();
     data.addColumn('number', 'Time');
     data.addColumn('number', 'Total');
-    data.addRows(JSON.parse(document.getElementById('data').dataset.difficulty));
+    data.addRows(JSON.parse(document.getElementById('data').dataset.unique_addresses));
 
     var options = {
-      title: 'Difficulty',
+      title: 'Number of Unique Bitcoin Addresses used',
       height: 400,
       chartArea: {
         width: '90%',
@@ -41,7 +41,7 @@ window.onload = function() {
         }
       },
       vAxis: {
-        title: 'Difficulty',
+        title: 'Number of Addresses',
         format: 'short'
       },
       legend: {
@@ -49,7 +49,7 @@ window.onload = function() {
       }
     };
 
-    var chart = new google.visualization.LineChart(document.getElementById('difficulty_chart'));
+    var chart = new google.visualization.LineChart(document.getElementById('unique_addresses_chart'));
     resize(function () {
       chart.draw(data, options);
     });

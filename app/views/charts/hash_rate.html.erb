@@ -1,9 +1,16 @@
 <div class='hero'>
-  <section id='data' class='container' data-hash_rate='<%= @hash_rate.to_json %>'>
-  </section>
+  <div class='container'>
+    <section class="row m-b-md">
+        <div class="col-sm-12">
+          <h2><span class='glyphicon glyphicon-dashboard' aria-hidden='true'></span> Bitcoin <strong>Charts</strong></h2>
+          <%= render 'shared/breadcrumb' %>
+          <%= render 'shared/social_media' %>
+        </div>
+    </section>
+  </div>
 </div>
 <div class='sub'>
-  <section class='container'>
+  <section id='data' class='container' data-hash_rate='<%= @hash_rate.to_json %>'>
     <div id='hash_rate_chart'></div>
   </section>
 </div>
@@ -20,11 +27,22 @@ window.onload = function() {
 
     var options = {
       title: 'Hash Rate',
+      height: 400,
+      chartArea: {
+        width: '90%',
+        height: '80%',
+        left: 75,
+        right: 25
+      },
       hAxis: {
         // ticks: [1, 2 ,3 ,4 ,5 ,6 ,7 ,8 ,9, 10]
+        gridlines: {
+          color: 'transparent'
+        }
       },
       vAxis: {
-        title: 'Hash Rate GH/s'
+        title: 'Hash Rate GH/s',
+        format: 'short'
       },
       legend: {
         position: 'none'

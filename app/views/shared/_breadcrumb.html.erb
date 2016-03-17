@@ -1,12 +1,65 @@
 <ul class="breadcrumb">
 <li><%= link_to 'Home', root_url %></li>
-<% if params[:controller] === 'blocks' %>
+<% if params[:controller] == 'blocks' %>
   <li class="active">Block <%= number_with_delimiter @block['data']['nb'], delimiter: ',' %></li>
-<% elsif params[:controller] === 'addresses' %>
+<% elsif params[:controller] == 'addresses' %>
   <li class="active">Address <%= @address['data']['address'] %></li>
-<% elsif params[:action] === 'bookmarks' %>
+<% elsif params[:action] == 'bookmarks' %>
   <li class="active">Bookmarks</li>
-<% elsif params[:action] === 'calculator' %>
+<% elsif params[:action] == 'calculator' %>
   <li class="active">Calculator</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'show' %>
+  <li class="active">Charts</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'circulation' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Circulation</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'market_cap' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Market Capitalization</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'transaction_fees_btc' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Transaction Fees (BTC)</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'transaction_fees_usd' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Transaction Fees (USD)</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'network_deficit' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Network Deficit</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'transactions_daily' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Total Transactions Daily</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'transactions_total' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Total Transactions</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'unique_addresses' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Unique Addresses</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'average_transactions' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Average Transactions</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'orphaned_blocks' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Orphaned Blocks</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'total_output' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Total Output</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'market_price' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Market Price</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'hash_rate' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Hash Rate</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'difficulty' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Difficulty</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'days_destroyed_cumulative' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Days Destroyed Cumulative</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'days_destroyed' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Days Destroyed</li>
+<% elsif params[:controller] == 'charts' && params[:action] == 'blockchain_size' %>
+  <li><%= link_to 'Charts', charts_show_path %></li>
+  <li class="active">Blockchain Size</li>
 <% end %>
 </ul>
