@@ -59,6 +59,4 @@ group :development do
 end
 gem 'newrelic_rpm'
 
-gem "simple_stats"
-gem "chartkick"
 gem 'mongoid'
