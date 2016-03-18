@@ -1,0 +1,117 @@
+<div class='hero'>
+  <div class='container'>
+    <section class="row m-b-md">
+        <div class="col-sm-12">
+          <h2><span class='glyphicon glyphicon-dashboard' aria-hidden='true'></span> Bitcoin <strong>Charts</strong></h2>
+          <%= render 'shared/breadcrumb' %>
+          <%= render 'shared/social_media' %>
+        </div>
+    </section>
+  </div>
+</div>
+<div class='sub'>
+  <section class='container'>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Total Bitcoins in Circulation', charts_circulation_path %>
+      </h3>
+      <p>A graph showing the historical total number of bitcoins which have been mined.</p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Market Capitalization', charts_market_cap_path %>
+      </h3>
+      <p>A graph showing the total number of bitcoins in circulation * the market price in USD.</p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Total Transaction Fees (BTC)', charts_transaction_fees_btc_path %>
+      </h3>
+      <p>A chart showing the total BTC value of transaction fees miners earn per day.</p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Transaction Fees (USD)', charts_transaction_fees_usd_path %>
+      </h3>
+      <p></p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Network Deficit', charts_network_deficit_path %>
+      </h3>
+      <p>Shows difference between transaction fees and cost of bitcoin mining.</p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Transactions (daily)', charts_transactions_daily_path %>
+      </h3>
+      <p>A chart of the total number of unique bitcoin transactions per day.</p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Transactions (total)', charts_transactions_total_path %>
+      </h3>
+      <p></p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Unique Addresses', charts_unique_addresses_path %>
+      </h3>
+      <p>A chart of the number of unique bitcoin addresses used per day.</p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Average Transactions per Block', charts_average_transactions_path %>
+      </h3>
+      <p>A chart of the average number of transactions per block.</p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Orphaned Blocks', charts_orphaned_blocks_path %>
+      </h3>
+      <p>Number of blocks mined per day not part of the main chain.</p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Total Output Volume', charts_total_output_volume_path %>
+      </h3>
+      <p>The total value of all transaction outputs per day. This includes coins that were returned to the sender as change.</p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Market Price', charts_market_price_path %>
+      </h3>
+      <p>A chart showing the USD market price from the major exchanges</p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Hash Rate', charts_hash_rate_path %>
+      </h3>
+      <p>The estimated number of giga hashes per second (billions of hashes per second) the bitcoin network is performing.</p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Difficulty', charts_difficulty_path %>
+      </h3>
+      <p>A chart showing difficulty changes over time. Difficulty is a measure of how difficult it is to find a new block compared to the easiest it can ever be.</p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Days Destroyed Cumulative', charts_days_destroyed_cumulative_path %>
+      </h3>
+      <p>Bitcoin Days Destroyed is a measure of the transaction volume of Bitcoin. If someone has 100 BTC that they received a week ago and they spend it then 700 bitcoin days have been destroyed. If they take those 100BTC and send them to several addresses and then spend them then although the total transaction volume could be arbitrarily large the number of bitcoin days destroyed is still 700.</p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Days Destroyed', charts_days_destroyed_path %>
+      </h3>
+      <p>A none cumulative version of Bitcoin Days Destroyed.</p>
+    </div>
+    <div class='chart_link'>
+      <h3>
+        <%= link_to 'Blockchain Size', charts_blockchain_size_path %>
+      </h3>
+      <p>The total size of all block headers and transactions. Not including database indexes</p>
+    </div>
+  </section>
+</div>

@@ -39,9 +39,9 @@ GEM
     arel (6.0.3)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bson (4.0.4)
     builder (3.2.2)
     byebug (8.2.1)
-    chartkick (1.4.1)
     coffee-rails (4.1.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.1.x)
@@ -77,11 +77,19 @@ GEM
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    mongo (2.2.4)
+      bson (~> 4.0)
+    mongoid (5.1.1)
+      activemodel (~> 4.0)
+      mongo (~> 2.1)
+      origin (~> 2.2)
+      tzinfo (>= 0.3.37)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     newrelic_rpm (3.14.2.312)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    origin (2.2.0)
     pg (0.18.4)
     rack (1.6.4)
     rack-test (0.6.3)
@@ -123,7 +131,6 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    simple_stats (1.1.0)
     spring (1.6.2)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
@@ -158,18 +165,17 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  chartkick
   coffee-rails (~> 4.1.0)
   figaro
   httparty
   jbuilder (~> 2.0)
   jquery-rails
+  mongoid
   newrelic_rpm
   pg
   rails (= 4.2.5)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  simple_stats
   spring
   sqlite3
   turbolinks

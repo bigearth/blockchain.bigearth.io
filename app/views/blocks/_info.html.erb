@@ -57,7 +57,7 @@
                             <td><%= @block['data']['merkleroot'] %></td>
                         </tr>
                         <tr>
-                            <% unless @block['data']['next_block_hash'] === '' %>
+                            <% unless @block['data']['next_block_hash'] == '' %>
                                 <th><span class='glyphicon glyphicon-menu-right' aria-hidden='true'></span> Next Block Hash</th>
                                 <td><%= link_to @block['data']['next_block_hash'], block_path(@block['data']['nb'] + 1) %></td>
                             <% end %>

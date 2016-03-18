@@ -12,22 +12,28 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class='<%= if params[:action] === 'bookmarks' then "active" end %>'>
+        <li class='<%= if params[:action] == 'bookmarks' then "active" end %>'>
           <%= link_to apps_bookmarks_path do %>
-            <span class="text-primary glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+            <span class="text-primary glyphicon glyphicon-bookmark"></span>
             Bookmarks
             <span id='bookmark_count_badge' class="hide label label-primary label-as-badge"></span>
           <% end %>
         </li>
-        <li class='<%= if params[:action] === 'calculator' then "active" end %>'>
+        <li class='<%= if params[:action] == 'calculator' then "active" end %>'>
           <%= link_to apps_calculator_path do %>
-            <span class="text-primary glyphicon glyphicon-phone" aria-hidden="true"></span>
+            <span class="text-primary glyphicon glyphicon-phone"></span>
             Calculator
+          <% end %>
+        </li>
+        <li class='<%= if params[:controller] == 'charts'  then "active" end %>'>
+          <%= link_to charts_show_path do %>
+            <span class="text-primary glyphicon glyphicon-dashboard"></span>
+            Charts
           <% end %>
         </li>
         <li>
           <%= link_to 'http://blog.bigearth.io' do %>
-            <span class="text-primary glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+            <span class="text-primary glyphicon glyphicon-list-alt"></span>
             Blog
           <% end %>
         </li>

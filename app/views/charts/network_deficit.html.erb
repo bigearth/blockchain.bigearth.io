@@ -1,0 +1,58 @@
+<div class='hero'>
+  <div class='container'>
+    <section class="row m-b-md">
+        <div class="col-sm-12">
+          <h2><span class='glyphicon glyphicon-dashboard' aria-hidden='true'></span> Bitcoin <strong>Charts</strong></h2>
+          <%= render 'shared/breadcrumb' %>
+          <%= render 'shared/social_media' %>
+        </div>
+    </section>
+  </div>
+</div>
+<div class='sub'>
+  <section id='data' class='container' data-network_deficit='<%= @network_deficit.to_json %>'>
+    <div id='network_deficit_chart'></div>
+  </section>
+</div>
+<script>
+window.onload = function() {
+  'use strict';  
+  google.charts.setOnLoadCallback(draw_network_deficit_chart);
+
+  function draw_network_deficit_chart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Time');
+    data.addColumn('number', 'Total');
+    data.addRows(JSON.parse(document.getElementById('data').dataset.network_deficit));
+
+    var options = {
+      title: 'Network Deficit per day',
+      height: 400,
+      colors: ['#0f5288'],
+      chartArea: {
+        width: '90%',
+        height: '80%',
+        left: 75,
+        right: 25
+      },
+      hAxis: {
+        gridlines: {
+          color: 'transparent'
+        }
+      },
+      vAxis: {
+        title: 'Network Deficit (USD)',
+        format: 'short'
+      },
+      legend: {
+        position: 'none'
+      }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('network_deficit_chart'));
+    resize(function () {
+      chart.draw(data, options);
+    });
+  }
+};
+</script>
