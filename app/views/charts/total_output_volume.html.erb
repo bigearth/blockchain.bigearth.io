@@ -10,24 +10,25 @@
   </div>
 </div>
 <div class='sub'>
-  <section id='data' class='container' data-total_output='<%= @total_output.to_json %>'>
-    <div id='total_output_chart'></div>
+  <section id='data' class='container' data-total_output_volume='<%= @total_output_volume.to_json %>'>
+    <div id='total_output_volume_chart'></div>
   </section>
 </div>
 <script>
 window.onload = function() {
   'use strict';  
-  google.charts.setOnLoadCallback(draw_total_output_chart);
+  google.charts.setOnLoadCallback(draw_total_output_volume_chart);
 
-  function draw_total_output_chart() {
+  function draw_total_output_volume_chart() {
     var data = new google.visualization.DataTable();
-    data.addColumn('number', 'Time');
+    data.addColumn('string', 'Time');
     data.addColumn('number', 'Total');
-    data.addRows(JSON.parse(document.getElementById('data').dataset.total_output));
+    data.addRows(JSON.parse(document.getElementById('data').dataset.total_output_volume));
 
     var options = {
       title: 'Total Output Volume',
       height: 400,
+      colors: ['#0f5288'],
       chartArea: {
         width: '90%',
         height: '80%',
@@ -49,7 +50,7 @@ window.onload = function() {
       }
     };
 
-    var chart = new google.visualization.LineChart(document.getElementById('total_output_chart'));
+    var chart = new google.visualization.LineChart(document.getElementById('total_output_volume_chart'));
     resize(function () {
       chart.draw(data, options);
     });

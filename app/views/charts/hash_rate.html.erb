@@ -21,13 +21,14 @@ window.onload = function() {
 
   function draw_hash_rate_chart() {
     var data = new google.visualization.DataTable();
-    data.addColumn('number', 'Time');
+    data.addColumn('string', 'Time');
     data.addColumn('number', 'Total');
     data.addRows(JSON.parse(document.getElementById('data').dataset.hash_rate));
 
     var options = {
       title: 'Hash Rate',
       height: 400,
+      colors: ['#0f5288'],
       chartArea: {
         width: '90%',
         height: '80%',
@@ -41,7 +42,7 @@ window.onload = function() {
         }
       },
       vAxis: {
-        title: 'Hash Rate GH/s',
+        title: 'Hash Rate (per second)',
         format: 'short'
       },
       legend: {

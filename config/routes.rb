@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'charts/unique_addresses' => 'charts#unique_addresses'
   get 'charts/average_transactions' => 'charts#average_transactions'
   get 'charts/orphaned_blocks' => 'charts#orphaned_blocks'
-  get 'charts/total_output' => 'charts#total_output'
+  get 'charts/total_output_volume' => 'charts#total_output_volume'
   get 'charts/market_price' => 'charts#market_price'
   get 'charts/hash_rate' => 'charts#hash_rate'
   get 'charts/difficulty' => 'charts#difficulty'

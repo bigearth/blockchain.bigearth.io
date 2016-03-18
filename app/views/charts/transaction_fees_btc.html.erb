@@ -21,13 +21,14 @@ window.onload = function() {
 
   function draw_transaction_fees_btc_chart() {
     var data = new google.visualization.DataTable();
-    data.addColumn('number', 'Time');
-    data.addColumn('number', 'Total');
+    data.addColumn('string', 'Time');
+    data.addColumn('number', 'BTC');
     data.addRows(JSON.parse(document.getElementById('data').dataset.transaction_fees_btc));
 
     var options = {
       title: 'Total Transaction Fees',
       height: 400,
+      colors: ['#0f5288'],
       chartArea: {
         width: '90%',
         height: '80%',

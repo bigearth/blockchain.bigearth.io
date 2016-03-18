@@ -21,13 +21,14 @@ window.onload = function() {
 
   function draw_market_price_chart() {
     var data = new google.visualization.DataTable();
-    data.addColumn('number', 'Date');
-    data.addColumn('number', 'Price');
+    data.addColumn('string', 'Date');
+    data.addColumn('number', 'USD');
     data.addRows(JSON.parse(document.getElementById('data').dataset.market_price));
 
     var options = {
       title: 'Market Price (USD)',
       height: 400,
+      colors: ['#0f5288'],
       chartArea: {
         width: '90%',
         height: '80%'

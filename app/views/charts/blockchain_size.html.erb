@@ -21,13 +21,14 @@ window.onload = function() {
 
   function draw_blockchain_size_chart() {
     var data = new google.visualization.DataTable();
-    data.addColumn('number', 'Time');
+    data.addColumn('string', 'Time');
     data.addColumn('number', 'Total');
     data.addRows(JSON.parse(document.getElementById('data').dataset.blockchain_size));
 
     var options = {
       title: 'Blockchain Size',
       height: 400,
+      colors: ['#0f5288'],
       chartArea: {
         width: '90%',
         height: '80%',

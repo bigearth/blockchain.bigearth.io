@@ -21,13 +21,14 @@ window.onload = function() {
 
   function draw_average_transactions_chart() {
     var data = new google.visualization.DataTable();
-    data.addColumn('number', 'Time');
+    data.addColumn('string', 'Time');
     data.addColumn('number', 'Total');
     data.addRows(JSON.parse(document.getElementById('data').dataset.average_transactions));
 
     var options = {
       title: 'Average Number of Transactions per Block',
       height: 400,
+      colors: ['#0f5288'],
       chartArea: {
         width: '90%',
         height: '80%',

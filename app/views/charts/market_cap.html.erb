@@ -21,13 +21,14 @@ window.onload = function() {
 
   function draw_market_cap_chart() {
     var data = new google.visualization.DataTable();
-    data.addColumn('number', 'Time');
-    data.addColumn('number', 'Total');
+    data.addColumn('string', 'Time');
+    data.addColumn('number', 'Market Cap');
     data.addRows(JSON.parse(document.getElementById('data').dataset.market_cap));
 
     var options = {
       title: 'Market Capitalization',
       height: 400,
+      colors: ['#0f5288'],
       chartArea: {
         width: '90%',
         height: '80%',
