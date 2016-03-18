@@ -6,9 +6,9 @@ module ApplicationHelper
       "Bitcoin Transaction #{@tx['data']['tx']} - " 
     elsif @address
       "Bitcoin Address #{@address['data']['address']} - " 
-    elsif params[:action] === 'bookmarks'
+    elsif params[:action] == 'bookmarks'
       "Bitcoin Bookmarks - " 
-    elsif params[:action] === 'calculator'
+    elsif params[:action] == 'calculator'
       "Bitcoin Calculator - " 
     end
   end
