@@ -8,7 +8,7 @@
           <li class="active">Transaction <%= @tx['data']['tx'] %></li>
         </ul>
         <%= render 'shared/social_media' %>
-        <% if @tx['data']['is_coinbased'] === 1 %>
+        <% if @tx['data']['is_coinbased'] == 1 %>
         <div class="panel panel-success">
         <% else %>
         <div class="panel panel-default">
@@ -22,7 +22,7 @@
           <div class="panel-body">
             <section class="row m-b-md">
               <div class="col-sm-6">
-                <% if @tx['data']['is_coinbased'] === 1 %>
+                <% if @tx['data']['is_coinbased'] == 1 %>
                 <span class="label label-success">Newly Generated Coins</span>
                 <% else %>
                 <h4>Input Address(es)</h4>

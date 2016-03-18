@@ -1,7 +1,7 @@
 <section class="row m-b-md">
   <% ['first_tx', 'last_tx'].each do |tx| %>
     <div class="col-sm-6">
-      <h4><%= tx === 'first_tx' ? 'First' : 'Last'%> <strong>Transaction</strong></h4>
+      <h4><%= tx == 'first_tx' ? 'First' : 'Last'%> <strong>Transaction</strong></h4>
       <section class="panel panel-default">
           <div class="table-responsive">
               <table class="table table-striped">

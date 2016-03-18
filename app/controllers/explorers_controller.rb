@@ -16,7 +16,7 @@ class ExplorersController < ApplicationController
     block_height = @coin_info['data']['last_block']['nb']
     
     # Calculate number_of_blocks based on the presence and value or absence of the ?prev_block_count param
-    if params[:prev_block_count].nil? || params[:prev_block_count] === ""
+    if params[:prev_block_count].nil? || params[:prev_block_count] == ""
       # If there is no prev_block_count param then default to 20 previous blocks 
       number_of_blocks = 20
     elsif params[:prev_block_count].to_i < 2
@@ -46,6 +46,11 @@ class ExplorersController < ApplicationController
     
     # Fetch Block Info from external webservice 
     @blocks = HTTParty.get "http://btc.blockr.io/api/v1/block/info/#{prev_blocks.join(',')}"
+    
+    # Massage data for Timeline chart
+    @timeline = @blocks['data'].each_with_index.map do |block, index|
+      [block['nb'].to_s, Time.parse(@blocks['data'][index+1 != @blocks['data'].size ? index+1 : index]['time_utc']).to_s, Time.parse(block['time_utc']).to_s]
+    end
     
     @statistics = {
       nb_txs: [],

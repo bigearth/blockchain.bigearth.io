@@ -63,5 +63,4 @@ group :development do
 end
 gem 'newrelic_rpm'
 
-gem "simple_stats"
-gem 'delayed_job_active_record'
+gem 'mongoid'

@@ -2,7 +2,7 @@
   <div class="col-sm-12">
   <h3><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Transactions (for <strong>Block</strong> <%= number_with_delimiter(@block['data']['nb'], delimiter: ',') %>)</h3>
   <% @txs['data']['txs'].each do |tx| %>
-    <% if tx['is_coinbased'] === 1 %>
+    <% if tx['is_coinbased'] == 1 %>
     <div class="panel panel-success">
     <% else %>
     <div class="panel panel-default">
@@ -16,7 +16,7 @@
       <div class="panel-body">
         <section class="row m-b-md">
           <div class="col-sm-6">
-            <% if tx['is_coinbased'] === 1 %>
+            <% if tx['is_coinbased'] == 1 %>
               <span class="label label-success">Newly Generated Coins</span>
             <% else %>
             <h4>Input Address(es)</h4>

@@ -1,0 +1,58 @@
+<div class='hero'>
+  <div class='container'>
+    <section class="row m-b-md">
+        <div class="col-sm-12">
+          <h2><span class='glyphicon glyphicon-dashboard' aria-hidden='true'></span> Bitcoin <strong>Charts</strong></h2>
+          <%= render 'shared/breadcrumb' %>
+          <%= render 'shared/social_media' %>
+        </div>
+    </section>
+  </div>
+</div>
+<div class='sub'>
+  <section id='data' class='container' data-transaction_fees_btc='<%= @transaction_fees_btc.to_json %>'>
+    <div id='transaction_fees_btc_chart'></div>
+  </section>
+</div>
+<script>
+window.onload = function() {
+  'use strict';  
+  google.charts.setOnLoadCallback(draw_transaction_fees_btc_chart);
+
+  function draw_transaction_fees_btc_chart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Time');
+    data.addColumn('number', 'BTC');
+    data.addRows(JSON.parse(document.getElementById('data').dataset.transaction_fees_btc));
+
+    var options = {
+      title: 'Total Transaction Fees',
+      height: 400,
+      colors: ['#0f5288'],
+      chartArea: {
+        width: '90%',
+        height: '80%',
+        left: 50,
+        right: 25
+      },
+      hAxis: {
+        gridlines: {
+          color: 'transparent'
+        }
+      },
+      vAxis: {
+        title: 'Transaction Fees (BTC)',
+        format: 'short'
+      },
+      legend: {
+        position: 'none'
+      }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('transaction_fees_btc_chart'));
+    resize(function () {
+      chart.draw(data, options);
+    });
+  }
+};
+</script>
