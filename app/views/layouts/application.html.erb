@@ -22,8 +22,12 @@
       </div>
     </div>
   </noscript>
-  <p class='notice'><%= notice %></p>
-  <p class='alert'><%= alert %></p>
+  <% if notice %>
+    <div class='alert alert-info'><%= notice %></div>
+  <% end %>
+  <% if alert %>
+    <div class='alert alert-danger'><%= alert %></div>
+  <% end %>
   <%= yield %>
   <footer>
     <div class='container'>

@@ -17,6 +17,12 @@
   <% elsif params[:action] === 'show' %>
     <li class="active"><%= @chain.pub_key %></li>
   <% end %>
+<% elsif params[:controller] == 'devise/registrations' %>
+  <li class="active">Profile</li>
+  <li class="active">Sign Up</li>
+<% elsif params[:controller] == 'devise/sessions' %>
+  <li class="active">Profile</li>
+  <li class="active">Sign In</li>
 <% elsif params[:controller] == 'charts' && params[:action] == 'show' %>
   <li class="active">Charts</li>
 <% elsif params[:controller] == 'charts' && params[:action] == 'circulation' %>
