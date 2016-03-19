@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="app">
+<html lang='en' class='app'>
 <head>
-  <meta charset="utf-8" />
+  <meta charset='utf-8'>
   <title><%= create_page_title %> Big Earth Blockchain Explorer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <%= javascript_include_tag "http://www.google.com/jsapi" %>
+  <meta name='viewpor' content='width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=0'>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+  <%= javascript_include_tag 'http://www.google.com/jsapi' %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= favicon_link_tag %>
   <%= csrf_meta_tags %>
@@ -18,15 +18,23 @@
       <div class="alert alert-danger" role="alert">
         <h3><span class='glyphicon glyphicon-warning-sign'
         aria-hidden='true'></span> Uh oh! Some parts of Big Earth don’t work properly without JavaScript!</h3>
-        <div>Please enable JavaScript. If you don’t know how, you can find instructions <a href="http://www.enable-javascript.com/" target="_blank">here</a>.</div>
+        <div>Please enable JavaScript. If you don’t know how, you can find instructions <a href='http://www.enable-javascript.com/' target='_blank'>here</a>.</div>
       </div>
     </div>
   </noscript>
+  <div class='container'>
+    <% if notice %>
+      <div class='alert alert-info'><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class='alert alert-danger'><%= alert %></div>
+    <% end %>
+  </div>
   <%= yield %>
   <footer>
     <div class='container'>
-      <section class="row m-b-md">
-        <div class="col-sm-12">
+      <section class='row m-b-md'>
+        <div class='col-sm-12'>
           <%= render 'shared/footer' %>
         </div>
       </section>
@@ -34,12 +42,12 @@
   </footer>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= render 'shared/google_analytics' %>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <%= javascript_include_tag "http://www.google.com/jsapi" %>
+  <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+  <%= javascript_include_tag 'http://www.google.com/jsapi' %>
   <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
     var resize = function (callback) {
-      window.addEventListener("resize", callback, true);
+      window.addEventListener('resize', callback, true);
       callback();
     };
   </script>

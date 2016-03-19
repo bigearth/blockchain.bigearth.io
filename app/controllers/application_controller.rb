@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
     coin_info = HTTParty.get 'http://btc.blockr.io/api/v1/coin/info' 
     @exchange_rate = coin_info['data']['markets']['coinbase']['value']
   end
+  
+  def after_sign_in_path_for user
+    user_path user
+  end
 end

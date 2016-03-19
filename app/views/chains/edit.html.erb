@@ -1,0 +1,25 @@
+<div class='hero'>
+  <section class='container'>
+    <h2><span class='glyphicon glyphicon-th-large' aria-hidden='true'></span> Bitcoin <strong>Blockchains</strong></h2>
+    <%= render 'shared/breadcrumb' %>
+    <%= render 'shared/social_media' %>
+  </section>
+</div>
+<div class='sub'>
+  <section class='container'>
+    <h3><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Bitcoin <strong>Blockchain</strong></h3>
+    <section class='panel panel-default'>
+      <div class='table-responsive'>
+        <table class='table table-striped'>
+          <tbody>
+            <tr>
+              <td><%= render 'form' %></td>
+              <td><%= link_to 'Show', @chain %></td>
+              <td><%= link_to 'Back', chains_path %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+</div>

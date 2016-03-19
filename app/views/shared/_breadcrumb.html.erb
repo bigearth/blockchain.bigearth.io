@@ -8,58 +8,68 @@
   <li class="active">Bookmarks</li>
 <% elsif params[:action] == 'calculator' %>
   <li class="active">Calculator</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'show' %>
-  <li class="active">Charts</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'circulation' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Circulation</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'market_cap' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Market Capitalization</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'transaction_fees_btc' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Transaction Fees (BTC)</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'transaction_fees_usd' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Transaction Fees (USD)</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'network_deficit' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Network Deficit</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'transactions_daily' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Total Transactions Daily</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'transactions_total' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Total Transactions</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'unique_addresses' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Unique Addresses</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'average_transactions' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Average Transactions</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'orphaned_blocks' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Orphaned Blocks</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'total_output_volume' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Total Output Volume</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'market_price' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Market Price</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'hash_rate' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Hash Rate</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'difficulty' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Difficulty</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'days_destroyed_cumulative' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Days Destroyed Cumulative</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'days_destroyed' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Days Destroyed</li>
-<% elsif params[:controller] == 'charts' && params[:action] == 'blockchain_size' %>
-  <li><%= link_to 'Charts', charts_show_path %></li>
-  <li class="active">Blockchain Size</li>
+<% elsif params[:controller] == 'chains' %>
+  <li><%= link_to 'Blockchains', chains_path %></li>
+  <% if params[:action] == 'new' %>
+    <li class="active">New</li>
+  <% elsif params[:action] == 'edit' %>
+    <li class="active">Edit</li>
+  <% elsif params[:action] == 'show' %>
+    <li class="active"><%= @chain.pub_key %></li>
+  <% end %>
+<% elsif params[:controller] == 'users' %>
+    <li class="active">Profile</li>
+  <% if params[:action] == 'show' %>
+    <li class="active"><%= current_user.email %></li>
+  <% elsif params[:action] == 'edit' %>
+    <li class="active">Edit</li>
+  <% end %>
+<% elsif params[:controller] == 'devise/registrations' %>
+  <li class="active">Profile</li>
+  <li class="active">Sign Up</li>
+<% elsif params[:controller] == 'devise/sessions' %>
+  <li class="active">Profile</li>
+  <li class="active">Sign In</li>
+<% elsif params[:controller] == 'charts' %>
+  <% if params[:action] == 'show' %>
+    <li class="active">Charts</li>
+  <% else %>
+    <li><%= link_to 'Charts', charts_show_path %></li>
+  <% end %>
+  <% if params[:action] == 'circulation' %>
+    <li class="active">Circulation</li>
+  <% elsif params[:action] == 'market_cap' %>
+    <li class="active">Market Capitalization</li>
+  <% elsif params[:action] == 'transaction_fees_btc' %>
+    <li class="active">Transaction Fees (BTC)</li>
+  <% elsif params[:action] == 'transaction_fees_usd' %>
+    <li class="active">Transaction Fees (USD)</li>
+  <% elsif params[:action] == 'network_deficit' %>
+    <li class="active">Network Deficit</li>
+  <% elsif params[:action] == 'transactions_daily' %>
+    <li class="active">Total Transactions Daily</li>
+  <% elsif params[:action] == 'transactions_total' %>
+    <li class="active">Total Transactions</li>
+  <% elsif params[:action] == 'unique_addresses' %>
+    <li class="active">Unique Addresses</li>
+  <% elsif params[:action] == 'average_transactions' %>
+    <li class="active">Average Transactions</li>
+  <% elsif params[:action] == 'orphaned_blocks' %>
+    <li class="active">Orphaned Blocks</li>
+  <% elsif params[:action] == 'total_output_volume' %>
+    <li class="active">Total Output Volume</li>
+  <% elsif params[:action] == 'market_price' %>
+    <li class="active">Market Price</li>
+  <% elsif params[:action] == 'hash_rate' %>
+    <li class="active">Hash Rate</li>
+  <% elsif params[:action] == 'difficulty' %>
+    <li class="active">Difficulty</li>
+  <% elsif params[:action] == 'days_destroyed_cumulative' %>
+    <li class="active">Days Destroyed Cumulative</li>
+  <% elsif params[:action] == 'days_destroyed' %>
+    <li class="active">Days Destroyed</li>
+  <% elsif params[:action] == 'blockchain_size' %>
+    <li class="active">Blockchain Size</li>
+  <% end %>
 <% end %>
 </ul>

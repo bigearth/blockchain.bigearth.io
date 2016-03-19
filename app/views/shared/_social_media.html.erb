@@ -4,7 +4,7 @@
 <%= link_to "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", class: 'btn btn-lg' do %>
   <span class="fa fa-facebook"></span> 
 <% end %>
-<% unless current_page?(root_url) || current_page?(apps_calculator_path) || params[:controller] == 'charts' %>
+<% unless current_page?(root_url) || current_page?(apps_calculator_path) || params[:controller] == 'chains' || params[:controller] == 'charts' || params[:controller] == 'users' || params[:controller] == 'devise/registrations' || params[:controller] == 'devise/sessions' %>
   <% if current_page?(apps_bookmarks_path) %>
     <%= link_to '#', class: 'btn btn-sm clear_all_bookmarks' do %>
       <span class="text-primary glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -15,5 +15,11 @@
       <span class="text-primary glyphicon glyphicon-bookmark" aria-hidden="true"></span> 
       <span id='create_bookmark_description'>Add to Bookmarks</span>
     <% end %>
+  <% end %>
+<% end %>
+<% if params[:controller] == 'chains' %>
+  <%= link_to new_chain_path, class: 'btn btn-sm' do %>
+    <span class="text-primary glyphicon glyphicon-th-large" aria-hidden="true"></span>
+    New Blockchain
   <% end %>
 <% end %>

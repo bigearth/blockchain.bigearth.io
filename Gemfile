@@ -34,7 +34,11 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# Webservice calls
 gem 'httparty'
+
+# Digital Ocean API V2
+gem 'droplet_kit'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -60,3 +64,4 @@ end
 gem 'newrelic_rpm'
 
 gem 'mongoid'
+gem 'devise'

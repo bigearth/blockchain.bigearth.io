@@ -1,0 +1,41 @@
+<div class='hero'>
+  <section class='container'>
+    <p id="notice"><%= notice %></p>
+    <h2><span class='glyphicon glyphicon-th-large' aria-hidden='true'></span> Bitcoin <strong>Blockchains</strong></h2>
+    <%= render 'shared/breadcrumb' %>
+    <%= render 'shared/social_media' %>
+  </section>
+</div>
+<div class='sub'>
+  <section class='container'>
+    <h3><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Last <%= @chains.size %> <strong>Bitcoin</strong> Blockchains</h3>
+    <% if @chains.empty? %>
+      <section class='panel panel-default'>
+        <section class='panel-heading'>
+          <h3><span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> None</h3>
+        </section>
+        <section class='panel-body'>
+          No Blockchains currently.
+        </section>
+      </section>
+    <% else %>
+      <% @chains.each do |chain| %>
+        <section class='panel panel-default'>
+          <section class='panel-heading'>
+            <h3>
+              <%= link_to chain do %>
+                <span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> <%= chain.pub_key %>
+              <% end %>
+            </h3>
+          </section>
+          <section class='panel-body'>
+            Stats...
+          </section>
+          <section class='panel-footer'>
+            footer info
+          </section>
+        </section>
+      <% end %>
+    <% end %>
+  </section>
+</div>
