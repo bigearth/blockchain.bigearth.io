@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   end
   
   def after_sign_in_path_for user
+    UserMailer.welcome_email(current_user).deliver_later
     user_path user
   end
 end
