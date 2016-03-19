@@ -12,6 +12,14 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <% if user_signed_in? %>
+          <li class='<%= if params[:controller] == 'users' then "active" end %>'>
+            <%= link_to user_path @user do %>
+              <span class="text-primary glyphicon glyphicon-bookmark"></span>
+              Profile
+            <% end %>
+          </li>
+        <% end %>
         <li class='<%= if params[:action] == 'bookmarks' then "active" end %>'>
           <%= link_to apps_bookmarks_path do %>
             <span class="text-primary glyphicon glyphicon-bookmark"></span>

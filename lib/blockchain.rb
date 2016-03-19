@@ -14,7 +14,7 @@ module Blockchain
           node.delay(run_at: 1.minutes.from_now).confirm_droplet_created name 
         else
           ip_address = droplet.first['networks']['v4'].first['ip_address']
-          existing_node = Platform::V1::Chain.where('pub_key = ?', name).first
+          existing_node = Chain.where('pub_key = ?', name).first
           existing_node.droplet_created = true
           existing_node.ip_address = ip_address
           existing_node.save
