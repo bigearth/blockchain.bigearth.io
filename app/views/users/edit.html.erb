@@ -1,6 +1,17 @@
-<h1>Editing User</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<div class='hero'>
+  <div class='container'>
+    <section class='row m-b-md'>
+        <div class='col-sm-12'>
+          <h2><span class='glyphicon glyphicon-user' aria-hidden='true'></span> Edit Profile <strong><%= @user.email %></strong></h2>
+          <%= render 'shared/breadcrumb' %>
+          <%= render 'shared/social_media' %>
+        </div>
+    </section>
+  </div>
+</div>
+<div class='sub'>
+  <section class='container'>
+    <%= render 'form' %>
+  </div>
+</div>

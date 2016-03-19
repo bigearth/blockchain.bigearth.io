@@ -93,7 +93,7 @@ class ChainsController < ApplicationController
       
       # select just the appropriate droplet
       droplet = @client.droplets.all.select do |droplet|  
-        droplet.name === params[:name] 
+        droplet.name == params[:name] 
       end 
       
       if droplet.empty?
@@ -153,7 +153,7 @@ class ChainsController < ApplicationController
       
       # Select just the appropriate droplet
       @droplet = droplets.select do |droplet|  
-        droplet.name === params[:name] 
+        droplet.name == params[:name] 
       end 
       
       if !@droplet.empty?

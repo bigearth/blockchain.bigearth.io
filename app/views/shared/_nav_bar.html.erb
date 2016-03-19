@@ -14,7 +14,7 @@
       <ul class="nav navbar-nav">
         <% if user_signed_in? %>
           <li class='<%= if params[:controller] == 'users' then "active" end %>'>
-            <%= link_to user_path @user do %>
+            <%= link_to user_path current_user do %>
               <span class="text-primary glyphicon glyphicon-user"></span>
               Profile
             <% end %>

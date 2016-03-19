@@ -1,17 +1,31 @@
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+<div class='hero'>
+  <div class='container'>
+    <section class='row m-b-md'>
+        <div class='col-sm-12'>
+          <h2><span class='glyphicon glyphicon-user' aria-hidden='true'></span> Profile <strong><%= @user.email %></strong></h2>
+          <%= render 'shared/breadcrumb' %>
+          <%= render 'shared/social_media' %>
+        </div>
+    </section>
+  </div>
+</div>
+<div class='sub'>
+  <section class='container'>
+    <p>
+      <strong>First name:</strong>
+      <%= @user.first_name %>
+    </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
+    <p>
+      <strong>Last name:</strong>
+      <%= @user.last_name %>
+    </p>
 
-<p>
-  <strong>Email address:</strong>
-  <%= @user.email %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Sign out', destroy_user_session_path, method: :delete  %>
+    <p>
+      <strong>Email address:</strong>
+      <%= @user.email %>
+    </p>
+    <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-default' %>
+    <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+  </div>
+</div>
