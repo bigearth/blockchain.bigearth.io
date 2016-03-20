@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root 'explorers#index'
-  devise_for :users
+  devise_for :users, path_names: {
+    verify_authy: "/verify-token",
+    enable_authy: "/enable-two-factor",
+    verify_authy_installation: "/verify-installation"
+  }
   resources :users, except: [:index]
   get 'blocks/transactions/:id' => 'blocks#transactions'
   get 'blocks/raw/:id' => 'blocks#raw'

@@ -30,6 +30,9 @@
 <% elsif params[:controller] == 'devise/sessions' %>
   <li class="active">Profile</li>
   <li class="active">Sign In</li>
+<% elsif params[:controller] == 'devise/devise_authy' %>
+  <li class="active">2FA</li>
+  <li class="active">Enable</li>
 <% elsif params[:controller] == 'charts' %>
   <% if params[:action] == 'show' %>
     <li class="active">Charts</li>
