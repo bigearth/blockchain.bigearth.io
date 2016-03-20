@@ -65,4 +65,3 @@ gem 'newrelic_rpm'
 
 gem 'mongoid'
 gem 'devise'
-gem 'sendgrid'
