@@ -8,7 +8,10 @@ class UserMailer < Devise::Mailer
   def confirmation_instructions user
     sendgrid_category 'Welcome'
     @user = user
+    puts "Email: #{@user.email}"
+    puts "Token: #{@user.confirmation_token}"
     @url  = confirmation_url @user
+    puts "URL: #{@url}"
     mail to: @user.email, subject: 'Welcome to Big Earth!'
   end
 end
