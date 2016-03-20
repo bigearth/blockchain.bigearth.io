@@ -4,8 +4,8 @@ require File.expand_path('../application', __FILE__)
 # Initialize the Rails application.
 Rails.application.initialize!
 ActionMailer::Base.smtp_settings = {
-  user_name: Figaro.env.mailer_sender,
-  password: Figaro.env.mailer_password,
+  user_name: ENV['SENDGRID_USERNAME'],
+  password: ENV['SENDGRID_PASSWORD'],
   domain: Figaro.env.mailer_domain,
   address: Figaro.env.mailer_address,
   port: Figaro.env.mailer_port,
