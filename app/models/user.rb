@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   devise :authy_authenticatable, :database_authenticatable, :confirmable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
-  after_create :send_welcome_mail
-  def send_welcome_mail
-    UserMailer.welcome_email(self).deliver_later
+  after_create :send_confirmation_instructions
+  def send_confirmation_instructions
+    UserMailer.confirmation_instructions(self).deliver_later
   end
 end
