@@ -1,7 +1,21 @@
-<h2><%= I18n.t('authy_register_title', {:scope => 'devise'}) %></h2>
-
-<%= enable_authy_form do %>
-  <%= text_field_tag :country_code, '', :autocomplete => :off, :placeholder => I18n.t('devise.country'), :id => "authy-countries"%>
-  <%= text_field_tag :cellphone, '', :autocomplete => :off, :placeholder => I18n.t('devise.cellphone'), :id => "authy-cellphone"%>
-  <p><%= submit_tag I18n.t('enable_authy', {:scope => 'devise'}) %></p>
-<% end %>
+<div class='hero'>
+  <div class='container'>
+    <section class='row m-b-md'>
+        <div class='col-sm-12'>
+          <h2><span class='glyphicon glyphicon-lock' aria-hidden='true'></span> Enable <strong>2 Factor Auth</strong></h2>
+          <%= render 'shared/breadcrumb' %>
+          <%= render 'shared/social_media' %>
+        </div>
+    </section>
+  </div>
+</div>
+<div class='sub'>
+  <section class='container form-horizontal'>
+    <%= enable_authy_form do %>
+      <%= text_field_tag country_code:, '', autocomplete: :off, placeholder: I18n.t('devise.country'), id: 'authy-countries'%>
+      <%= text_field_tag cellphone:, '', autocomplete: :off, placeholder: I18n.t('devise.cellphone'), id: 'authy-cellphone'%>
+      <p><%= submit_tag I18n.t('enable_authy', {scope: 'devise'}), class: 'btn btn-default' %></p>
+    <% end %>
+  </section>
+</div>
+  
