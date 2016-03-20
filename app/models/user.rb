@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
          
   after_create :send_confirmation_instructions
   def send_confirmation_instructions
-    UserMailer.confirmation_instructions(self).deliver_later
+    # UserMailer.confirmation_instructions(self).deliver_later
   end
 end

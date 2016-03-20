@@ -11,6 +11,12 @@ class UserMailer < Devise::Mailer
     puts "Email: #{@user.email}"
     puts "Token: #{@user.confirmation_token}"
     puts confirmation_url(@user, confirmation_token: @user.confirmation_token)
-    mail to: @user.email, subject: 'Welcome to Big Earth!'
+    begin
+      mail to: @user.emai, subject: 'Welcome to Big Earth!'
+    rescue Exception => error
+      puts "ERROR"
+      puts "ERROR: #{error}"
+      puts error
+    end
   end
 end
