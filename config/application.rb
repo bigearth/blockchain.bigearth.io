@@ -26,6 +26,7 @@ module BlockExplorer
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     config.middleware.use Rack::Deflater
+    config.active_record.observers = :user_observer
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.generators do |g|
