@@ -7,15 +7,7 @@ class UserMailer < Devise::Mailer
   default from: Figaro.env.mailer_sender
   
   def welcome_email user
-    begin
-      puts "INSide WELCOME EMAIL CALLED #{user}"
-      @user = user
-      puts "EMAIL: #{@user.email}"
-      mail(to: @user.email, subject: 'Big Earth account confirmed!')
-    rescue Exception => error
-      puts "ERROR: #{error}"
-      puts error
-      puts error.message
-    end
+    @user = user
+    mail to: user.email, subject: 'Big Earth account confirmed!'
   end
 end
