@@ -13,6 +13,12 @@ class UserMailer < Devise::Mailer
     puts "URL: #{@url}"
     @twofa = 'http://stageblockchain.bigearth.io/users/enable-two-factor'
     puts "TWOFA: #{@twofa}"
-    mail(to: @user.email, subject: 'Big Earth account confirmed!')
+    begin
+      mail(to: @user.email, subject: 'Big Earth account confirmed!')
+    rescue Exception => error
+      puts "ERROR: #{error}"
+      puts error
+      puts error.message
+    end
   end
 end
