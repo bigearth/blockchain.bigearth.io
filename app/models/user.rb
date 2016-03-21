@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          
   def before_save
-    UserMailer.welcome_email if self.confirmed_at_changed?
+    if self.confirmed_at_changed?
+      UserMailer.welcome_email(self).deliver_later
+    end
   end
 end

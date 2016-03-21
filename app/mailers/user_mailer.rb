@@ -7,6 +7,7 @@ class UserMailer < Devise::Mailer
   def welcome_email(user)
     @user = user
     @url  = 'http://stageblockchain.bigearth.io/users/sign_in'
+    @twofa = 'http://stageblockchain.bigearth.io/users/enable-two-factor'
     mail(to: @user.email, subject: 'Big Earth account confirmed!')
   end
 end
