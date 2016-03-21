@@ -6,16 +6,9 @@ class UserMailer < Devise::Mailer
   default template_path: 'devise/mailer' # to make sure that your mailer uses the devise views
   
   def welcome_email user
-    puts "WELCOME EMAIL CALLED #{user}"
-    @user = user
-    puts "USER: #{@user}"
-    @url  = 'http://stageblockchain.bigearth.io/users/sign_in'
-    puts "URL: #{@url}"
-    @twofa = 'http://stageblockchain.bigearth.io/users/enable-two-factor'
-    puts "TWOFA: #{@twofa}"
-    puts "EMAIL: #{@user.email}"
     begin
-      mail(to: @user.email, subject: 'Big Earth account confirmed!')
+      puts "INSide WELCOME EMAIL CALLED #{user}"
+      mail(to: user.email, subject: 'Big Earth account confirmed!')
     rescue Exception => error
       puts "ERROR: #{error}"
       puts error
