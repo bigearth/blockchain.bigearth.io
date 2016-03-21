@@ -11,10 +11,10 @@
     <h2>Next Steps</h2>
     <ol>
       <li>
-        We recommend turning on <%= link_to '2 factor authentication', 'https://en.wikipedia.org/wiki/Two-factor_authentication' %> to make your account more secure. First download <%= link_to 'Authy', '' %> and then <%= link_to 'enable two factor authentication', user_enable_authy_path %>.
+        We recommend turning on <%= link_to '2 factor authentication', 'https://en.wikipedia.org/wiki/Two-factor_authentication' %> to make your account more secure. First download <%= link_to 'Authy', 'https://www.authy.com/app/' %> and then <%= link_to 'enable two factor authentication', user_enable_authy_path @user %>.
       </li>
       <li>
-        <%= link_to 'Sign in', new_user_session_path %> and create your first <%= link_to 'chain', root_path %>
+        <%= link_to 'Sign in', new_user_session_path @user %> and create your first chain
       </li>
     </ol>
     <p>Thanks for joining blockchain.bigearth.io!</p>

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          
   before_save do
     if self.confirmed_at_changed?
-      UserMailer.welcome_email(self).deliver_later
+      UserMailer.welcome_email(self).deliver_now
     end
   end
 end
