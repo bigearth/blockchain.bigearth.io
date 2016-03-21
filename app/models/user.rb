@@ -4,10 +4,8 @@ class User < ActiveRecord::Base
   devise :authy_authenticatable, :database_authenticatable, :confirmable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
-  def before_save
-    puts "before save CALLED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  before_save do
     if self.confirmed_at_changed?
-      puts "CONFIRMED AT CHANGED CALLED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
       UserMailer.welcome_email(self).deliver_later
     end
   end
