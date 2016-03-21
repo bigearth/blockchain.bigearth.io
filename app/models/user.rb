@@ -3,10 +3,10 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :authy_authenticatable, :database_authenticatable, :confirmable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-         
-  before_save do
-    if self.confirmed_at_changed?
-      UserMailer.welcome_email(self).deliver_later
-    end
-  end
+  #        
+  # before_save do
+  #   if self.confirmed_at_changed?
+  #     UserMailer.welcome_email(self).deliver_later
+  #   end
+  # end
 end
