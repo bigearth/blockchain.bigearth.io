@@ -4,4 +4,9 @@ class User < ActiveRecord::Base
   devise :authy_authenticatable, :database_authenticatable, :confirmable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          
+  before_save do
+    if self.confirmed_at_changed?
+      UserMailer.welcome_email(self).deliver_now
+    end
+  end
 end
