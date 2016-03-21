@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          
   before_save do
+    puts "BEFORE SAVE CALLED!!!!!!!!!!!!!!!!!!!!!"
     if self.confirmed_at_changed?
+      puts "CONFIRMED AT CHANGED!!!!!!!!!!!!!!!!!!!!!"
       UserMailer.welcome_email(self).deliver_later
     end
   end
