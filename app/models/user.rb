@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          
   def before_save
     if self.confirmed_at_changed?
+      puts "CONFIRMED AT CHANGED CALLED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
       UserMailer.welcome_email(self).deliver_later
     end
   end
