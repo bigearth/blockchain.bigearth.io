@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :authy_authenticatable, :database_authenticatable, :confirmable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  attr_accessor :first_name, :last_name, :phone_number, :location, :company
          
   before_save do
     if self.confirmed_at_changed?
