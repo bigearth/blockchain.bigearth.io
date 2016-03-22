@@ -10,4 +10,9 @@ class UserMailer < Devise::Mailer
     @user = user
     mail to: user.email, subject: 'Big Earth account confirmed!'
   end
+  
+  def two_factor_auth_enabled user
+    @user = user
+    mail to: user.email, subject: 'Big Earth 2 Factor Auth Enabled!'
+  end
 end

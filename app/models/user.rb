@@ -8,5 +8,9 @@ class User < ActiveRecord::Base
     if self.confirmed_at_changed?
       UserMailer.welcome_email(self).deliver_now
     end
+    
+    if self.authy_enabled_changed?
+      UserMailer.two_factor_auth_enabled(self).deliver_now
+    end
   end
 end

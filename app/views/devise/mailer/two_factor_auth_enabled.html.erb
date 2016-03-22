@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+  </head>
+  <body>
+    <h1>Hello <%= @user.email %>!</h1>
+    <p>
+      You've successfully enabled 2 factor authentication for your bigearth.io account!
+    </p>
+    <p>
+      Kudos. You're a smart one&mdash;aren't ya?
+    </p>
+    <h2>Next Steps</h2>
+    <ol>
+      <li>
+        <%= link_to 'Sign in', new_user_session_url %> and create your first chain.
+      </li>
+    </ol>
+    <p>Thanks for using blockchain.bigearth.io!</p>
+  </body>
+</html>
