@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :lockable, :timeoutable and :omniauthable
+  # :timeoutable and :omniauthable
   devise :authy_authenticatable, :database_authenticatable, :confirmable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :lockable 
+         
+  attr_accessor :first_name, :last_name, :phone_number, :location, :company
          
   before_save do
     if self.confirmed_at_changed?
