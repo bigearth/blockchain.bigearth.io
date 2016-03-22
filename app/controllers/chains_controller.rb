@@ -1,35 +1,36 @@
 class ChainsController < ApplicationController
   before_action :set_chain, only: [:show, :edit, :update, :destroy]
-  http_basic_authenticate_with name: Figaro.env.http_basic_auth_name, password: Figaro.env.http_basic_auth_password
 
-  # GET /chains
-  # GET /chains.json
+  # GET /users/1/chains
+  # GET /users/1/chains.json
   def index
     @chains = Chain.all
   end
 
-  # GET /chains/1
-  # GET /chains/1.json
+  # GET /users/1/chains/1
+  # GET /users/1/chains/1.json
   def show
   end
 
-  # GET /chains/new
+  # GET /users/1/chains/new
   def new
-    @chain = Chain.new
+    @user = User.find params[:user_id]
+    @chain = @user.chains.new
   end
 
-  # GET /chains/1/edit
+  # GET /users/1/chains/edit
   def edit
   end
 
-  # POST /chains
-  # POST /chains.json
+  # POST /users/1chains
+  # POST /users/1chains.json
   def create
-    @chain = Chain.new(chain_params)
+    @user = User.find params[:user_id]
+    @chain = @user.chains.new chain_params
 
     respond_to do |format|
-      if @chain.save
-        format.html { redirect_to @chain, notice: 'Chain was successfully created.' }
+      if @chain.save 
+        format.html { redirect_to [@user, @chain], notice: 'Chain was successfully created.' }
         format.json { render :show, status: :created, location: @chain }
       else
         format.html { render :new }
@@ -38,8 +39,8 @@ class ChainsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /chains/1
-  # PATCH/PUT /chains/1.json
+  # PATCH/PUT /users/1/chains/1
+  # PATCH/PUT /users/1/chains/1.json
   def update
     respond_to do |format|
       if @chain.update(chain_params)
@@ -52,8 +53,8 @@ class ChainsController < ApplicationController
     end
   end
 
-  # DELETE /chains/1
-  # DELETE /chains/1.json
+  # DELETE /users/1/chains/1
+  # DELETE /users/1/chains/1.json
   def destroy
     @chain.destroy
     respond_to do |format|
@@ -62,7 +63,7 @@ class ChainsController < ApplicationController
     end
   end
 
-  # GET /chains/confirm_droplet_created
+  # GET /users/1/chains/confirm_droplet_created
   def confirm_droplet_created
     
     chain = Chain.find params[:id]
@@ -83,7 +84,7 @@ class ChainsController < ApplicationController
     end
   end
   
-  # POST /chains/new_chain
+  # POST /users/1/chains/new_chain
   def new_chain
     # Wrap in begin/rescue block
     begin
@@ -140,7 +141,7 @@ class ChainsController < ApplicationController
     end
   end
     
-  # DELETE /chains/delete_chain
+  # DELETE /users/1/chains/delete_chain
   def destroy_chain
     # Wrap in begin/rescue block
     begin
@@ -193,11 +194,12 @@ class ChainsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_chain
-      @chain = Chain.find params[:id]
+      @user = User.find params[:user_id]
+      @chain = @user.chains.find params[:id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chain_params
-      params.require(:chain).permit(:pub_key)
+      params.require(:chain).permit :pub_key, :title, :blockchain_flavor, :droplet_created, :ip_address, :user_id
     end
 end

@@ -11,107 +11,151 @@
 </div>
 <div class='sub'>
   <section class='container'>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Total Bitcoins in Circulation', charts_circulation_path %>
-      </h3>
-      <p>A graph showing the historical total number of bitcoins which have been mined.</p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Market Capitalization', charts_market_cap_path %>
-      </h3>
-      <p>A graph showing the total number of bitcoins in circulation * the market price in USD.</p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Total Transaction Fees (BTC)', charts_transaction_fees_btc_path %>
-      </h3>
-      <p>A chart showing the total BTC value of transaction fees miners earn per day.</p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Transaction Fees (USD)', charts_transaction_fees_usd_path %>
-      </h3>
-      <p></p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Network Deficit', charts_network_deficit_path %>
-      </h3>
-      <p>Shows difference between transaction fees and cost of bitcoin mining.</p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Transactions (daily)', charts_transactions_daily_path %>
-      </h3>
-      <p>A chart of the total number of unique bitcoin transactions per day.</p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Transactions (total)', charts_transactions_total_path %>
-      </h3>
-      <p></p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Unique Addresses', charts_unique_addresses_path %>
-      </h3>
-      <p>A chart of the number of unique bitcoin addresses used per day.</p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Average Transactions per Block', charts_average_transactions_path %>
-      </h3>
-      <p>A chart of the average number of transactions per block.</p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Orphaned Blocks', charts_orphaned_blocks_path %>
-      </h3>
-      <p>Number of blocks mined per day not part of the main chain.</p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Total Output Volume', charts_total_output_volume_path %>
-      </h3>
-      <p>The total value of all transaction outputs per day. This includes coins that were returned to the sender as change.</p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Market Price', charts_market_price_path %>
-      </h3>
-      <p>A chart showing the USD market price from the major exchanges</p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Hash Rate', charts_hash_rate_path %>
-      </h3>
-      <p>The estimated number of giga hashes per second (billions of hashes per second) the bitcoin network is performing.</p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Difficulty', charts_difficulty_path %>
-      </h3>
-      <p>A chart showing difficulty changes over time. Difficulty is a measure of how difficult it is to find a new block compared to the easiest it can ever be.</p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Days Destroyed Cumulative', charts_days_destroyed_cumulative_path %>
-      </h3>
-      <p>Bitcoin Days Destroyed is a measure of the transaction volume of Bitcoin. If someone has 100 BTC that they received a week ago and they spend it then 700 bitcoin days have been destroyed. If they take those 100BTC and send them to several addresses and then spend them then although the total transaction volume could be arbitrarily large the number of bitcoin days destroyed is still 700.</p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Days Destroyed', charts_days_destroyed_path %>
-      </h3>
-      <p>A none cumulative version of Bitcoin Days Destroyed.</p>
-    </div>
-    <div class='chart_link'>
-      <h3>
-        <%= link_to 'Blockchain Size', charts_blockchain_size_path %>
-      </h3>
-      <p>The total size of all block headers and transactions. Not including database indexes</p>
-    </div>
+    <section class="row m-b-md">
+        <div class="col-sm-12">
+          <div class='chart_link'>
+            <h3 id='total_circulation'>
+              <%= link_to 'Total Bitcoins in Circulation', charts_circulation_path %>
+            </h3>
+            <p>Bitcoins are created each time a user discovers a new block. The rate of block creation is adjusted every 2016 blocks to aim for a constant two week adjustment period (equivalent to 6 per hour.) The number of bitcoins generated per block is set to decrease geometrically, with a 50% reduction every 210,000 blocks, or approximately four years. The result is that the number of bitcoins in existence is not expected to exceed 21 million.[2] Speculated justifications for the unintuitive value &ldquo;21 million&rdquo; are that it matches a 4-year reward halving schedule; or the ultimate total number of Satoshis that will be mined is close to the maximum capacity of a 64-bit floating point number. Satoshi has never really justified or explained many of these constants.</p>
+            <p>
+              <%= link_to 'https://en.bitcoin.it/wiki/Controlled_supply#Currency_with_Finite_Supply' do %>
+                <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> More Info
+              <% end %>
+          </div>
+          <div class='chart_link'>
+            <h3 id='market_cap'>
+              <%= link_to 'Market Capitalization', charts_market_cap_path %>
+            </h3>
+            <p>The total number of bitcoins in circulation multiplied by the USD market price.</p>
+          </div>
+          <div class='chart_link'>
+            <h3 id='transaction_fees_btc'>
+              <%= link_to 'Total Transaction Fees (BTC)', charts_transaction_fees_btc_path %>
+            </h3>
+            <p>Transaction fees may be included with any transfer of bitcoins from one address to another. At the moment, many transactions are typically processed in a way where no fee is expected at all, but for transactions which draw coins from many bitcoin addresses and therefore have a large data size, a small transaction fee is usually expected.</p>
+            <p>The transaction fee is processed by and received by the bitcoin miner. When a new bitcoin block is generated with a successful hash, the information for all of the transactions is included with the block and all transaction fees are collected by that user creating the block, who is free to assign those fees to himself.</p>
+            <p>Transaction fees are voluntary on the part of the person making the bitcoin transaction, as the person attempting to make a transaction can include any fee or none at all in the transaction. On the other hand, nobody mining new bitcoins necessarily needs to accept the transactions and include them in the new block being created. The transaction fee is therefore an incentive on the part of the bitcoin user to make sure that a particular transaction will get included into the next block which is generated.</p>
+            <p>It is envisioned that over time the cumulative effect of collecting transaction fees will allow somebody creating new blocks to "earn" more bitcoins than will be mined from new bitcoins created by the new block itself. This is also an incentive to keep trying to create new blocks even if the value of the newly created block from the mining activity is zero in the far future.</p>
+            <p>
+              <%= link_to 'https://en.bitcoin.it/wiki/Controlled_supply#Currency_with_Finite_Supply' do %>
+                <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> More Info
+              <% end %>
+            </p>
+          </div>
+          <div class='chart_link'>
+            <h3 id='transaction_fees_usd'>
+              <%= link_to 'Transaction Fees (USD)', charts_transaction_fees_usd_path %>
+            </h3>
+            <p></p>
+          </div>
+          <div class='chart_link'>
+            <h3 id='network_deficit'>
+              <%= link_to 'Network Deficit', charts_network_deficit_path %>
+            </h3>
+            <p>The difference between transaction fees and the bitcoin miners income from block rewards. So if a Block has 25 BTC generated and 1 BTC of fees, the network deficit would be 24 BTC. The amount in USDs is calculated at the spot rate at the time.</p>
+            <p>
+              <%= link_to 'http://bitcoin.stackexchange.com/questions/10230/how-is-network-deficit-calculated#answer-10263' do %>
+                <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> More Info
+              <% end %>
+            </p>
+          </div>
+          <div class='chart_link'>
+            <h3 id='daily_transactions'>
+              <%= link_to 'Transactions (daily)', charts_transactions_daily_path %>
+            </h3>
+            <p>A transaction is a transfer of Bitcoin value that is broadcast to the network and collected into blocks. A transaction typically references previous transaction outputs as new transaction inputs and dedicates all input Bitcoin values to new outputs. Transactions are not encrypted, so it is possible to browse and view every transaction ever collected into a block.</p>
+            <p>
+              <%= link_to 'https://en.bitcoin.it/wiki/Transaction' do %>
+                <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> More Info
+              <% end %>
+            </p>
+          </div>
+          <div class='chart_link'>
+            <h3 id='total_transactions'>
+              <%= link_to 'Transactions (total)', charts_transactions_total_path %>
+            </h3>
+          </div>
+          <div class='chart_link'>
+            <h3 id='unique_addresses'>
+              <%= link_to 'Unique Addresses', charts_unique_addresses_path %>
+            </h3>
+            <p>A Bitcoin address, or simply address, is an identifier of 26-35 alphanumeric characters, beginning with the number 1 or 3, that represents a possible destination for a bitcoin payment. Addresses can be generated at no cost by any user of Bitcoin. </p>
+            <p>Like e-mail addresses, you can send bitcoins to a person by sending bitcoins to one of their addresses. However, unlike e-mail addresses, people have many different Bitcoin addresses and a unique address should be used for each transaction. Most Bitcoin software and websites will help with this by generating a brand new address each time you create an invoice or payment request.</p>
+            <p>
+              <%= link_to 'https://en.bitcoin.it/wiki/Address' do %>
+                <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> More Info
+              <% end %>
+            </p>
+          </div>
+          <div class='chart_link'>
+            <h3 id='avg_transactions'>
+              <%= link_to 'Average Transactions per Block', charts_average_transactions_path %>
+            </h3>
+          </div>
+          <div class='chart_link'>
+            <h3 id='orphaned_blocks'>
+              <%= link_to 'Orphaned Blocks', charts_orphaned_blocks_path %>
+            </h3>
+            <p>An orphan block is a block that doesn't have a known parent in the longest block chain.</p>
+            <p>
+              <%= link_to 'https://en.bitcoin.it/wiki/Orphan_Block' do %>
+                <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> More Info
+              <% end %>
+            </p>
+          </div>
+          <div class='chart_link'>
+            <h3 id='total_output_volume'>
+              <%= link_to 'Total Output Volume', charts_total_output_volume_path %>
+            </h3>
+            <p>Total value of all transaction outputs per day. Including coins returned as change to the sender.</p>
+          </div>
+          <div class='chart_link'>
+            <h3 id='market_price'>
+              <%= link_to 'Market Price', charts_market_price_path %>
+            </h3>
+            <p>The USD market price shown from the major exchanges</p>
+          </div>
+          <div class='chart_link'>
+            <h3 id='hash_rate'>
+              <%= link_to 'Hash Rate', charts_hash_rate_path %>
+            </h3>
+            <p>The estimated number of giga hashes per second (billions of hashes per second) the bitcoin network is performing.</p>
+          </div>
+          <div class='chart_link'>
+            <h3 id='difficulty'>
+              <%= link_to 'Difficulty', charts_difficulty_path %>
+            </h3>
+            <p>Difficulty is a measure of how difficult it is to find a hash below a given target. The Bitcoin network has a global block difficulty. Valid blocks must have a hash below this target. Mining pools also have a pool-specific share difficulty setting a lower limit for shares.</p>
+            <p>
+              <%= link_to 'https://en.bitcoin.it/wiki/Difficulty' do %>
+                <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> More Info
+              <% end %>
+            </p>
+          </div>
+          <div class='chart_link'>
+            <h3 id='days_destroyed_cumulative'>
+              <%= link_to 'Days Destroyed Cumulative', charts_days_destroyed_cumulative_path %>
+            </h3>
+            <p>Bitcoin Days Destroyed is a measure of the transaction volume of Bitcoin. Bitcoin days destroyed for any given transaction is calculated by taking the number of Bitcoins in a transaction and multiplying it by the number of days it has been since those coins were last spent.</p>
+            <p>
+              <%= link_to 'https://en.bitcoin.it/wiki/Bitcoin_Days_Destroyed' do %>
+                <span class='glyphicon glyphicon-info-sign' aria-hidden='true'></span> More Info
+              <% end %>
+            </p>
+          </div>
+          <div class='chart_link'>
+            <h3 id='days_destroyed_daily'>
+              <%= link_to 'Days Destroyed Daily', charts_days_destroyed_path %>
+            </h3>
+          </div>
+          <div class='chart_link'>
+            <h3 id='blockchain_size'>
+              <%= link_to 'Blockchain Size', charts_blockchain_size_path %>
+            </h3>
+            <p>Total size of all block headers and transactions.</p>
+          </div>
+        </div>
+    </section>
   </section>
 </div>

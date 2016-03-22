@@ -44,6 +44,6 @@ class ChainsControllerTest < ActionController::TestCase
       delete :destroy, id: @chain
     end
 
-    assert_redirected_to chains_path
+    assert_redirected_to user_chains_path
   end
 end

@@ -15,9 +15,11 @@ ActiveRecord::Schema.define(version: 20160320143841) do
 
   create_table "chains", force: :cascade do |t|
     t.text     "pub_key"
+    t.string   "title"
     t.string   "blockchain_flavor", default: "bitcoin_core"
     t.boolean  "droplet_created",   default: false
     t.string   "ip_address"
+    t.integer  "user_id"
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
   end
@@ -41,6 +43,9 @@ ActiveRecord::Schema.define(version: 20160320143841) do
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "company"
+    t.string   "location"
+    t.string   "phone_number"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.string   "email",                   default: "",    null: false
@@ -57,6 +62,9 @@ ActiveRecord::Schema.define(version: 20160320143841) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",         default: 0,     null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
     t.string   "authy_id"
     t.datetime "last_sign_in_with_authy"
     t.boolean  "authy_enabled",           default: false
@@ -66,5 +74,6 @@ ActiveRecord::Schema.define(version: 20160320143841) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
 
 end

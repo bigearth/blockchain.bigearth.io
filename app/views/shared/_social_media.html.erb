@@ -18,7 +18,7 @@
   <% end %>
 <% end %>
 <% if params[:controller] == 'chains' %>
-  <%= link_to new_chain_path, class: 'btn btn-sm' do %>
+  <%= link_to new_user_chain_path(@user), class: 'btn btn-sm' do %>
     <span class="text-primary glyphicon glyphicon-th-large" aria-hidden="true"></span>
     New Blockchain
   <% end %>
