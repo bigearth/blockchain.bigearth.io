@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
 
@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.includes(:chains).find params[:id]
   end
 
   # GET /users/new
@@ -66,11 +67,11 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find params[:id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :company, :location, :phone_number)
+      params.require(:user).permit(:first_name, :last_name, :company, :location, :phone_number, chains_attributes: [:pub_key, :title, :blockchain_flavor, :droplet_created, :ip_address, :user_id])
     end
 end

@@ -1,4 +1,4 @@
-<%= form_for(@chain) do |f| %>
+<%= form_for([@user, @chain]) do |f| %>
   <% if @chain.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@chain.errors.count, "error") %> prohibited this chain from being saved:</h2>
@@ -11,7 +11,7 @@
     </div>
   <% end %>
   <div class="input-group input-group-lg"> 
-    <%= f.text_area :pub_key, placeholder: 'Pub Key', class: 'form-control' %>
+    <%= f.text_field :title, placeholder: 'Title', class: 'form-control' %>
     <span class="input-group-btn"> 
       <%= f.submit 'Create Blockchain', class: 'btn btn-default' %>
     </span> 

@@ -11,35 +11,49 @@
 </div>
 <div class='sub'>
   <section class='container'>
-    <p>
-      <strong>First name (optional):</strong>
-      <%= @user.first_name %>
-    </p>
-    <p>
-      <strong>Last name (optional):</strong>
-      <%= @user.last_name %>
-    </p>
-    <p>
-      <strong>Phone Number (optional):</strong>
-      <%= @user.phone_number %>
-    </p>
-    <p>
-      <strong>Location (optional):</strong>
-      <%= @user.location %>
-    </p>
-    <p>
-      <strong>Company (optional):</strong>
-      <%= @user.company %>
-    </p>
-    <p>
-      <strong>Email address (optional):</strong>
-      <%= @user.email %>
-    </p>
-    <p>
-      <strong>2 Factor Auth Enabled (optional):</strong>
-      <%= @user.authy_enabled %>
-    </p>
-    <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-default' %>
-    <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+    <section class='row m-b-md'>
+        <div class='col-md-6'>
+          <p>
+            <strong>First name (optional):</strong>
+            <%= @user.first_name %>
+          </p>
+          <p>
+            <strong>Last name (optional):</strong>
+            <%= @user.last_name %>
+          </p>
+          <p>
+            <strong>Phone Number (optional):</strong>
+            <%= @user.phone_number %>
+          </p>
+          <p>
+            <strong>Location (optional):</strong>
+            <%= @user.location %>
+          </p>
+          <p>
+            <strong>Company (optional):</strong>
+            <%= @user.company %>
+          </p>
+          <p>
+            <strong>Email address (optional):</strong>
+            <%= @user.email %>
+          </p>
+          <p>
+            <strong>2 Factor Auth Enabled (optional):</strong>
+            <%= @user.authy_enabled %>
+          </p>
+          <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-default' %>
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+          <%= link_to 'Create Chain', new_user_chain_path(@user), class: 'btn btn-success' %>
+        </div>
+        <div class='col-md-6'>
+          <h3>Chains</h3>
+          <ul>
+            <% @user.chains.each do |chain| %>
+              <li><%= link_to chain %></li>
+              <li><%= chain.title %></li>
+            <% end %>
+          </ul>
+        </div>
+    </section>
   </div>
 </div>

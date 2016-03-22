@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     enable_authy: "/enable-two-factor",
     verify_authy_installation: "/verify-installation"
   }
-  resources :users, except: [:index]
+  resources :users, except: [:index] do
+    resources :chains
+  end
   get 'blocks/transactions/:id' => 'blocks#transactions'
   get 'blocks/raw/:id' => 'blocks#raw'
   get 'transactions/raw/:id' => 'transactions#raw'
@@ -34,7 +36,6 @@ Rails.application.routes.draw do
   get 'confirm_droplet_created' => 'chains#confirm_droplet_created', path: 'chains/confirm_droplet_created'
   post 'new_chain' => 'chains#new_chain', path: 'chains/new_chain'
   delete 'delete_chain' => 'chains#destroy_chain', path: 'chains/destroy_chain'
-  resources :chains
   resources :explorers, only: [:index], path: 'coin'
   resources :blocks, only: [:show]
   resources :transactions, only: [:show]
