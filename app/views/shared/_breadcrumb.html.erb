@@ -33,6 +33,15 @@
 <% elsif params[:controller] == 'devise/devise_authy' %>
   <li class="active">2FA</li>
   <li class="active">Enable</li>
+<% elsif params[:controller] == 'devise_authy/passwords' && params[:action] == 'new' %>
+  <li class="active">Profile</li>
+  <li class="active">Forgot Password</li>
+<% elsif params[:controller] == 'devise_authy/passwords' && params[:action] == 'edit' %>
+  <li class="active">Profile</li>
+  <li class="active">New Password</li>
+<% elsif params[:controller] == 'devise/confirmations' %>
+  <li class="active">Profile</li>
+  <li class="active">Resend</li>
 <% elsif params[:controller] == 'charts' %>
   <% if params[:action] == 'show' %>
     <li class="active">Charts</li>

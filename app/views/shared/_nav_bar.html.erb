@@ -20,7 +20,7 @@
             <% end %>
           </li>
         <% else %>
-          <li class='<%= if params[:controller] == 'users' then "active" end %>'>
+          <li class='<%= if params[:controller] == 'devise/sessions' || params[:controller] == 'devise/registrations' || params[:controller] == 'devise_authy/passwords' then "active" end %>'>
             <%= link_to new_user_session_path do %>
               <span class="text-primary glyphicon glyphicon-user"></span>
               Sign in
