@@ -49,8 +49,7 @@
           <h3>Chains</h3>
           <ul>
             <% @user.chains.each do |chain| %>
-              <li><%= link_to chain %></li>
-              <li><%= chain.title %></li>
+              <li><%= link_to chain.title, user_chain_path(@user, chain) %></li>
             <% end %>
           </ul>
         </div>
