@@ -10,6 +10,7 @@ class ChainsController < ApplicationController
   # GET /users/1/chains/1
   # GET /users/1/chains/1.json
   def show
+    TestJob.perform_later 'OP_SUCCESS'
   end
 
   # GET /users/1/chains/new

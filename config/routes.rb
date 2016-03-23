@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'explorers#index'
+  mount Resque::Server, at: '/resque'
   devise_for :users, path_names: {
     verify_authy: "/verify-token",
     enable_authy: "/enable-two-factor",
