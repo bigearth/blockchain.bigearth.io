@@ -4,6 +4,6 @@ class UserWelcomeJob < ActiveJob::Base
 
   def perform user
     puts 'USER WELCOME JOB CALLED'
-    UserMailer.two_factor_auth_enabled(user).deliver_now
+    UserMailer.welcome_email(user).deliver_now
   end
 end
