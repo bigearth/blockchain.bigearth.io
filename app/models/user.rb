@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
     end
     
     if self.authy_enabled_changed?
-      UserMailer.two_factor_auth_enabled(self).deliver_now
+      UserWelcomeJob.perform_later self
     end
   end
 end
