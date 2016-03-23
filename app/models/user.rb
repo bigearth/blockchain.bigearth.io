@@ -8,11 +8,11 @@ class User < ActiveRecord::Base
          
   before_save do
     if self.confirmed_at_changed?
-      UserMailer.welcome_email(self).deliver_now
+      UserWelcomeJob.perform_later self
     end
     
     if self.authy_enabled_changed?
-      UserMailer.two_factor_auth_enabled(self).deliver_now
+      UserTwoFactorAuthEnabled.perform_later self
     end
   end
 end
