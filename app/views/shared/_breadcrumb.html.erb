@@ -1,87 +1,87 @@
-<ul class="breadcrumb">
+<ul class='breadcrumb'>
 <li><%= link_to 'Home', root_url %></li>
 <% if params[:controller] == 'blocks' %>
-  <li class="active">Block <%= number_with_delimiter @block['data']['nb'], delimiter: ',' %></li>
+  <li class='active'>Block <%= number_with_delimiter @block['data']['nb'], delimiter: ',' %></li>
 <% elsif params[:controller] == 'addresses' %>
-  <li class="active">Address <%= @address['data']['address'] %></li>
+  <li class='active'>Address <%= @address['data']['address'] %></li>
 <% elsif params[:action] == 'bookmarks' %>
-  <li class="active">Bookmarks</li>
+  <li class='active'>Bookmarks</li>
 <% elsif params[:action] == 'calculator' %>
-  <li class="active">Calculator</li>
+  <li class='active'>Calculator</li>
 <% elsif params[:controller] == 'chains' %>
-  <li><%= link_to 'Blockchains', user_chains_path %></li>
+  <li class='active'>Blockchains</li>
   <% if params[:action] == 'new' %>
-    <li class="active">New</li>
+    <li class='active'>New</li>
   <% elsif params[:action] == 'edit' %>
-    <li class="active">Edit</li>
+    <li class='active'>Edit</li>
   <% elsif params[:action] == 'show' %>
-    <li class="active"><%= @chain.title %></li>
+    <li class='active'><%= @chain.title %></li>
   <% end %>
 <% elsif params[:controller] == 'users' %>
-    <li class="active">Profile</li>
+    <li class='active'>Profile</li>
   <% if params[:action] == 'show' %>
-    <li class="active"><%= current_user.email %></li>
+    <li class='active'><%= current_user.email %></li>
   <% elsif params[:action] == 'edit' %>
-    <li class="active">Edit</li>
+    <li class='active'>Edit</li>
   <% end %>
 <% elsif params[:controller] == 'devise/registrations' %>
-  <li class="active">Profile</li>
-  <li class="active">Sign Up</li>
+  <li class='active'>Profile</li>
+  <li class='active'>Sign Up</li>
 <% elsif params[:controller] == 'devise/sessions' %>
-  <li class="active">Profile</li>
-  <li class="active">Sign In</li>
+  <li class='active'>Profile</li>
+  <li class='active'>Sign In</li>
 <% elsif params[:controller] == 'devise/devise_authy' %>
-  <li class="active">2FA</li>
-  <li class="active">Enable</li>
+  <li class='active'>2FA</li>
+  <li class='active'>Enable</li>
 <% elsif params[:controller] == 'devise_authy/passwords' && params[:action] == 'new' %>
-  <li class="active">Profile</li>
-  <li class="active">Forgot Password</li>
+  <li class='active'>Profile</li>
+  <li class='active'>Forgot Password</li>
 <% elsif params[:controller] == 'devise_authy/passwords' && params[:action] == 'edit' %>
-  <li class="active">Profile</li>
-  <li class="active">New Password</li>
+  <li class='active'>Profile</li>
+  <li class='active'>New Password</li>
 <% elsif params[:controller] == 'devise/confirmations' %>
-  <li class="active">Profile</li>
-  <li class="active">Resend</li>
+  <li class='active'>Profile</li>
+  <li class='active'>Resend</li>
 <% elsif params[:controller] == 'charts' %>
   <% if params[:action] == 'show' %>
-    <li class="active">Charts</li>
+    <li class='active'>Charts</li>
   <% else %>
     <li><%= link_to 'Charts', charts_show_path %></li>
   <% end %>
   <% if params[:action] == 'circulation' %>
-    <li class="active">Circulation</li>
+    <li class='active'>Circulation</li>
   <% elsif params[:action] == 'market_cap' %>
-    <li class="active">Market Capitalization</li>
+    <li class='active'>Market Capitalization</li>
   <% elsif params[:action] == 'transaction_fees_btc' %>
-    <li class="active">Transaction Fees (BTC)</li>
+    <li class='active'>Transaction Fees (BTC)</li>
   <% elsif params[:action] == 'transaction_fees_usd' %>
-    <li class="active">Transaction Fees (USD)</li>
+    <li class='active'>Transaction Fees (USD)</li>
   <% elsif params[:action] == 'network_deficit' %>
-    <li class="active">Network Deficit</li>
+    <li class='active'>Network Deficit</li>
   <% elsif params[:action] == 'transactions_daily' %>
-    <li class="active">Total Transactions Daily</li>
+    <li class='active'>Total Transactions Daily</li>
   <% elsif params[:action] == 'transactions_total' %>
-    <li class="active">Total Transactions</li>
+    <li class='active'>Total Transactions</li>
   <% elsif params[:action] == 'unique_addresses' %>
-    <li class="active">Unique Addresses</li>
+    <li class='active'>Unique Addresses</li>
   <% elsif params[:action] == 'average_transactions' %>
-    <li class="active">Average Transactions</li>
+    <li class='active'>Average Transactions</li>
   <% elsif params[:action] == 'orphaned_blocks' %>
-    <li class="active">Orphaned Blocks</li>
+    <li class='active'>Orphaned Blocks</li>
   <% elsif params[:action] == 'total_output_volume' %>
-    <li class="active">Total Output Volume</li>
+    <li class='active'>Total Output Volume</li>
   <% elsif params[:action] == 'market_price' %>
-    <li class="active">Market Price</li>
+    <li class='active'>Market Price</li>
   <% elsif params[:action] == 'hash_rate' %>
-    <li class="active">Hash Rate</li>
+    <li class='active'>Hash Rate</li>
   <% elsif params[:action] == 'difficulty' %>
-    <li class="active">Difficulty</li>
+    <li class='active'>Difficulty</li>
   <% elsif params[:action] == 'days_destroyed_cumulative' %>
-    <li class="active">Days Destroyed Cumulative</li>
+    <li class='active'>Days Destroyed Cumulative</li>
   <% elsif params[:action] == 'days_destroyed' %>
-    <li class="active">Days Destroyed</li>
+    <li class='active'>Days Destroyed</li>
   <% elsif params[:action] == 'blockchain_size' %>
-    <li class="active">Blockchain Size</li>
+    <li class='active'>Blockchain Size</li>
   <% end %>
 <% end %>
 </ul>
