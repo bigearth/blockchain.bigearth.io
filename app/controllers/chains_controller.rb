@@ -30,6 +30,7 @@ class ChainsController < ApplicationController
 
     respond_to do |format|
       if @chain.save 
+        CreateChainJob.perform_later @chain
         format.html { redirect_to [@user, @chain], notice: 'Chain was successfully created.' }
         format.json { render :show, status: :created, location: @chain }
       else
@@ -79,63 +80,6 @@ class ChainsController < ApplicationController
         message: 'droplet not created'
       }
     end
-    respond_to do |format|
-      format.json { render json: @response }
-    end
-  end
-  
-  # POST /users/1/chains/new_chain
-  def new_chain
-    # Wrap in begin/rescue block
-    begin
-      
-      # Get the Digital Ocean Client
-      @client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
-      
-      # select just the appropriate droplet
-      droplet = @client.droplets.all.select do |droplet|  
-        droplet.name == params[:name] 
-      end 
-      
-      if droplet.empty?
-        
-        # If droplet doesn't exist then create it
-        # Hardcoded values for now. Will likely change that in the future as the dashboard becomes more fully featured
-        new_droplet = DropletKit::Droplet.new({
-          name: params[:name], 
-          region: 'sfo1', 
-          size: '8gb', 
-          ssh_keys: [
-            Figaro.env.ssh_key_id
-          ],
-          image: 'ubuntu-14-04-x64', 
-          ipv6: true
-        })
-        
-        # Create it
-        @response = @client.droplets.create new_droplet
-          
-        # Update Active Record w/ Blockchain flavor
-        existing_node = Chain.where('pub_key = ?', params[:name]).first
-        existing_node.blockchain_flavor = params[:blockchain_flavor]
-        existing_node.save
-        
-        # Confirm that the droplet got created in 2 minutes
-        require 'blockchain'
-        node = Blockchain::Node.new
-        node.delay(run_at: 1.minutes.from_now).confirm_droplet_created params[:name] 
-      else
-        @response = {
-          status: 'already_exists'
-        }
-      end
-    rescue Exception => error
-      @response = {
-        status: 500,
-        message: 'Error'
-      }
-    end
-    
     respond_to do |format|
       format.json { render json: @response }
     end
@@ -200,6 +144,6 @@ class ChainsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chain_params
-      params.require(:chain).permit :pub_key, :title, :blockchain_flavor, :droplet_created, :ip_address, :user_id
+      params.require(:chain).permit :pub_key, :title, :flavor, :droplet_created, :ip_address, :user_id
     end
 end
