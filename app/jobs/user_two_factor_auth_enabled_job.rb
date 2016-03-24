@@ -1,4 +1,4 @@
-class UserTwoFactorAuthEnabled < ActiveJob::Base
+class UserTwoFactorAuthEnabledJob < ActiveJob::Base
 
   queue_as :user_two_factor_auth_enabled_job
 
