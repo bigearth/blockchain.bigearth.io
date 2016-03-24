@@ -18,11 +18,11 @@ module Blockchain
           existing_node.droplet_created = true
           existing_node.ip_address = ip_address
           existing_node.save
-          blockchain_flavor = existing_node.blockchain_flavor
+          flavor = existing_node.flavor
           
           # Bootstrap the chef Node
-          node.bootstrap_chef_client name, ip_address, blockchain_flavor
-          node.delay(run_at: 1.minutes.from_now).confirm_client_bootstrapped name, ip_address, blockchain_flavor
+          node.bootstrap_chef_client name, ip_address, flavor
+          node.delay(run_at: 1.minutes.from_now).confirm_client_bootstrapped name, ip_address, flavor
         end
         
       rescue Exception => error
@@ -30,7 +30,7 @@ module Blockchain
       end
     end
   
-    def bootstrap_chef_client name, ip_address, blockchain_flavor
+    def bootstrap_chef_client name, ip_address, flavor
       require 'httparty'
       begin
         HTTParty.post("#{Figaro.env.chef_workstation_ip_address}bootstrap_chef_client", 
@@ -41,7 +41,7 @@ module Blockchain
           body: { 
             name: name, 
             ip_address: ip_address,
-            blockchain_flavor: blockchain_flavor 
+            flavor: flavor 
           }.to_json,
           headers: { 'Content-Type' => 'application/json' } 
         )
@@ -50,7 +50,7 @@ module Blockchain
       end
     end
   
-    def confirm_client_bootstrapped name, ip_address, blockchain_flavor
+    def confirm_client_bootstrapped name, ip_address, flavor
       require 'httparty'
       begin
         HTTParty.get("#{Figaro.env.chef_workstation_ip_address}confirm_client_bootstrapped", 
@@ -61,7 +61,7 @@ module Blockchain
           body: { 
             name: name, 
             ip_address: ip_address,
-            blockchain_flavor: blockchain_flavor 
+            flavor: flavor 
           }.to_json,
           headers: { 'Content-Type' => 'application/json' } 
         )

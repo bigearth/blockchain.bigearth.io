@@ -35,7 +35,6 @@ Rails.application.routes.draw do
   get 'charts/days_destroyed' => 'charts#days_destroyed'
   get 'charts/blockchain_size' => 'charts#blockchain_size'
   get 'confirm_droplet_created' => 'chains#confirm_droplet_created', path: 'chains/confirm_droplet_created'
-  post 'new_chain' => 'chains#new_chain', path: 'chains/new_chain'
   delete 'delete_chain' => 'chains#destroy_chain', path: 'chains/destroy_chain'
   resources :explorers, only: [:index], path: 'coin'
   resources :blocks, only: [:show]

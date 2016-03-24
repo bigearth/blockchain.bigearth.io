@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
     end
     
     if self.authy_enabled_changed?
-      UserTwoFactorAuthEnabled.perform_later self
+      UserTwoFactorAuthEnabledJob.perform_later self
     end
   end
 end

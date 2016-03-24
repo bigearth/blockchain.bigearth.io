@@ -5,12 +5,12 @@ development:
     default:
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      #database: block_explorer_development
-      uri: <%= Figaro.env.mongodb_credentials %>
+      database: block_explorer_development
+      # uri: <%= Figaro.env.mongodb_credentials %>
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
-      # hosts:
-      #   - localhost:27017
+      hosts:
+        - localhost:27017
       options:
         # Change the default write concern. (default = { w: 1 })
         # write:

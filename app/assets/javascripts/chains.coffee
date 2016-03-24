@@ -16,19 +16,19 @@ $ ->
         
         # Grab name and flavor from the DOM
         name = $('#blockchain_title').data 'name'
-        blockchain_flavor = $('#blockchain_flavors .active').data 'blockchain_flavor'
+        flavor = $('#flavors .active').data 'flavor'
         
         # POST name and flavor to new_chain endpoint
         $.post 'new_chain', {
           name: name
-          blockchain_flavor: blockchain_flavor
+          flavor: flavor
         }, (rsp) =>
           @.reset_buttons()
           if rsp.status is 'already_exists'
             @.update_output("Bitcoin Blockchain #{name} already exists.")
             $(evt.currentTarget).removeClass('btn-primarys').addClass('btn-danger')
           else if _.isObject rsp
-            @.update_output("Creating Bitcoin #{_.upperFirst blockchain_flavor.split('_')[1]} Blockchain #{name}.")
+            @.update_output("Creating Bitcoin #{_.upperFirst flavor.split('_')[1]} Blockchain #{name}.")
             $(evt.currentTarget).removeClass('btn-primary').addClass('btn-success')
           
       $('#delete_blockchain').click (evt) =>
@@ -51,8 +51,8 @@ $ ->
               $(evt.currentTarget).removeClass('btn-primary').addClass('btn-danger')
         }
         
-      $('#blockchain_flavors a').click (evt) =>
-        $('#blockchain_flavors a.active').removeClass 'active'
+      $('#flavors a').click (evt) =>
+        $('#flavors a.active').removeClass 'active'
         $(evt.currentTarget).addClass 'active'
         evt.preventDefault()
         
