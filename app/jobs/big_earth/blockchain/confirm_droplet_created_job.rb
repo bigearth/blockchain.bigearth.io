@@ -3,29 +3,30 @@ module Blockchain
     class ConfirmDropletCreatedJob < ActiveJob::Base
       queue_as :confirm_droplet_created_job
       
-      def perform name
+      def perform title
         begin
           client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
           droplets = client.droplets.all
           droplet = droplets.select do |drplet|  
-            drplet.name === name 
+            drplet.name === title 
           end 
           
-          node = Blockchain::Node.new
-          
           if droplet.empty?
-            node.delay(run_at: 1.minutes.from_now).confirm_droplet_created name 
+            # run in 1 minute
+            BigEarth::Blockchain::ConfirmDropletCreatedJob.perform_later chain[:title]
           else
+            # Get IPV4 and IPV6 ip address
             ip_address = droplet.first['networks']['v4'].first['ip_address']
-            existing_node = Chain.where('pub_key = ?', name).first
+            existing_node = Chain.where('title = ?', title).first
             existing_node.droplet_created = true
             existing_node.ip_address = ip_address
             existing_node.save
             flavor = existing_node.flavor
             
             # Bootstrap the chef Node
-            node.bootstrap_chef_client name, ip_address, flavor
-            node.delay(run_at: 1.minutes.from_now).confirm_client_bootstrapped name, ip_address, flavor
+            BigEarth::Blockchain::BootstrapChefClientJob.perform_later title, ip_address, flavor
+            # run in 1 minute
+            BigEarth::Blockchain::ConfirmClientBootstrappedJob.perform_later title, ip_address, flavor
           end
           
         rescue Exception => error
