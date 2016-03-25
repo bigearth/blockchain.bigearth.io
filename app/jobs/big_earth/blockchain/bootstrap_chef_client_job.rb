@@ -3,7 +3,7 @@ module BigEarth
     class BootstrapChefClientJob < ActiveJob::Base
       queue_as :bootstrap_chef_client_job
       
-      def perform name, ip_address, flavor
+      def perform title, ip_address, flavor
         require 'httparty'
         begin
           HTTParty.post("#{Figaro.env.chef_workstation_ip_address}bootstrap_chef_client", 
@@ -12,7 +12,7 @@ module BigEarth
               password: Figaro.env.chef_workstation_password 
             },
             body: { 
-              name: name, 
+              title: title, 
               ip_address: ip_address,
               flavor: flavor 
             }.to_json,

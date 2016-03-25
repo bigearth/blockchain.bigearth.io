@@ -37,10 +37,8 @@ module BigEarth
             existing_node.flavor = chain[:flavor]
             existing_node.save
             
-            # # Confirm that the droplet got created in 2 minutes
-            # require 'blockchain'
-            # node = Blockchain::Node.new
-            # node.delay(run_at: 1.minutes.from_now).confirm_droplet_created params[:name] 
+            # Confirm that the droplet got created in 2 minutes
+            Resque.enqueue_in(10.seconds, BigEarth::Blockchain::ConfirmDropletCreated, title: chain[:title])
           else
             @response = {
               status: 'already_exists'
