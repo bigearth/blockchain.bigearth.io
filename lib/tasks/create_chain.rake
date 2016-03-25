@@ -6,6 +6,6 @@ namespace :blockchain do
     else
       chain = args.to_hash
     end
-    CreateDropletJob.perform_later chain
+    BigEarth::Blockchain::CreateDropletJob.perform_later chain
   end
 end
