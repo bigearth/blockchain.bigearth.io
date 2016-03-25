@@ -20,7 +20,7 @@ namespace :blockchain do
       'bitcoin-days-destroyed',
       'blocks-size'
     ].each do |chart_type|
-      UpdateChartsJob.perform_later chart_type
+      BigEarth::Blockchain::UpdateChartsJob.perform_later chart_type
     end
   end
 end
