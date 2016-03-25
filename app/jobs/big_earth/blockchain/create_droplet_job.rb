@@ -23,7 +23,7 @@ module BigEarth
             new_droplet = DropletKit::Droplet.new({
               name: chain[:title].dasherize.parameterize, 
               region: 'sfo1', 
-              size: '8gb', 
+              size: '512mb', 
               ssh_keys: [ Figaro.env.ssh_key_id ],
               image: 'ubuntu-14-04-x64', 
               ipv6: true
