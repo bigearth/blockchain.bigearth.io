@@ -6,6 +6,6 @@ namespace :blockchain do
     else
       chain = args.to_hash
     end
-    CreateChainJob.perform_later chain
+    CreateDropletJob.perform_later chain
   end
 end
