@@ -30,7 +30,7 @@ class ChainsController < ApplicationController
 
     respond_to do |format|
       if @chain.save 
-        CreateChainJob.perform_later @chain
+        BigEarth::Blockchain::CreateDropletJob.perform_later @chain
         format.html { redirect_to [@user, @chain], notice: 'Chain was successfully created.' }
         format.json { render :show, status: :created, location: @chain }
       else
