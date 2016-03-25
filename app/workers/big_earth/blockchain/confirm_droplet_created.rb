@@ -3,17 +3,17 @@ module BigEarth
     class ConfirmDropletCreated
       @queue = :confirm_droplet_created_job
       
-      def self.perform title
+      def self.perform formatted_title, title
         begin
           client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
           droplets = client.droplets.all
           droplet = droplets.select do |drplet|  
-            drplet.name === title 
+            drplet.name === formatted_title 
           end 
           
           if droplet.empty?
             # run in 1 minute
-            BigEarth::Blockchain::ConfirmDropletCreatedJob.perform_later chain[:title]
+            Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmDropletCreated, title: title)
           else
             # Get IPV4 and IPV6 ip address
             ip_address = droplet.first['networks']['v4'].first['ip_address']
@@ -26,8 +26,7 @@ module BigEarth
             # Bootstrap the chef Node
             BigEarth::Blockchain::BootstrapChefClientJob.perform_later title, ip_address, flavor
             # run in 1 minute
-            # BigEarth::Blockchain::ConfirmClientBootstrappedJob.perform_later title, ip_address, flavor
-            # Resque.enqueue_in(5.days, SendFollowupEmail) # run a job in 5 days
+            Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmClientBootstrappedJob, title, ip_address, flavor)
           end
           
         rescue Exception => error
