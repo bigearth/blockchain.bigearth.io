@@ -1,9 +1,9 @@
-module Blockchain
-  module Node
-    class ConfirmDropletCreatedJob < ActiveJob::Base
-      queue_as :confirm_droplet_created_job
+module BigEarth
+  module Blockchain
+    class ConfirmDropletCreated
+      @queue = :confirm_droplet_created_job
       
-      def perform title
+      def self.perform title
         begin
           client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
           droplets = client.droplets.all
@@ -26,7 +26,8 @@ module Blockchain
             # Bootstrap the chef Node
             BigEarth::Blockchain::BootstrapChefClientJob.perform_later title, ip_address, flavor
             # run in 1 minute
-            BigEarth::Blockchain::ConfirmClientBootstrappedJob.perform_later title, ip_address, flavor
+            # BigEarth::Blockchain::ConfirmClientBootstrappedJob.perform_later title, ip_address, flavor
+            # Resque.enqueue_in(5.days, SendFollowupEmail) # run a job in 5 days
           end
           
         rescue Exception => error

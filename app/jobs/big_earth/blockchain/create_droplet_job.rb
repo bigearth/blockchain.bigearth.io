@@ -38,7 +38,7 @@ module BigEarth
             existing_node.save
             
             # Confirm that the droplet got created in 2 minutes
-            ConfirmDropletCreatedJob.perform_later chain[:title]
+            Resque.enqueue_in(10.seconds, BigEarth::Blockchain::ConfirmDropletCreated, title: chain[:title])
           else
             @response = {
               status: 'already_exists'
