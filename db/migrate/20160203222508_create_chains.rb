@@ -5,7 +5,8 @@ class CreateChains < ActiveRecord::Migration
       t.string :title
       t.string :flavor, default: 'bitcoin_core'
       t.boolean :droplet_created, default: false
-      t.string :ip_address
+      t.string :ipv4_address
+      t.string :ipv6_address
       t.integer :user_id
 
       t.timestamps null: false

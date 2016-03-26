@@ -72,7 +72,8 @@ class ChainsController < ApplicationController
       @response = {
         status: 200,
         message: 'droplet created',
-        ip_address: chain.ip_address
+        ipv4_address: chain.ipv4_address,
+        ipv6_address: chain.ipv6_address
       }
     else
       @response = {
@@ -144,6 +145,6 @@ class ChainsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chain_params
-      params.require(:chain).permit :pub_key, :title, :flavor, :droplet_created, :ip_address, :user_id
+      params.require(:chain).permit :pub_key, :title, :flavor, :droplet_created, :ipv4_address, :ipv6_address, :user_id
     end
 end
