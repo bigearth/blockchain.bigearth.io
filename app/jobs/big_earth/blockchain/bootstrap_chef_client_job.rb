@@ -3,7 +3,7 @@ module BigEarth
     class BootstrapChefClientJob < ActiveJob::Base
       queue_as :bootstrap_chef_client_job
       
-      def perform title, ip_address, flavor
+      def perform title, ip_address_arr, flavor
         require 'httparty'
         begin
           HTTParty.post("#{Figaro.env.chef_workstation_ip_address}bootstrap_chef_client", 
@@ -13,7 +13,8 @@ module BigEarth
             },
             body: { 
               title: title, 
-              ip_address: ip_address,
+              ipv4_address: ip_address_arr.first,
+              ipv6_address: ip_address_arr.last,
               flavor: flavor 
             }.to_json,
             headers: { 'Content-Type' => 'application/json' } 

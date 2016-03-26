@@ -2,6 +2,7 @@ module BigEarth
   module Blockchain 
     class CreateDropletJob < ActiveJob::Base
 
+      # Set queue
       queue_as :create_chain_job
 
       def perform user, chain

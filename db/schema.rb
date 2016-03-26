@@ -18,7 +18,8 @@ ActiveRecord::Schema.define(version: 20160320143841) do
     t.string   "title"
     t.string   "flavor",          default: "bitcoin_core"
     t.boolean  "droplet_created", default: false
-    t.string   "ip_address"
+    t.string   "ipv4_address"
+    t.string   "ipv6_address"
     t.integer  "user_id"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false

@@ -1,9 +1,11 @@
 module BigEarth
   module Blockchain
-    class ConfirmClientBootstrapped < ActiveJob::Base
-      queue_as :confirm_client_bootstrapped
+    class ConfirmClientBootstrapped
       
-      def perform title, ip_address, flavor
+      # Set queue
+      @queue = :confirm_client_bootstrapped
+      
+      def self.perform title, ip_address_arr, flavor
         require 'httparty'
         begin
           HTTParty.get("#{Figaro.env.chef_workstation_ip_address}confirm_client_bootstrapped", 
@@ -13,7 +15,8 @@ module BigEarth
             },
             body: { 
               title: title, 
-              ip_address: ip_address,
+              ipv4_address: ip_address_arr.first,
+              ipv6_address: ip_address_arr.last,
               flavor: flavor 
             }.to_json,
             headers: { 'Content-Type' => 'application/json' } 
