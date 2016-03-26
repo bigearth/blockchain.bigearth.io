@@ -36,7 +36,7 @@ module BigEarth
             Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmClientBootstrapped, title,  [ipv4_address, ipv6_address], flavor)
           end
           
-        rescue Exception => error
+        rescue => error
           puts "confirm_droplet_created error: #{error}"
         end
       end

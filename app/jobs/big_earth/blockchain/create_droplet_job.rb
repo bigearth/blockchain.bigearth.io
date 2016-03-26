@@ -46,8 +46,8 @@ module BigEarth
           else
             raise BigEarth::Blockchain::Exceptions::ChainExistsException.new "Chain `#{chain[:title]}` already exists for user `#{user.email}`"
           end
-        rescue Exception => e
-          puts "[ERROR] #{Time.now}: #{e.class}: #{e.message}"
+        rescue => error
+          puts "[ERROR] #{Time.now}: #{error.class}: #{error.message}"
         end
       end
     end

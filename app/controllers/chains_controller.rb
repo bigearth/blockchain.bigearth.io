@@ -121,7 +121,7 @@ class ChainsController < ApplicationController
         }
         
       end
-    rescue Exception => error
+    rescue => error
       
       # Handle errors
       @response = {

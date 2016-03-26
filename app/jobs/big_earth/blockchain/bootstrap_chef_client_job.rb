@@ -19,7 +19,7 @@ module BigEarth
             }.to_json,
             headers: { 'Content-Type' => 'application/json' } 
           )
-        rescue Exception => error
+        rescue => error
             puts "bootstrap_chef_client error: #{error}"
         end
       end
