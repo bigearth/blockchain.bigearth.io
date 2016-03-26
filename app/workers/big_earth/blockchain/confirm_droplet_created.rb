@@ -19,7 +19,7 @@ module BigEarth
           
           if droplet.empty?
             # run in 1 minute
-            Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmDropletCreated, formatted_title, chain[:title])
+            Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmDropletCreated, formatted_title, title)
           else
             ipv4_address = droplet.first['networks']['v4'].first['ip_address']
             ipv6_address = droplet.first['networks']['v6'].first['ip_address']
