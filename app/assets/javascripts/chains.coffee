@@ -41,7 +41,7 @@ $ ->
           url: "destroy_chain?#{$.param(options)}",
           type: 'DELETE',
           success: (rsp) =>
-            # TODO handle case where droplet is still being created
+            # TODO handle case where node is still being created
             @.reset_buttons()
             if rsp.status_message is 'deleted'
               @.update_output("Deleting Bitcoin Blockchain #{name}.")
@@ -70,15 +70,15 @@ $ ->
     constructor: () ->
       @.blockchain = new Blockchain
       
-    confirm_droplet_created: () ->
-      $.get "confirm_droplet_created?id=#{$('#blockchain_title').data('id')}", (rsp) =>
-        if rsp.message is 'droplet created'
-          @.blockchain.update_output $("<li>Droplet has been created.</li>"), 'complete' 
+    confirm_node_created: () ->
+      $.get "confirm_node_created?id=#{$('#blockchain_title').data('id')}", (rsp) =>
+        if rsp.message is 'node created'
+          @.blockchain.update_output $("<li>Node has been created.</li>"), 'complete' 
           @.blockchain.update_output $("<li>IPv4 Address: #{rsp.ip_address}}.</li>"), 'complete' 
           @.confirm_client_bootstrapped()
         else
           setTimeout(() =>
-            @.confirm_droplet_created()
+            @.confirm_node_created()
           , 15000)
     
     confirm_client_bootstrapped: () ->
@@ -87,4 +87,4 @@ $ ->
   new Blockchain
   unless _.isEmpty $ '#blockchain_title'
     poller = new Poller 
-    poller.confirm_droplet_created()
+    poller.confirm_node_created()
