@@ -5,10 +5,10 @@ module BigEarth
         "#{email.split('@').first}-#{Rails.env}-#{title.dasherize.parameterize}"
       end
        
-      def fetch_droplet digital_ocean_client, title
-        # select just the appropriate droplet
-        digital_ocean_client.droplets.all.select do |droplet|  
-          droplet.name === title 
+      def fetch_node digital_ocean_client, title
+        # select just the appropriate node
+        digital_ocean_client.droplets.all.select do |node|  
+          node.name === title 
         end 
       end
     end

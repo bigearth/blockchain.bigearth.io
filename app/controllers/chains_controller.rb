@@ -30,7 +30,7 @@ class ChainsController < ApplicationController
 
     respond_to do |format|
       if @chain.save 
-        BigEarth::Blockchain::CreateDropletJob.perform_later @user, @chain
+        BigEarth::Blockchain::CreateNodeJob.perform_later @user, @chain
         format.html { redirect_to [@user, @chain], notice: 'Chain is being created.' }
         format.json { render :show, status: :created, location: @chain }
       else
@@ -64,21 +64,21 @@ class ChainsController < ApplicationController
     end
   end
 
-  # GET /users/1/chains/confirm_droplet_created
-  def confirm_droplet_created
+  # GET /users/1/chains/confirm_node_created
+  def confirm_node_created
     
     chain = Chain.find params[:id]
-    if chain.droplet_created
+    if chain.node_created
       @response = {
         status: 200,
-        message: 'droplet created',
+        message: 'node created',
         ipv4_address: chain.ipv4_address,
         ipv6_address: chain.ipv6_address
       }
     else
       @response = {
         status: 200,
-        message: 'droplet not created'
+        message: 'node not created'
       }
     end
     respond_to do |format|
@@ -94,17 +94,17 @@ class ChainsController < ApplicationController
       # Get the Digital Ocean Client
       @client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
       
-      # Get all the droplets 
-      droplets = @client.droplets.all
+      # Get all the nodes 
+      nodes = @client.droplets.all
       
-      # Select just the appropriate droplet
-      @droplet = droplets.select do |droplet|  
-        droplet.name == params[:name] 
+      # Select just the appropriate node
+      @node = nodes.select do |node|  
+        node.name == params[:name] 
       end 
       
-      if !@droplet.empty?
-        # IF the droplet exists then delete it
-        @client.droplets.delete id: @droplet.first['id']
+      if !@node.empty?
+        # IF the node exists then delete it
+        @client.droplets.delete id: @node.first['id']
         
         # Return deleted status
         @response = {
@@ -114,7 +114,7 @@ class ChainsController < ApplicationController
         
       else
         
-        # The droplet doesn't exists
+        # The node doesn't exists
         @response = {
           status: 200,
           status_message: 'nothing_to_delete'
@@ -145,6 +145,6 @@ class ChainsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chain_params
-      params.require(:chain).permit :pub_key, :title, :flavor, :droplet_created, :ipv4_address, :ipv6_address, :user_id
+      params.require(:chain).permit :pub_key, :title, :flavor, :node_created, :ipv4_address, :ipv6_address, :user_id
     end
 end

@@ -1,10 +1,10 @@
 module BigEarth
   module Blockchain
-    class ConfirmDropletCreated
+    class ConfirmNodeCreated
       extend BigEarth::Blockchain::Utility
       
       # Set queue
-      @queue = :confirm_droplet_created_job
+      @queue = :confirm_node_created_job
       
       def self.perform title, email
         # Wrap in begin/rescue block
@@ -16,17 +16,17 @@ module BigEarth
           # Namespace the title by the user's email so that no global titles conflict
           formatted_title = format_title title, email
           
-          # select just the appropriate droplet
-          droplet = fetch_droplet digital_ocean_client, formatted_title 
+          # select just the appropriate node
+          node = fetch_node digital_ocean_client, formatted_title 
           
-          if droplet.empty?
+          if node.empty?
             # run in 1 minute
-            Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmDropletCreated, title)
+            Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmNodeCreated, title)
           else
-            ipv4_address = droplet.first['networks']['v4'].first['ip_address']
-            ipv6_address = droplet.first['networks']['v6'].first['ip_address']
+            ipv4_address = node.first['networks']['v4'].first['ip_address']
+            ipv6_address = node.first['networks']['v6'].first['ip_address']
             existing_node = Chain.where('title = ?', title).first
-            existing_node.droplet_created = true
+            existing_node.node_created = true
             existing_node.ipv4_address = ipv4_address
             existing_node.ipv6_address = ipv6_address
             existing_node.save
@@ -38,7 +38,7 @@ module BigEarth
             Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmClientBootstrapped, title,  [ipv4_address, ipv6_address], flavor)
           end
           
-        # rescue BigEarth::Blockchain::Exceptions::ConfirmDropletCreatedException => error
+        # rescue BigEarth::Blockchain::Exceptions::ConfirmNodeCreatedException => error
         rescue => error
           puts "[ERROR] #{Time.now}: #{error.class}: #{error.message}"
         end
