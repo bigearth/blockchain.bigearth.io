@@ -1,6 +1,7 @@
 module BigEarth 
   module Blockchain 
     class CreateDropletJob < ActiveJob::Base
+      include BigEarth::Blockchain::Utility
 
       # Set queue
       queue_as :create_chain_job
@@ -10,15 +11,13 @@ module BigEarth
         begin
           
           # Get the Digital Ocean Client
-          @client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
+          digital_ocean_client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
           
           # Namespace the title by the user's email so that no global titles conflict
-          formatted_title = "#{user.email.split('@').first}-#{chain[:title].dasherize.parameterize}"
+          formatted_title = format_title chain[:title], user.email
           
           # select just the appropriate droplet
-          droplet = @client.droplets.all.select do |droplet|  
-            droplet.name == formatted_title 
-          end 
+          droplet = fetch_droplet digital_ocean_client, formatted_title 
           
           if droplet.empty?
             
@@ -34,7 +33,7 @@ module BigEarth
             })
             
             # Create it
-            @response = @client.droplets.create new_droplet
+            digital_ocean_client.droplets.create new_droplet
               
             # Update Active Record w/ Blockchain flavor
             existing_node = Chain.where('title = ?', chain[:title]).first
@@ -42,9 +41,9 @@ module BigEarth
             existing_node.save
             
             # Confirm that the droplet got created in 2 minutes
-            Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmDropletCreated, formatted_title, chain[:title])
+            Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmDropletCreated, chain[:title], user.email)
           else
-            raise BigEarth::Blockchain::Exceptions::ChainExistsException.new "Chain `#{chain[:title]}` already exists for user `#{user.email}`"
+            raise BigEarth::Blockchain::Exceptions::CreateDropletException.new "Chain `#{chain[:title]}` already exists for user `#{user.email}`"
           end
         rescue => error
           puts "[ERROR] #{Time.now}: #{error.class}: #{error.message}"

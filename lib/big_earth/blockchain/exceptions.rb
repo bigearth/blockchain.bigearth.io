@@ -1,7 +1,10 @@
 module BigEarth 
   module Blockchain 
     module Exceptions
-      class ChainExistsException < StandardError
+      class CreateDropletException < StandardError
+      end
+      
+      class ConfirmDropletCreatedException < StandardError
       end
     end
   end
