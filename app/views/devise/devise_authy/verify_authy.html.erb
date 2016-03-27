@@ -15,7 +15,7 @@
     <%= verify_authy_form do %>
       <legend><%= I18n.t('submit_token_title', {scope: 'devise'}) %></legend>
       <%= label_tag :token %>
-      <%= text_field_tag :token, "", autocomplete: :off, id: 'authy-token' %>
+      <%= text_field_tag :token, "", autocomplete: :off, id: 'authy-token', autofocus: true %>
       <label>
         <%= check_box_tag :remember_device %>
         <span><%= I18n.t('remember_device', {scope: 'devise'}) %></span>
@@ -24,11 +24,7 @@
       <!-- Help tooltip -->
       <!-- You need to configure a help message. -->
       <!-- See documentation: https://github.com/authy/authy-form-helpers#help-tooltip -->
-      <script>
-        var authyUI = Authy.UI.instance();
-        authyUI.setTooltip('Two-Factor', 'Get this 2FA token from your cellphone');
-      </script>
-      <%= link_to '?', '#', id: 'authy-help' %>
+      <!-- <%= link_to '?', '#', id: 'authy-help' %> -->
 
       <%= authy_request_sms_link %>
       <%= submit_tag I18n.t('submit_token', {scope: 'devise'}), class: 'btn' %>
