@@ -69,3 +69,4 @@ gem 'devise-authy'
 gem 'resque', require: 'resque/server'
 # gem 'resque-heroku'
 gem 'resque-scheduler'
+gem 'simplecov', require: false, group: :test

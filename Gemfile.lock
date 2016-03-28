@@ -79,6 +79,7 @@ GEM
     devise-authy (1.7.0)
       authy
       devise
+    docile (1.1.5)
     droplet_kit (1.3.3)
       activesupport (> 3.0, < 5.0.0)
       faraday (~> 0.9.1)
@@ -204,6 +205,11 @@ GEM
       rdoc (~> 4.0)
     sendgrid (1.2.4)
       json
+    simplecov (0.11.2)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -270,6 +276,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sendgrid
+  simplecov
   spring
   sqlite3
   turbolinks

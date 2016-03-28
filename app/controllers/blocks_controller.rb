@@ -7,6 +7,10 @@ class BlocksController < ApplicationController
   # GET /blocks/first.json
   # GET /blocks/last.json
   def show
+    # TODO Extend HTTParty w/ custom BigEarth::Blochain abstraction
+    # TODO: Wrap these calls in ActiveModel::Model classes to enable testing
+    # * More info: http://devdocs.io/rails/activemodel/model
+    # TODO: Consider data warehousing this or how to store blockchain data relationally
     @block = HTTParty.get "http://btc.blockr.io/api/v1/block/info/#{params[:id]}" 
     @txs = HTTParty.get "http://btc.blockr.io/api/v1/block/txs/#{params[:id]}" 
   end

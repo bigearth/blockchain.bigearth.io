@@ -1,49 +1,14 @@
 require 'test_helper'
 
 class TransactionsControllerTest < ActionController::TestCase
-  setup do
-    @transaction = transactions(:one)
-  end
-
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:transactions)
-  end
-
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
-  test "should create transaction" do
-    assert_difference('Transaction.count') do
-      post :create, transaction: {  }
-    end
-
-    assert_redirected_to transaction_path(assigns(:transaction))
-  end
-
   test "should show transaction" do
-    get :show, id: @transaction
+    get :show, id: '3e97420233b8c7409c06d9abceb5eb2c62d7638b7bac54a42693c08692b245cf'
     assert_response :success
   end
-
-  test "should get edit" do
-    get :edit, id: @transaction
+  
+  test "should get raw" do
+    request.headers["Accept"] = "application/json"
+    get :raw, id: '3e97420233b8c7409c06d9abceb5eb2c62d7638b7bac54a42693c08692b245cf'
     assert_response :success
-  end
-
-  test "should update transaction" do
-    patch :update, id: @transaction, transaction: {  }
-    assert_redirected_to transaction_path(assigns(:transaction))
-  end
-
-  test "should destroy transaction" do
-    assert_difference('Transaction.count', -1) do
-      delete :destroy, id: @transaction
-    end
-
-    assert_redirected_to transactions_path
   end
 end
