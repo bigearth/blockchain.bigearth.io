@@ -5,7 +5,8 @@ class ExplorersController < ApplicationController
   # GET /explorers.json
   def index
     # Fetch Coin Info from external webservice
-    @coin_info = HTTParty.get 'http://btc.blockr.io/api/v1/coin/info' 
+    blockr = BigEarth::Blockchain::Blockr.new
+    @coin_info = blockr.coin
     
     # Clean up data which we don't want to display in our JSON results
     @coin_info['data'].delete 'websocket'

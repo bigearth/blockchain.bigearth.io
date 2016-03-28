@@ -7,12 +7,12 @@ class BlocksController < ApplicationController
   # GET /blocks/first.json
   # GET /blocks/last.json
   def show
-    # TODO Extend HTTParty w/ custom BigEarth::Blochain abstraction
     # TODO: Wrap these calls in ActiveModel::Model classes to enable testing
     # * More info: http://devdocs.io/rails/activemodel/model
     # TODO: Consider data warehousing this or how to store blockchain data relationally
-    @block = HTTParty.get "http://btc.blockr.io/api/v1/block/info/#{params[:id]}" 
-    @txs = HTTParty.get "http://btc.blockr.io/api/v1/block/txs/#{params[:id]}" 
+    blockr = BigEarth::Blockchain::Blockr.new
+    @block = blockr.block params[:id]
+    @txs = blockr.block_txs params[:id]
   end
   
   # GET /blocks/transactions/1.json
@@ -20,7 +20,8 @@ class BlocksController < ApplicationController
   # GET /blocks/transactions/first.json
   # GET /blocks/transactions/last.json
   def transactions
-    @txs = HTTParty.get "http://btc.blockr.io/api/v1/block/txs/#{params[:id]}" 
+    blockr = BigEarth::Blockchain::Blockr.new
+    @txs = blockr.block_txs params[:id]
   end
   
   # GET /blocks/raw/1.json
@@ -28,7 +29,8 @@ class BlocksController < ApplicationController
   # GET /blocks/raw/first.json
   # GET /blocks/raw/last.json
   def raw
-    @raw_txs = HTTParty.get "http://btc.blockr.io/api/v1/block/raw/#{params[:id]}" 
+    blockr = BigEarth::Blockchain::Blockr.new
+    @raw_txs = blockr.block_raw params[:id]
   end
 
   private
