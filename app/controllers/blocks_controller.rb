@@ -10,8 +10,8 @@ class BlocksController < ApplicationController
     # TODO: Wrap these calls in ActiveModel::Model classes to enable testing
     # * More info: http://devdocs.io/rails/activemodel/model
     # TODO: Consider data warehousing this or how to store blockchain data relationally
-    @block = @blockr.block params[:id]
-    @txs = @blockr.block_txs params[:id]
+    @block = @blockr.blocks params[:id]
+    @txs = @blockr.blocks_txs params[:id]
   end
   
   # GET /blocks/transactions/1.json
@@ -19,7 +19,7 @@ class BlocksController < ApplicationController
   # GET /blocks/transactions/first.json
   # GET /blocks/transactions/last.json
   def transactions
-    @txs = @blockr.block_txs params[:id]
+    @txs = @blockr.blocks_txs params[:id]
   end
   
   # GET /blocks/raw/1.json
@@ -27,7 +27,7 @@ class BlocksController < ApplicationController
   # GET /blocks/raw/first.json
   # GET /blocks/raw/last.json
   def raw
-    @block_raw = @blockr.block_raw params[:id]
+    @blocks_raw = @blockr.blocks_raw params[:id]
   end
 
   private

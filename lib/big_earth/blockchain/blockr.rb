@@ -9,15 +9,15 @@ module BigEarth
         self.class.get '/coin/info'
       end
       
-      def block id
+      def blocks id
         self.class.get "/block/info/#{id}"
       end
       
-      def block_txs id
+      def blocks_txs id
         self.class.get "/block/txs/#{id}"
       end
       
-      def block_raw id
+      def blocks_raw id
         self.class.get "/block/raw/#{id}"
       end
       

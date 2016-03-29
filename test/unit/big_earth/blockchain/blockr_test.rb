@@ -18,27 +18,27 @@ module BigEarth
       end
       
       test 'the block' do
-        assert_instance_of Hash, @blockr.block('404734')['data']
+        assert_instance_of Hash, @blockr.blocks('404734')['data']
       end
       
       test 'the block fails' do
-        assert_nil @blockr.block('')['data']
+        assert_nil @blockr.blocks('')['data']
       end
       
       test 'the block txs' do
-        assert_instance_of Hash, @blockr.block_txs('404734')['data']
+        assert_instance_of Hash, @blockr.blocks_txs('404734')['data']
       end
       
       test 'the block txs fails' do
-        assert_nil @blockr.block_txs('')['data']
+        assert_nil @blockr.blocks_txs('')['data']
       end
       
       test 'the block raw' do
-        assert_instance_of Hash, @blockr.block_raw('404734')['data']
+        assert_instance_of Hash, @blockr.blocks_raw('404734')['data']
       end
       
       test 'the block raw fails' do
-        assert_nil @blockr.block_raw('')['data']
+        assert_nil @blockr.blocks_raw('')['data']
       end
       
       test 'the transactions' do
@@ -58,7 +58,7 @@ module BigEarth
       end
       
       test 'the address' do
-        assert_instance_of Hash, @blockr.addresses('13Lff2jYRr7jvxhSgrCFUKsMtwcksEMsyn')['data']
+        assert_instance_of Hash, @blockr.addresses('152f1muMCNa7goXYhYAQC61hxEgGacmncB')['data']
       end
       
       test 'the address fails' do
@@ -66,7 +66,7 @@ module BigEarth
       end
       
       test 'the address txs' do
-        assert_instance_of Hash, @blockr.addresses_txs('13Lff2jYRr7jvxhSgrCFUKsMtwcksEMsyn')['data']
+        assert_instance_of Hash, @blockr.addresses_txs('152f1muMCNa7goXYhYAQC61hxEgGacmncB')['data']
       end
       
       test 'the address txs fails' do
@@ -74,7 +74,7 @@ module BigEarth
       end
       
       test 'the address balance' do
-        assert_instance_of Hash, @blockr.addresses_balance('13Lff2jYRr7jvxhSgrCFUKsMtwcksEMsyn')['data']
+        assert_instance_of Hash, @blockr.addresses_balance('152f1muMCNa7goXYhYAQC61hxEgGacmncB')['data']
       end
       
       test 'the address balance fails' do
@@ -82,7 +82,7 @@ module BigEarth
       end
       
       test 'the address unspent' do
-        assert_instance_of Hash, @blockr.addresses_unspent('13Lff2jYRr7jvxhSgrCFUKsMtwcksEMsyn')['data']
+        assert_instance_of Hash, @blockr.addresses_unspent('152f1muMCNa7goXYhYAQC61hxEgGacmncB')['data']
       end
       
       test 'the address unspent fails' do

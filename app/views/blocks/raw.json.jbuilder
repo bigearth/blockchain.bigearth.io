@@ -1,3 +1,3 @@
 json.status 'success'
-json.data @block_raw['data']
+json.data @blocks_raw['data']
 json.code 200
