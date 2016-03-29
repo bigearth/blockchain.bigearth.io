@@ -34,8 +34,9 @@ module BigEarth
             
             # Bootstrap the chef Node
             BigEarth::Blockchain::BootstrapChefClientJob.perform_later title, [ipv4_address, ipv6_address], flavor
-            # run in 1 minute
-            Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmClientBootstrapped, title,  [ipv4_address, ipv6_address], flavor)
+            
+            # run in 5 minutes
+            Resque.enqueue_in(5.minutes, BigEarth::Blockchain::ConfirmClientBootstrapped, title,  [ipv4_address, ipv6_address], flavor)
           end
           
         # rescue BigEarth::Blockchain::Exceptions::ConfirmNodeCreatedException => error
