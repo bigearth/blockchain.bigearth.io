@@ -5,7 +5,8 @@ class ExplorersController < ApplicationController
   # GET /explorers.json
   def index
     # Fetch Coin Info from external webservice
-    @coin_info = HTTParty.get 'http://btc.blockr.io/api/v1/coin/info' 
+    blockr = BigEarth::Blockchain::Blockr.new
+    @coin_info = blockr.coin
     
     # Clean up data which we don't want to display in our JSON results
     @coin_info['data'].delete 'websocket'
@@ -45,25 +46,7 @@ class ExplorersController < ApplicationController
     end
     
     # Fetch Block Info from external webservice 
-    @blocks = HTTParty.get "http://btc.blockr.io/api/v1/block/info/#{prev_blocks.join(',')}"
-    
-    # Massage data for Timeline chart
-    @timeline = @blocks['data'].each_with_index.map do |block, index|
-      [block['nb'].to_s, Time.parse(@blocks['data'][index+1 != @blocks['data'].size ? index+1 : index]['time_utc']).to_s, Time.parse(block['time_utc']).to_s]
-    end
-    
-    @statistics = {
-      nb_txs: [],
-      fee: [],
-      size: [],
-      days_destroyed: []
-    }
-    @blocks['data'].each do |item|
-      @statistics[:nb_txs] << item['nb_txs'].to_i
-      @statistics[:fee] << item['fee'].to_f
-      @statistics[:size] << item['size'].to_i
-      @statistics[:days_destroyed] << item['days_destroyed'].to_f
-    end
+    @blocks = blockr.blocks prev_blocks.join(',')
   end
 
   private

@@ -49,6 +49,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'sqlite3'
+  gem 'minitest-reporters'
 end
 
 group :development do
@@ -68,3 +69,4 @@ gem 'devise-authy'
 gem 'resque', require: 'resque/server'
 # gem 'resque-heroku'
 gem 'resque-scheduler'
+gem 'simplecov', require: false, group: :test

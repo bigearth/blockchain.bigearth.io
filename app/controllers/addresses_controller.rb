@@ -1,34 +1,34 @@
 class AddressesController < ApplicationController
-  before_action :set_address, only: [:edit, :update, :destroy]
+  before_action :set_blockr, only: [:show, :balance, :unspent]
 
   # GET /addresses/1
   # GET /addresses/1.json
   # GET /addresses/1,2,n.json
   def show
-    @address = HTTParty.get "http://btc.blockr.io/api/v1/address/info/#{params[:id]}"
-    @txs = HTTParty.get "http://btc.blockr.io/api/v1/address/txs/#{params[:id]}"
+    @address = @blockr.addresses params[:id]
+    @txs  = @blockr.addresses_txs params[:id]
   end
   
   # GET /addresses/balance/1.json
   # GET /addresses/balance/1,2,n.json
   def balance
-    @balance = HTTParty.get "http://btc.blockr.io/api/v1/address/balance/#{params[:id]}"
+    @balance  = @blockr.addresses_balance params[:id]
   end
   
   # GET /addresses/unspent/1.json
   # GET /addresses/unspent/1,2,n.json
   def unspent 
-    @unspent = HTTParty.get "http://btc.blockr.io/api/v1/address/unspent/#{params[:id]}"
+    @unspent = @blockr.addresses_unspent params[:id]
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_address
-    #   @address = Address.find(params[:id])
-    # end
+    def set_blockr
+      @blockr = BigEarth::Blockchain::Blockr.new
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def address_params
-      params[:address]
-    end
+    # def address_params
+    #   params[:address]
+    # end
 end

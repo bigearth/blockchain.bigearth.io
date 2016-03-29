@@ -40,7 +40,7 @@ module BigEarth
             existing_node.flavor = chain[:flavor]
             existing_node.save
             
-            # Confirm that the node got created in 2 minutes
+            # Confirm that the node got created in 1 minute
             Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmNodeCreated, chain[:title], user.email)
           else
             raise BigEarth::Blockchain::Exceptions::CreateNodeException.new "Chain `#{chain[:title]}` already exists for user `#{user.email}`"

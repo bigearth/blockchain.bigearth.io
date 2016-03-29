@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   before_filter :get_coin_value
     
   def get_coin_value
-    coin_info = HTTParty.get 'http://btc.blockr.io/api/v1/coin/info' 
+    blockr = BigEarth::Blockchain::Blockr.new
+    coin_info = blockr.coin
     @exchange_rate = coin_info['data']['markets']['coinbase']['value']
   end
   
