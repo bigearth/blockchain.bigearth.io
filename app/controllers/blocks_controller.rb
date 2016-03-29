@@ -1,5 +1,5 @@
 class BlocksController < ApplicationController
-  #before_action :set_block, only: [:edit, :update, :destroy]
+  before_action :set_blockr, only: [:show, :transactions, :raw]
 
   # GET /blocks/1
   # GET /blocks/1.json
@@ -10,9 +10,8 @@ class BlocksController < ApplicationController
     # TODO: Wrap these calls in ActiveModel::Model classes to enable testing
     # * More info: http://devdocs.io/rails/activemodel/model
     # TODO: Consider data warehousing this or how to store blockchain data relationally
-    blockr = BigEarth::Blockchain::Blockr.new
-    @block = blockr.block params[:id]
-    @txs = blockr.block_txs params[:id]
+    @block = @blockr.block params[:id]
+    @txs = @blockr.block_txs params[:id]
   end
   
   # GET /blocks/transactions/1.json
@@ -20,8 +19,7 @@ class BlocksController < ApplicationController
   # GET /blocks/transactions/first.json
   # GET /blocks/transactions/last.json
   def transactions
-    blockr = BigEarth::Blockchain::Blockr.new
-    @txs = blockr.block_txs params[:id]
+    @txs = @blockr.block_txs params[:id]
   end
   
   # GET /blocks/raw/1.json
@@ -29,18 +27,17 @@ class BlocksController < ApplicationController
   # GET /blocks/raw/first.json
   # GET /blocks/raw/last.json
   def raw
-    blockr = BigEarth::Blockchain::Blockr.new
-    @raw_txs = blockr.block_raw params[:id]
+    @block_raw = @blockr.block_raw params[:id]
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_block
-    #   @block = Block.find(params[:id])
-    # end
+    def set_blockr
+      @blockr = BigEarth::Blockchain::Blockr.new
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def block_params
-      params[:block]
-    end
+    # def block_params
+    #   params[:block]
+    # end
 end

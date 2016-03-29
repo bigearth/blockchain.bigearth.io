@@ -20,6 +20,14 @@ module BigEarth
       def block_raw id
         self.class.get "/block/raw/#{id}"
       end
+      
+      def transactions id
+        self.class.get "/tx/info/#{id}"
+      end
+      
+      def transactions_raw id
+        self.class.get "/tx/raw/#{id}"
+      end
     end 
   end
 end
