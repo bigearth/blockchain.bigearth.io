@@ -7,8 +7,6 @@ class BlocksController < ApplicationController
   # GET /blocks/first.json
   # GET /blocks/last.json
   def show
-    # TODO: Wrap these calls in ActiveModel::Model classes to enable testing
-    # * More info: http://devdocs.io/rails/activemodel/model
     # TODO: Consider data warehousing this or how to store blockchain data relationally
     @block = @blockr.blocks params[:id]
     @txs = @blockr.blocks_txs params[:id]

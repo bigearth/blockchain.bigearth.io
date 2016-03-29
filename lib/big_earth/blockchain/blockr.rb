@@ -1,6 +1,7 @@
 module BigEarth
   module Blockchain
     class Blockr 
+      include ActiveModel::Model
       include HTTParty
       
       base_uri 'btc.blockr.io/api/v1'
