@@ -56,6 +56,38 @@ module BigEarth
       test 'the transactions raw fails' do
         assert_nil @blockr.transactions_raw('')['data']
       end
+      
+      test 'the address' do
+        assert_instance_of Hash, @blockr.addresses('13Lff2jYRr7jvxhSgrCFUKsMtwcksEMsyn')['data']
+      end
+      
+      test 'the address fails' do
+        assert_nil @blockr.addresses('')['data']
+      end
+      
+      test 'the address txs' do
+        assert_instance_of Hash, @blockr.addresses_txs('13Lff2jYRr7jvxhSgrCFUKsMtwcksEMsyn')['data']
+      end
+      
+      test 'the address txs fails' do
+        assert_nil @blockr.addresses_txs('')['data']
+      end
+      
+      test 'the address balance' do
+        assert_instance_of Hash, @blockr.addresses_balance('13Lff2jYRr7jvxhSgrCFUKsMtwcksEMsyn')['data']
+      end
+      
+      test 'the address balance fails' do
+        assert_nil @blockr.addresses_balance('')['data']
+      end
+      
+      test 'the address unspent' do
+        assert_instance_of Hash, @blockr.addresses_unspent('13Lff2jYRr7jvxhSgrCFUKsMtwcksEMsyn')['data']
+      end
+      
+      test 'the address unspent fails' do
+        assert_nil @blockr.addresses_unspent('')['data']
+      end
     end
   end
 end

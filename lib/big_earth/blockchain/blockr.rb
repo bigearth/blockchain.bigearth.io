@@ -28,6 +28,22 @@ module BigEarth
       def transactions_raw id
         self.class.get "/tx/raw/#{id}"
       end
+      
+      def addresses id
+        self.class.get "/address/info/#{id}"
+      end
+      
+      def addresses_txs id
+        self.class.get "/address/txs/#{id}"
+      end
+      
+      def addresses_balance id
+        self.class.get "/address/balance/#{id}"
+      end
+      
+      def addresses_unspent id
+        self.class.get "/address/unspent/#{id}"
+      end
     end 
   end
 end
