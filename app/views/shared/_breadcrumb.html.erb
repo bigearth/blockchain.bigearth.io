@@ -32,7 +32,11 @@
   <li class='active'>Sign In</li>
 <% elsif params[:controller] == 'devise/devise_authy' %>
   <li class='active'>2FA</li>
-  <li class='active'>Enable</li>
+  <% if params[:action] == 'GET_enable_authy' %>
+    <li class='active'>Enable</li>
+  <% else %>
+    <li class='active'>Verify</li>
+  <% end %>
 <% elsif params[:controller] == 'devise_authy/passwords' && params[:action] == 'new' %>
   <li class='active'>Profile</li>
   <li class='active'>Forgot Password</li>
