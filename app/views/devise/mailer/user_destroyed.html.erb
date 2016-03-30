@@ -6,6 +6,14 @@
   <body>
     <h2><%= @email %>,</h2>
     <p>Thanks for trying blockchain.bigearth.io! We're sorry to see you go.</p>
+    <% unless @chain_titles.empty? %>
+      <p>We've also deleted all <%= @chain_titles.count %> of the following chains.</p>
+      <ul>
+        <% @chain_titles.each do |chain_title| %>
+          <li><%= chain_title %></li>
+        <% end %>
+      </ul>
+    <% end %>
     <p>Feel free to reply to this email w/ your thoughts on why you destroyed your account.</p>
     <p>Should you decide to return we'll welcome you back gladly at <%= root_url %>.</p>
     <p>Thanks again,</p>

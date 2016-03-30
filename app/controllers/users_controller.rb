@@ -59,6 +59,11 @@ class UsersController < ApplicationController
   def destroy
     email = @user.email
     
+    # Capture chain titles for final email
+    chain_titles = @user.chains.map do |chain|
+      chain.title
+    end
+    
     # Destroy all nodes belonging to this user
     @user.chains.each do |chain|
       # Queue up BigEarth::Blockchain::DestroyNodeJob
@@ -66,7 +71,7 @@ class UsersController < ApplicationController
     end
     
     # Send a final email to the user
-    BigEarth::Blockchain::UserDestroyedEmailJob.perform_later email
+    BigEarth::Blockchain::UserDestroyedEmailJob.perform_later email, chain_titles
       
     # Delete the user from DB
     @user.destroy
