@@ -14,6 +14,10 @@
     <section class='row m-b-md'>
         <div class='col-md-6'>
           <p>
+            <strong>Email addres:</strong>
+            <%= @user.email %>
+          </p>
+          <p>
             <strong>First name (optional):</strong>
             <%= @user.first_name %>
           </p>
@@ -32,10 +36,6 @@
           <p>
             <strong>Company (optional):</strong>
             <%= @user.company %>
-          </p>
-          <p>
-            <strong>Email address (optional):</strong>
-            <%= @user.email %>
           </p>
           <p>
             <strong>2 Factor Auth Enabled (optional):</strong>
