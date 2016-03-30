@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     verify_authy_installation: "/verify-installation"
   }
   resources :users, except: [:index] do
+    get 'confirm_node_created' => 'chains#confirm_node_created', path: 'chains/confirm_node_created'
     resources :chains
   end
   get 'blocks/transactions/:id' => 'blocks#transactions'
@@ -34,8 +35,6 @@ Rails.application.routes.draw do
   get 'charts/days_destroyed_cumulative' => 'charts#days_destroyed_cumulative'
   get 'charts/days_destroyed' => 'charts#days_destroyed'
   get 'charts/blockchain_size' => 'charts#blockchain_size'
-  get 'confirm_node_created' => 'chains#confirm_node_created', path: 'chains/confirm_node_created'
-  delete 'delete_chain' => 'chains#destroy_chain', path: 'chains/destroy_chain'
   resources :explorers, only: [:index], path: 'coin'
   resources :blocks, only: [:show]
   resources :transactions, only: [:show]

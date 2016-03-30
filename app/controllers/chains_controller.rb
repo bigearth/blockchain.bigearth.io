@@ -1,5 +1,6 @@
 class ChainsController < ApplicationController
   before_action :set_chain, only: [:show, :edit, :update, :destroy]
+  include BigEarth::Blockchain::Utility
 
   # GET /users/1/chains
   # GET /users/1/chains.json
@@ -57,9 +58,35 @@ class ChainsController < ApplicationController
   # DELETE /users/1/chains/1
   # DELETE /users/1/chains/1.json
   def destroy
-    @chain.destroy
+    
+    # Wrap in begin/rescue block
+    begin
+      # Get the Digital Ocean Client
+      digital_ocean_client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
+      
+      # get User
+      user = User.find params[:user_id]
+      
+      chain = user.chains.find params[:id]
+      
+      # Namespace the title by the user's email so that no global titles conflict
+      formatted_title = format_title chain.title, user.email
+          
+      # select just the appropriate node
+      node = fetch_node digital_ocean_client, formatted_title 
+      
+      unless node.empty?
+        # IF the node exists then delete it
+        digital_ocean_client.droplets.delete id: node.first['id']
+      end
+      
+      # Delete the chain from DB
+      @chain.destroy
+    rescue => error
+      puts "[ERROR] #{Time.now}: #{error.class}: #{error.message}"
+    end
     respond_to do |format|
-      format.html { redirect_to chains_url, notice: 'Chain was successfully destroyed.' }
+      format.html { redirect_to @user, notice: 'Chain was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,7 +94,8 @@ class ChainsController < ApplicationController
   # GET /users/1/chains/confirm_node_created
   def confirm_node_created
     
-    chain = Chain.find params[:id]
+    user = User.find params[:user_id]
+    chain = user.chains.where('title = ?', params[:title]).first
     if chain.node_created
       @response = {
         status: 200,
@@ -83,56 +111,6 @@ class ChainsController < ApplicationController
     end
     respond_to do |format|
       format.json { render json: @response }
-    end
-  end
-    
-  # DELETE /users/1/chains/delete_chain
-  def destroy_chain
-    # Wrap in begin/rescue block
-    begin
-      
-      # Get the Digital Ocean Client
-      @client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
-      
-      # Get all the nodes 
-      nodes = @client.droplets.all
-      
-      # Select just the appropriate node
-      @node = nodes.select do |node|  
-        node.name == params[:name] 
-      end 
-      
-      if !@node.empty?
-        # IF the node exists then delete it
-        @client.droplets.delete id: @node.first['id']
-        
-        # Return deleted status
-        @response = {
-          status: 200,
-          status_message: 'deleted'
-        }
-        
-      else
-        
-        # The node doesn't exists
-        @response = {
-          status: 200,
-          status_message: 'nothing_to_delete'
-        }
-        
-      end
-    rescue => error
-      
-      # Handle errors
-      @response = {
-        status: 500,
-        status_message: error
-      }
-      
-    end
-    
-    respond_to do |format|
-      format.json { render json: @response}
     end
   end
     

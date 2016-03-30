@@ -31,26 +31,6 @@ $ ->
             @.update_output("Creating Bitcoin #{_.upperFirst flavor.split('_')[1]} Blockchain #{name}.")
             $(evt.currentTarget).removeClass('btn-primary').addClass('btn-success')
           
-      $('#delete_blockchain').click (evt) =>
-        @.update_output "Processing..."
-        name = $('#blockchain_title').data 'name'
-        options = {
-          name: name
-        }
-        $.ajax {
-          url: "destroy_chain?#{$.param(options)}",
-          type: 'DELETE',
-          success: (rsp) =>
-            # TODO handle case where node is still being created
-            @.reset_buttons()
-            if rsp.status_message is 'deleted'
-              @.update_output("Deleting Bitcoin Blockchain #{name}.")
-              $(evt.currentTarget).removeClass('btn-primary').addClass('btn-success')
-            else if rsp.status_message is 'nothing_to_delete'
-              @.update_output(" Bitcoin Blockchain #{name} doesn't exist. Click the 'New' button to create it.")
-              $(evt.currentTarget).removeClass('btn-primary').addClass('btn-danger')
-        }
-        
       $('#flavors a').click (evt) =>
         $('#flavors a.active').removeClass 'active'
         $(evt.currentTarget).addClass 'active'
@@ -58,7 +38,7 @@ $ ->
         
     update_output: (output, output_type = 'in_progress') ->
       if output_type is 'in_progress'
-        $('#output #in_progress').text output
+        $('#output #in_progress').append output
       else if output_type is 'complete'
         $('#output #complete').append output
     update_button: (output) ->
@@ -67,16 +47,17 @@ $ ->
       $('#new_blockchain, #delete_blockchain').removeClass('btn-danger btn-success').addClass('btn-primary')
   
   class Poller
-    constructor: () ->
-      @.blockchain = new Blockchain
+    constructor: (@blockchain) ->
       
     confirm_node_created: () ->
-      $.get "confirm_node_created?id=#{$('#blockchain_title').data('id')}", (rsp) =>
+      $.get "confirm_node_created?title=#{$('#blockchain_title').data('title')}", (rsp) =>
         if rsp.message is 'node created'
-          @.blockchain.update_output $("<li>Node has been created.</li>"), 'complete' 
-          @.blockchain.update_output $("<li>IPv4 Address: #{rsp.ip_address}}.</li>"), 'complete' 
+          @blockchain.update_output $("<li>Node has been created.</li>"), 'complete' 
+          @blockchain.update_output $("<li>IPv4 Address: #{rsp.ipv4_address}.</li>"), 'complete' 
+          @blockchain.update_output $("<li>IPv6 Address: #{rsp.ipv6_address}.</li>"), 'complete' 
           @.confirm_client_bootstrapped()
         else
+          @blockchain.update_output $("<li>Working....</li>"), 'in_progress' 
           setTimeout(() =>
             @.confirm_node_created()
           , 15000)
@@ -84,7 +65,7 @@ $ ->
     confirm_client_bootstrapped: () ->
       console.log 'confirm_client_bootstrapped called'
       
-  new Blockchain
+  blockchain = new Blockchain
   unless _.isEmpty $ '#blockchain_title'
-    poller = new Poller 
+    poller = new Poller blockchain
     poller.confirm_node_created()

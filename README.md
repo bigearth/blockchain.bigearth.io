@@ -44,7 +44,7 @@ Please file any bugs in the [issues tracker](https://github.com/cgcardona/blockc
 
 ### Security
 
-Any and all security issues should be reported immediately to cgcardona [at] gmail [dot] com or [@cgcardona](https://twitter.com/cgcardona).
+Any and all security issues should be reported immediately to gabr13l [at] bigearth [dot] io or [@cgcardona](https://twitter.com/cgcardona).
 
 #### Environment Variables
 

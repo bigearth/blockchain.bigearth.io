@@ -14,16 +14,16 @@
           <span class='glyphicon glyphicon-equalizer' aria-hidden='true'></span> <%= @chain.title %>
         </h3>
       </section>
-      <section class='panel-body' data-name='<%= @chain.pub_key %>' id='blockchain_title' data-id='<%= params[:id] %>'>
+      <section class='panel-body' data-title='<%= @chain.title %>' id='blockchain_title'>
         <section class="row m-b-md">
           <div class="col-sm-6" id='controls'>
             <h4>
               <span class='glyphicon glyphicon-tasks' aria-hidden='true'></span> Controls
             </h4>
             <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group"> 
-              <a type="button" class="btn btn-default btn-primary" id='delete_blockchain'>
+              <%= link_to user_chain_path(@user, @chain), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-default btn-primary' do %>
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Destroy
-              </a>
+              <% end %>
             </div>
           </div>
           <div class="col-sm-6">
@@ -34,8 +34,8 @@
               <pre id='output'>
                 <ul id='complete'>
                 </ul>
-                <div id='in_progress'>
-                </div>
+                <ul id='in_progress'>
+                </ul>
               </pre>
             </div>
           </div>
