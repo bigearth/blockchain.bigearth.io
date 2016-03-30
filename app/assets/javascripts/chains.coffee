@@ -55,15 +55,15 @@ $ ->
           @blockchain.update_output $("<li>Node has been created.</li>"), 'complete' 
           @blockchain.update_output $("<li>IPv4 Address: #{rsp.ipv4_address}.</li>"), 'complete' 
           @blockchain.update_output $("<li>IPv6 Address: #{rsp.ipv6_address}.</li>"), 'complete' 
-          @.confirm_client_bootstrapped()
+          @.confirm_chef_client_bootstrapped()
         else
           @blockchain.update_output $("<li>Working....</li>"), 'in_progress' 
           setTimeout(() =>
             @.confirm_node_created()
           , 15000)
     
-    confirm_client_bootstrapped: () ->
-      console.log 'confirm_client_bootstrapped called'
+    confirm_chef_client_bootstrapped: () ->
+      console.log 'confirm_chef_client_bootstrapped called'
       
   blockchain = new Blockchain
   unless _.isEmpty $ '#blockchain_title'

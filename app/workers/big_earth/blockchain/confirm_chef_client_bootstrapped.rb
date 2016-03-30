@@ -1,14 +1,14 @@
 module BigEarth
   module Blockchain
-    class ConfirmClientBootstrapped
+    class ConfirmChefClientBootstrapped
       
       # Set queue
-      @queue = "#{Rails.env}_confirm_client_bootstrapped_worker"
+      @queue = "#{Rails.env}_confirm_chef_client_bootstrapped_worker"
       
       def self.perform title, ip_address_arr, flavor
         require 'httparty'
         begin
-          HTTParty.get("#{Figaro.env.chef_workstation_ip_address}confirm_client_bootstrapped", 
+          HTTParty.get("#{Figaro.env.chef_workstation_ip_address}confirm_chef_client_bootstrapped", 
             basic_auth: {
               username: Figaro.env.chef_workstation_username, 
               password: Figaro.env.chef_workstation_password 
