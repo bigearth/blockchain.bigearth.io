@@ -57,6 +57,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    #TODO Destroy all nodes belonging to this user
     email = @user.email
     
     # Send a final email to the user
