@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+  </head>
+  <body>
+    <h2>Hello <%= @user.email %>!</h2>
+    <p>
+      You've successfully created your <%= @user.chains.count.ordinalize %> bitcoin blockchain!
+    </p>
+    <h2>Next Steps</h2>
+    <ol>
+      <li>
+        Integrate the blockchain into your application via webservices.
+      </li>
+      <li>
+        Create a wallet and some bitcoin addresses and create a transaction.
+      </li>
+      <li>
+        View data visualzations on your chain's performance.
+      </li>
+      <li>
+        Check out our documentation to learn more.
+      </li>
+    </ol>
+    <p>Thanks for joining blockchain.bigearth.io!</p>
+  </body>
+</html>

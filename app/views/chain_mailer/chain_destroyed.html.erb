@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+  </head>
+  <body>
+    <h2>Hello <%= @user.email %>!</h2>
+    <p>
+      You've successfully destroyed your chain: <%= @chain.title %>.
+    </p>
+    <h2>Next Steps</h2>
+    <ol>
+      <li>
+        Create a new chain.
+      </li>
+      <% unless @user.chains.empty? %>
+      <li>
+        Check on one of your other chains.
+        <ul>
+          <% @user.chains.each do |chain| %>
+            <li>
+              <%= link_to chain.title, user_chain_url(@user, chain) %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+      <% end %>
+    </ol>
+    <p>Thanks for joining blockchain.bigearth.io!</p>
+  </body>
+</html>

@@ -8,11 +8,11 @@ class User < ActiveRecord::Base
          
   before_save do
     if self.confirmed_at_changed?
-      BigEarth::Blockchain::UserWelcomeJob.perform_later self
+      BigEarth::Blockchain::UserWelcomeEmailJob.perform_later self
     end
     
     if self.authy_enabled_changed?
-      BigEarth::Blockchain::UserTwoFactorAuthEnabledJob.perform_later self
+      BigEarth::Blockchain::UserTwoFactorAuthEnabledEmailJob.perform_later self
     end
   end
 end

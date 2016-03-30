@@ -32,7 +32,12 @@ class ChainsController < ApplicationController
 
     respond_to do |format|
       if @chain.save 
+        # Send an email to the user
+        BigEarth::Blockchain::ChainCreatedEmailJob.perform_later @user, @chain
+        
+        # Create node
         BigEarth::Blockchain::CreateNodeJob.perform_later @user.email, @chain
+        
         format.html { redirect_to [@user, @chain], notice: "Chain '#{@chain.title}' is being created." }
         format.json { render :show, status: :created, location: @chain }
       else
@@ -68,6 +73,9 @@ class ChainsController < ApplicationController
       
       # Delete the chain from DB
       @chain.destroy
+        
+      # Send an email to the user
+      BigEarth::Blockchain::ChainDestroyedEmailJob.perform_later @user, @chain
     rescue => error
       puts "[ERROR] #{Time.now}: #{error.class}: #{error.message}"
     end

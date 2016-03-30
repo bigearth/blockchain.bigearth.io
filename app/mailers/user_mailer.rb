@@ -8,11 +8,11 @@ class UserMailer < Devise::Mailer
   
   def welcome_email user
     @user = user
-    mail to: user.email, subject: 'Big Earth account confirmed!'
+    mail to: user.email, subject: 'Big Earth Blockchain Account Confirmed!'
   end
   
   def two_factor_auth_enabled user
     @user = user
-    mail to: user.email, subject: 'Big Earth 2 Factor Auth Enabled!'
+    mail to: user.email, subject: 'Big Earth Blockchain 2 Factor Auth Enabled!'
   end
 end
