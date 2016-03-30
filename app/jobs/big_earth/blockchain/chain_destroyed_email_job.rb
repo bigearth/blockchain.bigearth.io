@@ -8,7 +8,7 @@ module BigEarth
         ChainMailer.chain_destroyed(user, chain).deliver_later
         
         # Delete the chain from DB
-        chain.destroy
+        # chain.destroy
       end
     end
   end
