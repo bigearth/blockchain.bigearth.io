@@ -4,7 +4,7 @@ module BigEarth
       extend BigEarth::Blockchain::Utility
       
       # Set queue
-      @queue = :confirm_node_created_job
+      @queue = "#{Rails.env}_confirm_node_created_worker"
       
       def self.perform title, email
         # Wrap in begin/rescue block

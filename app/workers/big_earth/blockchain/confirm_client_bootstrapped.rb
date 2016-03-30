@@ -3,7 +3,7 @@ module BigEarth
     class ConfirmClientBootstrapped
       
       # Set queue
-      @queue = :confirm_client_bootstrapped
+      @queue = "#{Rails.env}_confirm_client_bootstrapped_worker"
       
       def self.perform title, ip_address_arr, flavor
         require 'httparty'
