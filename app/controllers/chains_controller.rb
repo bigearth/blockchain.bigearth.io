@@ -32,8 +32,8 @@ class ChainsController < ApplicationController
 
     respond_to do |format|
       if @chain.save 
-        BigEarth::Blockchain::CreateNodeJob.perform_later @user, @chain
-        format.html { redirect_to [@user, @chain], notice: 'Chain is being created.' }
+        BigEarth::Blockchain::CreateNodeJob.perform_later @user.email, @chain
+        format.html { redirect_to [@user, @chain], notice: "Chain '#{@chain.title}' is being created." }
         format.json { render :show, status: :created, location: @chain }
       else
         format.html { render :new }
@@ -62,24 +62,9 @@ class ChainsController < ApplicationController
     
     # Wrap in begin/rescue block
     begin
-      # Get the Digital Ocean Client
-      digital_ocean_client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
       
-      # get User
-      user = User.find params[:user_id]
-      
-      chain = user.chains.find params[:id]
-      
-      # Namespace the title by the user's email so that no global titles conflict
-      formatted_title = format_title chain.title, user.email
-          
-      # select just the appropriate node
-      node = fetch_node digital_ocean_client, formatted_title 
-      
-      unless node.empty?
-        # IF the node exists then delete it
-        digital_ocean_client.droplets.delete id: node.first['id']
-      end
+      # Queue up BigEarth::Blockchain::DestroyNodeJob
+      BigEarth::Blockchain::DestroyNodeJob.perform_later @chain.title, @user.email
       
       # Delete the chain from DB
       @chain.destroy
@@ -87,7 +72,7 @@ class ChainsController < ApplicationController
       puts "[ERROR] #{Time.now}: #{error.class}: #{error.message}"
     end
     respond_to do |format|
-      format.html { redirect_to @user, notice: 'Chain was successfully destroyed.' }
+      format.html { redirect_to @user, notice: "Chain '#{@chain.title}' was successfully destroyed." }
       format.json { head :no_content }
     end
   end

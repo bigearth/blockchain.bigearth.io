@@ -7,7 +7,7 @@ module BigEarth
         # The data in your request was invalid (HTTP 400).
         # Server Response:
         # Invalid client name 'bigearth!' using regex: 'Malformed client name.  Must be A-Z, a-z, 0-9, _, -, or .'.
-        "#{email.split('@').first}-#{Rails.env}-#{title.dasherize.parameterize}"
+        "#{email.split('@').first}-#{email.split('@').last}-#{Rails.env}-#{title.tr('@', '').tr('!', '').squish.dasherize.parameterize}"
       end
        
       def fetch_node digital_ocean_client, title

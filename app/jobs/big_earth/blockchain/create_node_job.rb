@@ -6,7 +6,7 @@ module BigEarth
       # Set queue
       queue_as :create_node_job
 
-      def perform user, chain
+      def perform email, chain
         # Wrap in begin/rescue block
         begin
           
@@ -14,7 +14,7 @@ module BigEarth
           digital_ocean_client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
           
           # Namespace the title by the user's email so that no global titles conflict
-          formatted_title = format_title chain[:title], user.email
+          formatted_title = format_title chain[:title], email
           
           # select just the appropriate node
           node = fetch_node digital_ocean_client, formatted_title 
@@ -41,9 +41,9 @@ module BigEarth
             existing_node.save
             
             # Confirm that the node got created in 1 minute
-            Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmNodeCreated, chain[:title], user.email)
+            Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmNodeCreated, chain[:title], email)
           else
-            raise BigEarth::Blockchain::Exceptions::CreateNodeException.new "Chain `#{chain[:title]}` already exists for user `#{user.email}`"
+            raise BigEarth::Blockchain::Exceptions::CreateNodeException.new "Chain `#{chain[:title]}` already exists for user `#{email}`"
           end
         rescue => error
           puts "[ERROR] #{Time.now}: #{error.class}: #{error.message}"

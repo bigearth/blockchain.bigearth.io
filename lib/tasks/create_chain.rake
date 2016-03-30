@@ -8,6 +8,6 @@ namespace :blockchain do
       user = User.first
       chain = args.to_hash
     end
-    BigEarth::Blockchain::CreateNodeJob.perform_later user, chain
+    BigEarth::Blockchain::CreateNodeJob.perform_later user.email, chain
   end
 end

@@ -49,7 +49,7 @@
           <h3>Chains</h3>
           <ul>
             <% @user.chains.each do |chain| %>
-              <li><%= link_to chain.title, user_chain_path(@user, chain) %></li>
+              <li><%= link_to chain.title, user_chain_path(@user, chain) %> | <%= link_to 'delete', [@user, chain], method: :delete, data: { confirm: "Permanently delete Chain '#{chain.title}'? This action is undoable." } %></li>
             <% end %>
           </ul>
         </div>

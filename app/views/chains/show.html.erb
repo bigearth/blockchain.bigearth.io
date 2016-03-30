@@ -7,7 +7,7 @@
 </div>
 <div class='sub'>
   <section class='container'>
-    <h3><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Blockchain <strong>Dashboard</strong></h3>
+    <h3><span class='glyphicon glyphicon-th-large' aria-hidden='true'></span> Blockchain <strong>Dashboard</strong></h3>
     <section class='panel panel-default'>
       <section class='panel-heading'>
         <h3>
@@ -15,18 +15,18 @@
         </h3>
       </section>
       <section class='panel-body' data-title='<%= @chain.title %>' id='blockchain_title'>
-        <section class="row m-b-md">
-          <div class="col-sm-6" id='controls'>
+        <section class='row m-b-md'>
+          <div class='col-sm-6' id='controls'>
             <h4>
               <span class='glyphicon glyphicon-tasks' aria-hidden='true'></span> Controls
             </h4>
-            <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group"> 
-              <%= link_to user_chain_path(@user, @chain), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-default btn-primary' do %>
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Destroy
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to [@user, @chain], method: :delete, data: { confirm: "Permanently delete Chain '#{@chain.title}'? This action is undoable." }, class: 'btn btn-default btn-primary' do %>
+                <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Destroy
               <% end %>
             </div>
           </div>
-          <div class="col-sm-6">
+          <div class='col-sm-6'>
             <h4>
               <span class='glyphicon glyphicon-blackboard' aria-hidden='true'></span> Output
             </h4>

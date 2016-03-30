@@ -4,6 +4,9 @@ module BigEarth
       class CreateNodeException < StandardError
       end
       
+      class DestroyNodeException < StandardError
+      end
+      
       class ConfirmNodeCreatedException < StandardError
       end
     end
