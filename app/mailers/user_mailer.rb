@@ -15,4 +15,9 @@ class UserMailer < Devise::Mailer
     @user = user
     mail to: user.email, subject: 'Big Earth Blockchain 2 Factor Auth Enabled!'
   end
+  
+  def user_destroyed email
+    @email = email
+    mail to: email, subject: "Big Earth Blockchain Account '#{email}' Destroyed"
+  end
 end

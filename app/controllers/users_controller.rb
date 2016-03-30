@@ -57,6 +57,10 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    # Send a final email to the user
+    BigEarth::Blockchain::UserDestroyedEmailJob.perform_later @user.email
+      
+    # Delete the user from DB
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
