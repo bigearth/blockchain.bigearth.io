@@ -1,5 +1,6 @@
 class ChainsController < ApplicationController
   before_action :set_chain, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
   include BigEarth::Blockchain::Utility
 
   # GET /users/1/chains
