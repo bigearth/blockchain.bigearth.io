@@ -6,9 +6,6 @@ module BigEarth
 
       def perform user, chain
         ChainMailer.chain_destroyed(user, chain).deliver_later
-        
-        # Delete the chain from DB
-        # chain.destroy
       end
     end
   end

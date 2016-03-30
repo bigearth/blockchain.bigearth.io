@@ -6,12 +6,11 @@ class ChainMailer < ActionMailer::Base
   def chain_created user, chain
     @user = user
     @chain = chain
-    mail to: @user.email, subject: "Big Earth Blockchain #{@chain.title} created!"
+    mail to: @user.email, subject: "Big Earth Blockchain #{@chain.title} create!"
   end
   
-  def chain_destroyed user, chain
+  def chain_destroyed user, title
     @user = user
-    @chain = chain
-    mail to: @user.email, subject: "Big Earth Blockchain #{@chain.title} destroyed!"
+    mail to: @user.email, subject: "Big Earth Blockchain #{@title} destroyed!"
   end
 end

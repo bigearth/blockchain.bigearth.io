@@ -72,12 +72,15 @@ class ChainsController < ApplicationController
       BigEarth::Blockchain::DestroyNodeJob.perform_later @chain.title, @user.email
         
       # Send an email to the user
-      BigEarth::Blockchain::ChainDestroyedEmailJob.perform_later @user, @chain
+      BigEarth::Blockchain::ChainDestroyedEmailJob.perform_later @user, @chain.title
+      
+      # Delete the chain from DB
+      @chain.destroy
     rescue => error
       puts "[ERROR] #{Time.now}: #{error.class}: #{error.message}"
     end
     respond_to do |format|
-      format.html { redirect_to @user, notice: "Chain '#{@chain.title}' was successfully destroyed." }
+      format.html { redirect_to @user, notice: "Chain '#{@title}' was successfully destroyed." }
       format.json { head :no_content }
     end
   end
