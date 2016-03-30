@@ -70,12 +70,12 @@ class ChainsController < ApplicationController
       
       # Queue up BigEarth::Blockchain::DestroyNodeJob
       BigEarth::Blockchain::DestroyNodeJob.perform_later @chain.title, @user.email
-      
-      # Delete the chain from DB
-      @chain.destroy
         
       # Send an email to the user
       BigEarth::Blockchain::ChainDestroyedEmailJob.perform_later @user, @chain
+      
+      # Delete the chain from DB
+      @chain.destroy
     rescue => error
       puts "[ERROR] #{Time.now}: #{error.class}: #{error.message}"
     end
