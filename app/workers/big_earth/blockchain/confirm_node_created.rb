@@ -20,8 +20,8 @@ module BigEarth
           node = fetch_node digital_ocean_client, formatted_title 
           
           if node.empty?
-            # run in 1 minute
-            Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmNodeCreated, title)
+            # Confirm that the node got created in 1 minute
+            Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmNodeCreated, title, email)
           else
             ipv4_address = node.first['networks']['v4'].first['ip_address']
             ipv6_address = node.first['networks']['v6'].first['ip_address']
@@ -32,11 +32,21 @@ module BigEarth
             existing_node.save
             flavor = existing_node.flavor
             
+            # Describe infrastructure
+            config = {
+              type: 'blockchain',
+              options: {
+                title: title,
+                flavor: flavor,
+                ipv4_address: ipv4_address,
+                ipv6_address: ipv6_address
+              }
+            }
             # Bootstrap the chef Node
-            BigEarth::Blockchain::BootstrapChefClientJob.perform_later title, [ipv4_address, ipv6_address], flavor
+            BigEarth::Blockchain::BootstrapInfrastructureJob.perform_later config
             
             # run in 5 minutes
-            Resque.enqueue_in(5.minutes, BigEarth::Blockchain::ConfirmChefClientBootstrapped, title,  [ipv4_address, ipv6_address], flavor)
+            Resque.enqueue_in 5.minutes, BigEarth::Blockchain::ConfirmInfrastructureBootstrapped, config
           end
           
         # rescue BigEarth::Blockchain::Exceptions::ConfirmNodeCreatedException => error

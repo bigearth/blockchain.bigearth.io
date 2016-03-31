@@ -1,28 +1,23 @@
 module BigEarth
   module Blockchain
-    class BootstrapChefClientJob < ActiveJob::Base
-      queue_as :bootstrap_chef_client_job
+    class BootstrapInfrastructureJob < ActiveJob::Base
+      queue_as :bootstrap_infrastructure_job
       
-      def perform title, ip_address_arr, flavor
+      def perform config
         require 'httparty'
         begin
-          HTTParty.post("#{Figaro.env.chef_workstation_ip_address}bootstrap_chef_client", 
+          HTTParty.post("#{Figaro.env.chef_workstation_ip_address}bootstrap_infrastructure", 
             basic_auth: {
               username: Figaro.env.chef_workstation_username, 
               password: Figaro.env.chef_workstation_password 
             },
             body: { 
-              title: title, 
-              ipv4_address: ip_address_arr.first,
-              ipv6_address: ip_address_arr.last,
-              flavor: flavor 
-              # TODO instead of 'flavor' pass over an options hash w/ type and optionally flavor.
-              # Then on the other side parse the type and bootstrap chef-workstations, chef-servers and/or bitcoin nodes
+              config: config
             }.to_json,
             headers: { 'Content-Type' => 'application/json' } 
           )
         rescue => error
-            puts "bootstrap_chef_client error: #{error}"
+          puts "[ERROR] #{Time.now}: #{error.class}: #{error.message}"
         end
       end
     end
