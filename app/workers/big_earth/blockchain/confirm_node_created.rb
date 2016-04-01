@@ -29,8 +29,8 @@ module BigEarth
             
             unless existing_node.nil?
               existing_node.node_created = true
-              existing_node.ipv4_address = config['options'][:ipv4_address]
-              existing_node.ipv6_address = config['options'][:ipv6_address]
+              existing_node.ipv4_address = config['options']['ipv4_address']
+              existing_node.ipv6_address = config['options']['ipv6_address']
               existing_node.save
             end
             
