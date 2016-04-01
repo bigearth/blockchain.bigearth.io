@@ -46,11 +46,13 @@ module BigEarth
               
             # Update Active Record w/ Blockchain flavor
             existing_node = Chain.where('title = ?', config[:title]).first
-            existing_node.flavor = config[:options][:flavor]
-            existing_node.save
+            unless existing_node.nil?
+              existing_node.flavor = config[:options][:flavor]
+              existing_node.save
+            end
             
             # Confirm that the node got created in 1 minute
-            Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmNodeCreated, config[:title], config[:options][:email])
+            Resque.enqueue_in 1.minutes, BigEarth::Blockchain::ConfirmNodeCreated, config
           else
             raise BigEarth::Blockchain::Exceptions::CreateNodeException.new "Chain `#{config[:title]}` already exists for user `#{config[:options][:email]}`"
           end

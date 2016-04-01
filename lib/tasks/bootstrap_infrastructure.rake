@@ -1,11 +1,16 @@
 namespace :blockchain do
-  desc "Bootstraps a chef workstation for use in the Big Earth Blockchain platform"
-  task :bootstrap_chef_workstation, [:major, :minor, :patch] => :environment do |task, args|
-    puts 'boostrapping chef-workstation'
-  end
-  
-  desc "Bootstraps a chef server for use in the Big Earth Blockchain platform"
-  task :bootstrap_chef_server, [:major, :minor, :patch] => :environment do |task, args|
-    puts 'boostrapping chef-server'
+  desc "Bootstraps infrastructure for use in the Big Earth Blockchain platform"
+  task :bootstrap_infrastructure, [:type, :title, :email, :flavor] => :environment do |task, args|
+    # format data
+    config = {
+      type: args[:type],
+      title: args[:title],
+      options: {
+        email: args[:email],
+        flavor: args[:flavor]
+      }
+    }
+    # Create node
+    BigEarth::Blockchain::CreateNodeJob.perform_later config
   end
 end
