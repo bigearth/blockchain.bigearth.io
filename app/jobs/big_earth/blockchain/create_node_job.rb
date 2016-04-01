@@ -6,7 +6,16 @@ module BigEarth
       # Set queue
       queue_as :create_node_job
 
-      def perform email, chain
+      def perform config
+        # param: config
+        #  * Hash
+        #    * type (mandatory)
+        #    * title (mandatory)
+        #    * options (optional)
+        #      * email (optional)
+        #      * flavor (optional)
+        # TODO: Add Exception handling here for missing mandatory config attributes
+        
         # Wrap in begin/rescue block
         begin
           
@@ -14,7 +23,7 @@ module BigEarth
           digital_ocean_client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
           
           # Namespace the title by the user's email so that no global titles conflict
-          formatted_title = format_title chain[:title], email
+          formatted_title = format_title config[:title], config[:options][:email]
           
           # select just the appropriate node
           node = fetch_node digital_ocean_client, formatted_title 
@@ -36,14 +45,16 @@ module BigEarth
             digital_ocean_client.droplets.create new_node
               
             # Update Active Record w/ Blockchain flavor
-            existing_node = Chain.where('title = ?', chain[:title]).first
-            existing_node.flavor = chain[:flavor]
-            existing_node.save
+            existing_node = Chain.where('title = ?', config[:title]).first
+            unless existing_node.nil?
+              existing_node.flavor = config[:options][:flavor]
+              existing_node.save
+            end
             
             # Confirm that the node got created in 1 minute
-            Resque.enqueue_in(1.minutes, BigEarth::Blockchain::ConfirmNodeCreated, chain[:title], email)
+            Resque.enqueue_in 1.minutes, BigEarth::Blockchain::ConfirmNodeCreated, config
           else
-            raise BigEarth::Blockchain::Exceptions::CreateNodeException.new "Chain `#{chain[:title]}` already exists for user `#{email}`"
+            raise BigEarth::Blockchain::Exceptions::CreateNodeException.new "Chain `#{config[:title]}` already exists for user `#{config[:options][:email]}`"
           end
         rescue => error
           puts "[ERROR] #{Time.now}: #{error.class}: #{error.message}"

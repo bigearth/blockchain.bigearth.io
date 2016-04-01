@@ -35,8 +35,17 @@ class ChainsController < ApplicationController
         # Send an email to the user
         BigEarth::Blockchain::ChainCreatedEmailJob.perform_later @user, @chain
         
+        # format data 
+        config = {
+          type: 'blockchain',
+          title: @chain.title,
+          options: {
+            email: @user.email,
+            flavor: @chain.flavor
+          }
+        }
         # Create node
-        BigEarth::Blockchain::CreateNodeJob.perform_later @user.email, @chain
+        BigEarth::Blockchain::CreateNodeJob.perform_later config
         
         format.html { redirect_to [@user, @chain], notice: "Chain '#{@chain.title}' is being created." }
         format.json { render :show, status: :created, location: @chain }
