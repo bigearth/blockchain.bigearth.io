@@ -34,6 +34,9 @@ module BigEarth
               existing_node.save
             end
             
+            # Set title to formatted title 
+            config['title'] = formatted_title
+            
             # Bootstrap the chef Node
             BigEarth::Blockchain::BootstrapInfrastructureJob.perform_later config
             
