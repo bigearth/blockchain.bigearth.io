@@ -20,10 +20,10 @@ module BigEarth
           # Missing title and email
           raise BigEarth::Blockchain::Exceptions::CreateNodeException.new "Missing `title` and `email`"
         elsif (config[:type].nil? || config[:type] == '') && (config[:email].nil? || config[:email] == '')
-          # Missing title and email
+          # Missing type and email
           raise BigEarth::Blockchain::Exceptions::CreateNodeException.new "Missing `type` and `email`"
         elsif (config[:type].nil? || config[:type] == '') && (config[:title].nil? || config[:title] == '')
-          # Missing title and email
+          # Missing type and title
           raise BigEarth::Blockchain::Exceptions::CreateNodeException.new "Missing `type` and `title`"
         elsif config[:type].nil? || config[:type] == ''
           # Missing just type
