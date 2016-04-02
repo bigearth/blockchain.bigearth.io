@@ -13,7 +13,7 @@ module BigEarth
           digital_ocean_client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
           
           # Namespace the title by the user's email so that no global titles conflict
-          formatted_title = format_title config['title'], config['options']['email']
+          formatted_title = format_title config['title'], config['email']
           
           # select just the appropriate node
           node = fetch_node digital_ocean_client, formatted_title 
