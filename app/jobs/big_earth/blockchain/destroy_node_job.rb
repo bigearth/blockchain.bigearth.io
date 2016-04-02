@@ -51,7 +51,6 @@ module BigEarth
             digital_ocean_client.droplets.delete id: node.first['id']
           end
           
-          # raise BigEarth::Blockchain::Exceptions::DestroyNodeException.new "Chain `#{chain[:title]}` already exists for user `#{user.email}`"
         rescue => error
           puts "[ERROR] #{Time.now}: #{error.class}: #{error.message}"
         end
