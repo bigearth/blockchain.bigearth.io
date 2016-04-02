@@ -39,8 +39,8 @@ class ChainsController < ApplicationController
         config = {
           type: 'blockchain',
           title: @chain.title,
+          email: @user.email,
           options: {
-            email: @user.email,
             flavor: @chain.flavor
           }
         }
