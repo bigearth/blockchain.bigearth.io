@@ -6,18 +6,23 @@ module BigEarth
       # Set queue
       queue_as :create_node_job
 
+      # param: config
+      #  * Hash
+      #    * type (mandatory)
+      #    * title (mandatory)
+      #    * options (optional)
+      #      * email (optional)
+      #      * flavor (optional)
       def perform config
-        # param: config
-        #  * Hash
-        #    * type (mandatory)
-        #    * title (mandatory)
-        #    * options (optional)
-        #      * email (optional)
-        #      * flavor (optional)
-        # TODO: Add Exception handling here for missing mandatory config attributes
-        
         # Wrap in begin/rescue block
         begin
+          if (config[:type].nil? || config[:type] == '') && (config[:title].nil? || config[:title] == '')
+            raise BigEarth::Blockchain::Exceptions::CreateNodeException.new "Missing `type` and `title`"
+          elsif config[:type].nil? || config[:type] == ''
+            raise BigEarth::Blockchain::Exceptions::CreateNodeException.new "Missing `type`"
+          elsif config[:title].nil? || config[:title] == ''
+            raise BigEarth::Blockchain::Exceptions::CreateNodeException.new "Missing `title`"
+          end
           
           # Get the Digital Ocean Client
           digital_ocean_client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token

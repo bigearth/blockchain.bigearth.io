@@ -10,6 +10,7 @@ namespace :blockchain do
         flavor: args[:flavor]
       }
     }
+    puts "Boostrapping infrastructure of type: '#{config[:type]}' w/ title: '#{config[:title]}' and options: '#{config[:options]}'"
     # Create node
     BigEarth::Blockchain::CreateNodeJob.perform_later config
   end
