@@ -6,13 +6,12 @@ module BigEarth
       # Set queue
       queue_as :create_node_job
 
-      # param: config
-      #  * Hash
-      #    * type (mandatory)
-      #    * title (mandatory)
-      #    * options (optional)
-      #      * email (optional)
-      #      * flavor (optional)
+      # param: config:hash (mandatory)
+      #  * type (mandatory)
+      #  * title (mandatory)
+      #  * options (optional)
+      #    * email (optional)
+      #    * flavor (optional)
       def perform config
         # Wrap in begin/rescue block
         begin

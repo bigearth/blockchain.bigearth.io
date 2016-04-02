@@ -6,12 +6,11 @@ module BigEarth
       # Set queue
       queue_as :destroy_node_job
 
-      # param: config
-      #  * Hash
-      #    * type (mandatory)
-      #    * title (mandatory)
-      #    * options (optional)
-      #    * email (mandatory)
+      # param: config:hash (mandatory)
+      #  * type (mandatory)
+      #  * title (mandatory)
+      #  * options (optional)
+      #  * email (mandatory)
       def perform config
         # Wrap in begin/rescue block
         begin
