@@ -10,5 +10,12 @@ namespace :blockchain do
     puts "Destroying infrastructure of type: '#{config[:type]}' w/ title: '#{config[:title]}' and email: '#{config[:email]}'"
     # Create node
     BigEarth::Blockchain::DestroyNodeJob.perform_later config
+    
+    # Send out email
+    if args[:type] == 'blockchain'
+      BigEarth::Blockchain::ChainDestroyedEmailJob.perform_later @user, @chain
+    else
+      BigEarth::Blockchain::InfrastructureDestroyedEmailJob.perform_later config
+    end
   end
 end

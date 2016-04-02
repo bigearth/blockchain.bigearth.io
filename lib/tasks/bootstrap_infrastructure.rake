@@ -13,5 +13,12 @@ namespace :blockchain do
     puts "Boostrapping infrastructure of type: '#{config[:type]}' w/ title: '#{config[:title]}', email: #{config[:email]} and options: '#{config[:options]}'"
     # Create node
     BigEarth::Blockchain::CreateNodeJob.perform_later config
+    
+    # Send out email
+    if args[:type] == 'blockchain'
+      BigEarth::Blockchain::ChainCreatedEmailJob.perform_later @user, @chain
+    else
+      BigEarth::Blockchain::InfrastructureCreatedEmailJob.perform_later config
+    end
   end
 end
