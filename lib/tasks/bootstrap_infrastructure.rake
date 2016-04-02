@@ -5,12 +5,12 @@ namespace :blockchain do
     config = {
       type: args[:type],
       title: args[:title],
+      email: args[:email],
       options: {
-        email: args[:email],
         flavor: args[:flavor]
       }
     }
-    puts "Boostrapping infrastructure of type: '#{config[:type]}' w/ title: '#{config[:title]}' and options: '#{config[:options]}'"
+    puts "Boostrapping infrastructure of type: '#{config[:type]}' w/ title: '#{config[:title]}', email: #{config[:email]} and options: '#{config[:options]}'"
     # Create node
     BigEarth::Blockchain::CreateNodeJob.perform_later config
   end

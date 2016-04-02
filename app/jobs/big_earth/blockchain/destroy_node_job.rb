@@ -9,7 +9,6 @@ module BigEarth
       # param: config:hash (mandatory)
       #  * type (mandatory)
       #  * title (mandatory)
-      #  * options (optional)
       #  * email (mandatory)
       def perform config
         # Wrap in begin/rescue block
@@ -34,7 +33,7 @@ module BigEarth
             raise BigEarth::Blockchain::Exceptions::DestroyNodeException.new "Missing `title`"
           elsif config[:email].nil? || config[:email] == ''
             # Missing just title
-            raise BigEarth::Blockchain::Exceptions::DestroyNodeException.new "Missing `title`"
+            raise BigEarth::Blockchain::Exceptions::DestroyNodeException.new "Missing `email`"
           end
           # Get the Digital Ocean Client
           digital_ocean_client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token

@@ -78,8 +78,15 @@ class ChainsController < ApplicationController
     begin
       title = @chain.title
       
+      # Format config hash
+      config = {
+        type: 'blockchain',
+        title: title,
+        email: @user.email
+      }
+      
       # Queue up BigEarth::Blockchain::DestroyNodeJob
-      BigEarth::Blockchain::DestroyNodeJob.perform_later title, @user.email
+      BigEarth::Blockchain::DestroyNodeJob.perform_later config
         
       # Send an email to the user
       BigEarth::Blockchain::ChainDestroyedEmailJob.perform_later @user, title
