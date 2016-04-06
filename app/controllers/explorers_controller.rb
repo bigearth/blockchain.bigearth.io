@@ -1,5 +1,6 @@
 class ExplorersController < ApplicationController
   #before_action :set_explorer, only: [:show, :edit, :update, :destroy]
+  http_basic_authenticate_with name: Figaro.env.cloud_username, password: Figaro.env.cloud_password, only: :cloud
 
   # GET /explorers
   # GET /explorers.json
@@ -47,6 +48,14 @@ class ExplorersController < ApplicationController
     
     # Fetch Block Info from external webservice 
     @blocks = blockr.blocks prev_blocks.join(',')
+  end
+  
+  def cloud
+    # Get the Digital Ocean Client
+    digital_ocean_client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token
+    
+    # Get all of the droplets
+    @droplets = digital_ocean_client.droplets.all
   end
 
   private

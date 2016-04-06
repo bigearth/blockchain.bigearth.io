@@ -1,0 +1,49 @@
+<div class='hero'>
+  <div class='container'>
+    <section class="row m-b-md">
+        <div class="col-sm-12">
+          <h2><span class='glyphicon glyphicon-cloud' aria-hidden='true'></span> Big Earth <strong>Cloud</strong></h2>
+          <%= render 'shared/breadcrumb' %>
+        </div>
+    </section>
+  </div>
+</div>
+<div class='sub'>
+  <section class='container'>
+    <section class="row m-b-md">
+      <div class="col-sm-2">
+        <h3>Img</h3>
+      </div>
+      <div class="col-sm-4">
+        <h3>Name</h3>
+      </div>
+      <div class="col-sm-3">
+        <h3>IP Address</h3>
+      </div>
+      <div class="col-sm-2">
+        <h3>Created</h3>
+      </div>
+    </section>
+    <% @droplets.reverse_each do |droplet| %>
+      <section class="row m-b-md">
+        <div class="col-sm-2">
+          <p><%= droplet.image.distribution %></p>
+          <p><%= droplet.image.name %></p>
+        </div>
+        <div class="col-sm-4">
+          <h4><%= droplet.name %></h4>
+          <% memory = droplet.memory < 1000 ? "#{droplet.memory} MB" : "#{droplet.memory.to_s[0]} GB" %>
+          <p><%= memory %> Memory / <%= droplet.disk %> GB Disk / <%= droplet.region.slug %></p>
+        </div>
+        <div class="col-sm-3">
+          <p>IPv4: <%= droplet[:networks]['v4'][0]['ip_address'] %></p>
+          <p>IPv6: <%= droplet[:networks]['v6'][0]['ip_address'] %></p>
+        </div>
+        <div class="col-sm-2">
+          <p><%= time_ago_in_words droplet.created_at %> ago</p>
+        </div>
+      </section>
+      <hr>
+    <% end %>
+  </section>
+</div>
