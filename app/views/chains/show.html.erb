@@ -120,6 +120,23 @@
               <%= link_to 'sendrawtransaction', user_chain_send_raw_transaction_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
               <%= link_to 'signrawtransaction', user_chain_sign_raw_transaction_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
             </div>
+            
+            <h4>Util</h4>
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to 'createmultisig', user_chain_create_multi_sig_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'estimatefee', user_chain_estimate_fee_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'estimatepriority', user_chain_estimate_priority_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+            </div>
+            
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to 'estimatesmartfee', user_chain_estimate_smart_fee_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'estimatesmartpriority', user_chain_estimate_smart_priority_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'validateaddress', user_chain_validate_address_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+            </div>
+            
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to 'verifymessage', user_chain_verify_message_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+            </div>
           </div>
           <div class='col-sm-6'>
             <h4>

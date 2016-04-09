@@ -732,7 +732,106 @@ class ChainsController < ApplicationController
       format.json { render json: JSON.parse(@response) }
     end
   end
+  
+  # Util
+  def create_multi_sig 
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/create_multi_sig.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
     
+  def estimate_fee  
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/estimate_fee.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def estimate_priority  
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/estimate_priority.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+      
+  def estimate_smart_fee  
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/estimate_smart_fee.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def estimate_smart_priority  
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/estimate_smart_priority.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def validate_address  
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/validate_address.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def verify_message  
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/verify_message.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+      
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_chain

@@ -64,6 +64,14 @@ Rails.application.routes.draw do
       get 'send_raw_transaction'
       get 'sign_raw_transaction'
 
+      # util
+      get 'create_multi_sig'
+      get 'estimate_fee'
+      get 'estimate_priority'
+      get 'estimate_smart_fee'
+      get 'estimate_smart_priority'
+      get 'validate_address'
+      get 'verify_message'
     end
   end
   get 'blocks/transactions/:id' => 'blocks#transactions'
