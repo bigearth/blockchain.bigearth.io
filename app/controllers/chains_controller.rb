@@ -647,7 +647,91 @@ class ChainsController < ApplicationController
       format.json { render json: JSON.parse(@response) }
     end
   end
+  
+  # Transaction
+  def create_raw_transaction  
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/create_raw_transaction.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
     
+  def decode_raw_transaction 
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/decode_raw_transaction.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+    
+  def decode_script
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/decode_script.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+      
+  def get_raw_transaction  
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_raw_transaction.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+    
+  def send_raw_transaction 
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/send_raw_transaction.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+    
+  def sign_raw_transaction 
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/sign_raw_transaction.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
     
   private
     # Use callbacks to share common setup or constraints between actions.

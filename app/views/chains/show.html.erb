@@ -107,6 +107,19 @@
               <%= link_to 'ping', user_chain_ping_path(@user, @chain), class: 'btn btn-default btn-primary' %>
               <%= link_to 'setban', user_chain_set_ban_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
             </div>
+            
+            <h4>Transaction</h4>
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to 'createrawtransaction ', user_chain_create_raw_transaction_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'decoderawtransaction', user_chain_decode_raw_transaction_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'decodescript', user_chain_decode_script_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+            </div>
+            
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to 'getrawtransaction', user_chain_get_raw_transaction_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'sendrawtransaction', user_chain_send_raw_transaction_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'signrawtransaction', user_chain_sign_raw_transaction_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+            </div>
           </div>
           <div class='col-sm-6'>
             <h4>

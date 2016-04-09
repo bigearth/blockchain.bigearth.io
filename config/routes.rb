@@ -55,6 +55,15 @@ Rails.application.routes.draw do
       get 'clear_banned'
       get 'ping'
       get 'set_ban'
+      
+      # transaction
+      get 'create_raw_transaction'
+      get 'decode_raw_transaction'
+      get 'decode_script'
+      get 'get_raw_transaction'
+      get 'send_raw_transaction'
+      get 'sign_raw_transaction'
+
     end
   end
   get 'blocks/transactions/:id' => 'blocks#transactions'
