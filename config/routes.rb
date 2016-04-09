@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       get 'get_network_info'
       get 'get_peer_info'
       get 'list_banned'
+      get 'clear_banned'
       get 'ping'
       get 'set_ban'
     end

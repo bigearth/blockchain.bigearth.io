@@ -591,10 +591,24 @@ class ChainsController < ApplicationController
       format.json { render json: JSON.parse(@response) }
     end
   end
-    
+  
   def list_banned
     require 'httparty'
     @response = HTTParty.get("http://#{params['ipv4_address']}:8080/list_banned.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+    
+  def clear_banned
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/clear_banned.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password

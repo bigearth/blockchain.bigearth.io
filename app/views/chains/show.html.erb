@@ -94,21 +94,19 @@
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
               <%= link_to 'getaddednodeinfo', user_chain_get_added_node_info_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
               <%= link_to 'getconnectioncount', user_chain_get_connection_count_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-              <%= link_to 'getnettotals', user_chain_get_net_totals_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'getnettotals', user_chain_get_net_totals_path(@user, @chain), class: 'btn btn-default btn-primary' %>
             </div>
             
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to 'getnetworkinfo', user_chain_get_network_info_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'getnetworkinfo', user_chain_get_network_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
               <%= link_to 'getpeerinfo', user_chain_get_peer_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-              <%= link_to 'listbanned', user_chain_list_banned_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'listbanned', user_chain_list_banned_path(@user, @chain), class: 'btn btn-default btn-primary' %>
             </div>
             
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to 'ping', user_chain_ping_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'ping', user_chain_ping_path(@user, @chain), class: 'btn btn-default btn-primary' %>
               <%= link_to 'setban', user_chain_set_ban_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
             </div>
-            
-            
           </div>
           <div class='col-sm-6'>
             <h4>
