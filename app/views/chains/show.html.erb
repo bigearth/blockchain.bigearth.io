@@ -21,6 +21,20 @@
               <span class='glyphicon glyphicon-tasks' aria-hidden='true'></span> Controls
             </h4>
             
+            <h4>Control</h4>
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to 'stop', user_chain_start_path(@user, @chain), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'stop', user_chain_stop_path(@user, @chain), class: 'btn btn-default btn-primary' %>
+            </div>
+            
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to 'getinfo', user_chain_get_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
+              <%= link_to [@user, @chain], method: :delete, data: { confirm: "Permanently delete Chain '#{@chain.title}'? This action is undoable." }, class: 'btn btn-default btn-danger', id: 'destroy_chain' do %>
+                <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Destroy
+              <% end %>
+            </div>
+            
+            <h4>Blockchain</h4>
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
               <%= link_to 'getbestblockhash', user_chain_get_best_block_hash_path(@user, @chain), class: 'btn btn-default btn-primary' %>
               <%= link_to 'getblock', user_chain_get_block_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
@@ -49,13 +63,6 @@
               <%= link_to 'gettxoutsetinfo', user_chain_get_tx_outset_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
               <%= link_to 'verifychain', user_chain_verify_chain_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
               <%= link_to 'verifytxoutproof', user_chain_verify_tx_out_proof_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-            </div>
-            
-            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to 'getinfo', user_chain_get_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-              <%= link_to [@user, @chain], method: :delete, data: { confirm: "Permanently delete Chain '#{@chain.title}'? This action is undoable." }, class: 'btn btn-default btn-danger', id: 'destroy_chain' do %>
-                <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Destroy
-              <% end %>
             </div>
           </div>
           <div class='col-sm-6'>

@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   resources :users, except: [:index] do
     get 'confirm_node_created' => 'chains#confirm_node_created', path: 'chains/confirm_node_created'
     resources :chains do
+      # control
+      get 'start'
+      get 'stop'
+      
+      # blockchain
       get 'get_best_block_hash'
       get 'get_block'
       get 'get_blockchain_info'
