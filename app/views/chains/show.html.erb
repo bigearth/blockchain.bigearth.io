@@ -71,6 +71,17 @@
               <%= link_to 'getgenerate', user_chain_get_generate_path(@user, @chain), class: 'btn btn-default btn-primary' %>
               <%= link_to 'setgenerate', user_chain_set_generate_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
             </div>
+            
+            <h4>Mining</h4>
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to 'getblocktemplate', user_chain_get_block_template_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'getmininginfo', user_chain_get_mining_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getnetworkhashps', user_chain_get_network_hashps_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+            </div>
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to 'prioritisetransaction', user_chain_prioritise_transaction_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'submitblock', user_chain_submit_block_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+            </div>
           </div>
           <div class='col-sm-6'>
             <h4>

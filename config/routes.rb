@@ -35,6 +35,13 @@ Rails.application.routes.draw do
       get 'generate'
       get 'get_generate'
       get 'set_generate'
+      
+      # mining
+      get 'get_block_template'
+      get 'get_mining_info'
+      get 'get_network_hashps'
+      get 'prioritise_transaction'
+      get 'submit_block'
     end
   end
   get 'blocks/transactions/:id' => 'blocks#transactions'
