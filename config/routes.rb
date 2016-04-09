@@ -8,9 +8,24 @@ Rails.application.routes.draw do
   }
   resources :users, except: [:index] do
     get 'confirm_node_created' => 'chains#confirm_node_created', path: 'chains/confirm_node_created'
-    get 'get_best_block_hash' => 'chains#get_best_block_hash', path: 'chains/get_best_block_hash'
-    get 'get_info' => 'chains#get_info', path: 'chains/get_info'
-    resources :chains
+    resources :chains do
+      get 'get_best_block_hash'
+      get 'get_block'
+      get 'get_blockchain_info'
+      get 'get_block_count'
+      get 'get_block_hash'
+      get 'get_block_header'
+      get 'get_chain_tips'
+      get 'get_difficulty'
+      get 'get_info'
+      get 'get_mem_pool_info'
+      get 'get_raw_mem_pool'
+      get 'get_tx_out'
+      get 'get_tx_out_proof'
+      get 'get_tx_outset_info'
+      get 'verify_chain'
+      get 'verify_tx_out_proof'
+    end
   end
   get 'blocks/transactions/:id' => 'blocks#transactions'
   get 'blocks/raw/:id' => 'blocks#raw'

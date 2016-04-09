@@ -127,7 +127,7 @@ class ChainsController < ApplicationController
   
   def get_best_block_hash
     require 'httparty'
-    @best_block_hash = HTTParty.get("http://#{params['ipv4_address']}:8080/get_best_block_hash.json", 
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_best_block_hash.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -135,7 +135,105 @@ class ChainsController < ApplicationController
       headers: { 'Content-Type' => 'application/json' } 
     )
     respond_to do |format|
-      format.json { render json: @best_block_hash }
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def get_block
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_block.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def get_blockchain_info
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_blockchain_info.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def get_block_count
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_block_count.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def get_block_hash
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_block_hash.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def get_block_header
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_block_header.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def get_chain_tips
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_chain_tips.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def get_difficulty
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_difficulty.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
     end
   end
   
@@ -150,6 +248,104 @@ class ChainsController < ApplicationController
     )
     respond_to do |format|
       format.json { render json: @response }
+    end
+  end
+  
+  def get_mem_pool_info
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_mem_pool_info.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def get_raw_mem_pool
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_raw_mem_pool.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def get_tx_out
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_tx_out.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def get_tx_out_proof
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_tx_out_proof.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def get_tx_outset_info
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_tx_outset_info.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def verify_chain
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/verify_chain.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def verify_tx_out_proof
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/verify_tx_out_proof.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
     end
   end
     

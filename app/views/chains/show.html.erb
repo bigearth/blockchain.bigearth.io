@@ -22,37 +22,37 @@
             </h4>
             
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to 'getbestblockhash', user_get_info_path(@user), class: 'btn btn-default btn-primary', 'data-blockchain_property' => 'get_best_block_hash' %>
-              <%= link_to 'getblock', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
-              <%= link_to 'getblockchaininfo', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getbestblockhash', user_chain_get_best_block_hash_path(@user, @chain), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getblock', user_chain_get_block_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'getblockchaininfo', user_chain_get_blockchain_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
             </div>
             
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to 'getblockcount', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
-              <%= link_to 'getblockhash', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
-              <%= link_to 'getblockheader', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getblockcount', user_chain_get_block_count_path(@user, @chain), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getblockhash', user_chain_get_block_hash_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'getblockheader', user_chain_get_block_header_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
             </div>
             
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to 'getchaintips', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
-              <%= link_to 'getdifficulty', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
-              <%= link_to 'getmempoolinfo', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getchaintips', user_chain_get_chain_tips_path(@user, @chain), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getdifficulty', user_chain_get_difficulty_path(@user, @chain), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getmempoolinfo', user_chain_get_mem_pool_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
             </div>
             
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to 'getrawmempool', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
-              <%= link_to 'gettxout', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
-              <%= link_to 'gettxoutproof', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getrawmempool', user_chain_get_raw_mem_pool_path(@user, @chain), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'gettxout', user_chain_get_tx_out_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'gettxoutproof', user_chain_get_tx_out_proof_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
             </div>
             
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to 'gettxoutsetinfo', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
-              <%= link_to 'verifychain', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
-              <%= link_to 'verifytxoutproof', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'gettxoutsetinfo', user_chain_get_tx_outset_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'verifychain', user_chain_verify_chain_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'verifytxoutproof', user_chain_verify_tx_out_proof_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
             </div>
             
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to 'getinfo', user_get_info_path(@user), class: 'btn btn-default btn-primary', 'data-blockchain_property' => 'get_info' %>
+              <%= link_to 'getinfo', user_chain_get_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
               <%= link_to [@user, @chain], method: :delete, data: { confirm: "Permanently delete Chain '#{@chain.title}'? This action is undoable." }, class: 'btn btn-default btn-danger', id: 'destroy_chain' do %>
                 <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Destroy
               <% end %>
