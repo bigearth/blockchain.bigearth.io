@@ -16,12 +16,44 @@
       </section>
       <section class='panel-body' data-title='<%= @chain.title %>' id='blockchain_title'>
         <section class='row m-b-md'>
-          <div class='col-sm-6' id='controls'>
+          <div class='col-sm-6' id='controls' data-ipv4_address='<%= @chain.ipv4_address%>'>
             <h4>
               <span class='glyphicon glyphicon-tasks' aria-hidden='true'></span> Controls
             </h4>
+            
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to [@user, @chain], method: :delete, data: { confirm: "Permanently delete Chain '#{@chain.title}'? This action is undoable." }, class: 'btn btn-default btn-primary' do %>
+              <%= link_to 'getbestblockhash', user_get_info_path(@user), class: 'btn btn-default btn-primary', 'data-blockchain_property' => 'get_best_block_hash' %>
+              <%= link_to 'getblock', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getblockchaininfo', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+            </div>
+            
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to 'getblockcount', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getblockhash', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getblockheader', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+            </div>
+            
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to 'getchaintips', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getdifficulty', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getmempoolinfo', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+            </div>
+            
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to 'getrawmempool', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'gettxout', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'gettxoutproof', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+            </div>
+            
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to 'gettxoutsetinfo', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'verifychain', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'verifytxoutproof', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+            </div>
+            
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to 'getinfo', user_get_info_path(@user), class: 'btn btn-default btn-primary', 'data-blockchain_property' => 'get_info' %>
+              <%= link_to [@user, @chain], method: :delete, data: { confirm: "Permanently delete Chain '#{@chain.title}'? This action is undoable." }, class: 'btn btn-default btn-danger', id: 'destroy_chain' do %>
                 <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Destroy
               <% end %>
             </div>
