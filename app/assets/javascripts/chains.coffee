@@ -17,10 +17,12 @@ $ ->
 
       $('#controls a:not(#destroy_chain)').click (evt) =>
         blockchain_property = $(evt.currentTarget).data 'blockchain_property'
+        @.clear_output 'complete' 
         @.clear_output 'in_progress' 
         @.update_output $("<li>Working....</li>"), 'in_progress' 
         $.get $(evt.currentTarget).attr('href'), { ipv4_address: $('#controls').data('ipv4_address') }, (rsp) =>
           @.clear_output 'complete' 
+          @.clear_output 'in_progress' 
           _.each rsp, (value, key) =>
             @.update_output $("<li>#{key}: #{value}</li>"), 'complete' 
         evt.preventDefault()

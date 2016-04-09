@@ -60,7 +60,7 @@
             </div>
             
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to 'gettxoutsetinfo', user_chain_get_tx_outset_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'gettxoutsetinfo', user_chain_get_tx_outset_info_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
               <%= link_to 'verifychain', user_chain_verify_chain_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
               <%= link_to 'verifytxoutproof', user_chain_verify_tx_out_proof_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
             </div>
