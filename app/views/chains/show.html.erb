@@ -20,8 +20,69 @@
             <h4>
               <span class='glyphicon glyphicon-tasks' aria-hidden='true'></span> Controls
             </h4>
+            
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to [@user, @chain], method: :delete, data: { confirm: "Permanently delete Chain '#{@chain.title}'? This action is undoable." }, class: 'btn btn-default btn-primary' do %>
+              <%= link_to users_get_info_path, class: 'btn btn-default btn-primary' do %>
+                getbestblockhash
+              <% end %>
+              <%= link_to users_get_info_path, id: 'getblock', class: 'btn btn-default btn-primary' do %>
+                geblock
+              <% end %>
+              <%= link_to users_get_info_path, id: 'getblockchaininfo', class: 'btn btn-default btn-primary' do %>
+                geblockchaininfo
+              <% end %>
+            </div>
+            
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to users_get_info_path, id: 'getblockcount', class: 'btn btn-default btn-primary' do %>
+                getblockcount
+              <% end %>
+              <%= link_to users_get_info_path, id: 'getblockhash', class: 'btn btn-default btn-primary' do %>
+                getblockhash
+              <% end %>
+              <%= link_to users_get_info_path, class: 'btn btn-default btn-primary' do %>
+                getblockheader
+              <% end %>
+            </div>
+            
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to users_get_info_path, id: 'getchaintips', class: 'btn btn-default btn-primary' do %>
+                getchaintips
+              <% end %>
+              <%= link_to users_get_info_path, id: 'getdifficulty', class: 'btn btn-default btn-primary' do %>
+                getdifficulty
+              <% end %>
+              <%= link_to users_get_info_path, class: 'btn btn-default btn-primary' do %>
+                getmempoolinfo
+              <% end %>
+            </div>
+            
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to users_get_info_path, id: 'get_info', class: 'btn btn-default btn-primary' do %>
+                getrawmempool
+              <% end %>
+              <%= link_to users_get_info_path, id: 'get_info', class: 'btn btn-default btn-primary' do %>
+                gettxout
+              <% end %>
+              <%= link_to users_get_info_path, class: 'btn btn-default btn-primary' do %>
+                gettxoutproof
+              <% end %>
+            </div>
+            
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to users_get_info_path, id: 'get_info', class: 'btn btn-default btn-primary' do %>
+                gettxoutsetinfo
+              <% end %>
+              <%= link_to users_get_info_path, id: 'get_info', class: 'btn btn-default btn-primary' do %>
+                verifychain
+              <% end %>
+              <%= link_to users_get_info_path, class: 'btn btn-default btn-primary' do %>
+                verifytxoutproof
+              <% end %>
+            </div>
+            
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to [@user, @chain], method: :delete, data: { confirm: "Permanently delete Chain '#{@chain.title}'? This action is undoable." }, class: 'btn btn-default btn-danger' do %>
                 <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Destroy
               <% end %>
             </div>
