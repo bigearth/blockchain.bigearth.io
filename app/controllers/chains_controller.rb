@@ -124,6 +124,34 @@ class ChainsController < ApplicationController
       format.json { render json: @response }
     end
   end
+  
+  def get_best_block_hash
+    require 'httparty'
+    @best_block_hash = HTTParty.get("http://#{params['ipv4_address']}:8080/get_best_block_hash.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: @best_block_hash }
+    end
+  end
+  
+  def get_info
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_info.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: @response }
+    end
+  end
     
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -16,73 +16,44 @@
       </section>
       <section class='panel-body' data-title='<%= @chain.title %>' id='blockchain_title'>
         <section class='row m-b-md'>
-          <div class='col-sm-6' id='controls'>
+          <div class='col-sm-6' id='controls' data-ipv4_address='<%= @chain.ipv4_address%>'>
             <h4>
               <span class='glyphicon glyphicon-tasks' aria-hidden='true'></span> Controls
             </h4>
             
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to users_get_info_path, class: 'btn btn-default btn-primary' do %>
-                getbestblockhash
-              <% end %>
-              <%= link_to users_get_info_path, id: 'getblock', class: 'btn btn-default btn-primary' do %>
-                geblock
-              <% end %>
-              <%= link_to users_get_info_path, id: 'getblockchaininfo', class: 'btn btn-default btn-primary' do %>
-                geblockchaininfo
-              <% end %>
+              <%= link_to 'getbestblockhash', user_get_info_path(@user), class: 'btn btn-default btn-primary', 'data-blockchain_property' => 'get_best_block_hash' %>
+              <%= link_to 'getblock', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getblockchaininfo', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
             </div>
             
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to users_get_info_path, id: 'getblockcount', class: 'btn btn-default btn-primary' do %>
-                getblockcount
-              <% end %>
-              <%= link_to users_get_info_path, id: 'getblockhash', class: 'btn btn-default btn-primary' do %>
-                getblockhash
-              <% end %>
-              <%= link_to users_get_info_path, class: 'btn btn-default btn-primary' do %>
-                getblockheader
-              <% end %>
+              <%= link_to 'getblockcount', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getblockhash', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getblockheader', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
             </div>
             
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to users_get_info_path, id: 'getchaintips', class: 'btn btn-default btn-primary' do %>
-                getchaintips
-              <% end %>
-              <%= link_to users_get_info_path, id: 'getdifficulty', class: 'btn btn-default btn-primary' do %>
-                getdifficulty
-              <% end %>
-              <%= link_to users_get_info_path, class: 'btn btn-default btn-primary' do %>
-                getmempoolinfo
-              <% end %>
+              <%= link_to 'getchaintips', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getdifficulty', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'getmempoolinfo', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
             </div>
             
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to users_get_info_path, id: 'get_info', class: 'btn btn-default btn-primary' do %>
-                getrawmempool
-              <% end %>
-              <%= link_to users_get_info_path, id: 'get_info', class: 'btn btn-default btn-primary' do %>
-                gettxout
-              <% end %>
-              <%= link_to users_get_info_path, class: 'btn btn-default btn-primary' do %>
-                gettxoutproof
-              <% end %>
+              <%= link_to 'getrawmempool', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'gettxout', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'gettxoutproof', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
             </div>
             
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to users_get_info_path, id: 'get_info', class: 'btn btn-default btn-primary' do %>
-                gettxoutsetinfo
-              <% end %>
-              <%= link_to users_get_info_path, id: 'get_info', class: 'btn btn-default btn-primary' do %>
-                verifychain
-              <% end %>
-              <%= link_to users_get_info_path, class: 'btn btn-default btn-primary' do %>
-                verifytxoutproof
-              <% end %>
+              <%= link_to 'gettxoutsetinfo', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'verifychain', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'verifytxoutproof', user_get_info_path(@user), class: 'btn btn-default btn-primary' %>
             </div>
             
             <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-              <%= link_to [@user, @chain], method: :delete, data: { confirm: "Permanently delete Chain '#{@chain.title}'? This action is undoable." }, class: 'btn btn-default btn-danger' do %>
+              <%= link_to 'getinfo', user_get_info_path(@user), class: 'btn btn-default btn-primary', 'data-blockchain_property' => 'get_info' %>
+              <%= link_to [@user, @chain], method: :delete, data: { confirm: "Permanently delete Chain '#{@chain.title}'? This action is undoable." }, class: 'btn btn-default btn-danger', id: 'destroy_chain' do %>
                 <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Destroy
               <% end %>
             </div>

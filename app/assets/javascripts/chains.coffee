@@ -10,30 +10,19 @@ $ ->
       @.bind_events()
       
     bind_events: () ->
-      $('#new_blockchain').click (evt) =>
-        # Create a new blockchain
-        @.update_output "Processing..."
-        
-        # Grab name and flavor from the DOM
-        name = $('#blockchain_title').data 'name'
-        flavor = $('#flavors .active').data 'flavor'
-        
-        # POST name and flavor to new_chain endpoint
-        $.post 'new_chain', {
-          name: name
-          flavor: flavor
-        }, (rsp) =>
-          @.reset_buttons()
-          if rsp.status is 'already_exists'
-            @.update_output("Bitcoin Blockchain #{name} already exists.")
-            $(evt.currentTarget).removeClass('btn-primarys').addClass('btn-danger')
-          else if _.isObject rsp
-            @.update_output("Creating Bitcoin #{_.upperFirst flavor.split('_')[1]} Blockchain #{name}.")
-            $(evt.currentTarget).removeClass('btn-primary').addClass('btn-success')
-          
       $('#flavors a').click (evt) =>
         $('#flavors a.active').removeClass 'active'
         $(evt.currentTarget).addClass 'active'
+        evt.preventDefault()
+
+      $('#controls a:not(#destroy_chain)').click (evt) =>
+        blockchain_property = $(evt.currentTarget).data 'blockchain_property'
+        @.clear_output 'in_progress' 
+        @.update_output $("<li>Working....</li>"), 'in_progress' 
+        $.get blockchain_property, { ipv4_address: $('#controls').data('ipv4_address') }, (rsp) =>
+          @.clear_output 'complete' 
+          _.each rsp, (value, key) =>
+            @.update_output $("<li>#{key}: #{value}</li>"), 'complete' 
         evt.preventDefault()
         
     update_output: (output, output_type = 'in_progress') ->
@@ -41,6 +30,8 @@ $ ->
         $('#output #in_progress').append output
       else if output_type is 'complete'
         $('#output #complete').append output
+    clear_output: (type) ->
+        $("#output ##{type}").html ''
     update_button: (output) ->
       # do things
     reset_buttons: ->
