@@ -492,6 +492,148 @@ class ChainsController < ApplicationController
       format.json { render json: JSON.parse(@response) }
     end
   end
+  
+  # Network
+  def add_node 
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/add_node.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def disconnect_node
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/disconnect_node.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+    
+  def get_added_node_info
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_added_node_info.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+    
+  def get_connection_count
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_connection_count.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+    
+  def get_net_totals
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_net_totals.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+    
+  def get_network_info
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_network_info.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+    
+  def get_peer_info
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_peer_info.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+    
+  def list_banned
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/list_banned.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+    
+  def ping
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/ping.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+    
+  def set_ban
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/set_ban.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+    
     
   private
     # Use callbacks to share common setup or constraints between actions.

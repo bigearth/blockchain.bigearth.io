@@ -42,6 +42,18 @@ Rails.application.routes.draw do
       get 'get_network_hashps'
       get 'prioritise_transaction'
       get 'submit_block'
+      
+      # network 
+      get 'add_node'
+      get 'disconnect_node'
+      get 'get_added_node_info'
+      get 'get_connection_count'
+      get 'get_net_totals'
+      get 'get_network_info'
+      get 'get_peer_info'
+      get 'list_banned'
+      get 'ping'
+      get 'set_ban'
     end
   end
   get 'blocks/transactions/:id' => 'blocks#transactions'
