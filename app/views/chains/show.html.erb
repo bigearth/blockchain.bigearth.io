@@ -64,6 +64,13 @@
               <%= link_to 'verifychain', user_chain_verify_chain_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
               <%= link_to 'verifytxoutproof', user_chain_verify_tx_out_proof_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
             </div>
+            
+            <h4>Generate</h4>
+            <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+              <%= link_to 'generate', user_chain_generate_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+              <%= link_to 'getgenerate', user_chain_get_generate_path(@user, @chain), class: 'btn btn-default btn-primary' %>
+              <%= link_to 'setgenerate', user_chain_set_generate_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
+            </div>
           </div>
           <div class='col-sm-6'>
             <h4>

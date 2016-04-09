@@ -30,6 +30,11 @@ Rails.application.routes.draw do
       get 'get_tx_outset_info'
       get 'verify_chain'
       get 'verify_tx_out_proof'
+      
+      # generate
+      get 'generate'
+      get 'get_generate'
+      get 'set_generate'
     end
   end
   get 'blocks/transactions/:id' => 'blocks#transactions'

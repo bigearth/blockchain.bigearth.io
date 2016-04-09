@@ -378,6 +378,50 @@ class ChainsController < ApplicationController
       format.json { render json: JSON.parse(@response) }
     end
   end
+  
+  # Generate
+  
+  def generate
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/generate.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def get_generate
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/get_generate.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
+  
+  def set_generate
+    require 'httparty'
+    @response = HTTParty.get("http://#{params['ipv4_address']}:8080/set_generate.json", 
+      basic_auth: {
+        username: Figaro.env.blockchain_proxy_username, 
+        password: Figaro.env.blockchain_proxy_password
+      },
+      headers: { 'Content-Type' => 'application/json' } 
+    )
+    respond_to do |format|
+      format.json { render json: JSON.parse(@response) }
+    end
+  end
     
   private
     # Use callbacks to share common setup or constraints between actions.
