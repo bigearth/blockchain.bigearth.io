@@ -1,14 +1,36 @@
 // Place all the styles related to the chains controller here.
 // They will automatically be included in application.css.
 
+#controls {
+  border-style: solid;
+  border-width: 0 1px 0 0;
+  border-color: #ddd;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 #controls .btn-group-justified {
   margin-bottom: 10px;
 }
 
+#controls > ul:first-of-type {
+  border-style: solid;
+  border-width: 1px 0;
+  border-color: #ddd;
+}
+
 #controls > ul {
   padding-left: 0;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-color: #ddd;
 }
 
 #controls ul {
   list-style-type: none;
+  margin-bottom: 0;
+}
+
+.parent_folder:hover {
+  background: #f5f5f5;
 }
