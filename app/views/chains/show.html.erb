@@ -19,136 +19,172 @@
       <section class='panel-body' data-title='<%= @chain.title %>' id='blockchain_title'>
         <section class='row m-b-md'>
           <div class='col-md-3' id='controls' data-ipv4_address='<%= @chain.ipv4_address%>'>
-            <h4 data-toggle='collapse' data-target='#control'>Control</h4>
-            <div id='control' class='collapse'>
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'start', user_chain_start_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-                <%= link_to 'stop', user_chain_stop_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-              </div>
-              
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'getinfo', user_chain_get_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-                <%= link_to [@user, @chain], method: :delete, data: { confirm: "Permanently delete Chain '#{@chain.title}'? This action is undoable." }, class: 'btn btn-default btn-danger', id: 'destroy_chain' do %>
-                  <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Destroy
-                <% end %>
-              </div>
-            </div>
+            <ul>
+              <li class='parent_folder'>
+                <section class='row'>
+                  <div class='col-md-2 text-center'>
+                    <span class='glyphicon glyphicon-folder-close' aria-hidden='true'></span>
+                  </div>
+                  <div class='col-md-10'>
+                    <h4>Control</h4>
+                    <p>4 Requests</p>
+                  </div>
+                </section>
+                <ul class='hide'>
+                  <li><%= link_to 'start', user_chain_start_path(@user, @chain) %></li>
+                  <li><%= link_to 'stop', user_chain_stop_path(@user, @chain) %></li>
+                  <li><%= link_to 'getinfo', user_chain_get_info_path(@user, @chain) %></li>
+                  <li>
+                    <%= link_to [@user, @chain], method: :delete, data: { confirm: "Permanently delete Chain '#{@chain.title}'? This action is undoable." } do %>
+                      <span class='glyphicon glyphicon-remove' aria-hidden='true'></span> Destroy
+                    <% end %>
+                      </li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <li class='parent_folder'>
+                <section class='row'>
+                  <div class='col-md-2 text-center'>
+                    <span class='glyphicon glyphicon-folder-close' aria-hidden='true'></span>
+                  </div>
+                  <div class='col-md-10'>
+                    <h4>Blockchain</h4>
+                    <p>15 Requests</p>
+                  </div>
+                </section>
+                <ul class='hide'>
+                  <li><%= link_to 'getbestblockhash', user_chain_get_best_block_hash_path(@user, @chain) %></li>
+                  <li><%= link_to 'getblock', user_chain_get_block_path(@user, @chain) %> </li>
+                  <li><%= link_to 'getblockchaininfo', user_chain_get_blockchain_info_path(@user, @chain) %> </li>
+                  <li><%= link_to 'getblockcount', user_chain_get_block_count_path(@user, @chain) %></li>
+                  <li><%= link_to 'getblockhash', user_chain_get_block_hash_path(@user, @chain) %></li>
+                  <li><%= link_to 'getblockheader', user_chain_get_block_header_path(@user, @chain) %></li>
+                  <li><%= link_to 'getchaintips', user_chain_get_chain_tips_path(@user, @chain) %></li>
+                  <li><%= link_to 'getdifficulty', user_chain_get_difficulty_path(@user, @chain) %></li>
+                  <li><%= link_to 'getmempoolinfo', user_chain_get_mem_pool_info_path(@user, @chain) %></li>
+                  <li><%= link_to 'getrawmempool', user_chain_get_raw_mem_pool_path(@user, @chain) %></li>
+                  <li><%= link_to 'gettxout', user_chain_get_tx_out_path(@user, @chain) %></li>
+                  <li><%= link_to 'gettxoutproof', user_chain_get_tx_out_proof_path(@user, @chain) %></li>
+                  <li><%= link_to 'gettxoutsetinfo', user_chain_get_tx_outset_info_path(@user, @chain) %></li>
+                  <li><%= link_to 'verifychain', user_chain_verify_chain_path(@user, @chain) %></li>
+                  <li><%= link_to 'verifytxoutproof', user_chain_verify_tx_out_proof_path(@user, @chain) %></li>
+                </ul>
+              </li>
+            </ul>
             
-            <h4 data-toggle='collapse' data-target='#blockchain'>Blockchain</h4>
-            <div id='blockchain' class='collapse'>
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'getbestblockhash', user_chain_get_best_block_hash_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-                <%= link_to 'getblock', user_chain_get_block_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'getblockchaininfo', user_chain_get_blockchain_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-              </div>
-              
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'getblockcount', user_chain_get_block_count_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-                <%= link_to 'getblockhash', user_chain_get_block_hash_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'getblockheader', user_chain_get_block_header_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-              </div>
-              
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'getchaintips', user_chain_get_chain_tips_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-                <%= link_to 'getdifficulty', user_chain_get_difficulty_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-                <%= link_to 'getmempoolinfo', user_chain_get_mem_pool_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-              </div>
-              
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'getrawmempool', user_chain_get_raw_mem_pool_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-                <%= link_to 'gettxout', user_chain_get_tx_out_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'gettxoutproof', user_chain_get_tx_out_proof_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-              </div>
-              
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'gettxoutsetinfo', user_chain_get_tx_outset_info_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'verifychain', user_chain_verify_chain_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'verifytxoutproof', user_chain_verify_tx_out_proof_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-              </div>
-            </div>
+            <ul>
+              <li class='parent_folder'>
+                <section class='row'>
+                  <div class='col-md-2 text-center'>
+                    <span class='glyphicon glyphicon-folder-close' aria-hidden='true'></span>
+                  </div>
+                  <div class='col-md-10'>
+                    <h4>Generate</h4>
+                    <p>3 Requests</p>
+                  </div>
+                </section>
+                <ul class='hide'>
+                  <li><%= link_to 'generate', user_chain_generate_path(@user, @chain) %></li>
+                  <li><%= link_to 'getgenerate', user_chain_get_generate_path(@user, @chain) %></li>
+                  <li><%= link_to 'setgenerate', user_chain_set_generate_path(@user, @chain) %></li>
+                </ul>
+              </li>
+            </ul>
             
-            <h4 data-toggle='collapse' data-target='#generate'>Generate</h4>
-            <div id='generate' class='collapse'>
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'generate', user_chain_generate_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'getgenerate', user_chain_get_generate_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-                <%= link_to 'setgenerate', user_chain_set_generate_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-              </div>
-            </div>
+            <ul>
+              <li class='parent_folder'>
+                <section class='row'>
+                  <div class='col-md-2 text-center'>
+                    <span class='glyphicon glyphicon-folder-close' aria-hidden='true'></span>
+                  </div>
+                  <div class='col-md-10'>
+                    <h4>Mining</h4>
+                    <p>5 Requests</p>
+                  </div>
+                </section>
+                <ul class='hide'>
+                  <li><%= link_to 'getblocktemplate', user_chain_get_block_template_path(@user, @chain) %></li>
+                  <li><%= link_to 'getmininginfo', user_chain_get_mining_info_path(@user, @chain) %></li>
+                  <li><%= link_to 'getnetworkhashps', user_chain_get_network_hashps_path(@user, @chain) %></li>
+                  <li><%= link_to 'prioritisetransaction', user_chain_prioritise_transaction_path(@user, @chain) %></li>
+                  <li><%= link_to 'submitblock', user_chain_submit_block_path(@user, @chain) %></li>
+                </ul>
+              </li>
+            </ul>
             
-            <h4 data-toggle='collapse' data-target='#mining'>Mining</h4>
-            <div id='mining' class='collapse'>
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'getblocktemplate', user_chain_get_block_template_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'getmininginfo', user_chain_get_mining_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-                <%= link_to 'getnetworkhashps', user_chain_get_network_hashps_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-              </div>
-              
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'prioritisetransaction', user_chain_prioritise_transaction_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'submitblock', user_chain_submit_block_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-              </div>
-            </div>
+            <ul>
+              <li class='parent_folder'>
+                <section class='row'>
+                  <div class='col-md-2 text-center'>
+                    <span class='glyphicon glyphicon-folder-close' aria-hidden='true'></span>
+                  </div>
+                  <div class='col-md-10'>
+                    <h4>Network</h4>
+                    <p>11 Requests</p>
+                  </div>
+                </section>
+                <ul class='hide'>
+                  <li><%= link_to 'addnode ', user_chain_add_node_path(@user, @chain) %></li>
+                  <li><%= link_to 'clearbanned', user_chain_clear_banned_path(@user, @chain) %></li>
+                  <li><%= link_to 'disconnectnode', user_chain_disconnect_node_path(@user, @chain) %></li>
+                  <li><%= link_to 'getaddednodeinfo', user_chain_get_added_node_info_path(@user, @chain) %></li>
+                  <li><%= link_to 'getconnectioncount', user_chain_get_connection_count_path(@user, @chain) %></li>
+                  <li><%= link_to 'getnettotals', user_chain_get_net_totals_path(@user, @chain) %></li>
+                  <li><%= link_to 'getnetworkinfo', user_chain_get_network_info_path(@user, @chain) %></li>
+                  <li><%= link_to 'getpeerinfo', user_chain_get_peer_info_path(@user, @chain) %></li>
+                  <li><%= link_to 'listbanned', user_chain_list_banned_path(@user, @chain) %></li>
+                  <li><%= link_to 'ping', user_chain_ping_path(@user, @chain) %></li>
+                  <li><%= link_to 'setban', user_chain_set_ban_path(@user, @chain) %></li>
+                </ul>
+              </li>
+            </ul>
             
-            <h4 data-toggle='collapse' data-target='#network'>Network</h4>
-            <div id='network' class='collapse'>
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'addnode ', user_chain_add_node_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'clearbanned', user_chain_clear_banned_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-                <%= link_to 'disconnectnode', user_chain_disconnect_node_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-              </div>
-              
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'getaddednodeinfo', user_chain_get_added_node_info_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'getconnectioncount', user_chain_get_connection_count_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-                <%= link_to 'getnettotals', user_chain_get_net_totals_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-              </div>
-              
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'getnetworkinfo', user_chain_get_network_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-                <%= link_to 'getpeerinfo', user_chain_get_peer_info_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-                <%= link_to 'listbanned', user_chain_list_banned_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-              </div>
-              
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'ping', user_chain_ping_path(@user, @chain), class: 'btn btn-default btn-primary' %>
-                <%= link_to 'setban', user_chain_set_ban_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-              </div>
-            </div>
+            <ul>
+              <li class='parent_folder'>
+                <section class='row'>
+                  <div class='col-md-2 text-center'>
+                    <span class='glyphicon glyphicon-folder-close' aria-hidden='true'></span>
+                  </div>
+                  <div class='col-md-10'>
+                    <h4>Transaction</h4>
+                    <p>6 Requests</p>
+                  </div>
+                </section>
+                <ul class='hide'>
+                  <li><%= link_to 'createrawtransaction ', user_chain_create_raw_transaction_path(@user, @chain) %></li>
+                  <li><%= link_to 'decoderawtransaction', user_chain_decode_raw_transaction_path(@user, @chain) %></li>
+                  <li><%= link_to 'decodescript', user_chain_decode_script_path(@user, @chain) %></li>
+                  <li><%= link_to 'getrawtransaction', user_chain_get_raw_transaction_path(@user, @chain) %></li>
+                  <li><%= link_to 'sendrawtransaction', user_chain_send_raw_transaction_path(@user, @chain) %></li>
+                  <li><%= link_to 'signrawtransaction', user_chain_sign_raw_transaction_path(@user, @chain) %></li>
+                </ul>
+              </li>
+            </ul>
             
-            <h4 data-toggle='collapse' data-target='#transaction'>Transaction</h4>
-            <div id='transaction' class='collapse'>
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'createrawtransaction ', user_chain_create_raw_transaction_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'decoderawtransaction', user_chain_decode_raw_transaction_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'decodescript', user_chain_decode_script_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-              </div>
-              
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'getrawtransaction', user_chain_get_raw_transaction_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'sendrawtransaction', user_chain_send_raw_transaction_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'signrawtransaction', user_chain_sign_raw_transaction_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-              </div>
-            </div>
+            <ul>
+              <li class='parent_folder'>
+                <section class='row'>
+                  <div class='col-md-2 text-center'>
+                    <span class='glyphicon glyphicon-folder-close' aria-hidden='true'></span>
+                  </div>
+                  <div class='col-md-10'>
+                    <h4>Util</h4>
+                    <p> Requests</p>
+                  </div>
+                </section>
+                <ul class='hide'>
+                  <li><%= link_to 'createmultisig', user_chain_create_multi_sig_path(@user, @chain) %></li>
+                  <li><%= link_to 'estimatefee', user_chain_estimate_fee_path(@user, @chain) %></li>
+                  <li><%= link_to 'estimatepriority', user_chain_estimate_priority_path(@user, @chain) %></li>
+                  <li><%= link_to 'estimatesmartfee', user_chain_estimate_smart_fee_path(@user, @chain) %></li>
+                  <li><%= link_to 'estimatesmartpriority', user_chain_estimate_smart_priority_path(@user, @chain) %></li>
+                  <li><%= link_to 'validateaddress', user_chain_validate_address_path(@user, @chain) %></li>
+                  <li><%= link_to 'verifymessage', user_chain_verify_message_path(@user, @chain) %></li>
+                </ul>
+              </li>
+            </ul>
             
-            <h4 data-toggle='collapse' data-target='#util'>Util</h4>
-            <div id='uitl' class='collapse'>
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'createmultisig', user_chain_create_multi_sig_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'estimatefee', user_chain_estimate_fee_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'estimatepriority', user_chain_estimate_priority_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-              </div>
-              
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'estimatesmartfee', user_chain_estimate_smart_fee_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'estimatesmartpriority', user_chain_estimate_smart_priority_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-                <%= link_to 'validateaddress', user_chain_validate_address_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-              </div>
-              
-              <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-                <%= link_to 'verifymessage', user_chain_verify_message_path(@user, @chain), class: 'btn btn-default btn-primary disabled' %>
-              </div>
-            </div>
           </div>
           <div class='col-md-9'>
             <div>

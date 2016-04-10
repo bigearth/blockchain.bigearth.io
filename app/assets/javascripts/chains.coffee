@@ -4,6 +4,13 @@
 $ ->
   'use strict';
   
+  $('.parent_folder').click (evt) =>
+    requests = $(evt.currentTarget).find('ul')
+    if $(requests).hasClass 'hide'
+      $(requests).removeClass 'hide'
+    else
+      $(requests).addClass 'hide'
+  
   class Blockchain
     
     constructor: () ->

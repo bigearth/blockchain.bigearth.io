@@ -4,3 +4,11 @@
 #controls .btn-group-justified {
   margin-bottom: 10px;
 }
+
+#controls > ul {
+  padding-left: 0;
+}
+
+#controls ul {
+  list-style-type: none;
+}
