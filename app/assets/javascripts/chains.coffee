@@ -98,6 +98,7 @@ $ ->
           verb: 'post'
         getmininginfo:
           details: 'Returns a json object containing mining-related information.'
+          verb: 'post'
         getnetworkhashps:
           details: 'Returns the estimated network hashes per second based on the last n blocks.
             Pass in [blocks] to override # of blocks, -1 specifies since last difficulty change.
