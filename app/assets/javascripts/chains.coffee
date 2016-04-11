@@ -66,6 +66,7 @@ $ ->
     confirm_node_created: () ->
       $.get "confirm_node_created?title=#{$('#blockchain_title').data('title')}", (rsp) =>
         if rsp.message is 'node created'
+          @lockchain.clear_output 'in_progress' 
           @blockchain.update_output $("<li>Node has been created.</li>"), 'complete' 
           @blockchain.update_output $("<li>IPv4 Address: #{rsp.ipv4_address}.</li>"), 'complete' 
           @blockchain.update_output $("<li>IPv6 Address: #{rsp.ipv6_address}.</li>"), 'complete' 
