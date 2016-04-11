@@ -273,7 +273,7 @@ $ ->
         
       $('#send').click (evt) =>
         $action = $('#title_text').text()
-        href = $("div:contains('#{$action}')").parents('a').attr 'href'
+        href = $("[data-action='#{$action}']").parents('a').attr 'href'
         blockchain_property = $(evt.currentTarget).data 'blockchain_property'
         @.clear_output 'complete' 
         @.clear_output 'in_progress' 
