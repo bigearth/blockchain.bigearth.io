@@ -12,7 +12,7 @@
 
 <ul id='transaction' class='hide requests'>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_create_raw_transaction_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
@@ -24,7 +24,7 @@
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_decode_raw_transaction_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
@@ -36,7 +36,7 @@
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_decode_script_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
@@ -48,7 +48,7 @@
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_get_raw_transaction_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
@@ -60,7 +60,7 @@
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_send_raw_transaction_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
@@ -72,7 +72,7 @@
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_sign_raw_transaction_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST

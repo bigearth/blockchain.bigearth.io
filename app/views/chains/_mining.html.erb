@@ -12,7 +12,7 @@
 
 <ul id='mining' class='hide requests'>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_get_block_template_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
@@ -24,7 +24,7 @@
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_get_mining_pool_info_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
@@ -36,7 +36,7 @@
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_get_network_hashps_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
@@ -48,7 +48,7 @@
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_prioritise_transaction_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
@@ -60,7 +60,7 @@
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_submit_block_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST

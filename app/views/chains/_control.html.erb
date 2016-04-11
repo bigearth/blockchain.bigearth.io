@@ -12,7 +12,7 @@
 
 <ul id='control' class='hide requests'>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_start_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
@@ -24,7 +24,7 @@
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_stop_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
