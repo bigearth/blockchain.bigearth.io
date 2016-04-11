@@ -1,6 +1,10 @@
 // Place all the styles related to the chains controller here.
 // They will automatically be included in application.css.
 
+#dashboard .panel-body {
+  padding-top: 0;
+}
+
 #controls {
   border-style: solid;
   border-width: 0 1px 0 0;
@@ -13,24 +17,41 @@
   margin-bottom: 10px;
 }
 
-#controls > ul:first-of-type {
-  border-style: solid;
-  border-width: 1px 0;
-  border-color: #ddd;
-}
-
-#controls > ul {
-  padding-left: 0;
-  border-style: solid;
-  border-width: 0 0 1px 0;
-  border-color: #ddd;
-}
-
 #controls ul {
   list-style-type: none;
   margin-bottom: 0;
 }
 
-.parent_folder:hover {
+.parent_folder, .parent_folder + ul {
+  padding-left: 0;
+}
+
+.parent_folder {
+  cursor: pointer;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-color: #ddd;
+}
+
+.parent_folder:hover, .parent_folder.active, ul.active {
   background: #f5f5f5;
+}
+
+.requests li {
+  height: 2em;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-color: #ddd;
+}
+
+.requests li:first-of-type {
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-color: #ddd;
+}
+
+.requests li:last-of-type {
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-color: #ddd;
 }

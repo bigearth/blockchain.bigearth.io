@@ -4,13 +4,6 @@
 $ ->
   'use strict';
   
-  $('.parent_folder').click (evt) =>
-    requests = $(evt.currentTarget).find('ul')
-    if $(requests).hasClass 'hide'
-      $(requests).removeClass 'hide'
-    else
-      $(requests).addClass 'hide'
-  
   class Blockchain
     
     constructor: () ->
@@ -22,17 +15,41 @@ $ ->
         $(evt.currentTarget).addClass 'active'
         evt.preventDefault()
 
-      $('#controls a:not(#destroy_chain)').click (evt) =>
-        blockchain_property = $(evt.currentTarget).data 'blockchain_property'
-        @.clear_output 'complete' 
-        @.clear_output 'in_progress' 
-        @.update_output $("<li>Working....</li>"), 'in_progress' 
-        $.get $(evt.currentTarget).attr('href'), { ipv4_address: $('#controls').data('ipv4_address') }, (rsp) =>
-          @.clear_output 'complete' 
-          @.clear_output 'in_progress' 
-          _.each rsp, (value, key) =>
-            @.update_output $("<li>#{key}: #{value}</li>"), 'complete' 
-        evt.preventDefault()
+      # $('.child_folder div').click (evt) =>
+      #   console.log 'one'
+      #   current_target = $(evt.currentTarget)
+      #   if $(current_target).hasClass 'child_folder_active'
+      #     $(current_target).removeClass 'child_folder_active'
+      #   else
+      #     $(current_target).addClass 'child_folder_active'
+        
+      $('.parent_folder').click (evt) =>
+        current_target = $(evt.currentTarget)
+        if $(current_target).hasClass 'active'
+          $(current_target).removeClass 'active'
+        else
+          $(current_target).addClass 'active'
+          
+        requests = $("##{$(evt.currentTarget).data('child_folder')}")
+        if $(requests).hasClass 'hide'
+          $(requests).removeClass('hide').addClass 'active'
+        else
+          $(requests).addClass('hide').removeClass 'active'
+          
+        # console.log $(evt.currentTarget).parents()
+        # console.log $(evt.currentTarget).parents('.child_folder').length
+        
+      # $('#controls .child_folder a:not(#destroy_chain)').click (evt) =>
+      #   blockchain_property = $(evt.currentTarget).data 'blockchain_property'
+      #   @.clear_output 'complete' 
+      #   @.clear_output 'in_progress' 
+      #   @.update_output $("<li>Working....</li>"), 'in_progress' 
+      #   $.get $(evt.currentTarget).attr('href'), { ipv4_address: $('#controls').data('ipv4_address') }, (rsp) =>
+      #     @.clear_output 'complete' 
+      #     @.clear_output 'in_progress' 
+      #     _.each rsp, (value, key) =>
+      #       @.update_output $("<li>#{key}: #{value}</li>"), 'complete' 
+      #   evt.preventDefault()
         
     update_output: (output, output_type = 'in_progress') ->
       if output_type is 'in_progress'
