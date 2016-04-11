@@ -62,9 +62,18 @@
   border-color: #ddd;
 }
 
+.requests li.active {
+  background-color: #d9edf7;
+}
+
 .http_verb {
   font-weight: bold;
   font-size: .7em;
+}
+
+#title a, #title a:visited, #title a:hover, #title a:active {
+  color: #333; 
+  text-decoration: none;
 }
 
 .get {

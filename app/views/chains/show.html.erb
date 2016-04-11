@@ -31,7 +31,17 @@
             
             <%= render 'util' %>
           </div>
-          <div class='col-md-9'>
+          <div class='col-md-9' id='panel'>
+            <h3 id='title'>
+              <%= link_to '#' do %>
+                <span id='title_text'>Creating...</span>
+                <span id='caret_parent' class='dropdown'>
+                  <span class='caret'></span>
+                </span>
+              <% end %>
+            </h3>
+            <p id='details' class='hide'>
+            </p>
             <div>
               <code id='output'>
                 <ul id='complete'>
