@@ -1,9 +1,9 @@
 <div class='parent_folder' data-child_folder='control'>
   <section class='row'>
-    <div class='col-md-2 text-center'>
+    <div class='col-md-3 text-center folder_icon'>
       <span class='glyphicon glyphicon-folder-close' aria-hidden='true'></span>
     </div>
-    <div class='col-md-10'>
+    <div class='col-md-9'>
       <h4>Control</h4>
       <p>4 Requests</p>
     </div>
@@ -14,10 +14,10 @@
   <li>
     <%= link_to '#' do %>
     <section class='row'>
-      <div class='col-md-2 text-center'>
+      <div class='col-md-3 text-center http_verb post'>
         POST
       </div>
-      <div class='col-md-10'>
+      <div class='col-md-9'>
         <code>start</code>
       </div>
     </section>
@@ -26,10 +26,10 @@
   <li>
     <%= link_to '#' do %>
     <section class='row'>
-      <div class='col-md-2 text-center'>
+      <div class='col-md-3 text-center http_verb post'>
         POST
       </div>
-      <div class='col-md-10'>
+      <div class='col-md-9'>
         <code>stop</code>
       </div>
     </section>
@@ -38,10 +38,10 @@
   <li>
     <%= link_to user_chain_get_info_path(@user, @chain) do %>
     <section class='row'>
-      <div class='col-md-2 text-center'>
+      <div class='col-md-3 text-center http_verb get'>
         GET
       </div>
-      <div class='col-md-10'>
+      <div class='col-md-9'>
         <code>getinfo</code>
       </div>
     </section>
@@ -50,10 +50,10 @@
   <li>
     <%= link_to [@user, @chain], method: :delete, data: { confirm: "Permanently delete Chain '#{@chain.title}'? This action is undoable." } do %>
       <section class='row'>
-        <div class='col-md-2 text-center'>
+        <div class='col-md-3 text-center http_verb delete'>
           DELETE
         </div>
-        <div class='col-md-10'>
+        <div class='col-md-9'>
           <code>destroy</code>
         </div>
       </section>
