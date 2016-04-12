@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'explorers#index'
+  get '/.well-known/acme-challenge/:id' => 'explorers#letsencrypt'
   mount Resque::Server, at: '/resque'
   devise_for :users, path_names: {
     verify_authy: "/verify-token",
