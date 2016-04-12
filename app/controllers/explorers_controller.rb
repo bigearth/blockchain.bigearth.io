@@ -57,6 +57,10 @@ class ExplorersController < ApplicationController
     # Get all of the droplets
     @droplets = digital_ocean_client.droplets.all
   end
+  
+  def letsencrypt
+    render text: Figaro.env.lets_encrypt_key
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
