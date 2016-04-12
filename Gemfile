@@ -74,3 +74,4 @@ gem 'simplecov', require: false, group: :test
 
 gem 'rails_serve_static_assets'
 gem 'rails_stdout_logging'
+gem 'octokit'

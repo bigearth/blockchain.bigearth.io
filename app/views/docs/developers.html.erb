@@ -1,10 +1,13 @@
+<p>
+<%= @blockchain_bigearth_io['name'] %>
+</p>
 <div class='jumbotron'>
   <div class='container'>
     <h1 class='dev_important'>Developers</h1>
     <p>Big Earth Blockchain is completely open source and<br>has been downloaded <span class='dev_important'><%= number_with_delimiter 10 , delimiter: ',' %></span> times by people just like you.</p>
     <p><%= link_to 'Download', 'https://github.com/bigearth/blockchain.bigearth.io/archive/1.2.2.zip', class: 'btn btn-primary btn-lg', role: 'button' %></p>
     <p class='download_description'>
-      v<strong>1.2.2</strong> (1.2 MB zip) | <%= link_to "What's New", 'https://github.com/bigearth/blockchain.bigearth.io/releases/tag/1.2.2' %> | <%= link_to 'History', 'https://github.com/bigearth/blockchain.bigearth.io/releases' %>
+      v<strong><%= @blockchain_bigearth_io_version.first['name'] %></strong> (1.2 MB zip) | <%= link_to "What's New", 'https://github.com/bigearth/blockchain.bigearth.io/releases/tag/1.2.2' %> | <%= link_to 'History', 'https://github.com/bigearth/blockchain.bigearth.io/releases' %>
     </p>
   </div>
 </div>
@@ -41,45 +44,33 @@
     <h3 class='text-center'>Where the magic happens</h3>
     <div class='row'>
       <div class='col-md-4'>
-        <%= link_to 'https://github.com/bigearth/blockchain.bigearth.io' do %>
+        <%= link_to @blockchain_bigearth_io['html_url'] do %>
           <div class='panel panel-default'>
             <div class='panel-body'>
-              <h3>
-                blockchain.bigearth.io
-              </h3>
-              <h4 class='panel-title'>
-                Blockchain Hosting Provider
-              </h4>
-              <p><span class='glyphicon glyphicon-bookmark' aria-hidden='true'></span> v1.2.2</p>
+              <h3><%= @blockchain_bigearth_io['name'] %></h3>
+              <h4 class='panel-title'><%= @blockchain_bigearth_io['description'] %></h4>
+              <p><span class='glyphicon glyphicon-bookmark' aria-hidden='true'></span> v<%= @blockchain_bigearth_io_version.first['name'] %></p>
             </div>
           </div>
         <% end %>
       </div>
       <div class='col-md-4'>
-        <%= link_to 'https://github.com/bigearth/chef_workstation_proxy' do %>
+        <%= link_to @chef_workstation_proxy['html_url'] do %>
           <div class='panel panel-default'>
             <div class='panel-body'>
-              <h3>
-                Chef Workstation Proxy
-              </h3>
-              <h4 class='panel-title'>
-                Lightweight Sinatra app used to proxy commands to a Chef Workstation running on a remote Ubuntu instance
-              </h4>
+              <h3><%= @chef_workstation_proxy['name'] %></h3>
+              <h4 class='panel-title'><%= @chef_workstation_proxy['description'] %></h4>
               <p><span class='glyphicon glyphicon-bookmark' aria-hidden='true'></span> v0.1.10</p>
             </div>
           </div>
         <% end %>
      </div>
       <div class='col-md-4'>
-        <%= link_to 'https://github.com/bigearth/blockchain_proxy' do %>
+        <%= link_to @blockchain_proxy['html_url'] do %>
           <div class='panel panel-default'>
             <div class='panel-body'>
-              <h3>
-                Blockchain Proxy
-              </h3>
-              <h4 class='panel-title'>
-                Lightweight Sinatra app used to proxy REST/HTTP to bitcoind over JSON-RPC
-              </h4>
+              <h3><%= @blockchain_proxy['name'] %></h3>
+              <h4 class='panel-title'><%= @blockchain_proxy['description'] %></h4>
               <p><span class='glyphicon glyphicon-bookmark' aria-hidden='true'></span> v0.1.4</p>
             </div>
           </div>
