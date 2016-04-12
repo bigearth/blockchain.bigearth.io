@@ -71,3 +71,6 @@ gem 'resque', require: 'resque/server'
 # gem 'resque-heroku'
 gem 'resque-scheduler'
 gem 'simplecov', require: false, group: :test
+
+gem 'rails_serve_static_assets'
+gem 'rails_stdout_logging'
