@@ -1,6 +1,6 @@
 <section class="row m-b-md">
     <div class="col-sm-4">
-        <h2 class="m-b-xs"><span class="glyphicon glyphicon-bitcoin" aria-hidden="true"></span> Bitcoin <strong>Markets</strong></span>
+        <h2 class="m-b-xs"><span class="glyphicon glyphicon-bitcoin" aria-hidden="true"></span> Bitcoin <strong>Markets</strong>
 </h2>
         <p>Market Value: $<%= format_value @coin_info['data']['markets']['coinbase']['value'], 2 %> per coin</p>
         <p><%= "#{number_with_delimiter(@coin_info['data']['volume']['current'], delimiter: ',')} / #{number_with_delimiter(@coin_info['data']['volume']['all'], delimiter: ',')} coins mined" %></p>

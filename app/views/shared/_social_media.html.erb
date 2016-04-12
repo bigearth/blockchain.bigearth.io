@@ -1,4 +1,5 @@
-<%= link_to "https://twitter.com/intent/tweet?text=#{create_page_title}Big Earth Blockchain Explorer - #{request.original_url}", class: 'btn btn-lg' do %> 
+<% tweet_text = "https://twitter.com/intent/tweet?text=#{create_page_title}Big Earth Blockchain Explorer - #{request.original_url}" %>
+<%= link_to URI.escape(tweet_text), class: 'btn btn-lg' do %> 
   <span class="fa fa-twitter"></span> 
 <% end %>
 <%= link_to "https://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", class: 'btn btn-lg' do %>
