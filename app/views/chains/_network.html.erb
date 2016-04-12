@@ -12,133 +12,133 @@
 
 <ul id='network' class='hide requests'>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_add_node_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
       </div>
       <div class='col-md-9'>
-        <code>addnode</code>
+        <code data-action='addnode'>addnode</code>
       </div>
     </section>
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_clear_banned_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
       </div>
       <div class='col-md-9'>
-        <code>clearbanned</code>
+        <code data-action='clearbanned'>clearbanned</code>
       </div>
     </section>
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_disconnect_node_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
       </div>
       <div class='col-md-9'>
-        <code>disconnectnode</code>
+        <code data-action='disconnectnode'>disconnectnode</code>
       </div>
     </section>
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_get_added_node_info_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
       </div>
       <div class='col-md-9'>
-        <code>getaddednodeinfo</code>
+        <code data-action='getaddednodeinfo'>getaddednodeinfo</code>
       </div>
     </section>
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_get_connection_count_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
       </div>
       <div class='col-md-9'>
-        <code>getconnectioncount</code>
+        <code data-action='getconnectioncount'>getconnectioncount</code>
       </div>
     </section>
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_get_net_totals_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
       </div>
       <div class='col-md-9'>
-        <code>getnettotals</code>
+        <code data-action='getnettotals'>getnettotals</code>
       </div>
     </section>
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_get_network_info_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
       </div>
       <div class='col-md-9'>
-        <code>getnetworkinfo</code>
+        <code data-action='getnetworkinfo'>getnetworkinfo</code>
       </div>
     </section>
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_get_peer_info_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
       </div>
       <div class='col-md-9'>
-        <code>getpeerinfo</code>
+        <code data-action='getpeerinfo'>getpeerinfo</code>
       </div>
     </section>
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_list_banned_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
       </div>
       <div class='col-md-9'>
-        <code>listbanned</code>
+        <code data-action='listbanned'>listbanned</code>
       </div>
     </section>
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_ping_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
       </div>
       <div class='col-md-9'>
-        <code>ping</code>
+        <code data-action='ping'>ping</code>
       </div>
     </section>
     <% end %>
   </li>
   <li>
-    <%= link_to '#' do %>
+    <%= link_to user_chain_set_ban_path(@user, @chain) do %>
     <section class='row'>
       <div class='col-md-3 text-center http_verb post'>
         POST
       </div>
       <div class='col-md-9'>
-        <code>setban</code>
+        <code data-action='setban'>setban</code>
       </div>
     </section>
     <% end %>

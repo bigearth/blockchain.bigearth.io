@@ -31,7 +31,28 @@
             
             <%= render 'util' %>
           </div>
-          <div class='col-md-9'>
+          <div class='col-md-9' id='panel'>
+            <h3 id='title'>
+              <%= link_to '#' do %>
+                <span id='title_text'>Creating...</span>
+                <span id='caret_parent' class='dropdown'>
+                  <span class='caret'></span>
+                </span>
+              <% end %>
+            </h3>
+            <p id='details' class='hide'>
+            </p>
+            <div id='action'>
+              <div class="input-group input-group-lg"> 
+                <span class="input-group-btn"> 
+                  <button class='btn btn-default get' id='http_verb' disabled>GET</button>
+                </span>
+                <input class='form-control' readonly placeholder='getinfo'>
+                <span class="input-group-btn"> 
+                  <button id='send' class='btn btn-default'>Send</button>
+                </span> 
+              </div>
+            </div>
             <div>
               <code id='output'>
                 <ul id='complete'>

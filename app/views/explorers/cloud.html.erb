@@ -32,7 +32,7 @@
         </div>
         <div class="col-sm-4">
           <h4><%= droplet.name %></h4>
-          <% memory = droplet.memory < 1000 ? "#{droplet.memory} MB" : "#{droplet.memory.to_s[0]} GB" %>
+          <% memory = droplet.memory < 10000 ? "#{droplet.memory.to_s[0]} GB" : "#{droplet.memory.to_s[0..1]} GB" %>
           <p><%= memory %> Memory / <%= droplet.disk %> GB Disk / <%= droplet.region.slug %></p>
         </div>
         <div class="col-sm-3">
