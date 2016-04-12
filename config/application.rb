@@ -25,6 +25,7 @@ module BigEarth
       config.assets.paths << Rails.root.join("app", "assets", "fonts")
       config.assets.precompile += %w( .svg .eot .woff .ttf )
       config.autoload_paths += Dir["#{config.root}/lib/**/"]
+      config.serve_static_assets = true
 
       config.middleware.use Rack::Deflater
       # Do not swallow errors in after_commit/after_rollback callbacks.
