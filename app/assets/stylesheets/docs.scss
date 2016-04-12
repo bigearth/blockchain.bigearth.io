@@ -1,0 +1,45 @@
+.jumbotron {
+  text-align: center;
+  background-color: #579dd8;
+  
+  .dev_important {
+    font-weight: bold;
+    color: #03233B;
+  }
+  
+  .download_description {
+    font-size: 1em;
+  }
+  
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+#tech_stack {
+  background: white;
+  color: #333;
+}
+
+.logo {
+  text-align: center;
+  height: 90px;
+}
+
+.bitcoin_logo {
+  width: 300px;
+}
+
+.rails_logo {
+  width: 225px;
+}
+
+.chef_logo {
+  width: 225px;
+}
+
+.lead_tech {
+  font-weight: bold;
+  font-size: 1.1em;
+}

@@ -1,0 +1,47 @@
+<div class='hero'>
+  <div class='container'>
+    <section class='row m-b-md'>
+        <div class='col-sm-12'>
+          <h2><span class='glyphicon glyphicon-globe' aria-hidden='true'></span> Big Earth <strong>Developers</strong></h2>
+          <%= render 'shared/breadcrumb' %>
+        </div>
+    </section>
+  </div>
+</div>
+<div class='jumbotron'>
+  <div class='container'>
+    <h1 class='dev_important'>Developers</h1>
+    <p>Big Earth Blockchain is completely open source and<br>has been downloaded <span class='dev_important'><%= number_with_delimiter 10000 , delimiter: ',' %></span> times by people just like you.</p>
+    <p><%= link_to 'Download', 'https://github.com/bigearth/blockchain.bigearth.io/archive/1.2.1.zip', class: 'btn btn-primary btn-lg', role: 'button' %></p>
+    <p class='download_description'>
+      v<strong>1.2.1</strong> (1.2 MB zip) | <%= link_to "What's New", 'https://github.com/bigearth/blockchain.bigearth.io/releases/tag/1.2.1' %> | <%= link_to 'History', 'https://github.com/bigearth/blockchain.bigearth.io/releases' %>
+    </p>
+  </div>
+</div>
+<div id='tech_stack'>
+  <div class='container'>
+    <h2 class='text-center'>Simple Design, Advanced Technology</h2>
+    <h3 class='text-center'>Pretty as a kitten, roars like a lion</h3>
+
+    <div class='row'>
+      <div class='col-md-4'>
+        <p class='logo'>
+          <%= image_tag 'bitcoin_logo', class: 'bitcoin_logo' %>
+        </p>
+        <p><span class='lead_tech'>bitcoin</span> id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+      </div>
+      <div class='col-md-4'>
+        <p class='logo'>
+          <%= image_tag 'rails_logo', class: 'rails_logo' %>
+        </p>
+        <p><span class='lead_tech'>Ruby on Rails</span> id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+     </div>
+      <div class='col-md-4'>
+        <p class='logo'>
+          <%= image_tag 'chef_logo', class: 'chef_logo' %>
+        </p>
+        <p><span class='lead_tech'>Chef</span> sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+      </div>
+    </div>
+  </div>
+</div>

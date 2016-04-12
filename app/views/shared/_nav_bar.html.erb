@@ -46,6 +46,12 @@
             Charts
           <% end %>
         </li>
+        <li class='<%= if params[:controller] == 'docs'  then "active" end %>'>
+          <%= link_to docs_developers_path do %>
+            <span class="text-primary glyphicon glyphicon-earth"></span>
+            Docs
+          <% end %>
+        </li>
         <li>
           <%= link_to 'http://blog.bigearth.io' do %>
             <span class="text-primary glyphicon glyphicon-list-alt"></span>

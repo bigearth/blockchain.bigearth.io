@@ -104,6 +104,8 @@ Rails.application.routes.draw do
   resources :blocks, only: [:show]
   resources :transactions, only: [:show]
   resources :addresses, only: [:show]
+  
+  get 'docs/developers'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
