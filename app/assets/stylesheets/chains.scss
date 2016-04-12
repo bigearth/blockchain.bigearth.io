@@ -1,8 +1,20 @@
 // Place all the styles related to the chains controller here.
 // They will automatically be included in application.css.
 
-#dashboard .panel-body {
-  padding-top: 0;
+#dashboard {
+  margin-top: -20px;
+
+  .panel {
+    border-radius: 0;
+    
+    h3 {
+      margin: 10px 0;
+    }
+  }
+  
+  .panel-body {
+    padding-top: 0;
+  }
 }
 
 #controls {
