@@ -89,5 +89,10 @@
   <% elsif params[:action] == 'blockchain_size' %>
     <li class='active'>Blockchain Size</li>
   <% end %>
+<% elsif params[:controller] == 'docs' %>
+    <li class='active'>Docs</li>
+  <% if params[:action] == 'developers' %>
+    <li class='active'>Developers</li>
+  <% end %>
 <% end %>
 </ul>

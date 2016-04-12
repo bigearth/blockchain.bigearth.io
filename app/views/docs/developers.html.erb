@@ -1,0 +1,90 @@
+<div class='jumbotron'>
+  <div class='container'>
+    <h1 class='dev_important'>Developers</h1>
+    <p>Big Earth Blockchain is completely open source and<br>has been downloaded <span class='dev_important'><%= number_with_delimiter 10 , delimiter: ',' %></span> times by people just like you.</p>
+    <p><%= link_to 'Download', 'https://github.com/bigearth/blockchain.bigearth.io/archive/1.2.2.zip', class: 'btn btn-primary btn-lg', role: 'button' %></p>
+    <p class='download_description'>
+      v<strong>1.2.2</strong> (1.2 MB zip) | <%= link_to "What's New", 'https://github.com/bigearth/blockchain.bigearth.io/releases/tag/1.2.2' %> | <%= link_to 'History', 'https://github.com/bigearth/blockchain.bigearth.io/releases' %>
+    </p>
+  </div>
+</div>
+<div id='tech_stack'>
+  <div class='container'>
+    <h2 class='text-center'>Elegant Design, Advanced Technology</h2>
+    <h3 class='text-center'>Pretty as a kitten, roars like a lion</h3>
+    <div class='row'>
+      <div class='col-md-4'>
+        <p class='logo'>
+          <%= image_tag asset_path('bitcoin_logo.png'), class: 'bitcoin_logo' %>
+        </p>
+        <p><%= link_to 'Bitcoin', 'https://bitcoin.org/en/' %> uses peer-to-peer technology to operate with no central authority or banks Bitcoin is open-source; its design is public, nobody owns or controls Bitcoin and everyone can take part allowing exciting uses that could not be covered by any previous payment system.</p>
+      </div>
+      <div class='col-md-4'>
+        <p class='logo'>
+          <%= image_tag asset_path('rails_logo.svg'), class: 'rails_logo' %>
+        </p>
+        <p><%= link_to 'Ruby on Rails', 'http://rubyonrails.org/' %> is the web framework underlying the entire Big Earth Blockchain platform. It values convention over configuration and accelerates prototyping new features as well as maintaining and improving existing ones.</p>
+     </div>
+      <div class='col-md-4'>
+        <p class='logo'>
+          <%= image_tag asset_path('chef_logo.png'), class: 'chef_logo' %>
+          <%=  %>
+        </p>
+        <p><%= link_to 'Chef', 'https://www.chef.io/' %> allows our entire infrastructure to be expressed as code which enables us to spin up machines and bring them into a predefined state w/ ease. We use Chef to bootstrap, harden, download dependencies, create users and set permissions each Big Earth Blockchain.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='projects'>
+  <div class='container'>
+    <h2 class='text-center'>Big Earth Blockchain Projects</h2>
+    <h3 class='text-center'>Where the magic happens</h3>
+    <div class='row'>
+      <div class='col-md-4'>
+        <%= link_to 'https://github.com/bigearth/blockchain.bigearth.io' do %>
+          <div class='panel panel-default'>
+            <div class='panel-body'>
+              <h3>
+                blockchain.bigearth.io
+              </h3>
+              <h4 class='panel-title'>
+                Blockchain Hosting Provider
+              </h4>
+              <p><span class='glyphicon glyphicon-bookmark' aria-hidden='true'></span> v1.2.2</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class='col-md-4'>
+        <%= link_to 'https://github.com/bigearth/chef_workstation_proxy' do %>
+          <div class='panel panel-default'>
+            <div class='panel-body'>
+              <h3>
+                Chef Workstation Proxy
+              </h3>
+              <h4 class='panel-title'>
+                Lightweight Sinatra app used to proxy commands to a Chef Workstation running on a remote Ubuntu instance
+              </h4>
+              <p><span class='glyphicon glyphicon-bookmark' aria-hidden='true'></span> v0.1.10</p>
+            </div>
+          </div>
+        <% end %>
+     </div>
+      <div class='col-md-4'>
+        <%= link_to 'https://github.com/bigearth/blockchain_proxy' do %>
+          <div class='panel panel-default'>
+            <div class='panel-body'>
+              <h3>
+                Blockchain Proxy
+              </h3>
+              <h4 class='panel-title'>
+                Lightweight Sinatra app used to proxy REST/HTTP to bitcoind over JSON-RPC
+              </h4>
+              <p><span class='glyphicon glyphicon-bookmark' aria-hidden='true'></span> v0.1.4</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
