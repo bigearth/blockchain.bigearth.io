@@ -20,6 +20,13 @@
 #tech_stack {
   background: white;
   color: #333;
+  
+  a {
+    font-weight: bold;
+    font-size: 1.1em;
+    text-decoration: none;
+    color: #333;
+  }
 }
 
 .logo {
@@ -37,9 +44,4 @@
 
 .chef_logo {
   width: 225px;
-}
-
-.lead_tech {
-  font-weight: bold;
-  font-size: 1.1em;
 }
