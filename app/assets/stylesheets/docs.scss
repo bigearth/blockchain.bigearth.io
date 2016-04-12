@@ -1,7 +1,7 @@
 .jumbotron {
   text-align: center;
-  background-color: #579dd8;
   margin: -20px 0 0 0;
+  color: #333;
   
   .dev_important {
     font-weight: bold;
@@ -13,7 +13,6 @@
   }
   
   a {
-    color: white;
     text-decoration: none;
   }
 }
@@ -21,6 +20,7 @@
 #tech_stack {
   background: white;
   color: #333;
+  padding: 50px 0;
   
   a {
     font-weight: bold;
@@ -28,6 +28,15 @@
     text-decoration: none;
     color: #333;
   }
+}
+
+h2 {
+  font-weight: bold;
+}
+
+h3 {
+  margin-bottom: 50px;
+  color: #5e5e5e;
 }
 
 .logo {
@@ -45,4 +54,22 @@
 
 .chef_logo {
   width: 225px;
+}
+
+.projects {
+  padding: 50px 0;
+  background: #eee;
+  color: #333;
+  
+  h3 {
+    margin-bottom: 25px;
+  }
+  
+  h4 {
+    margin-bottom: 25px;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
 }

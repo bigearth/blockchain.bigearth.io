@@ -1,15 +1,17 @@
 module ApplicationHelper
   def create_page_title 
     if @block
-      "Bitcoin Block #{number_with_delimiter(@block['data']['nb'], delimiter: ',')} - " 
+      "Bitcoin Block #{number_with_delimiter(@block['data']['nb'], delimiter: ',')} -" 
     elsif @tx
-      "Bitcoin Transaction #{@tx['data']['tx']} - " 
+      "Bitcoin Transaction #{@tx['data']['tx']} -" 
     elsif @address
-      "Bitcoin Address #{@address['data']['address']} - " 
+      "Bitcoin Address #{@address['data']['address']} -" 
     elsif params[:action] == 'bookmarks'
-      "Bitcoin Bookmarks - " 
+      "Bitcoin Bookmarks -" 
     elsif params[:action] == 'calculator'
-      "Bitcoin Calculator - " 
+      "Bitcoin Calculator -" 
+    elsif params[:action] == 'developers'
+      "Developer Docs -" 
     end
   end
   
