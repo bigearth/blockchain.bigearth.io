@@ -6,6 +6,7 @@ class DocsController < ApplicationController
 
     @blockchain_bigearth_io = client.repo 'bigearth/blockchain.bigearth.io'
     @blockchain_bigearth_io_version = client.tags 'bigearth/blockchain.bigearth.io'
+    @blockchain_bigearth_io_downloads = client.downloads 'bigearth/blockchain.bigearth.io'
     
     @chef_workstation_proxy = client.repo('bigearth/chef_workstation_proxy')
     @chef_workstation_proxy_version = client.tags 'bigearth/chef_workstation_proxy'

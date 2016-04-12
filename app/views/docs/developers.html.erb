@@ -1,13 +1,10 @@
-<p>
-<%= @blockchain_bigearth_io['name'] %>
-</p>
 <div class='jumbotron'>
   <div class='container'>
     <h1 class='dev_important'>Developers</h1>
-    <p>Big Earth Blockchain is completely open source and<br>has been downloaded <span class='dev_important'><%= number_with_delimiter 10 , delimiter: ',' %></span> times by people just like you.</p>
-    <p><%= link_to 'Download', 'https://github.com/bigearth/blockchain.bigearth.io/archive/1.2.2.zip', class: 'btn btn-primary btn-lg', role: 'button' %></p>
+    <p>Big Earth Blockchain is completely open source and<br>has been downloaded <span class='dev_important'><%= number_with_delimiter @blockchain_bigearth_io_downloads.count , delimiter: ',' %></span> times by people just like you.</p>
+    <p><%= link_to 'Download',  @blockchain_bigearth_io_version.first['zipball_url'], class: 'btn btn-primary btn-lg', role: 'button' %></p>
     <p class='download_description'>
-      v<strong><%= @blockchain_bigearth_io_version.first['name'] %></strong> (1.2 MB zip) | <%= link_to "What's New", 'https://github.com/bigearth/blockchain.bigearth.io/releases/tag/1.2.2' %> | <%= link_to 'History', 'https://github.com/bigearth/blockchain.bigearth.io/releases' %>
+      v<strong><%= @blockchain_bigearth_io_version.first['name'] %></strong> | <%= link_to "What's New", "https://github.com/bigearth/blockchain.bigearth.io/releases/tag/#{@blockchain_bigearth_io_version.first['name']}" %> | <%= link_to 'History', 'https://github.com/bigearth/blockchain.bigearth.io/releases' %>
     </p>
   </div>
 </div>
@@ -49,7 +46,20 @@
             <div class='panel-body'>
               <h3><%= @blockchain_bigearth_io['name'] %></h3>
               <h4 class='panel-title'><%= @blockchain_bigearth_io['description'] %></h4>
-              <p><span class='glyphicon glyphicon-bookmark' aria-hidden='true'></span> v<%= @blockchain_bigearth_io_version.first['name'] %></p>
+              <div class='row'>
+                <div class='col-md-3'>
+                  <span class='glyphicon glyphicon-bookmark' aria-hidden='true'></span> v<%= @blockchain_bigearth_io_version.first['name'] %>
+                </div>
+                <div class='col-md-3'>
+                  <span class='glyphicon glyphicon-random' aria-hidden='true'></span> <%= @blockchain_bigearth_io['forks_count'] %>
+                </div>
+                <div class='col-md-3'>
+                  <span class='glyphicon glyphicon-star' aria-hidden='true'></span> <%= @blockchain_bigearth_io['stargazers_count'] %>
+                </div>
+                <div class='col-md-3'>
+                  <span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span> <%= @blockchain_bigearth_io['watchers_count'] %>
+                </div>
+              </div>
             </div>
           </div>
         <% end %>
@@ -60,7 +70,20 @@
             <div class='panel-body'>
               <h3><%= @chef_workstation_proxy['name'] %></h3>
               <h4 class='panel-title'><%= @chef_workstation_proxy['description'] %></h4>
-              <p><span class='glyphicon glyphicon-bookmark' aria-hidden='true'></span> v0.1.10</p>
+              <div class='row'>
+                <div class='col-md-3'>
+                  <span class='glyphicon glyphicon-bookmark' aria-hidden='true'></span> v<%= @chef_workstation_proxy_version.first['name'] %>
+                </div>
+                <div class='col-md-3'>
+                  <span class='glyphicon glyphicon-random' aria-hidden='true'></span> <%= @chef_workstation_proxy['forks_count'] %>
+                </div>
+                <div class='col-md-3'>
+                  <span class='glyphicon glyphicon-star' aria-hidden='true'></span> <%= @chef_workstation_proxy['stargazers_count'] %>
+                </div>
+                <div class='col-md-3'>
+                  <span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span> <%= @chef_workstation_proxy['watchers_count'] %>
+                </div>
+              </div>
             </div>
           </div>
         <% end %>
@@ -71,7 +94,20 @@
             <div class='panel-body'>
               <h3><%= @blockchain_proxy['name'] %></h3>
               <h4 class='panel-title'><%= @blockchain_proxy['description'] %></h4>
-              <p><span class='glyphicon glyphicon-bookmark' aria-hidden='true'></span> v0.1.4</p>
+              <div class='row'>
+                <div class='col-md-3'>
+                  <span class='glyphicon glyphicon-bookmark' aria-hidden='true'></span> v<%= @blockchain_proxy_version.first['name'] %>
+                </div>
+                <div class='col-md-3'>
+                  <span class='glyphicon glyphicon-random' aria-hidden='true'></span> <%= @blockchain_proxy['forks_count'] %>
+                </div>
+                <div class='col-md-3'>
+                  <span class='glyphicon glyphicon-star' aria-hidden='true'></span> <%= @blockchain_proxy['stargazers_count'] %>
+                </div>
+                <div class='col-md-3'>
+                  <span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span> <%= @blockchain_proxy['watchers_count'] %>
+                </div>
+              </div>
             </div>
           </div>
         <% end %>
