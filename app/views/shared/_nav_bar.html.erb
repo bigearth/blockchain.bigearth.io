@@ -12,20 +12,22 @@
     </div>
     <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
       <ul class='nav navbar-nav'>
-        <% if user_signed_in? %>
-          <li class='<%= if (params[:controller] == 'users' || params[:controller] == 'chains') then 'active' end %>'>
-            <%= link_to user_path current_user do %>
-              <span class='text-primary glyphicon glyphicon-user'></span>
-              Profile
-            <% end %>
-          </li>
-        <% else %>
-          <li class='<%= if params[:controller] == 'devise/sessions' || params[:controller] == 'devise/registrations' || params[:controller] == 'devise_authy/passwords' || params[:controller] == 'devise/confirmations' then 'active' end %>'>
-            <%= link_to new_user_session_path do %>
-              <span class='text-primary glyphicon glyphicon-user'></span>
-              Sign in
-            <% end %>
-          </li>
+        <% unless Rails.env == 'production' %>
+          <% if user_signed_in? %>
+            <li class='<%= if (params[:controller] == 'users' || params[:controller] == 'chains') then 'active' end %>'>
+              <%= link_to user_path current_user do %>
+                <span class='text-primary glyphicon glyphicon-user'></span>
+                Profile
+              <% end %>
+            </li>
+          <% else %>
+            <li class='<%= if params[:controller] == 'devise/sessions' || params[:controller] == 'devise/registrations' || params[:controller] == 'devise_authy/passwords' || params[:controller] == 'devise/confirmations' then 'active' end %>'>
+              <%= link_to new_user_session_path do %>
+                <span class='text-primary glyphicon glyphicon-user'></span>
+                Sign in
+              <% end %>
+            </li>
+          <% end %>
         <% end %>
         <li class='<%= if params[:action] == 'bookmarks' then 'active' end %>'>
           <%= link_to apps_bookmarks_path do %>
