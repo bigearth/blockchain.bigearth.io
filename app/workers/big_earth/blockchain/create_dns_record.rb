@@ -4,7 +4,7 @@ module BigEarth
       extend BigEarth::Blockchain::Utility
       
       # Set queue
-      @queue = "#{Rails.env}_confirm_node_created_worker"
+      @queue = "#{Rails.env}_create_dns_record_worker"
       
       def self.perform config
         # Wrap in begin/rescue block
@@ -23,7 +23,11 @@ module BigEarth
             Resque.enqueue_in 15.seconds, BigEarth::Blockchain::CreateDNSRecord, config
           else
             # Get the CloudFlare Client
-            cloudflare = CloudFlare::connection(Figaro.env.cloudflare_api_key, Figaro.env.cloudflare_api_key)
+            cloudflare = CloudFlare::connection(Figaro.env.cloudflare_api_key, Figaro.env.cloudflare_email)
+            
+            puts "PATH: #{request.original_url.split('//').last.split('/').first}"
+            puts "FORMATTED TITLE: #{formatted_title}"
+            puts "IP ADDRESS: #{node.first['networks']['v4'].first['ip_address']}"
             
             # Create new A record
             cloudflare.rec_new(request.original_url.split('//').last.split('/').first, 'A', formatted_title, node.first['networks']['v4'].first['ip_address'], 1)
