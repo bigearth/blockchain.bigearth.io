@@ -1,5 +1,9 @@
 class DocsController < ApplicationController
 
+  # GET /docs/docs
+  def docs
+  end
+
   # GET /docs/developers
   def developers
     client = Octokit::Client.new access_token: Figaro.env.github_token
@@ -13,5 +17,9 @@ class DocsController < ApplicationController
     
     @blockchain_proxy = client.repo('bigearth/blockchain_proxy')
     @blockchain_proxy_version = client.tags 'bigearth/blockchain_proxy'
+  end
+
+  # GET /docs/security
+  def security
   end
 end

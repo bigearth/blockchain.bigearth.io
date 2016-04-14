@@ -1,0 +1,97 @@
+<div id='docs'>
+  <div class='container'>
+    <div class="blog-header">
+      <h1 class="blog-title">Big Earth Blockchain Security</h1>
+      <p class="lead blog-description">Keeping the Big Earth Blockchain Platform safe</p>
+      <div class="row">
+
+            <div class="col-sm-8 blog-main">
+
+              <div class="blog-post">
+                <p>Security is one of the biggest considerations in everything we do. If you have any questions after reading this, or encounter any issues, please contact us at <strong>security@bigearth.io</strong>.</p>
+                <h2 class="blog-post-title">SSL/TLS &amp; CSRF</h2>
+                <p class="blog-post-meta">Encryption between client and server</p>
+                <p>HTTPS is enforced for every connection to our website using 2048-bit digital signatures and 128-bit encryption. We also use HTTP Strict Transport Security to ensure requests never interact with our servers over insecure HTTP. Our servers are also protected against CSRF (Cross Site Request Forgery) and Session Fixation.</p>
+                
+                <h2 class="blog-post-title">Server side best practices</h2>
+                <p class="blog-post-meta">Encryption for private user data</p>
+                <p>All secrets, credentials and API keys are stored as environment variables and never hardcoded. All passwords are encrypted with the bcrypt algorithm including both a pepper and a salt to battle rainbow tables.</p>
+                <p>We confirm new profiles via email and also lock profiles down after a specified number of fail sign in attempts. Any time a blockchain is created or destroyed we send out an email to keep you up to date on any changes to your account.</p>
+                
+                <h2 class="blog-post-title">Brakeman</h2>
+                <p class="blog-post-meta">Static analysis security vulnerability scanner for Rails</p>
+                <p>We pass <%= link_to 'Brakeman', 'http://brakemanscanner.org/docs/' %> w/ <strong>0 errors</strong> and <strong>0 security warnings</strong>. Brakeman tests for the following:</p>
+                <p>
+                  <code>
+                    BasicAuth, BasicAuthTimingAttack, ContentTag, CreateWith, CrossSiteScripting, DefaultRoutes, Deserialize, DetailedExceptions, DigestDoS, DynamicFinders, EscapeFunction, Evaluation, Execute, FileAccess, FileDisclosure, FilterSkipping, ForgerySetting, HeaderDoS, I18nXSS, JRubyXML, JSONEncoding, JSONParsing, LinkTo, LinkToHref, MailTo, MassAssignment, MimeTypeDoS, ModelAttrAccessible, ModelAttributes, ModelSerialize, NestedAttributes, NestedAttributesBypass, NumberToCurrency, QuoteTableName, Redirect, RegexDoS, Render, RenderDoS, RenderInline, ResponseSplitting, RouteDoS, SQL, SQLCVEs, SSLVerify, SafeBufferManipulation, SanitizeMethods, SelectTag, SelectVulnerability, Send, SendFile, SessionManipulation, SessionSettings, SimpleFormat, SingleQuotes, SkipBeforeFilter, StripTags, SymbolDoSCVE, TranslateBug, UnsafeReflection, ValidationRegex, WithoutProtection, XMLDoS, YAMLParsing
+                  </code>
+                </p>
+                
+                <h2 class="blog-post-title">Two Factor Authentication</h2>
+                <p class="blog-post-meta">Something that you know and something that you have</p>
+                <p>We enable Two Factor Authentication via <%= link_to 'Authy', 'https://www.authy.com/' %>. This enables you to add an extra layer of security to your acconut by requiring a PIN be sent to your phone, either via text or an app, in combination w/ your password to sign in to your profile. This means that even if a bad guy gets your password they are still unable to sign in to your profile w/out your phone as well.</p>
+                
+                <h2 class="blog-post-title">Ubuntu</h2>
+                <p class="blog-post-meta">A single non root user over ssh</p>
+                <p>First we create a sudoer user. We then whitelist only that username in `sshd_config` and turn off the ability to sign in w/ a password and the ability to sign in as root. This means that *only* our single user can sign in to any of the machines in Big Earth's cloud and *only* over ssh.</p>
+                
+                <h2 class="blog-post-title">Chef</h2>
+                <p class="blog-post-meta">Configuration Management &amp; Devops</p>
+                <p>Chef gives us the peace of mind that we can spin up an entire cloud w/ each machine being a mirror image of the rest. RSA public key-pairs are used to authenticate a Chef client w/ a Chef server every time the client attempts to access the server.</p>
+                
+                <h2 class="blog-post-title">Rails Security</h2>
+                <p class="blog-post-meta">Our foundation</p>
+                <p>Ruby on Rails rolls best practices into the framework which leads developers to do the right thing out of the box. On top of that they have an active security team which keeps the framework up to date and secure as new issues arise. You can read about Rails security best practices.</p>
+                <ul>
+                  <li><%= link_to 'Rails Security', 'http://guides.rubyonrails.org/security.html' %></li>
+                </ul>
+                
+                <h2 class="blog-post-title">Heroku &amp; Digital Ocean Security</h2>
+                <p class="blog-post-meta">Platorms which we build on</p>
+                <p>Big Earth Blockchain servers are hosted on Heroku and Digital Ocean. You can read about their security measures in place to protect our infrastructure.</p>
+                <ul>
+                  <li><%= link_to 'Heroku Security', 'https://www.heroku.com/policy/security' %></li>
+                  <li><%= link_to 'Digital Ocean Security', 'https://www.digitalocean.com/security' %></li>
+                </ul>
+                
+                <h2 class="blog-post-title">CloudFlare &amp; DNSSEC</h2>
+                <p class="blog-post-meta">Worldwide CDN and Firewall</p>
+                <p>Cloudflare handles our nameservers and DNS which enables us to be protected against the largest DDoS attacks on the Web. We also use them to compress our content and cache it on their edge servers to drastically improve site performance. We use CloudFlare to enable DNSSEC to authenticate DNS records. 
+                  
+                <h2 class="blog-post-title">Network Diagram</h2>
+                <p class="blog-post-meta">The lay of the land</p>
+                <p><%= image_tag asset_path('network_topography.png'), class: 'network_topography' %></p>
+                
+                <h2 class="blog-post-title">Open Source</h2>
+                <p class="blog-post-meta">Peer Review</p>
+                <p>Our entire infrastructure is open source. We highly suggest you clone the repo and dig around to see how things work. Make some improvements and send us a pull-request. We'd be thrilled!</p>
+                <p>Find out more by checking out our <%= link_to 'Developers page', docs_developers_path %>.</p>
+                
+                  
+                
+                <h2 class="blog-post-title">Something missing? Contact Us</h2>
+                <p class="blog-post-meta">Help us improve</p>
+                <p>If you’ve found a vulnerability in our service or website, or want additional information regarding how we manage security, please send an email to <strong>security@bigearth.io</strong>. We'll review it and respond to you within 24 hours.</p>
+                <p>Have an urgent matter that you need to get in touch w/ us about? Email us at <strong>support@bigearth.io</strong> for any general support related questions/comments.</p>
+                <p>Don't see something here and thing it needs to be added? These docs are <%= link_to 'Open Source', 'https://github.com/bigearth/' %>. Please fork them, add whatever you think is missing and send us a pull request.</p>
+                
+              </div><!-- /.blog-post -->
+            </div><!-- /.blog-main -->
+
+            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+              <div class="sidebar-module sidebar-module-inset">
+                <!-- <h4>About</h4>
+                <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+              </div> -->
+              <div class="sidebar-module">
+                <h4>Docs</h4>
+                <ol class="list-unstyled">
+                  <li><%= link_to 'Developers', docs_developers_path %></li>
+                  <li><%= link_to 'Security', docs_security_path %></li>
+                </ol>
+              </div>
+            </div><!-- /.blog-sidebar -->
+
+          </div><!-- /.row -->  </div>
+  </div>
+</div>
