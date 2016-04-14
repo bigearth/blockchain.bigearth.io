@@ -16,7 +16,7 @@
                 <h2 class="blog-post-title">Server side best practices</h2>
                 <p class="blog-post-meta">Encryption for private user data</p>
                 <p>All secrets, credentials and API keys are stored as environment variables and never hardcoded. All passwords are encrypted with the bcrypt algorithm including both a pepper and a salt to battle rainbow tables.</p>
-                <p>We confirm new profiles via email and also lock profiles down after a specified number of fail sign in attempts. Any time a blockchain is created or destroyed we send out an email to keep you up to date on any changes to your account.</p>
+                <p>We confirm new profiles via email and also lock profiles down after a specified number of failed sign in attempts. Any time a blockchain is created or destroyed we send out an email to keep you up to date on any changes to your account.</p>
                 
                 <h2 class="blog-post-title">Brakeman</h2>
                 <p class="blog-post-meta">Static analysis security vulnerability scanner for Rails</p>
@@ -29,7 +29,7 @@
                 
                 <h2 class="blog-post-title">Two Factor Authentication</h2>
                 <p class="blog-post-meta">Something that you know and something that you have</p>
-                <p>We enable Two Factor Authentication via <%= link_to 'Authy', 'https://www.authy.com/' %>. This enables you to add an extra layer of security to your acconut by requiring a PIN be sent to your phone, either via text or an app, in combination w/ your password to sign in to your profile. This means that even if a bad guy gets your password they are still unable to sign in to your profile w/out your phone as well.</p>
+                <p>We enable Two Factor Authentication via <%= link_to 'Authy', 'https://www.authy.com/' %>. This enables you to add an extra layer of security to your acconut by requiring a PIN be sent to your phone, either via text or an app, which is used in combination w/ your password to sign in to your profile. This means that even if a bad guy gets your password they're still unable to sign in to your profile w/out your phone as well.</p>
                 
                 <h2 class="blog-post-title">Ubuntu</h2>
                 <p class="blog-post-meta">A single non root user over ssh</p>
@@ -73,7 +73,7 @@
                 <p class="blog-post-meta">Help us improve</p>
                 <p>If you’ve found a vulnerability in our service or website, or want additional information regarding how we manage security, please send an email to <strong>security@bigearth.io</strong>. We'll review it and respond to you within 24 hours.</p>
                 <p>Have an urgent matter that you need to get in touch w/ us about? Email us at <strong>support@bigearth.io</strong> for any general support related questions/comments.</p>
-                <p>Don't see something here and thing it needs to be added? These docs are <%= link_to 'Open Source', 'https://github.com/bigearth/' %>. Please fork them, add whatever you think is missing and send us a pull request.</p>
+                <p>Don't see something here and think it needs to be added? These docs are <%= link_to 'Open Source', 'https://github.com/bigearth/blockchain.bigearth.io/tree/master/app/views/docs' %>. Please fork them, add whatever you think is missing and send us a pull request.</p>
                 
               </div><!-- /.blog-post -->
             </div><!-- /.blog-main -->
