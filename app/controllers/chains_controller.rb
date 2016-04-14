@@ -111,11 +111,13 @@ class ChainsController < ApplicationController
     user = User.find params[:user_id]
     chain = user.chains.where('title = ?', params[:title]).first
     if chain.node_created
+      # Namespace the title by the user's email so that no global titles conflict
+      formatted_title = format_title params[:title], user.email
+      
       @response = {
         status: 200,
         message: 'node created',
-        ipv4_address: chain.ipv4_address,
-        ipv6_address: chain.ipv6_address
+        url: "#{formatted_title}.cloud.bigearth.io"
       }
     else
       @response = {
