@@ -47,6 +47,9 @@ class ChainsController < ApplicationController
         # Create node
         BigEarth::Blockchain::CreateNodeJob.perform_later config
         
+        # Mask IP address behind DNS A record
+        Resque.enqueue_in 15.seconds, BigEarth::Blockchain::CreateDNSRecord, config
+        
         format.html { redirect_to [@user, @chain], notice: "Chain '#{@chain.title}' is being created." }
         format.json { render :show, status: :created, location: @chain }
       else

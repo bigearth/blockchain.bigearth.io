@@ -9,6 +9,9 @@ module BigEarth
       
       class ConfirmNodeCreatedException < StandardError
       end
+      
+      class CreateDNSRecordException < StandardError
+      end
     end
   end
 end
