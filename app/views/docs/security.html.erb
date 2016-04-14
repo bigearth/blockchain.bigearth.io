@@ -15,7 +15,7 @@
                 
                 <h2 class="blog-post-title">Server side best practices</h2>
                 <p class="blog-post-meta">Encryption for private user data</p>
-                <p>All secrets, credentials and API keys are stored as environment variables and never hardcoded. All passwords are encrypted with the bcrypt algorithm including both a pepper and a salt to battle rainbow tables.</p>
+                <p>All secrets, credentials and API keys are stored as environment variables and never hardcoded. All passwords are hashed with the bcrypt algorithm including both a pepper and a salt to battle rainbow tables.</p>
                 <p>We confirm new profiles via email and also lock profiles down after a specified number of failed sign in attempts. Any time a blockchain is created or destroyed we send out an email to keep you up to date on any changes to your account.</p>
                 
                 <h2 class="blog-post-title">Brakeman</h2>
