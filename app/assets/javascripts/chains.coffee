@@ -339,7 +339,7 @@ $ ->
       
   panel = new Panel
   blockchain = new Blockchain panel
-  if _.isEmpty $ '#blockchain_title'
+  if $('#controls').data('chain_created') is 'true'
     blockchain.update_output $("<li>Node has been created.</li>"), 'complete' 
     blockchain.update_output $("<li>URL: #{$('#controls').data('url')}.</li>"), 'complete' 
   else
