@@ -226,6 +226,10 @@ $ ->
       $('#details').text @panel_data[action_type].details 
       $('#http_verb').removeClass('get post put delete').addClass(http_verb).text http_verb
       $('#action input').val action_type
+      # console.log $ "##{action_type}"
+      $(".form.active").removeClass 'active'  
+      $(".form").addClass 'hide'  
+      $("##{action_type}").removeClass('hide').addClass 'active' 
   
   class Blockchain
     
@@ -287,7 +291,7 @@ $ ->
         @.clear_output 'complete' 
         @.clear_output 'in_progress' 
         @.update_output $("<li>Working....</li>"), 'in_progress' 
-        $.get href, { ipv4_address: $('#controls').data('ipv4_address') }, (rsp) =>
+        $.get href, { url: $('#controls').data('url') }, (rsp) =>
           @.clear_output 'complete' 
           @.clear_output 'in_progress' 
           _.each rsp, (value, key) =>
@@ -314,7 +318,7 @@ $ ->
         if rsp.message is 'node created'
           @blockchain.clear_output 'in_progress' 
           @blockchain.update_output $("<li>Node has been created.</li>"), 'complete' 
-          @blockchain.update_output $("<li>URL: #{rsp.url}.</li>"), 'complete' 
+          @blockchain.update_output $("<li>URL: #{$('#controls').data('url')}.</li>"), 'complete' 
           @.confirm_infrastructure_bootstrapped()
         else
           @blockchain.update_output $("<li>Working....</li>"), 'in_progress' 
