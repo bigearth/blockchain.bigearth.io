@@ -139,7 +139,7 @@ class ChainsController < ApplicationController
   
   def get_best_block_hash
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_best_block_hash.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_best_block_hash.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -153,7 +153,7 @@ class ChainsController < ApplicationController
   
   def get_block
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_block.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_block.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -168,7 +168,7 @@ class ChainsController < ApplicationController
   
   def get_blockchain_info
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_blockchain_info.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_blockchain_info.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -182,7 +182,7 @@ class ChainsController < ApplicationController
   
   def get_block_count
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_block_count.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_block_count.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -196,7 +196,7 @@ class ChainsController < ApplicationController
   
   def get_block_hash
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_block_hash.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_block_hash.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -211,7 +211,7 @@ class ChainsController < ApplicationController
   
   def get_block_header
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_block_header.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_block_header.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -226,7 +226,7 @@ class ChainsController < ApplicationController
   
   def get_chain_tips
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_chain_tips.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_chain_tips.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -240,7 +240,7 @@ class ChainsController < ApplicationController
   
   def get_difficulty
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_difficulty.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_difficulty.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -254,7 +254,7 @@ class ChainsController < ApplicationController
   
   def get_mem_pool_info
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_mem_pool_info.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_mem_pool_info.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -268,7 +268,7 @@ class ChainsController < ApplicationController
   
   def get_raw_mem_pool
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_raw_mem_pool.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_raw_mem_pool.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -282,7 +282,7 @@ class ChainsController < ApplicationController
   
   def get_tx_out
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_tx_out.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_tx_out.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -296,7 +296,7 @@ class ChainsController < ApplicationController
   
   def get_tx_out_proof
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_tx_out_proof.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_tx_out_proof.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -310,7 +310,7 @@ class ChainsController < ApplicationController
   
   def get_tx_outset_info
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_tx_outset_info.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_tx_outset_info.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -324,7 +324,7 @@ class ChainsController < ApplicationController
   
   def verify_chain
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/verify_chain.json", 
+    @response = HTTParty.get("https://#{params['url']}/verify_chain.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -338,7 +338,7 @@ class ChainsController < ApplicationController
   
   def verify_tx_out_proof
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/verify_tx_out_proof.json", 
+    @response = HTTParty.get("https://#{params['url']}/verify_tx_out_proof.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -354,7 +354,7 @@ class ChainsController < ApplicationController
   
   def start
     require 'httparty'
-    @response = HTTParty.post("http://#{params['url']}/start.json", 
+    @response = HTTParty.post("https://#{params['url']}/start.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -368,7 +368,7 @@ class ChainsController < ApplicationController
   
   def stop
     require 'httparty'
-    @response = HTTParty.post("http://#{params['url']}/stop.json", 
+    @response = HTTParty.post("https://#{params['url']}/stop.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -382,7 +382,7 @@ class ChainsController < ApplicationController
   
   def get_info
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_info.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_info.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -397,7 +397,7 @@ class ChainsController < ApplicationController
   # Generate
   def generate
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/generate.json", 
+    @response = HTTParty.get("https://#{params['url']}/generate.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -411,7 +411,7 @@ class ChainsController < ApplicationController
   
   def get_generate
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_generate.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_generate.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -425,7 +425,7 @@ class ChainsController < ApplicationController
   
   def set_generate
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/set_generate.json", 
+    @response = HTTParty.get("https://#{params['url']}/set_generate.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -440,7 +440,7 @@ class ChainsController < ApplicationController
   # Mining
   def get_block_template
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_block_template.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_block_template.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -454,7 +454,7 @@ class ChainsController < ApplicationController
   
   def get_mining_info
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_mining_info.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_mining_info.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -468,7 +468,7 @@ class ChainsController < ApplicationController
   
   def get_network_hashps
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_network_hashps.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_network_hashps.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -482,7 +482,7 @@ class ChainsController < ApplicationController
   
   def prioritise_transaction
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/prioritise_transaction.json", 
+    @response = HTTParty.get("https://#{params['url']}/prioritise_transaction.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -496,7 +496,7 @@ class ChainsController < ApplicationController
   
   def submit_block
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/submit_block.json", 
+    @response = HTTParty.get("https://#{params['url']}/submit_block.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -511,7 +511,7 @@ class ChainsController < ApplicationController
   # Network
   def add_node 
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/add_node.json", 
+    @response = HTTParty.get("https://#{params['url']}/add_node.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -525,7 +525,7 @@ class ChainsController < ApplicationController
   
   def disconnect_node
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/disconnect_node.json", 
+    @response = HTTParty.get("https://#{params['url']}/disconnect_node.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -539,7 +539,7 @@ class ChainsController < ApplicationController
     
   def get_added_node_info
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_added_node_info.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_added_node_info.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -553,7 +553,7 @@ class ChainsController < ApplicationController
     
   def get_connection_count
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_connection_count.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_connection_count.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -567,7 +567,7 @@ class ChainsController < ApplicationController
     
   def get_net_totals
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_net_totals.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_net_totals.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -581,7 +581,7 @@ class ChainsController < ApplicationController
     
   def get_network_info
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_network_info.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_network_info.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -595,7 +595,7 @@ class ChainsController < ApplicationController
     
   def get_peer_info
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_peer_info.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_peer_info.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -609,7 +609,7 @@ class ChainsController < ApplicationController
   
   def list_banned
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/list_banned.json", 
+    @response = HTTParty.get("https://#{params['url']}/list_banned.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -623,7 +623,7 @@ class ChainsController < ApplicationController
     
   def clear_banned
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/clear_banned.json", 
+    @response = HTTParty.get("https://#{params['url']}/clear_banned.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -637,7 +637,7 @@ class ChainsController < ApplicationController
     
   def ping
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/ping.json", 
+    @response = HTTParty.get("https://#{params['url']}/ping.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -651,7 +651,7 @@ class ChainsController < ApplicationController
     
   def set_ban
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/set_ban.json", 
+    @response = HTTParty.get("https://#{params['url']}/set_ban.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -666,7 +666,7 @@ class ChainsController < ApplicationController
   # Transaction
   def create_raw_transaction  
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/create_raw_transaction.json", 
+    @response = HTTParty.get("https://#{params['url']}/create_raw_transaction.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -680,7 +680,7 @@ class ChainsController < ApplicationController
     
   def decode_raw_transaction 
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/decode_raw_transaction.json", 
+    @response = HTTParty.get("https://#{params['url']}/decode_raw_transaction.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -694,7 +694,7 @@ class ChainsController < ApplicationController
     
   def decode_script
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/decode_script.json", 
+    @response = HTTParty.get("https://#{params['url']}/decode_script.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -708,7 +708,7 @@ class ChainsController < ApplicationController
       
   def get_raw_transaction  
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/get_raw_transaction.json", 
+    @response = HTTParty.get("https://#{params['url']}/get_raw_transaction.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -722,7 +722,7 @@ class ChainsController < ApplicationController
     
   def send_raw_transaction 
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/send_raw_transaction.json", 
+    @response = HTTParty.get("https://#{params['url']}/send_raw_transaction.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -736,7 +736,7 @@ class ChainsController < ApplicationController
     
   def sign_raw_transaction 
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/sign_raw_transaction.json", 
+    @response = HTTParty.get("https://#{params['url']}/sign_raw_transaction.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -751,7 +751,7 @@ class ChainsController < ApplicationController
   # Util
   def create_multi_sig 
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/create_multi_sig.json", 
+    @response = HTTParty.get("https://#{params['url']}/create_multi_sig.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -765,7 +765,7 @@ class ChainsController < ApplicationController
     
   def estimate_fee  
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/estimate_fee.json", 
+    @response = HTTParty.get("https://#{params['url']}/estimate_fee.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -779,7 +779,7 @@ class ChainsController < ApplicationController
   
   def estimate_priority  
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/estimate_priority.json", 
+    @response = HTTParty.get("https://#{params['url']}/estimate_priority.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -793,7 +793,7 @@ class ChainsController < ApplicationController
       
   def estimate_smart_fee  
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/estimate_smart_fee.json", 
+    @response = HTTParty.get("https://#{params['url']}/estimate_smart_fee.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -807,7 +807,7 @@ class ChainsController < ApplicationController
   
   def estimate_smart_priority  
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/estimate_smart_priority.json", 
+    @response = HTTParty.get("https://#{params['url']}/estimate_smart_priority.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -821,7 +821,7 @@ class ChainsController < ApplicationController
   
   def validate_address  
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/validate_address.json", 
+    @response = HTTParty.get("https://#{params['url']}/validate_address.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
@@ -835,7 +835,7 @@ class ChainsController < ApplicationController
   
   def verify_message  
     require 'httparty'
-    @response = HTTParty.get("http://#{params['url']}/verify_message.json", 
+    @response = HTTParty.get("https://#{params['url']}/verify_message.json", 
       basic_auth: {
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
