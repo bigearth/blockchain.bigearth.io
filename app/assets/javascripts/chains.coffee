@@ -288,7 +288,10 @@ $ ->
         # Get form data
         data = {}
         _.each $('.form.active input'), (value, index) =>
-          data[$(value).data 'type'] = $(value).val()
+          if $(value).attr('type') == 'checkbox'
+            data[$(value).data 'type'] = value.checked ? 'true' : 'false'
+          else
+            data[$(value).data 'type'] = $(value).val()
         
         $action = $('#title_text').text()
         href = $("[data-action='#{$action}']").parents('a').attr 'href'
