@@ -158,6 +158,7 @@ class ChainsController < ApplicationController
         username: Figaro.env.blockchain_proxy_username, 
         password: Figaro.env.blockchain_proxy_password
       },
+      query: params['data'],
       headers: { 'Content-Type' => 'application/json' } 
     )
     respond_to do |format|

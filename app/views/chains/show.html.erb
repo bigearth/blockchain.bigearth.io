@@ -15,7 +15,7 @@
       </section>
       <section class='panel-body' data-title='<%= @chain.title %>' id='blockchain_title'>
         <section class='row m-b-md'>
-          <div class='col-md-3' id='controls' data-url='<%= @url %>'>
+          <div class='col-md-3' id='controls' data-url='<%= @url %>' data-chain_created='<%= @chain.node_created %>'>
             
             <%= render 'control' %>
             
