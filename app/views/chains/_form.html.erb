@@ -24,6 +24,12 @@
   <%= f.radio_button :flavor, :core, {checked: true} %> Core
   <%= f.radio_button :flavor, :classic %>Classic
   <%= f.radio_button :flavor, :xt %> XT
+  
+  <p>
+    <%= f.radio_button :tier, :free %> Free
+    <%= f.radio_button :tier, :pro %> Pro
+  </p>
+  
   <div class="input-group input-group-lg"> 
     <%= f.text_field :title, placeholder: 'Title', class: 'form-control' %>
     <span class="input-group-btn"> 

@@ -50,7 +50,7 @@ class ChainsController < ApplicationController
         # Mask IP address behind DNS A record
         Resque.enqueue_in 15.seconds, BigEarth::Blockchain::CreateDNSRecord, config
         
-        format.html { redirect_to [@user, @chain], notice: "Chain '#{@chain.title}' is being created." }
+        format.html { redirect_to [@user, @chain] }
         format.json { render :show, status: :created, location: @chain }
       else
         format.html { render :new }
@@ -90,6 +90,9 @@ class ChainsController < ApplicationController
       
       # Queue up BigEarth::Blockchain::DestroyNodeJob
       BigEarth::Blockchain::DestroyNodeJob.perform_later config
+      
+      # Destroy the DNS A record
+      BigEarth::Blockchain::DestroyDNSRecord.perform_later config
         
       # Send an email to the user
       BigEarth::Blockchain::ChainDestroyedEmailJob.perform_later @user, title
@@ -848,6 +851,6 @@ class ChainsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chain_params
-      params.require(:chain).permit :pub_key, :title, :flavor, :node_created, :ipv4_address, :ipv6_address, :user_id
+      params.require(:chain).permit :pub_key, :title, :flavor, :tier, :node_created, :ipv4_address, :ipv6_address, :user_id
     end
 end
