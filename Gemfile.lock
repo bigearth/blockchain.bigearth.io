@@ -65,6 +65,8 @@ GEM
     bson (4.0.4)
     builder (3.2.2)
     byebug (8.2.2)
+    cloudflare (2.0.3)
+      json (~> 1)
     coderay (1.1.1)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -292,6 +294,7 @@ DEPENDENCIES
   better_errors
   brakeman
   byebug
+  cloudflare
   coffee-rails (~> 4.1.0)
   devise
   devise-authy

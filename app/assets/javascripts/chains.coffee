@@ -306,8 +306,7 @@ $ ->
         if rsp.message is 'node created'
           @blockchain.clear_output 'in_progress' 
           @blockchain.update_output $("<li>Node has been created.</li>"), 'complete' 
-          @blockchain.update_output $("<li>IPv4 Address: #{rsp.ipv4_address}.</li>"), 'complete' 
-          @blockchain.update_output $("<li>IPv6 Address: #{rsp.ipv6_address}.</li>"), 'complete' 
+          @blockchain.update_output $("<li>URL: #{rsp.url}.</li>"), 'complete' 
           @.confirm_infrastructure_bootstrapped()
         else
           @blockchain.update_output $("<li>Working....</li>"), 'in_progress' 
