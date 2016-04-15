@@ -1,11 +1,16 @@
 <div class='hide form' id='getblock'>
-  <input data-type='hash' type='text' placeholder='hash'>
+  <input data-type='hash' type='text' placeholder='hash *required'>
   <input data-type='verbose' type='checkbox' checked='checked'>Verbose</input>
 </div>
 <div class='hide form' id='getblockhash'>
-  <input data-type='index' type='number' placeholder='index'>
+  <input data-type='index' type='number' placeholder='index *required'>
 </div>
 <div class='hide form' id='getblockheader'>
-  <input data-type='hash' type='text' placeholder='hash'>
+  <input data-type='hash' type='text' placeholder='hash *required'>
   <input data-type='verbose' type='checkbox' checked='checked'>Verbose</input>
+</div>
+<div class='hide form' id='gettxout'>
+  <input data-type='txid' type='text' placeholder='txid *required'>
+  <input data-type='n' type='number' placeholder='vout value *required'>
+  <input data-type='includemempool' type='checkbox' checked='checked'>Include mempool</input>
 </div>
