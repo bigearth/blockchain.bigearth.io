@@ -1,12 +1,12 @@
 module BigEarth
   module Blockchain
-    class DestroyDNSRecord
-      extend BigEarth::Blockchain::Utility
+    class DestroyDNSRecord < ActiveJob::Base
+      include BigEarth::Blockchain::Utility
       
       # Set queue
-      @queue = "#{Rails.env}_destroy_dns_record_worker"
+      queue_as :destroy_dns_record_job
       
-      def self.perform config
+      def perform config
         # Wrap in begin/rescue block
         begin
           # Get the CloudFlare Client

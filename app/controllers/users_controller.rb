@@ -66,8 +66,16 @@ class UsersController < ApplicationController
     
     # Destroy all nodes belonging to this user
     @user.chains.each do |chain|
+      config = {
+        title: chain.title,
+        email: email,
+        type: 'blockchain'
+      }
       # Queue up BigEarth::Blockchain::DestroyNodeJob
-      BigEarth::Blockchain::DestroyNodeJob.perform_later chain.title, email
+      BigEarth::Blockchain::DestroyNodeJob.perform_later config
+      
+      # Destroy the DNS A record
+      BigEarth::Blockchain::DestroyDNSRecord.perform_later config
     end
     
     # Send a final email to the user
