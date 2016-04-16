@@ -50,6 +50,28 @@ class ExplorersController < ApplicationController
     @blocks = blockr.blocks prev_blocks.join(',')
   end
   
+  def search
+    url = block_url params['search'] 
+    resp = HTTParty.get "#{url}.json"
+    if resp['data'].nil?
+      url = transaction_url params['search'] 
+      resp = HTTParty.get "#{url}.json"
+    end
+    if resp['data'].nil?
+      url = address_url params['search'] 
+      resp = HTTParty.get "#{url}.json"
+    end
+    respond_to do |format|
+      if resp['data'].nil? || resp['data']['is_unknown'] == true
+        format.html { redirect_to root_url, notice: "'#{params['search']}' doesn't appear to be a valid search. Try again." }
+        format.json { render json: @chain.errors, status: :unprocessable_entity }
+      else
+        format.html { redirect_to "#{url}" }
+        format.json { redirect_to "#{url}.json" }
+      end
+    end
+  end
+  
   def cloud
     # Get the Digital Ocean Client
     digital_ocean_client = DropletKit::Client.new access_token: Figaro.env.digital_ocean_api_token

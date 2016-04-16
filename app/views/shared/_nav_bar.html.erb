@@ -11,7 +11,7 @@
     </div>
     <div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'>
       <ul class='nav navbar-nav'>
-        <li class='<%= if (params[:controller] == 'addresses' || params[:controller] == 'blocks' || params[:controller] == 'chains' || params[:controller] == 'transactions' || (params[:action] == 'index' && params[:controller] == 'explorers')) then 'active' end %>'>
+        <li class='<%= if (params[:controller] == 'addresses' || params[:controller] == 'blocks' || params[:controller] == 'transactions' || (params[:action] == 'index' && params[:controller] == 'explorers')) then 'active' end %>'>
           <%= link_to root_url do %>
             <span class='text-primary glyphicon glyphicon-th-large'></span>
             Blockchain Explorer

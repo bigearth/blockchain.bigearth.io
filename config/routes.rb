@@ -101,6 +101,7 @@ Rails.application.routes.draw do
   get 'charts/days_destroyed' => 'charts#days_destroyed'
   get 'charts/blockchain_size' => 'charts#blockchain_size'
   resources :explorers, only: [:index], path: 'coin'
+  get 'explorers/search', path: 'search'
   get 'explorers/cloud', path: 'cloud'
   resources :blocks, only: [:show]
   resources :transactions, only: [:show]
