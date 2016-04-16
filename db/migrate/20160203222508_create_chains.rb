@@ -7,6 +7,7 @@ class CreateChains < ActiveRecord::Migration
       t.boolean :node_created, default: false
       t.string :ipv4_address
       t.string :ipv6_address
+      t.string :tier
       t.integer :user_id
 
       t.timestamps null: false
