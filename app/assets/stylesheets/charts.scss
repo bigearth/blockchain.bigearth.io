@@ -1,10 +1,28 @@
-.chart_link {
-  h3 {
-    a {
-      text-decoration: underline;
+#charts {
+  > section {
+    section {
+      border-style: solid;
+      border-color: white;
+      border-width: 0 0 1px 0;
+      padding: 10px 0;
     }
   }
-  a {
-    color: white;
+  .chart_link {
+    h3 {
+      a {
+        text-decoration: underline;
+      }
+    }
+    a {
+      color: white;
+    }
+  }
+
+  .chart_img {
+    text-align: center;
+    
+    img {
+      width: 225px;
+    }
   }
 }
