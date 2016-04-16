@@ -1,7 +1,7 @@
 <div class='jumbotron' id='jumbotron'>
   <div class='container'>
     <h1 class='dev_important'>Developers</h1>
-    <p>Big Earth Blockchain is completely open source and<br>has been downloaded <span class='dev_important'><%= number_with_delimiter @blockchain_bigearth_io_downloads.count , delimiter: ',' %></span> times by people just like you.</p>
+    <p>Big Earth Blockchain is completely open source and<br>has been downloaded <span class='dev_important'><%= number_with_delimiter @count , delimiter: ',' %></span> times by people just like you.</p>
     <p><%= link_to 'Download',  @blockchain_bigearth_io_version.first['zipball_url'], class: 'btn btn-primary btn-lg', role: 'button' %></p>
     <p class='download_description'>
       v<strong><%= @blockchain_bigearth_io_version.first['name'] %></strong> | <%= link_to "What's New", "https://github.com/bigearth/blockchain.bigearth.io/releases/tag/#{@blockchain_bigearth_io_version.first['name']}" %> | <%= link_to 'History', 'https://github.com/bigearth/blockchain.bigearth.io/releases' %>
