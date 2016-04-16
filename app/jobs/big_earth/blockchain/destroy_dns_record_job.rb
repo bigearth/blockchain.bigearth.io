@@ -17,7 +17,7 @@ module BigEarth
           resp = cloudflare.rec_load_all Figaro.env.cloudflare_domain
           
           # Namespace the title by the user's email so that no global titles conflict
-          formatted_title = format_title config['title'], config['email']
+          formatted_title = format_title config[:title], config[:email]
           puts "FORMATTED TITLE: #{formatted_title}"
           
           # Loop over records
