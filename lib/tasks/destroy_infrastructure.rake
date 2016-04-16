@@ -11,6 +11,9 @@ namespace :blockchain do
     # Create node
     BigEarth::Blockchain::DestroyNodeJob.perform_later config
     
+    # Destroy the DNS A record
+    BigEarth::Blockchain::DestroyDNSRecord.perform_later config
+    
     # Send out email
     if args[:type] == 'blockchain'
       BigEarth::Blockchain::ChainDestroyedEmailJob.perform_later @user, @chain
