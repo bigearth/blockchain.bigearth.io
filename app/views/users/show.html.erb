@@ -9,52 +9,40 @@
     </section>
   </div>
 </div>
-<div class='sub'>
+<div id='profile'>
   <section class='container'>
     <section class='row m-b-md'>
-        <div class='col-md-6'>
-          <p>
-            <strong>Email addres:</strong>
-            <%= @user.email %>
-          </p>
-          <p>
-            <strong>First name (optional):</strong>
-            <%= @user.first_name %>
-          </p>
-          <p>
-            <strong>Last name (optional):</strong>
-            <%= @user.last_name %>
-          </p>
-          <p>
-            <strong>Phone Number (optional):</strong>
-            <%= @user.phone_number %>
-          </p>
-          <p>
-            <strong>Location (optional):</strong>
-            <%= @user.location %>
-          </p>
-          <p>
-            <strong>Company (optional):</strong>
-            <%= @user.company %>
-          </p>
-          <p>
-            <strong>2 Factor Auth Enabled (optional):</strong>
-            <%= @user.authy_enabled %>
-          </p>
+        <div class='col-md-3'>
+          <p id='avatar'><%= image_tag asset_path 'avatar.png' %></p>
+          <h2><%= @user.name %></h2>
+          <h3><span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> <%= @user.email %></h3>
+          <hr>
+          <p><span class='glyphicon glyphicon-map-marker' aria-hidden='true'></span> <%= @user.location %></p>
+          <p><span class='glyphicon glyphicon-phone' aria-hidden='true'></span> <%= @user.phone_number %></p>
+          <p><span class='glyphicon glyphicon-home' aria-hidden='true'></span> <%= @user.company %></p>
+          <p><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 2FA: <%= @user.authy_enabled %></p>
           <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
-            <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-default' %>
-            <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
             <%= link_to 'Create Chain', new_user_chain_path(@user), class: 'btn btn-success' %>
+            <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+          </div>
+          <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
+            <%= link_to 'Edit Account', edit_user_path(@user), class: 'btn btn-default' %>
             <%= link_to 'Delete Account', @user, method: :delete, data: { confirm: "Permanently delete your account? All #{@user.chains.count} of your chains will be permanently deleted as well." }, class: 'btn btn-danger' %>
           </div>
         </div>
-        <div class='col-md-6'>
-          <h3>Chains</h3>
-          <ul>
-            <% @user.chains.each do |chain| %>
-              <li><%= link_to chain.title, user_chain_path(@user, chain) %> | <%= link_to 'delete', [@user, chain], method: :delete, data: { confirm: "Permanently delete Chain '#{chain.title}'? This action is undoable." } %></li>
-            <% end %>
-          </ul>
+        <div class='col-md-9'>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Chains</h3>
+            </div>
+            <div class="panel-body">
+              <ul>
+                <% @user.chains.each do |chain| %>
+                  <li><%= link_to chain.title, user_chain_path(@user, chain) %> | <%= link_to 'delete', [@user, chain], method: :delete, data: { confirm: "Permanently delete Chain '#{chain.title}'? This action is undoable." } %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
         </div>
     </section>
   </div>
