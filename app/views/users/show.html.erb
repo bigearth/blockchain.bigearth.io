@@ -1,14 +1,3 @@
-<div class='hero'>
-  <div class='container'>
-    <section class='row m-b-md'>
-        <div class='col-sm-12'>
-          <h2><span class='glyphicon glyphicon-user' aria-hidden='true'></span> Profile <strong><%= @user.email %></strong></h2>
-          <%= render 'shared/breadcrumb' %>
-          <%= render 'shared/social_media' %>
-        </div>
-    </section>
-  </div>
-</div>
 <div id='profile'>
   <section class='container'>
     <section class='row m-b-md'>
@@ -21,6 +10,8 @@
           <p><span class='glyphicon glyphicon-phone' aria-hidden='true'></span> <%= @user.phone_number %></p>
           <p><span class='glyphicon glyphicon-home' aria-hidden='true'></span> <%= @user.company %></p>
           <p><span class='glyphicon glyphicon-link' aria-hidden='true'></span> 2FA: <%= @user.authy_enabled %></p>
+          <p><span class='glyphicon glyphicon-time' aria-hidden='true'></span> Joined: <%= @user.created_at.strftime '%b %d, %Y' %></p>
+      
           <div class='btn-group btn-group-justified' role='group' aria-label='Justified button group'> 
             <%= link_to 'Create Chain', new_user_chain_path(@user), class: 'btn btn-success' %>
             <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
@@ -30,7 +21,7 @@
             <%= link_to 'Delete Account', @user, method: :delete, data: { confirm: "Permanently delete your account? All #{@user.chains.count} of your chains will be permanently deleted as well." }, class: 'btn btn-danger' %>
           </div>
         </div>
-        <div class='col-md-9'>
+        <div class='col-md-9' id='chains'>
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Chains</h3>
@@ -38,7 +29,19 @@
             <div class="panel-body">
               <ul>
                 <% @user.chains.each do |chain| %>
-                  <li><%= link_to chain.title, user_chain_path(@user, chain) %> | <%= link_to 'delete', [@user, chain], method: :delete, data: { confirm: "Permanently delete Chain '#{chain.title}'? This action is undoable." } %></li>
+                  <li>
+                    <div class='row m-b-md'>
+                      <div class='col-md-9'>
+                        <h3><span class='glyphicon glyphicon-th-large' aria-hidden='true'></span> <%= link_to chain.title, user_chain_path(@user, chain) %></h3>
+                        <hr>
+                        <p><span class='glyphicon glyphicon-th' aria-hidden='true'></span> Flavor: <%= chain.flavor %></p>
+                        <p><span class='glyphicon glyphicon-time' aria-hidden='true'></span> Created: <%= @user.created_at.strftime '%b %d, %Y' %></p>
+                      </div>
+                      <div class='col-md-3'>
+                        <h3><%= link_to 'delete', [@user, chain], method: :delete, data: { confirm: "Permanently delete Chain '#{chain.title}'? This action is undoable." }, class: 'btn btn-danger' %></h3>
+                      </div>
+                    </div>
+                  </li>
                 <% end %>
               </ul>
             </div>

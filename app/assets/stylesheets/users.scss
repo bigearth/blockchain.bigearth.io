@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #profile {
+  margin-top: -25px;
   padding-top: 1em;
   background: white;
   color: #333;
@@ -26,5 +27,21 @@
   
   .btn-group {
     margin: 25px 0;
+  }
+
+  #chains {
+    .panel-body {
+      padding: 0;
+    }
+    
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      
+      li {
+        padding: 15px;
+      }
+    }
+    
   }
 }
