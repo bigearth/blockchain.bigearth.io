@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20160320143841) do
     t.boolean  "node_created", default: false
     t.string   "ipv4_address"
     t.string   "ipv6_address"
+    t.string   "tier"
     t.integer  "user_id"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false

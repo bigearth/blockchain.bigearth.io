@@ -12,6 +12,9 @@ module BigEarth
       
       class CreateDNSRecordException < StandardError
       end
+      
+      class DestroyDNSRecordException < StandardError
+      end
     end
   end
 end

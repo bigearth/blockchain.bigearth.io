@@ -15,7 +15,7 @@
       </section>
       <section class='panel-body' data-title='<%= @chain.title %>' id='blockchain_title'>
         <section class='row m-b-md'>
-          <div class='col-md-3' id='controls' data-ipv4_address='<%= @chain.ipv4_address%>'>
+          <div class='col-md-3' id='controls' data-url='<%= @url %>' data-chain_created='<%= @chain.node_created %>'>
             
             <%= render 'control' %>
             
@@ -40,19 +40,22 @@
                 </span>
               <% end %>
             </h3>
-            <p id='details' class='hide'>
-            </p>
+            <p id='details' class='hide'></p>
             <div id='action'>
-              <div class="input-group input-group-lg"> 
-                <span class="input-group-btn"> 
+              <div class='input-group input-group-lg'> 
+                <span class='input-group-btn'> 
                   <button class='btn btn-default get' id='http_verb' disabled>GET</button>
                 </span>
                 <input class='form-control' readonly placeholder='getinfo'>
-                <span class="input-group-btn"> 
+                <span class='input-group-btn'> 
                   <button id='send' class='btn btn-default'>Send</button>
                 </span> 
               </div>
             </div>
+            <div class='alert alert-danger hide' role='alert'>
+              You need to upgrade this blockchain to the <strong>Pro</strong> tier for this feature to work. <%= link_to 'Click to upgrade', '#' %>.
+            </div>
+            <%= render 'blockchain_forms' %>
             <div>
               <code id='output'>
                 <ul id='complete'>

@@ -2,7 +2,7 @@ module BigEarth
   module Blockchain 
     module Utility
       def format_title title, email
-        "#{email.split('@').first}-#{email.split('@').last}-#{Rails.env}-#{title.tr('@', '').tr('!', '').squish.dasherize.parameterize}"
+        "#{email.split('@').first}-#{Rails.env}-#{title.tr('@', '').tr('!', '').squish.dasherize.parameterize}"
       end
        
       def fetch_node digital_ocean_client, title
