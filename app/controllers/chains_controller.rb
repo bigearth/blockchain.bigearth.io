@@ -13,7 +13,7 @@ class ChainsController < ApplicationController
   # GET /users/1/chains/1.json
   def show
     # Namespace the title by the user's email so that no global titles conflict
-    @url = "#{format_title @chain.title, @user.email}.cloud.bigearth.io"
+    @url = "#{format_title @chain.title, @user.email}.bigearth.io"
   end
 
   # GET /users/1/chains/new
@@ -122,7 +122,7 @@ class ChainsController < ApplicationController
       @response = {
         status: 200,
         message: 'node created',
-        url: "#{formatted_title}.cloud.bigearth.io"
+        url: "#{formatted_title}.bigearth.io"
       }
     else
       @response = {

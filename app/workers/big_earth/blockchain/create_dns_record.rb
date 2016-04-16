@@ -26,7 +26,7 @@ module BigEarth
             cloudflare = CloudFlare::connection(Figaro.env.cloudflare_api_key, Figaro.env.cloudflare_email)
             
             # Create new A record
-            cloudflare.rec_new(Figaro.env.cloudflare_domain, 'A', "#{formatted_title}.cloud", node.first['networks']['v4'].first['ip_address'], 1)
+            cloudflare.rec_new(Figaro.env.cloudflare_domain, 'A', "#{formatted_title}", node.first['networks']['v4'].first['ip_address'], 1)
           end
         # rescue BigEarth::Blockchain::Exceptions::CreateDNSRecordException => error
         rescue => error

@@ -21,7 +21,7 @@ module BigEarth
           # Loop over records
           resp['response']['recs']['objs'].each do |rec|
             # Find the record for this subdomain
-            if rec['name'] ==  "#{formatted_title}.cloud.bigearth.io"
+            if rec['name'] ==  "#{formatted_title}.bigearth.io"
               # Delete the DNS A record
               cloudflare.rec_delete Figaro.env.cloudflare_domain, rec['rec_id']
             end
