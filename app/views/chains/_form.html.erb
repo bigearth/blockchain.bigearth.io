@@ -14,21 +14,7 @@
     <a href='#' type="button" class="btn btn-default btn-info active" id='bitcoin_core' data-flavor='bitcoin_core'>
       <span class="glyphicon glyphicon-bitcoin" aria-hidden="true"></span> Core 
     </a>
-    <a href='#' type="button" class="btn btn-default" id='bitcoin_classic' data-flavor='bitcoin_classic'>
-      <span class="glyphicon glyphicon-bitcoin" aria-hidden="true"></span> Classic 
-    </a>
-    <a href='#' type="button" class="btn btn-default btn-warning" id='bitcoin_xt' data-flavor='bitcoin_xt'>
-      <span class="glyphicon glyphicon-bitcoin" aria-hidden="true"></span> XT 
-    </a>
   </div>
-  <%= f.radio_button :flavor, :core, {checked: true} %> Core
-  <%= f.radio_button :flavor, :classic %>Classic
-  <%= f.radio_button :flavor, :xt %> XT
-  
-  <p>
-    <%= f.radio_button :tier, :free %> Free
-    <%= f.radio_button :tier, :pro %> Pro
-  </p>
   
   <div class="input-group input-group-lg"> 
     <%= f.text_field :title, placeholder: 'Title', class: 'form-control' %>
