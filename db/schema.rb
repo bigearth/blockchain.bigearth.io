@@ -43,8 +43,7 @@ ActiveRecord::Schema.define(version: 20160320143841) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "name"
     t.string   "company"
     t.string   "location"
     t.string   "phone_number"
