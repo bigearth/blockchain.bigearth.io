@@ -94,7 +94,7 @@ class ChainsController < ApplicationController
       BigEarth::Blockchain::DestroyNodeJob.perform_later config
       
       # Destroy the DNS A record
-      BigEarth::Blockchain::DestroyDNSRecord.perform_later config
+      BigEarth::Blockchain::DestroyDNSRecordJob.perform_later config
         
       # Send an email to the user
       BigEarth::Blockchain::ChainDestroyedEmailJob.perform_later @user, title

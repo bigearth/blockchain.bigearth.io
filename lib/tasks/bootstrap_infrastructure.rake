@@ -17,11 +17,11 @@ namespace :blockchain do
     # Mask IP address behind DNS A record
     Resque.enqueue_in 15.seconds, BigEarth::Blockchain::CreateDNSRecord, config
     
-    # Send out email
-    if args[:type] == 'blockchain'
-      BigEarth::Blockchain::ChainCreatedEmailJob.perform_later @user, @chain
-    else
-      BigEarth::Blockchain::InfrastructureCreatedEmailJob.perform_later config
-    end
+    # # Send out email
+    # if args[:type] == 'blockchain'
+    #   BigEarth::Blockchain::ChainCreatedEmailJob.perform_later @user, @chain
+    # else
+    #   BigEarth::Blockchain::InfrastructureCreatedEmailJob.perform_later config
+    # end
   end
 end

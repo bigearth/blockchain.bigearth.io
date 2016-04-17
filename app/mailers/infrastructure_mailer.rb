@@ -5,11 +5,11 @@ class InfrastructureMailer < ActionMailer::Base
   
   def infrastructure_created config
     @config = config
-    mail to: @user.email, subject: "Big Earth Infrastructure '#{@config['title']}' created!"
+    mail to: @config['email'], subject: "Big Earth Infrastructure '#{@config['title']}' created!"
   end
   
   def infrastructure_destroyed config
     @config = config
-    mail to: @user.email, subject: "Big Earth Infrastructure '#{@config['title']}' destroyed!"
+    mail to: @config['email'], subject: "Big Earth Infrastructure '#{@config['title']}' destroyed!"
   end
 end

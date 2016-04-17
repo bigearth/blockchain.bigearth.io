@@ -1,6 +1,6 @@
 module BigEarth
   module Blockchain
-    class DestroyDNSRecord < ActiveJob::Base
+    class DestroyDNSRecordJob < ActiveJob::Base
       include BigEarth::Blockchain::Utility
       
       # Set queue
