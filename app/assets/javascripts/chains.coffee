@@ -299,7 +299,7 @@ $ ->
         @.clear_output 'complete' 
         @.clear_output 'in_progress' 
         @.update_output $("<li>Working....</li>"), 'in_progress' 
-        $.get href, { url: $('#controls').data('url'), data: data }, (rsp) =>
+        $.get href, { data: data }, (rsp) =>
           @.clear_output 'complete' 
           @.clear_output 'in_progress' 
           _.each rsp, (value, key) =>
@@ -339,10 +339,3 @@ $ ->
       
   panel = new Panel
   blockchain = new Blockchain panel
-  if $('#controls').data('chain_created') is true
-    blockchain.update_output $("<li>Node has been created.</li>"), 'complete' 
-    blockchain.update_output $("<li>URL: #{$('#controls').data('url')}.</li>"), 'complete' 
-  else
-    poller = new Poller blockchain
-    unless $('#controls').data('chain_created')
-      poller.confirm_node_created()
