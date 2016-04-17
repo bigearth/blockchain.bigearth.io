@@ -18,22 +18,20 @@
             <span id='bookmark_count_badge' class='hide label label-primary label-as-badge'></span>
           <% end %>
         </li>
-        <% unless Rails.env == 'production' %>
-          <% if user_signed_in? %>
-            <li class='<%= if (params[:controller] == 'users' || params[:controller] == 'chains') then 'active' end %>'>
-              <%= link_to user_path current_user do %>
-                <span class='text-primary glyphicon glyphicon-user'></span>
-                Profile
-              <% end %>
-            </li>
-          <% else %>
-            <li class='<%= if params[:controller] == 'devise/sessions' || params[:controller] == 'devise/registrations' || params[:controller] == 'devise_authy/passwords' || params[:controller] == 'devise/confirmations' then 'active' end %>'>
-              <%= link_to new_user_session_path do %>
-                <span class='text-primary glyphicon glyphicon-user'></span>
-                Sign in
-              <% end %>
-            </li>
-          <% end %>
+        <% if user_signed_in? %>
+          <li class='<%= if (params[:controller] == 'users' || params[:controller] == 'chains') then 'active' end %>'>
+            <%= link_to user_path current_user do %>
+              <span class='text-primary glyphicon glyphicon-user'></span>
+              Profile
+            <% end %>
+          </li>
+        <% else %>
+          <li class='<%= if params[:controller] == 'devise/sessions' || params[:controller] == 'devise/registrations' || params[:controller] == 'devise_authy/passwords' || params[:controller] == 'devise/confirmations' then 'active' end %>'>
+            <%= link_to new_user_session_path do %>
+              <span class='text-primary glyphicon glyphicon-user'></span>
+              Sign in
+            <% end %>
+          </li>
         <% end %>
         <li class='<%= if params[:action] == 'bookmarks' then 'active' end %>'>
           <%= link_to apps_bookmarks_path do %>
