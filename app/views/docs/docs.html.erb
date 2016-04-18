@@ -4,39 +4,25 @@
       <h1 class="blog-title">Big Earth Blockchain Docs</h1>
       <p class="lead blog-description">The official documentation of the Big Earth Blockchain Platform.</p>
       <div class="row">
-
-            <div class="col-sm-8 blog-main">
-
-              <div class="blog-post">
-                <p>Here you'll find everything you need to get started on the Big Earth Blockchain Platform.</p>
-                <ul>
-                  <li><%= link_to 'Developers', docs_developers_path %></li>
-                  <li><%= link_to 'API', docs_api_path %></li>
-                  <li><%= link_to 'Security', docs_security_path %></li>
-                </ul>
-                <p>Don't see something here and thing it needs to be added? These docs are <%= link_to 'Open Source', 'https://github.com/bigearth/blockchain.bigearth.io/tree/master/app/views/docs' %>. Please fork them, add whatever you think is missing and send us a pull request.</p>
-                <p>Have an urgent matter that you need to get in touch w/ us about? Email us at one of the addresses below.</p>
-                <ul>
-                  <li><strong>security@bigearth.io</strong> for any security related questions/comments.</li>
-                  <li><strong>support@bigearth.io</strong> for any general support related questions/comments.</li>
-                </ul>
-              </div><!-- /.blog-post -->
-            </div><!-- /.blog-main -->
-
-            <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-              <div class="sidebar-module sidebar-module-inset">
-                <!-- <h4>About</h4>
-                <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-              </div> -->
-              <div class="sidebar-module">
-                <h4>Docs</h4>
-                <ol class="list-unstyled">
-                  <li><%= link_to 'Developers', docs_developers_path %></li>
-                  <li><%= link_to 'Security', docs_security_path %></li>
-                </ol>
-              </div>
-            </div><!-- /.blog-sidebar -->
-
-          </div><!-- /.row -->  </div>
+        <div class="col-sm-8 blog-main">
+          <div class="blog-post">
+            <p>Here you'll find everything you need to get started on the Big Earth Blockchain Platform.</p>
+            <ul>
+              <li><%= link_to 'Developers', docs_developers_path %></li>
+              <li><%= link_to 'API', docs_api_path %></li>
+              <li><%= link_to 'Security', docs_security_path %></li>
+              <li><%= link_to 'Credit', docs_credit_path %></li>
+            </ul>
+            <p>Don't see something here and thing it needs to be added? These docs are <%= link_to 'Open Source', 'https://github.com/bigearth/blockchain.bigearth.io/tree/master/app/views/docs' %>. Please fork them, add whatever you think is missing and send us a pull request.</p>
+            <p>Have an urgent matter that you need to get in touch w/ us about? Email us at one of the addresses below.</p>
+            <ul>
+              <li><strong>security@bigearth.io</strong> for any security related questions/comments.</li>
+              <li><strong>support@bigearth.io</strong> for any general support related questions/comments.</li>
+            </ul>
+          </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+        <%= render 'nav' %>
+      </div><!-- /.row -->  
+    </div>
   </div>
 </div>

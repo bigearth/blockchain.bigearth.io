@@ -33,4 +33,8 @@ class DocsController < ApplicationController
   # GET /docs/security
   def security
   end
+
+  # GET /docs/credit
+  def credit
+  end
 end
