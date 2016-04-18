@@ -1,0 +1,142 @@
+<div id='docs'>
+  <div class='container'>
+    <div class="blog-header">
+      <h1 class="blog-title">Big Earth Blockchain API</h1>
+      <p class="lead blog-description">The official documentation of the Big Earth Blockchain API.</p>
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+          <div class="blog-post">
+            <p>Here you'll find everything you need to get started w/ the Big Earth Blockchain API.</p>
+            <p>All api responses are formatted by the JSend standard. See <%= link_to 'JSend', 'http://labs.omniti.com/labs/jsend' %>.</p>
+            
+            <h2 id='coin' class="blog-post-title">Coin</h2>
+            <p class="blog-post-meta">Coin Info</p>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Usage</h3>
+              </div>
+              <div class="panel-body">
+                <code><%= link_to "#{explorers_url}.json", "#{explorers_path}.json" %></code>
+              </div>
+            </div>
+            <p> This api presents coin information:</p>
+            <ul>
+              <li><strong>coin</strong> - Basic coin information with coin name, abbreviation, logo and homepage URL.</li>
+              <li><strong>volume</strong> - Volume information: how many coins are in supply and how many coins will there ever be.</li>
+              <li><strong>last_block</strong> - Information about the last block in the longest chain.</li>
+              <li><strong>next_difficulty</strong> - When will next difficulty be retargeted and how big it will probably be.</li>
+              <li><strong>market</strong> - Current price value on markets.</li>
+            </ul>
+            
+            <h2 id='block' class="blog-post-title">Block</h2>
+            <p class="blog-post-meta">Block Info</p>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Usage</h3>
+              </div>
+              <div class="panel-body">
+                <code><%= link_to "#{block_url(200000)}.json", "#{block_path(200000)}.json" %></code>
+              </div>
+            </div>
+            <p>Where <code>200000</code> can be:</p>
+            <ul>
+              <li><strong>block number</strong> (eg: <code>507</code>)</li>
+              <li><strong>block hash</strong> (eg: <code>000000000000000001ccbef03399f9a5a4d7338a471f91d343e52993ef11a0fa</code>)</li>
+              <li><strong>word &ldquo;last&rdquo;</strong> this will always return the latest block</li>
+              <li><strong>word &ldquo;first&rdquo;</strong> this will always return the first block</li>
+            </ul>
+            <h3 id='block_txs' class="blog-post-title">Block Transactions</h3>
+            <p>Returns short info about all transactions in given block.</p>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Usage</h3>
+              </div>
+              <div class="panel-body">
+                <code><%= link_to "#{root_url}blocks/transactions/200000.json", "#{root_url}blocks/transactions/200000.json" %></code>
+              </div>
+            </div>
+            <h3 id='block_raw'>Raw Block Data</h3>
+            <p>Returns raw block data in the bitcoin format.</p>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Usage</h3>
+              </div>
+              <div class="panel-body">
+                <code><%= link_to "#{root_url}blocks/raw/200000.json", "#{root_url}blocks/raw/200000.json" %></code>
+              </div>
+            </div>
+            
+            <h2 id='adress' class="blog-post-title">Address</h2>
+            <p class="blog-post-meta">Address Info</p>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Usage</h3>
+              </div>
+              <div class="panel-body">
+                <code><%= link_to "#{address_url('1DrK44np3gMKuvcGeFVv9Jk67zodP52eMu')}.json", "#{address_path('1DrK44np3gMKuvcGeFVv9Jk67zodP52eMu')}.json" %></code>
+              </div>
+            </div>
+            <p>Returns basic address data, date, block and transaction, when this address first appeared and last transaction data.</p>
+            <p>Address amount is split into two fields:</p>
+            <ul>
+              <li><strong>amount:</strong> amount of coins linked to this address</li>
+              <li><strong>amount_multisig:</strong> amount of coins that this address has in multisignature transactions</li>
+            </ul>
+            <p>We have them separated because coins in the multisignature transaction do not belong to only one specific address, but to all addresses that are part of this multisignature transaction. It would be wrong to just add that amount to address's amount.</p>
+            <h3 id='address_balance'>Address Balance</h3>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Usage</h3>
+              </div>
+              <div class="panel-body">
+                <code><%= link_to "#{root_url}addresses/balance/1DrK44np3gMKuvcGeFVv9Jk67zodP52eMu.json", "#{root_url}addresses/balance/1DrK44np3gMKuvcGeFVv9Jk67zodP52eMu.json" %></code>
+              </div>
+            </div>
+            <h3 id='address_transactions'>Unspent Transactions</h3>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Usage</h3>
+              </div>
+              <div class="panel-body">
+                <code><%= link_to "#{root_url}addresses/unspent/1DrK44np3gMKuvcGeFVv9Jk67zodP52eMu.json", "#{root_url}addresses/unspent/1DrK44np3gMKuvcGeFVv9Jk67zodP52eMu.json" %></code>
+              </div>
+            </div>
+            <p>Returns unspent transactions for a given address. Unspent transactions are transactions that still have value. Value of these transactions hasn't been spent yet. Be carefull when using outputs with low number of confirmations (if transaction has more then 6 confirmations then it's usually safe to include it).</p> 
+            
+            <h2 id='transaction' class="blog-post-title">Transaction</h2>
+            <p class="blog-post-meta">Transaction Info</p>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Usage</h3>
+              </div>
+              <div class="panel-body">
+                <code><%= link_to "#{transaction_url('5752c2cce3c69a0f89f2d21327661819da74ead293cf456c6ca1faeacb449a42')}.json", "#{transaction_path('5752c2cce3c69a0f89f2d21327661819da74ead293cf456c6ca1faeacb449a42')}.json" %></code>
+              </div>
+            </div>
+            <p>Returns transaction data. Some fields are normalized&mdash;<code>vin</code> is presented as an address and not as a previous transaction hash. <code>vins</code> and <code>vouts</code> present actual traded value, not whole transaction amounts. If you need exact transaction presentation, use raw api call.</p>
+            <p>This API call returns transaction data for unconfirmed and normal blockchain transactions. It also returns the extra parameter for the unspent vouts. The subkeys for this paramters are:</p>
+            <ul>
+              <li>vout type (eg: <code>pubkeyhash</code>)</li>
+              <li>vout script hash</li>
+              <li>vout asm script</li>
+              <li>number of signatures required (used for multisig vouts)</li>
+            </ul>
+            <p>This fields can also be accessed through the raw transaction API call.</p>
+            <h3 id='tx_raw'>Raw Transaction Data</h3>
+            <p>Returns raw transaction data in the bitcoin format.</p>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Usage</h3>
+              </div>
+              <div class="panel-body">
+                <code><%= link_to "#{root_url}transactions/raw/5752c2cce3c69a0f89f2d21327661819da74ead293cf456c6ca1faeacb449a42.json", "#{root_url}transactions/raw/5752c2cce3c69a0f89f2d21327661819da74ead293cf456c6ca1faeacb449a42.json" %></code>
+              </div>
+            </div>
+            
+          </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+        <%= render 'nav' %>
+      </div><!-- /.row -->  
+    </div>
+  </div>
+</div>

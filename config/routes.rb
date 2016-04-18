@@ -75,11 +75,6 @@ Rails.application.routes.draw do
       get 'verify_message'
     end
   end
-  get 'blocks/transactions/:id' => 'blocks#transactions'
-  get 'blocks/raw/:id' => 'blocks#raw'
-  get 'transactions/raw/:id' => 'transactions#raw'
-  get 'addresses/balance/:id' => 'addresses#balance'
-  get 'addresses/unspent/:id' => 'addresses#unspent'
   get 'apps/bookmarks' => 'apps#bookmarks'
   get 'apps/calculator' => 'apps#calculator'
   get 'charts/show' => 'charts#show', path: 'charts'
@@ -104,11 +99,17 @@ Rails.application.routes.draw do
   get 'explorers/search', path: 'search'
   get 'explorers/cloud', path: 'cloud'
   resources :blocks, only: [:show]
+  get 'blocks/transactions/:id' => 'blocks#transactions'
+  get 'blocks/raw/:id' => 'blocks#raw'
   resources :transactions, only: [:show]
+  get 'transactions/raw/:id' => 'transactions#raw'
   resources :addresses, only: [:show]
+  get 'addresses/balance/:id' => 'addresses#balance'
+  get 'addresses/unspent/:id' => 'addresses#unspent'
   
   get 'docs/docs'
   get 'docs/developers'
+  get 'docs/api'
   get 'docs/security'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

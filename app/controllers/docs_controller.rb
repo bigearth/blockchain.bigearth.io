@@ -26,6 +26,10 @@ class DocsController < ApplicationController
     @blockchain_proxy_version = client.tags 'bigearth/blockchain_proxy'
   end
 
+  # GET /docs/api 
+  def api
+  end
+
   # GET /docs/security
   def security
   end
