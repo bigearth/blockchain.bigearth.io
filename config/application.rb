@@ -23,6 +23,8 @@ module BigEarth
       config.force_ssl = true
    
       #config.active_job.queue_adapter = :delayed_job
+      config.assets.paths << Rails.root.join("public", "assets", "stylesheets")
+      config.assets.paths << Rails.root.join("public", "assets", "javascripts")
       config.assets.paths << Rails.root.join("app", "assets", "fonts")
       config.assets.precompile += %w( .svg .eot .woff .ttf )
       config.autoload_paths += Dir["#{config.root}/lib/**/"]
