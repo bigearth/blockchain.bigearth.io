@@ -16,4 +16,5 @@
 # require turbolinks
 #= require lodash.min
 #= require core
+#= require final
 #= require_tree .
