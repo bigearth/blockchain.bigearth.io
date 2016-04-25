@@ -14,7 +14,5 @@
 #= require jquery_ujs
 #= require bootstrap.min
 # require turbolinks
-#= require lodash.min
-#= require core
 #= require final
 #= require_tree .

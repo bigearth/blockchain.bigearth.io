@@ -6,7 +6,7 @@
 import * as $ from "jquery";
 import * as _ from "lodash";
 
-window.onload = function() {
+window.onload = () => {
  'use strict';
 
   class Calculator {
